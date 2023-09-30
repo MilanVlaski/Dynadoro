@@ -2,10 +2,13 @@ When i open the app i want it to display 00:00.
 When i press Begin it counts and shows me that i am working.
 (Break is displayed).
 
-When i press Break, it should reset the timer.
-
-Then it starts counting down for the duration of the break,
+When i press Break, it start counting down for the duration of the break,
 which lasts 5 times shorter than the time spent working.
 
 When it reaches zero, it plays an alarm until i stop it,
 which restarts the whole process.
+
+
+
+When starting work we start the clock.
+(the clock updates the display every second).
