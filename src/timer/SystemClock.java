@@ -6,5 +6,5 @@ public class SystemClock implements Clock {
 	public int currentTimeSeconds() {
 		return (int) (System.currentTimeMillis() / 1000);
 	}
-	
+
 }

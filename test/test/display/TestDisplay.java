@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import display.ConsoleDisplay;
 import display.Display;
+import timer.SystemClock;
+import timer.Timer;
 
 class TestDisplay {
 
@@ -13,17 +15,16 @@ class TestDisplay {
 	
 	@Test
 	void shouldDisplayFiveSeconds() {
-		assertEquals("00:05", display.display(5));
+		assertEquals("00:05", display.displayedTime(5));
 	}
 	
 	@Test
 	void shouldDisplayMinuteAndFiveSeconds() {
-		assertEquals("01:05", display.display(65));
+		assertEquals("01:05", display.displayedTime(65));
 	}
 	
 	@Test
 	void shouldDisplayOneHour() {
-		assertEquals("01:00:00", display.display(3600));
+		assertEquals("01:00:00", display.displayedTime(3600));
 	}
-
 }
