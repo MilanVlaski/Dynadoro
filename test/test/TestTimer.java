@@ -1,6 +1,8 @@
 package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -14,11 +16,13 @@ class TestTimer {
 
 	@Mock
 	Clock mockClock = mock(Clock.class);
-
+	
+	Timer timer = new Timer(mockClock);
+	
 	@Test
 	void timeShouldBeZeroIfNotStarted() {
-		Timer timer = new Timer(mockClock);
 		assertEquals(0, timer.time());
+		assertFalse(timer.working());
 	}
 
 	@Test
@@ -27,9 +31,14 @@ class TestTimer {
 				.thenReturn(0)
 				.thenReturn(5);
 		
-		Timer timer = new Timer(mockClock);
-		
 		timer.begin();
+		// 5 seconds pass...
 		assertEquals(5, timer.time());
+	}
+	
+	@Test
+	void shouldBeginWork(){
+		timer.begin();
+		assertTrue(timer.working());
 	}
 }

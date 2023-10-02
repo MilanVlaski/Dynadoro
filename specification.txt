@@ -9,6 +9,6 @@ When it reaches zero, it plays an alarm until i stop it,
 which restarts the whole process.
 
 
-
-When starting work we start the clock.
-(the clock updates the display every second).
+The clock needs to tick, and we have to go into a working state.
+Actually, we dont really care about the clock ticking, it just needs to display
+that. 
