@@ -15,15 +15,15 @@ import timer.Timer;
 
 class TestTimer {
 
-	@Mock
 	Clock mockClock = mock(Clock.class);
-	@Mock
 	Display display = mock(Display.class);
 
 	Timer timer = new Timer(mockClock, display);
 
 	@Test
 	void timeShouldBeZeroIfNotStarted() {
+		when(mockClock.currentTimeSeconds()).thenReturn(123);
+		
 		assertEquals(0, timer.time());
 		assertFalse(timer.working());
 	}
@@ -31,12 +31,12 @@ class TestTimer {
 	@Test
 	void shouldMeasureElapsedTime() {
 		when(mockClock.currentTimeSeconds())
-				.thenReturn(0)
-				.thenReturn(5);
+						.thenReturn(0)
+						.thenReturn(5);
 		
 		timer.begin();
 		// 5 seconds pass...
-		assertEquals(5, timer.time());
+		assertEquals(5 - 0, timer.time());
 	}
 
 	@Test

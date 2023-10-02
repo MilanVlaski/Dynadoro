@@ -18,7 +18,7 @@ public class MainClass {
 		
 		try (Scanner scanner = new Scanner(System.in)) {
 			
-			System.out.println("Press 1 to start studying.");
+			System.out.println(timer.time() + "\nPress 1 to start studying.");
 			while(true) {
 				String input = scanner.nextLine();
 				if(input.equals("1")) {
