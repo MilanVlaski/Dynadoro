@@ -8,31 +8,17 @@ public class ConsoleDisplay implements Display {
 	    int minutes = (seconds % 3600) / 60;
 	    int remainingSeconds = seconds % 60;
 	    
-	    Time time = new Time(hours, minutes, remainingSeconds);
-	    return time.toString();
+		String hoursString = stringOfTime(hours);
+		String minutesString = stringOfTime(minutes);
+		String secondsString = stringOfTime(remainingSeconds);
+	    
+	    if(hours != 0)
+			return String.join(":", hoursString, minutesString, secondsString);
+		else
+			return String.join(":", minutesString, secondsString);
 	}
 
-	private static class Time {
-		private final String hours;
-		private final String minutes;
-		private final String seconds;
-		
-		public Time(int hours, int minutes, int seconds) {
-			this.hours = stringOfTime(hours);
-			this.minutes = stringOfTime(minutes);
-			this.seconds = stringOfTime(seconds);
-		}
-		
-		private static String stringOfTime(int timeUnit) {
-			return String.format("%02d", timeUnit);
-		}
-		
-		@Override
-		public String toString() {
-			if(!hours.equals("00"))
-				return String.join(":", hours, minutes, seconds);
-			else
-				return String.join(":", minutes, seconds);
-		}
+	private static String stringOfTime(int timeUnit) {
+		return String.format("%02d", timeUnit);
 	}
 }
