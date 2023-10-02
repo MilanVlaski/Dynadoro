@@ -5,29 +5,31 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 import timer.Clock;
 import timer.Timer;
 
 class TestTimer {
 
+	@Mock
+	Clock mockClock = mock(Clock.class);
+
 	@Test
-	void shouldStartWithZero() {
-		Timer timer = new Timer(null);
+	void timeShouldBeZeroIfNotStarted() {
+		Timer timer = new Timer(mockClock);
 		assertEquals(0, timer.time());
 	}
 
 	@Test
 	void shouldMeasureElapsedTime() {
-		Clock mockClock = mock(Clock.class);
-		int ELAPSED = 5;
-		
 		when(mockClock.currentTimeSeconds())
 				.thenReturn(0)
-				.thenReturn(ELAPSED);
+				.thenReturn(5);
+		
 		Timer timer = new Timer(mockClock);
 		
 		timer.begin();
-		assertEquals(ELAPSED, timer.end());
+		assertEquals(5, timer.time());
 	}
 }

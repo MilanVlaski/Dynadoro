@@ -9,15 +9,12 @@ public class Timer {
 		this.clock = clock;
 	}
 
-	public double time() {
-		return 0;
+	public int time() {
+		return clock.currentTimeSeconds() - startTime;
 	}
 
 	public void begin() {
 		startTime = clock.currentTimeSeconds();
 	}
 
-	public int end() {
-		return clock.currentTimeSeconds() - startTime;
-	}
 }
