@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Scanner;
+
 import display.ConsoleDisplay;
 import display.Display;
 import timer.Clock;
@@ -13,7 +15,18 @@ public class MainClass {
 		Clock clock = new SystemClock();
 		Timer timer = new Timer(clock, display);
 		
-		timer.begin();
+		
+		try (Scanner scanner = new Scanner(System.in)) {
+			
+			System.out.println("Press 1 to start studying.");
+			while(true) {
+				String input = scanner.nextLine();
+				if(input.equals("1")) {
+					timer.begin();
+					break;
+				}
+			}
+		}
 	}
 
 }
