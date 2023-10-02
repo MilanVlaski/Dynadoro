@@ -1,8 +1,5 @@
 package display;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ConsoleDisplay implements Display {
 
 	@Override
@@ -11,20 +8,31 @@ public class ConsoleDisplay implements Display {
 	    int minutes = (seconds % 3600) / 60;
 	    int remainingSeconds = seconds % 60;
 	    
-	    List<String> result = new ArrayList<>();
-	    
-	    if(hours > 0)
-	    	result.add(stringOfTime(hours));
-	    
-	    result.add(stringOfTime(minutes));
-	    result.add(stringOfTime(remainingSeconds));
-	    
-	    
-	    return String.join(":", result);
+	    Time time = new Time(hours, minutes, remainingSeconds);
+	    return time.toString();
 	}
 
-	private String stringOfTime(int timeUnit) {
-		return String.format("%02d", timeUnit);
+	private static class Time {
+		private final String hours;
+		private final String minutes;
+		private final String seconds;
+		
+		public Time(int hours, int minutes, int seconds) {
+			this.hours = stringOfTime(hours);
+			this.minutes = stringOfTime(minutes);
+			this.seconds = stringOfTime(seconds);
+		}
+		
+		private static String stringOfTime(int timeUnit) {
+			return String.format("%02d", timeUnit);
+		}
+		
+		@Override
+		public String toString() {
+			if(!hours.equals("00"))
+				return String.join(":", hours, minutes, seconds);
+			else
+				return String.join(":", minutes, seconds);
+		}
 	}
-
 }
