@@ -37,7 +37,7 @@ class TestDisplay {
 	
 	@Test
 	void displayWhenStudying() {
-		assertEquals("00:01\nPress 1 to take a break.",
-				display.displayedMessage(TimerState.WORKING, 1));
+		assertEquals("00:21\nPress 1 to take a break.",
+				display.displayedMessage(TimerState.WORKING, 21));
 	}
 }
