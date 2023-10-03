@@ -4,12 +4,18 @@ import display.Display;
 
 public class Timer {
 
+	private static enum TimerState {
+		WORKING,
+		TAKING_BREAK,
+		// PAUSED,
+		IDLE;
+	}
+
 	private final Clock clock;
 	private final Display display;
 
 	private int startTime;
-	private boolean working = false;
-	private boolean takingBreak = false;
+	private TimerState timerState = TimerState.IDLE;
 
 	public Timer(Clock clock, Display display) {
 		this.clock = clock;
@@ -17,24 +23,27 @@ public class Timer {
 	}
 
 	public int time() {
+
 		int elapsedTime = clock.currentTimeSeconds() - startTime;
-		if (working)
+
+		switch (timerState) {
+		case WORKING:
 			return elapsedTime;
-		else if (takingBreak)
+		case TAKING_BREAK:
 			return elapsedTime / 5;
-		else
+		default:
 			return 0;
+		}
 	}
 
 	public void begin() {
 		startTime = clock.currentTimeSeconds();
 		showTimeTicking();
-		working = true;
+		timerState = TimerState.WORKING;
 	}
 
 	public void takeBreak() {
-		takingBreak  = true;
-		working = false;
+		timerState = TimerState.TAKING_BREAK;
 	}
 
 	private void showTimeTicking() {
@@ -53,7 +62,10 @@ public class Timer {
 	}
 
 	public boolean working() {
-		return working;
+		if (timerState == TimerState.WORKING)
+			return true;
+		else
+			return false;
 	}
 
 }
