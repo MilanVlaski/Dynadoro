@@ -15,6 +15,7 @@ public class Timer {
 	private final Display display;
 
 	private int startTime;
+	// perhaps the behavior changing based on enum tells us something
 	private TimerState timerState = TimerState.IDLE;
 
 	public Timer(Clock clock, Display display) {
@@ -61,11 +62,5 @@ public class Timer {
 		timerThread.start();
 	}
 
-	public boolean working() {
-		if (timerState == TimerState.WORKING)
-			return true;
-		else
-			return false;
-	}
 
 }

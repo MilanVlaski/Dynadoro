@@ -25,7 +25,6 @@ class TestTimer {
 		when(mockClock.currentTimeSeconds()).thenReturn(999);
 		
 		assertEquals(0, timer.time());
-		assertFalse(timer.working());
 	}
 
 	@Test
@@ -40,12 +39,6 @@ class TestTimer {
 	}
 
 	@Test
-	void shouldBeginWork() {
-		timer.begin();
-		assertTrue(timer.working());
-	}
-
-	@Test
 	void breakShouldTakeFiveTimesShorterThanWork() {
 		when(mockClock.currentTimeSeconds())
 						.thenReturn(0)
@@ -55,6 +48,5 @@ class TestTimer {
 		// 5 seconds pass...
 		timer.takeBreak();
 		assertEquals(1, timer.time());
-//		assertFalse(timer.working());
 	}
 }
