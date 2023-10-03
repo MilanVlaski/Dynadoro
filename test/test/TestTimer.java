@@ -26,7 +26,7 @@ class TestTimer {
 		
 		assertEquals(0, timer.time());
 	}
-
+	
 	@Test
 	void shouldMeasureElapsedTime() {
 		when(mockClock.currentTimeSeconds())

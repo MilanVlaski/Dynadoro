@@ -16,7 +16,7 @@ public class MainClass {
 		Timer timer = new Timer(clock, display);
 
 		try (Scanner scanner = new Scanner(System.in)) {
-
+			
 			System.out.println("00:00"
 					+ "\nPress 1 to start studying.");
 			String input = scanner.nextLine();

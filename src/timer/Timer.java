@@ -4,7 +4,7 @@ import display.Display;
 
 public class Timer {
 
-	private static enum TimerState {
+	public enum TimerState {
 		WORKING,
 		TAKING_BREAK,
 		// PAUSED,

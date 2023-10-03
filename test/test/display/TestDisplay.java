@@ -8,23 +8,36 @@ import display.ConsoleDisplay;
 import display.Display;
 import timer.SystemClock;
 import timer.Timer;
+import timer.Timer.TimerState;
 
 class TestDisplay {
 
 	ConsoleDisplay display = new ConsoleDisplay();
 	
 	@Test
-	void shouldDisplayFiveSeconds() {
+	void displayFiveSeconds() {
 		assertEquals("00:05", display.displayedTime(5));
 	}
 	
 	@Test
-	void shouldDisplayMinuteAndFiveSeconds() {
+	void displayMinuteAndFiveSeconds() {
 		assertEquals("01:05", display.displayedTime(65));
 	}
 	
 	@Test
-	void shouldDisplayOneHour() {
+	void displayOneHour() {
 		assertEquals("01:00:00", display.displayedTime(3600));
+	}
+	
+	@Test
+	void displayOnStartup() {
+		assertEquals("00:00\nPress 1 to start studying.",
+				display.displayedMessage(TimerState.IDLE, 123));
+	}
+	
+	@Test
+	void displayWhenStudying() {
+		assertEquals("00:01\nPress 1 to take a break.",
+				display.displayedMessage(TimerState.WORKING, 1));
 	}
 }
