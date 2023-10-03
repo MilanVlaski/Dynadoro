@@ -1,13 +1,13 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 
 import display.Display;
 import timer.Clock;
@@ -22,7 +22,7 @@ class TestTimer {
 
 	@Test
 	void timeShouldBeZeroIfNotStarted() {
-		when(mockClock.currentTimeSeconds()).thenReturn(123);
+		when(mockClock.currentTimeSeconds()).thenReturn(999);
 		
 		assertEquals(0, timer.time());
 		assertFalse(timer.working());
@@ -36,7 +36,7 @@ class TestTimer {
 		
 		timer.begin();
 		// 5 seconds pass...
-		assertEquals(5 - 0, timer.time());
+		assertEquals(5-0, timer.time());
 	}
 
 	@Test
@@ -46,7 +46,15 @@ class TestTimer {
 	}
 
 	@Test
-	void testName() {
+	void breakShouldTakeFiveTimesShorterThanWork() {
+		when(mockClock.currentTimeSeconds())
+						.thenReturn(0)
+						.thenReturn(5);
+		
 		timer.begin();
+		// 5 seconds pass...
+		timer.takeBreak();
+		assertEquals(1, timer.time());
+//		assertFalse(timer.working());
 	}
 }
