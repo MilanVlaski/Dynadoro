@@ -17,10 +17,11 @@ public class Timer {
 	}
 
 	public int time() {
+		int elapsedTime = clock.currentTimeSeconds() - startTime;
 		if (working)
-			return clock.currentTimeSeconds() - startTime;
+			return elapsedTime;
 		else if (takingBreak)
-			return (clock.currentTimeSeconds() - startTime) / 5;
+			return elapsedTime / 5;
 		else
 			return 0;
 	}
