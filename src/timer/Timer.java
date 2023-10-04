@@ -13,6 +13,7 @@ public class Timer {
 
 	private final Clock clock;
 	private final Display display;
+	private static final int BREAK_TIME_FACTOR = 5;
 
 	private int startTime;
 	// perhaps the behavior changing based on enum tells us something
@@ -35,7 +36,7 @@ public class Timer {
 		case WORKING:
 			return elapsedTime;
 		case TAKING_BREAK:
-			return elapsedTime / 5 - (currentTime - pauseTime);
+			return elapsedTime / BREAK_TIME_FACTOR - (currentTime - pauseTime);
 		default:
 			return 0;
 		}
@@ -74,6 +75,7 @@ public class Timer {
 				}
 			}
 		});
+		timerThread.setDaemon(true);
 		timerThread.start();
 	}
 

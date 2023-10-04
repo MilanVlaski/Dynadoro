@@ -22,7 +22,7 @@ class TestTimer {
 
 	@Test
 	void timeShouldBeZeroIfNotStarted() {
-		when(mockClock.currentTimeSeconds()).thenReturn(999);
+		when(mockClock.currentTimeSeconds()).thenReturn(1);
 		
 		assertEquals(0, timer.time());
 	}
@@ -30,15 +30,15 @@ class TestTimer {
 	@Test
 	void shouldMeasureElapsedTime() {
 		when(mockClock.currentTimeSeconds())
-						.thenReturn(0)
-						.thenReturn(25)
-						.thenReturn(26);
+						.thenReturn(1)
+						.thenReturn(2)
+						.thenReturn(3);
 		
 		timer.begin();
 		// 25 seconds pass...
-		assertEquals(25-0, timer.time());
+		assertEquals(2-1, timer.time());
 		// 1 second passes
-		assertEquals(26, timer.time());
+		assertEquals(3-1, timer.time());
 	}
 
 	@Test
