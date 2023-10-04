@@ -1,8 +1,6 @@
 package timer;
 
 import display.Display;
-import timer.state.Idle;
-import timer.state.TimerStateI;
 
 public class Timer {
 
@@ -19,6 +17,7 @@ public class Timer {
 	private int startTime;
 	// perhaps the behavior changing based on enum tells us something
 	private TimerState timerState = TimerState.IDLE;
+	private int pauseTime;
 //	private TimerStateI state;
 	
 	public Timer(Clock clock, Display display) {
@@ -29,13 +28,14 @@ public class Timer {
 
 	public int time() {
 
-		int elapsedTime = clock.currentTimeSeconds() - startTime;
-
+		int currentTime = clock.currentTimeSeconds();
+		int elapsedTime = currentTime - startTime;
+		
 		switch (timerState) {
 		case WORKING:
 			return elapsedTime;
 		case TAKING_BREAK:
-			return elapsedTime / 5;
+			return elapsedTime / 5 - (currentTime - pauseTime);
 		default:
 			return 0;
 		}
@@ -49,6 +49,7 @@ public class Timer {
 
 	public void takeBreak() {
 		timerState = TimerState.TAKING_BREAK;
+		pauseTime = clock.currentTimeSeconds();
 	}
 	
 //	public void changeState(TimerStateI newState) {

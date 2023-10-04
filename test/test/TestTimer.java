@@ -31,11 +31,14 @@ class TestTimer {
 	void shouldMeasureElapsedTime() {
 		when(mockClock.currentTimeSeconds())
 						.thenReturn(0)
-						.thenReturn(25);
+						.thenReturn(25)
+						.thenReturn(26);
 		
 		timer.begin();
-		// 5 seconds pass...
+		// 25 seconds pass...
 		assertEquals(25-0, timer.time());
+		// 1 second passes
+		assertEquals(26, timer.time());
 	}
 
 	@Test
@@ -55,7 +58,8 @@ class TestTimer {
 		when(mockClock.currentTimeSeconds())
 						.thenReturn(0)
 						.thenReturn(25)
-						.thenReturn(4);
+						.thenReturn(25)
+						.thenReturn(26);
 		
 		timer.begin();
 		// 25 seconds pass...
