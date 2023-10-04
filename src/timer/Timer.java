@@ -1,6 +1,8 @@
 package timer;
 
 import display.Display;
+import timer.state.Idle;
+import timer.state.TimerStateI;
 
 public class Timer {
 
@@ -17,10 +19,12 @@ public class Timer {
 	private int startTime;
 	// perhaps the behavior changing based on enum tells us something
 	private TimerState timerState = TimerState.IDLE;
-
+//	private TimerStateI state;
+	
 	public Timer(Clock clock, Display display) {
 		this.clock = clock;
 		this.display = display;
+//		this.state = new Idle(this);
 	}
 
 	public int time() {
@@ -47,6 +51,11 @@ public class Timer {
 		timerState = TimerState.TAKING_BREAK;
 	}
 	
+//	public void changeState(TimerStateI newState) {
+//		this.state = newState;
+//	}
+
+	
 	public void display() {
 		display.display(time(), timerState);
 	}
@@ -54,6 +63,7 @@ public class Timer {
 	private void showTimeTicking() {
 		Thread timerThread = new Thread(() -> {
 			while (true) {
+
 				display();
 
 				try {
@@ -65,6 +75,5 @@ public class Timer {
 		});
 		timerThread.start();
 	}
-
 
 }

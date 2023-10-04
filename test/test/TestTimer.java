@@ -31,22 +31,37 @@ class TestTimer {
 	void shouldMeasureElapsedTime() {
 		when(mockClock.currentTimeSeconds())
 						.thenReturn(0)
-						.thenReturn(5);
+						.thenReturn(25);
 		
 		timer.begin();
 		// 5 seconds pass...
-		assertEquals(5-0, timer.time());
+		assertEquals(25-0, timer.time());
 	}
 
 	@Test
 	void breakShouldTakeFiveTimesShorterThanWork() {
 		when(mockClock.currentTimeSeconds())
 						.thenReturn(0)
-						.thenReturn(5);
+						.thenReturn(25);
 		
 		timer.begin();
-		// 5 seconds pass...
+		// 25 seconds pass...
 		timer.takeBreak();
-		assertEquals(1, timer.time());
+		assertEquals(5, timer.time());
+	}
+	
+	@Test
+	void shouldCountDown_WhileTakingBreak() {
+		when(mockClock.currentTimeSeconds())
+						.thenReturn(0)
+						.thenReturn(25)
+						.thenReturn(4);
+		
+		timer.begin();
+		// 25 seconds pass...
+		timer.takeBreak();
+		assertEquals(5, timer.time());
+		// 1 second passes...
+		assertEquals(4, timer.time());
 	}
 }
