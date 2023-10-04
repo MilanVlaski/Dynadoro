@@ -46,11 +46,15 @@ public class Timer {
 	public void takeBreak() {
 		timerState = TimerState.TAKING_BREAK;
 	}
+	
+	public void display() {
+		display.display(time(), timerState);
+	}
 
 	private void showTimeTicking() {
 		Thread timerThread = new Thread(() -> {
 			while (true) {
-				display.display(time());
+				display();
 
 				try {
 					Thread.sleep(1000);

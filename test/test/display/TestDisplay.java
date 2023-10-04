@@ -32,12 +32,12 @@ class TestDisplay {
 	@Test
 	void displayOnStartup() {
 		assertEquals("00:00\nPress 1 to start studying.",
-				display.displayedMessage(TimerState.IDLE, 123));
+				display.displayedMessage(123, TimerState.IDLE));
 	}
 	
 	@Test
 	void displayWhenStudying() {
 		assertEquals("00:21\nPress 1 to take a break.",
-				display.displayedMessage(TimerState.WORKING, 21));
+				display.displayedMessage(21, TimerState.WORKING));
 	}
 }

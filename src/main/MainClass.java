@@ -16,7 +16,7 @@ public class MainClass {
 		Timer timer = new Timer(clock, display);
 
 		try (Scanner scanner = new Scanner(System.in)) {
-			
+			timer.display();
 			String input = scanner.nextLine();
 			while (true) {
 				if (input.equals("1")) {
