@@ -36,7 +36,9 @@ public class Timer {
 		case WORKING:
 			return elapsedTime;
 		case TAKING_BREAK:
-			return elapsedTime / BREAK_TIME_FACTOR - (currentTime - pauseTime);
+			int breakRemaining = elapsedTime / BREAK_TIME_FACTOR - (currentTime - pauseTime);
+			if(breakRemaining > 0)
+				return breakRemaining;
 		default:
 			return 0;
 		}

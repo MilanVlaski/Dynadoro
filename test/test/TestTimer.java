@@ -68,4 +68,17 @@ class TestTimer {
 		// 1 second passes...
 		assertEquals(4, timer.time());
 	}
+	// what happens if i take a break after 3 seconds? do i go straight back to work?
+	
+	@Test
+	void shouldStopCountingAfterBreakIsOver() {
+		when(mockClock.currentTimeSeconds())
+						.thenReturn(0)
+						.thenReturn(25)
+						.thenReturn(66);
+	
+		timer.begin();
+		timer.takeBreak();
+		assertEquals(0, timer.time());
+	}
 }

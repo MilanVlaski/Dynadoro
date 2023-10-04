@@ -17,11 +17,12 @@ public class MainClass {
 
 		try (Scanner scanner = new Scanner(System.in)) {
 			timer.display();
-			String input = scanner.nextLine();
 			while (true) {
+				String input = scanner.nextLine();
 				if (input.equals("1")) {
 					timer.begin();
-					break;
+				} else if (input.equals("2")) {
+					timer.takeBreak();
 				}
 			}
 		}

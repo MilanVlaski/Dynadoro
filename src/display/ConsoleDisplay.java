@@ -22,7 +22,7 @@ public class ConsoleDisplay implements Display {
 		if(state == TimerState.IDLE)
 			return displayedTime(0) + "\nPress 1 to start studying.";
 		else
-			return displayedTime(time) + "\nPress 1 to take a break.";
+			return displayedTime(time) + "\nPress 2 to take a break.";
 	}
 
 	
