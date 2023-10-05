@@ -23,8 +23,8 @@ public class Working extends TimerState {
 
 	@Override
 	public void takeBreak(int now) {
-		int timeSpentWorking = displayedTime(now);
-		context.changeState(new TakingBreak(context, now, timeSpentWorking));
+		int workDuration = displayedTime(now);
+		context.changeState(new TakingBreak(context, now, workDuration));
 	}
 
 }

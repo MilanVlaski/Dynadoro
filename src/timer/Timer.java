@@ -25,7 +25,7 @@ public class Timer {
 	}
 
 	public void changeState(TimerState newState) {
-		this.state = newState;
+		state = newState;
 	}
 
 }

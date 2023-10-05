@@ -5,21 +5,21 @@ import timer.Timer;
 public class TakingBreak extends TimerState{
 
 	private final int startTime;
-	private final int breakTime;
-	private static final int BREAK_TIME_FACTOR = 5;
+	private final int breakDuration;
+	private static final int BREAK_FACTOR = 5;
 
-	public TakingBreak(Timer context, int now, int workTime) {
+	public TakingBreak(Timer context, int now, int workDuration) {
 		super(context);
 		this.startTime = now;
-		this.breakTime = workTime / BREAK_TIME_FACTOR;
+		this.breakDuration = workDuration / BREAK_FACTOR;
 	}
 
 	@Override
 	public int displayedTime(int now) {
-		int breakRemaining = breakTime - (now - startTime);
+		int remainingBreakDuration = breakDuration - (now - startTime);
 		
-		if (breakRemaining > 0)
-			return breakRemaining;
+		if (remainingBreakDuration > 0)
+			return remainingBreakDuration;
 		else
 			return 0;
 	}

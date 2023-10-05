@@ -27,7 +27,7 @@ public class TestTimerState {
 	@Test
 	void shouldMeasureElapsedTime() {
 		Working working = new Working(null, 2);
-		assertEquals(4 - 2, working.displayedTime(4));
+		assertEquals(5 - 2, working.displayedTime(5));
 	}
 
 	@Test
