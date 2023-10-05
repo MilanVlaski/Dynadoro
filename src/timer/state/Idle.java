@@ -17,10 +17,12 @@ public class Idle implements TimerStateI{
 
 	@Override
 	public void begin() {
+//		context.changeState(new Working(context));
 	}
 
 	@Override
 	public void takeBreak() {
+		throw new IllegalStateException("Can't take break if haven't started work");
 	}
 
 }

@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import display.Display;
@@ -15,10 +16,13 @@ import timer.Timer;
 
 class TestTimer {
 
+	Timer timer;
 	Clock mockClock = mock(Clock.class);
-	Display display = mock(Display.class);
-
-	Timer timer = new Timer(mockClock, display);
+	
+	@BeforeEach
+	void setup() {
+		timer = new Timer(mockClock);
+	}
 
 	@Test
 	void timeShouldBeZeroIfNotStarted() {
@@ -35,10 +39,10 @@ class TestTimer {
 						.thenReturn(3);
 		
 		timer.begin();
-		// 25 seconds pass...
-		assertEquals(2-1, timer.time());
-		// 1 second passes
-		assertEquals(3-1, timer.time());
+		// 1 second passes...
+		assertEquals(1, timer.time());
+		// 1 second passes...
+		assertEquals(2, timer.time());
 	}
 
 	@Test

@@ -11,12 +11,10 @@ import timer.Timer;
 public class MainClass {
 
 	public static void main(String[] args) {
-		Display display = new ConsoleDisplay();
 		Clock clock = new SystemClock();
-		Timer timer = new Timer(clock, display);
+		Timer timer = new Timer(clock);
 
 		try (Scanner scanner = new Scanner(System.in)) {
-			timer.display();
 			while (true) {
 				String input = scanner.nextLine();
 				if (input.equals("1")) {
