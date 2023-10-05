@@ -13,10 +13,11 @@ public abstract class TimerState {
 	public abstract void begin(int now);
 	public abstract void takeBreak(int now);
 	
-	public class IllegalOperation extends RuntimeException {
+	public static class IllegalOperation extends RuntimeException {
 
 		private static final long serialVersionUID = 1L;
-
+		TimerState state;
+		
 		public IllegalOperation(String message) {
 			super(message);
 		}
