@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import timer.state.Idle;
 import timer.state.IllegalOperation;
+import timer.state.TakingBreak;
 import timer.state.Working;
 
 public class TestTimerState {
@@ -34,5 +35,11 @@ public class TestTimerState {
 	void shouldThrowExceptionIfTriesToStartTimerAgain() {
 		Working working = new Working(null, 0);
 		assertThrows(IllegalOperation.class, () -> working.begin(0));
+	}
+	
+	@Test
+	void shouldShowBreakTime() {
+		TakingBreak takingBreak = new TakingBreak(null, 25, 25);
+		assertEquals(5, takingBreak.displayedTime(25));
 	}
 }
