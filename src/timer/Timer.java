@@ -1,10 +1,7 @@
 package timer;
 
-import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
-
 import timer.state.Idle;
 import timer.state.TimerStateI;
-import timer.state.Working;
 
 public class Timer {
 
