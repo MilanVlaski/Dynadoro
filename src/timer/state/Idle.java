@@ -2,12 +2,10 @@ package timer.state;
 
 import timer.Timer;
 
-public class Idle implements TimerStateI{
-
-	private final Timer context;
+public class Idle extends TimerStateI{
 
 	public Idle(Timer context) {
-		this.context = context;
+		super(context);
 	}
 
 	@Override
@@ -17,7 +15,7 @@ public class Idle implements TimerStateI{
 
 	@Override
 	public void begin() {
-		context.changeState(new Working(context));
+		context.changeState(new Working(context, context.currentTime()));
 	}
 
 	@Override

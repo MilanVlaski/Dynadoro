@@ -1,9 +1,15 @@
 package timer.state;
 
-import timer.Timer.TimerState;
+import timer.Timer;
 
-public interface TimerStateI {
-	int time();
-	void begin();
-	void takeBreak();
+public abstract class TimerStateI {
+	protected final Timer context;
+	
+	public TimerStateI(Timer context) {
+		this.context = context;
+	}
+	
+	abstract int time();
+	abstract void begin();
+	abstract void takeBreak();
 }

@@ -2,10 +2,13 @@ package timer.state;
 
 import timer.Timer;
 
-public class TakingBreak implements TimerStateI{
+public class TakingBreak extends TimerStateI{
 
-	public TakingBreak(Timer context) {
-		// TODO Auto-generated constructor stub
+	private final int startTime;
+
+	public TakingBreak(Timer context, int startTime) {
+		super(context);
+		this.startTime = startTime;
 	}
 
 	@Override

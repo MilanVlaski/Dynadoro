@@ -1,26 +1,24 @@
 package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import display.Display;
 import timer.Clock;
 import timer.Timer;
 import timer.state.Idle;
 import timer.state.IllegalOperation;
+import timer.state.Working;
 
 class TestTimer {
 
 	Timer timer;
 	Clock mockClock = mock(Clock.class);
-	
+
 	@BeforeEach
 	void setup() {
 		timer = new Timer(mockClock);
@@ -32,7 +30,7 @@ class TestTimer {
 		
 		assertEquals(0, timer.time());
 	}
-	
+
 	@Test
 	void shouldMeasureElapsedTime() {
 		when(mockClock.currentTimeSeconds())
@@ -58,7 +56,7 @@ class TestTimer {
 		timer.takeBreak();
 		assertEquals(5, timer.time());
 	}
-	
+
 	@Test
 	void shouldCountDown_WhileTakingBreak() {
 		when(mockClock.currentTimeSeconds())
@@ -74,8 +72,9 @@ class TestTimer {
 		// 1 second passes...
 		assertEquals(4, timer.time());
 	}
-	// what happens if i take a break after 3 seconds? do i go straight back to work?
-	
+	// what happens if i take a break after 3 seconds? do i go straight back to
+	// work?
+
 	@Test
 	void shouldStopCountingAfterBreakIsOver() {
 		when(mockClock.currentTimeSeconds())
@@ -87,16 +86,34 @@ class TestTimer {
 		timer.takeBreak();
 		assertEquals(0, timer.time());
 	}
-	
+
 	@Test
 	void timeShouldAlwaysBeZero() {
 		Idle idle = new Idle(timer);
 		assertEquals(0, idle.time());
 	}
-	
+
 	@Test
 	void breakShouldNotBeAllowed() {
 		Idle idle = new Idle(timer);
-		assertThrows(IllegalOperation.class,() -> idle.takeBreak());
+		assertThrows(IllegalOperation.class, () -> idle.takeBreak());
+	}
+
+	@Test
+	void shouldMeasureElapsedTime1() {
+		when(mockClock.currentTimeSeconds())
+						.thenReturn(25);
+		
+		Working working = new Working(timer, 0);
+		assertEquals(25, working.time());
+	}
+
+	@Test
+	void shouldThrowExceptionIfTriesToStartTimerAgain() {
+		when(mockClock.currentTimeSeconds())
+						.thenReturn(25);
+		
+		Working working = new Working(timer, 0);
+		assertThrows(IllegalOperation.class, () -> working.begin());
 	}
 }

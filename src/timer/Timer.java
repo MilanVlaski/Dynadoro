@@ -1,5 +1,6 @@
 package timer;
 
+import timer.state.TimerStateI;
 import timer.state.Working;
 
 public class Timer {
@@ -24,7 +25,7 @@ public class Timer {
 
 	public int time() {
 
-		int currentTime = clock.currentTimeSeconds();
+		int currentTime = currentTime();
 		int elapsedTime = currentTime - startTime;
 
 		switch (timerState) {
@@ -40,16 +41,20 @@ public class Timer {
 	}
 
 	public void begin() {
-		startTime = clock.currentTimeSeconds();
+		startTime = currentTime();
 		timerState = TimerState.WORKING;
+	}
+
+	public int currentTime() {
+		return clock.currentTimeSeconds();
 	}
 
 	public void takeBreak() {
 		timerState = TimerState.TAKING_BREAK;
-		pauseTime = clock.currentTimeSeconds();
+		pauseTime = currentTime();
 	}
 
-	public void changeState(Working working) {
+	public void changeState(TimerStateI state) {
 		
 	}
 
