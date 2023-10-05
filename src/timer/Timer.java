@@ -1,9 +1,5 @@
 package timer;
 
-import display.Display;
-import timer.state.Idle;
-import timer.state.TimerStateI;
-
 public class Timer {
 
 	public enum TimerState {

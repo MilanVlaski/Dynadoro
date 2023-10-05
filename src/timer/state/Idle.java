@@ -22,7 +22,7 @@ public class Idle implements TimerStateI{
 
 	@Override
 	public void takeBreak() {
-		throw new IllegalStateException("Can't take break if haven't started work");
+		throw new IllegalOperation("Can't take break if haven't started work.");
 	}
 
 }

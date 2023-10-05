@@ -13,6 +13,8 @@ import org.junit.jupiter.api.Test;
 import display.Display;
 import timer.Clock;
 import timer.Timer;
+import timer.state.Idle;
+import timer.state.IllegalOperation;
 
 class TestTimer {
 
@@ -84,5 +86,17 @@ class TestTimer {
 		timer.begin();
 		timer.takeBreak();
 		assertEquals(0, timer.time());
+	}
+	
+	@Test
+	void timeShouldAlwaysBeZero() {
+		Idle idle = new Idle(timer);
+		assertEquals(0, idle.time());
+	}
+	
+	@Test
+	void breakShouldNotBeAllowed() {
+		Idle idle = new Idle(timer);
+		assertThrows(IllegalOperation.class,() -> idle.takeBreak());
 	}
 }
