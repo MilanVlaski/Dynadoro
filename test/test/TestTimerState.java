@@ -12,7 +12,6 @@ import timer.state.Working;
 
 public class TestTimerState {
 
-
 	@Test
 	void timeShouldAlwaysBeZero() {
 		Idle idle = new Idle(null);
@@ -27,8 +26,8 @@ public class TestTimerState {
 
 	@Test
 	void shouldMeasureElapsedTime() {
-		Working working = new Working(null, 5);
-		assertEquals(30 - 5, working.displayedTime(30));
+		Working working = new Working(null, 2);
+		assertEquals(4 - 2, working.displayedTime(4));
 	}
 
 	@Test
@@ -36,10 +35,28 @@ public class TestTimerState {
 		Working working = new Working(null, 0);
 		assertThrows(IllegalOperation.class, () -> working.begin(0));
 	}
-	
+
 	@Test
 	void shouldShowBreakTime() {
 		TakingBreak takingBreak = new TakingBreak(null, 25, 25);
-		assertEquals(5, takingBreak.displayedTime(25));
+		assertEquals(25 / 5, takingBreak.displayedTime(25));
+	}
+
+	@Test
+	void shouldShowTimePassingBackwards() {
+		TakingBreak takingBreak = new TakingBreak(null, 25, 25);
+		assertEquals(5 - 2, takingBreak.displayedTime(25 + 2));
+	}
+
+	@Test
+	void shouldShowTimeNotGoingPastZero() {
+		TakingBreak takingBreak = new TakingBreak(null, 25, 25);
+		assertEquals(0, takingBreak.displayedTime(25 + 999));
+	}
+	
+	@Test
+	void shouldThrowExceptionIfAlreadyOnBreak() {
+		TakingBreak takingBreak = new TakingBreak(null, 0, 0);
+		assertThrows(IllegalOperation.class, () -> takingBreak.takeBreak(0));
 	}
 }

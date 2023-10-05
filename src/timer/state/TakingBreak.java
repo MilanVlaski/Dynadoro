@@ -16,23 +16,22 @@ public class TakingBreak extends TimerStateI{
 
 	@Override
 	public int displayedTime(int when) {
-		int breakRemaining = breakTime;/* - (when - startTime);*/
-//		if (breakRemaining > 0)
+		int breakRemaining = breakTime - (when - startTime);
+		
+		if (breakRemaining > 0)
 			return breakRemaining;
-//		else
-//			return 0;
+		else
+			return 0;
 	}
 
 	@Override
 	public void begin(int when) {
-		// TODO Auto-generated method stub
-		
+		context.changeState(new Working(context, when));
 	}
 
 	@Override
 	public void takeBreak(int when) {
-		// TODO Auto-generated method stub
-		
+		throw new IllegalOperation("Already taking a break.");
 	}
 
 }
