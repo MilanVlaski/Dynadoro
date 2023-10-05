@@ -1,5 +1,7 @@
 package timer;
 
+import timer.state.Working;
+
 public class Timer {
 
 	public enum TimerState {
@@ -45,6 +47,10 @@ public class Timer {
 	public void takeBreak() {
 		timerState = TimerState.TAKING_BREAK;
 		pauseTime = clock.currentTimeSeconds();
+	}
+
+	public void changeState(Working working) {
+		
 	}
 
 }
