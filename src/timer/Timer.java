@@ -1,12 +1,12 @@
 package timer;
 
 import timer.state.Idle;
-import timer.state.TimerStateI;
+import timer.state.TimerState;
 
 public class Timer {
 
 	private final Clock clock;
-	private TimerStateI state = new Idle(this);
+	private TimerState state = new Idle(this);
 
 	public Timer(Clock clock) {
 		this.clock = clock;
@@ -24,7 +24,7 @@ public class Timer {
 		state.takeBreak(clock.currentTimeSeconds());
 	}
 
-	public void changeState(TimerStateI newState) {
+	public void changeState(TimerState newState) {
 		this.state = newState;
 	}
 

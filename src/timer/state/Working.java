@@ -2,7 +2,7 @@ package timer.state;
 
 import timer.Timer;
 
-public class Working extends TimerStateI {
+public class Working extends TimerState {
 
 	private final int startTime;
 

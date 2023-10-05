@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import timer.state.Idle;
-import timer.state.IllegalOperation;
 import timer.state.TakingBreak;
+import timer.state.TimerState.IllegalOperation;
 import timer.state.Working;
 
 public class TestTimerState {

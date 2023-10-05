@@ -2,7 +2,7 @@ package timer.state;
 
 import timer.Timer;
 
-public class TakingBreak extends TimerStateI{
+public class TakingBreak extends TimerState{
 
 	private final int startTime;
 	private final int breakTime;
