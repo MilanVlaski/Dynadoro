@@ -12,19 +12,19 @@ public class TakingBreak extends TimerStateI{
 	}
 
 	@Override
-	public int time() {
+	public int displayedTime(int when) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public void begin() {
+	public void begin(int when) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void takeBreak() {
+	public void takeBreak(int when) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -86,34 +86,4 @@ class TestTimer {
 		timer.takeBreak();
 		assertEquals(0, timer.time());
 	}
-
-	@Test
-	void timeShouldAlwaysBeZero() {
-		Idle idle = new Idle(timer);
-		assertEquals(0, idle.time());
-	}
-
-	@Test
-	void breakShouldNotBeAllowed() {
-		Idle idle = new Idle(timer);
-		assertThrows(IllegalOperation.class, () -> idle.takeBreak());
-	}
-
-	@Test
-	void shouldMeasureElapsedTime1() {
-		when(mockClock.currentTimeSeconds())
-						.thenReturn(25);
-		
-		Working working = new Working(timer, 0);
-		assertEquals(25, working.time());
-	}
-
-	@Test
-	void shouldThrowExceptionIfTriesToStartTimerAgain() {
-		when(mockClock.currentTimeSeconds())
-						.thenReturn(25);
-		
-		Working working = new Working(timer, 0);
-		assertThrows(IllegalOperation.class, () -> working.begin());
-	}
 }

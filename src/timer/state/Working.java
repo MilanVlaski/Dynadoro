@@ -2,28 +2,28 @@ package timer.state;
 
 import timer.Timer;
 
-public class Working extends TimerStateI{
-	
+public class Working extends TimerStateI {
+
 	private final int startTime;
 
-	public Working(Timer context, int startTime) {
+	public Working(Timer context, int when) {
 		super(context);
-		this.startTime = startTime;
+		this.startTime = when;
 	}
 
 	@Override
-	public int time() {
-		return context.currentTime() - startTime;
+	public int displayedTime(int when) {
+		return when - startTime;
 	}
 
 	@Override
-	public void begin() {
+	public void begin(int when) {
 		throw new IllegalOperation("Timer is already running.");
 	}
 
 	@Override
-	public void takeBreak() {
-		context.changeState(new TakingBreak(context, context.currentTime()));
+	public void takeBreak(int when) {
+		context.changeState(new TakingBreak(context, when));
 	}
 
 }
