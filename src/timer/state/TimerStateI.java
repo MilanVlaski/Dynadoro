@@ -9,7 +9,7 @@ public abstract class TimerStateI {
 		this.context = context;
 	}
 	
-	public abstract int displayedTime(int when);
-	public abstract void begin(int when);
-	public abstract void takeBreak(int when);
+	public abstract int displayedTime(int now);
+	public abstract void begin(int now);
+	public abstract void takeBreak(int now);
 }

@@ -9,17 +9,17 @@ public class Idle extends TimerStateI{
 	}
 
 	@Override
-	public int displayedTime(int when) {
+	public int displayedTime(int now) {
 		return 0;
 	}
 
 	@Override
-	public void begin(int when) {
-		context.changeState(new Working(context, when));		
+	public void begin(int now) {
+		context.changeState(new Working(context, now));		
 	}
 
 	@Override
-	public void takeBreak(int when) {
+	public void takeBreak(int now) {
 		throw new IllegalOperation("Can't take break if haven't started work.");
 	}
 

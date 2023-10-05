@@ -6,25 +6,25 @@ public class Working extends TimerStateI {
 
 	private final int startTime;
 
-	public Working(Timer context, int when) {
+	public Working(Timer context, int now) {
 		super(context);
-		this.startTime = when;
+		this.startTime = now;
 	}
 
 	@Override
-	public int displayedTime(int when) {
-		return when - startTime;
+	public int displayedTime(int now) {
+		return now - startTime;
 	}
 
 	@Override
-	public void begin(int when) {
+	public void begin(int now) {
 		throw new IllegalOperation("Timer is already running.");
 	}
 
 	@Override
-	public void takeBreak(int when) {
-		int workTime = displayedTime(when);
-		context.changeState(new TakingBreak(context, when, workTime));
+	public void takeBreak(int now) {
+		int workTime = displayedTime(now);
+		context.changeState(new TakingBreak(context, now, workTime));
 	}
 
 }
