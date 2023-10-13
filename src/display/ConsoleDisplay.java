@@ -11,16 +11,20 @@ public class ConsoleDisplay extends Display {
 	            String.format("%02d:%02d", minutes, remainingSeconds);
 	}
 
-	public static String displayIdle() {
+	public static String idleMessage() {
 		return displayedTime(0) + "\nPress 1 to start studying";
 	}
 
-	public static String displayWorking(int time) {
+	public static String workingMessage(int time) {
 		return displayedTime(time) + "\nPress 1 to take a break";
 	}
 
-	public static String displayBreak(int time) {
+	public static String breakMessage(int time) {
 		return displayedTime(time) + "\nPress 1 to go back to work";
+	}
+
+	public void update() {
+		System.out.println();
 	}
 
 	

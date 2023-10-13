@@ -32,31 +32,33 @@ class TestDisplay {
 	@Test
 	void shouldDisplayIdleState() {
 		assertEquals("00:00\nPress 1 to start studying", 
-				ConsoleDisplay.displayIdle());
+				ConsoleDisplay.idleMessage());
 	}
 	
 	@Test
 	void shouldDisplayWorkingState() {
 		assertEquals("00:00\nPress 1 to take a break",
-				ConsoleDisplay.displayWorking(0));
+				ConsoleDisplay.workingMessage(0));
 	}
 	
 	@Test
 	void shouldDisplayBreakState() {
 		assertEquals("00:00\nPress 1 to go back to work",
-				ConsoleDisplay.displayBreak(0));
+				ConsoleDisplay.breakMessage(0));
 	}
 	
 	@Test
 	void shouldSetDisplayedTime() {
 		Clock mockClock = mock(Clock.class);
+		Display mockDisplay = mock(Display.class);
 		when(mockClock.currentTimeSeconds()).thenReturn(0).thenReturn(25);
 		
-		Display mockDisplay = mock(Display.class);
 		Timer timer = new Timer(mockClock, mockDisplay);
 		
 		timer.begin();
 		timer.takeBreak();
-		verify(mockDisplay).time = 5;
+		
+		verify(mockDisplay).setTime(5);
 	}
+	
 } 

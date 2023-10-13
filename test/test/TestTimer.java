@@ -13,9 +13,10 @@ import timer.Timer;
 
 class TestTimer {
 
-	Timer timer;
 	Clock mockClock = mock(Clock.class);
 	Display mockDisplay = mock(Display.class);
+
+	Timer timer;
 
 	@BeforeEach
 	void setup() {

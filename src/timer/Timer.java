@@ -21,7 +21,7 @@ public class Timer {
 
 	public void begin() {
 		state.begin(clock.currentTimeSeconds());
-		display.setTime(0);
+		display.setTime(0); // not sure about this
 	}
 
 	public void takeBreak() {
