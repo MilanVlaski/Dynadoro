@@ -25,9 +25,9 @@ public class Timer {
 	}
 
 	public void takeBreak() {
-		int currentTime = clock.currentTimeSeconds();
-		state.takeBreak(currentTime);
-		display.setTime(state.displayedTime(currentTime));
+		int now = clock.currentTimeSeconds();
+		state.takeBreak(now);
+		display.setTime(state.displayedTime(now));
 	}
 
 	public void changeState(TimerState newState) {
