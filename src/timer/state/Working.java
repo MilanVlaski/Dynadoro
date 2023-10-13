@@ -8,7 +8,7 @@ public class Working extends TimerState {
 
 	public Working(Timer context, int now) {
 		super(context);
-		this.startTime = now;
+		startTime = now;
 	}
 
 	@Override

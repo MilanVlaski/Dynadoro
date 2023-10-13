@@ -10,8 +10,8 @@ public class TakingBreak extends TimerState{
 
 	public TakingBreak(Timer context, int now, int workDuration) {
 		super(context);
-		this.startTime = now;
-		this.breakDuration = workDuration / BREAK_FACTOR;
+		startTime = now;
+		breakDuration = workDuration / BREAK_FACTOR;
 		context.setDisplayTime(breakDuration);
 	}
 
