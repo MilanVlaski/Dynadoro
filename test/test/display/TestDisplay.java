@@ -57,7 +57,6 @@ class TestDisplay {
 		
 		timer.begin();
 		timer.takeBreak();
-		
 		verify(mockDisplay).setTime(5);
 	}
 	

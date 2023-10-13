@@ -21,17 +21,17 @@ public class Timer {
 
 	public void begin() {
 		state.begin(clock.currentTimeSeconds());
-		display.setTime(0); // not sure about this
 	}
 
 	public void takeBreak() {
-		int now = clock.currentTimeSeconds();
-		state.takeBreak(now);
-		display.setTime(state.displayedTime(now));
+		state.takeBreak(clock.currentTimeSeconds());
+	}
+
+	public void setDisplayTime(int time) {
+		display.setTime(time);
 	}
 
 	public void changeState(TimerState newState) {
 		state = newState;
 	}
-
 }

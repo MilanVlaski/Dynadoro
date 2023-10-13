@@ -12,6 +12,7 @@ public class TakingBreak extends TimerState{
 		super(context);
 		this.startTime = now;
 		this.breakDuration = workDuration / BREAK_FACTOR;
+		context.setDisplayTime(breakDuration);
 	}
 
 	@Override
