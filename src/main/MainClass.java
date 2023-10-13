@@ -12,7 +12,8 @@ public class MainClass {
 
 	public static void main(String[] args) {
 		Clock clock = new SystemClock();
-		Timer timer = new Timer(clock);
+		Display display = new ConsoleDisplay();
+		Timer timer = new Timer(clock, display);
 
 		try (Scanner scanner = new Scanner(System.in)) {
 			while (true) {

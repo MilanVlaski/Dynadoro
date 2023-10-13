@@ -1,5 +1,11 @@
 package display;
 
-public interface Display {
-//	void display(int time, TimerState timerState);
+public abstract class Display {
+	
+	public int time;
+
+	public void setTime(int time) {
+		this.time = time;
+	}
+
 }

@@ -8,4 +8,5 @@ which lasts 5 times shorter than the time spent working.
 When it reaches zero, it plays an alarm until i stop it,
 which restarts the whole process.
 
-
+Verify that the state of display is changing (time), and then
+you dont have to verify whether that works for every single case.
