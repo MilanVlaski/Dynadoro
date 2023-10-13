@@ -86,4 +86,12 @@ class TestTimer {
 		timer.takeBreak();
 		assertEquals(0, timer.time());
 	}
+	
+	@Test
+	void shouldResetTimeAfterGoingBackToWork() {
+		timer.begin();
+		timer.takeBreak();
+		timer.begin();
+		assertEquals(0, timer.time());
+	}
 }
