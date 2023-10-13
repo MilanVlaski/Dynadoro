@@ -8,11 +8,12 @@ public class Timer {
 
 	private final Clock clock;
 	private final Display display;
-	private TimerState state = new Idle(this);
+	private TimerState state;
 
 	public Timer(Clock clock, Display display) {
 		this.clock = clock;
 		this.display = display;
+		state = new Idle(this);
 	}
 
 	public int time() {

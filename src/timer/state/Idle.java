@@ -6,6 +6,7 @@ public class Idle extends TimerState{
 
 	public Idle(Timer context) {
 		super(context);
+		context.setDisplayTime(0);
 	}
 
 	@Override

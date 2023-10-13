@@ -2,6 +2,7 @@ package test.display;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -31,26 +32,42 @@ class TestDisplay {
 
 	@Test
 	void shouldDisplayIdleState() {
-		assertEquals("00:00\nPress 1 to start studying", 
+		assertEquals("00:00\nPress 1 to start studying",
 				ConsoleDisplay.idleMessage());
 	}
-	
+
 	@Test
 	void shouldDisplayWorkingState() {
 		assertEquals("00:00\nPress 1 to take a break",
 				ConsoleDisplay.workingMessage(0));
 	}
-	
+
 	@Test
 	void shouldDisplayBreakState() {
 		assertEquals("00:00\nPress 1 to go back to work",
 				ConsoleDisplay.breakMessage(0));
 	}
-	
+
+	Clock mockClock = mock(Clock.class);
+	Display mockDisplay = mock(Display.class);
+
 	@Test
-	void shouldSetDisplayedTime() {
-		Clock mockClock = mock(Clock.class);
-		Display mockDisplay = mock(Display.class);
+	void shouldSetDisplayedTimeToZero() {
+		new Timer(mockClock, mockDisplay);
+		verify(mockDisplay).setTime(0);
+	}
+
+	@Test
+	void shouldSetDisplayedTimeOnBegin() {
+		when(mockClock.currentTimeSeconds()).thenReturn(0);
+		
+		Timer timer = new Timer(mockClock, mockDisplay);
+		timer.begin();
+		verify(mockDisplay, times(2)).setTime(0);
+	}
+
+	@Test
+	void shouldSetDisplayedTimeOnBreak() {
 		when(mockClock.currentTimeSeconds()).thenReturn(0).thenReturn(25);
 		
 		Timer timer = new Timer(mockClock, mockDisplay);
@@ -59,5 +76,5 @@ class TestDisplay {
 		timer.takeBreak();
 		verify(mockDisplay).setTime(5);
 	}
-	
-} 
+
+}
