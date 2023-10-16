@@ -31,7 +31,7 @@ class TestTimer {
 
 	@Test
 	void timeShouldBeZeroIfNotStarted() {
-		when(mockClock.currentTimeSeconds()).thenReturn(1);
+		when(mockClock.currentTimeSeconds()).thenReturn(999);
 		
 		assertEquals(0, timer.time());
 	}
@@ -39,9 +39,9 @@ class TestTimer {
 	@Test
 	void shouldMeasureElapsedTime() {
 		when(mockClock.currentTimeSeconds())
+						.thenReturn(0)
 						.thenReturn(1)
-						.thenReturn(2)
-						.thenReturn(3);
+						.thenReturn(2);
 		
 		timer.begin();
 		// 1 second passes...
@@ -50,32 +50,37 @@ class TestTimer {
 		assertEquals(2, timer.time());
 	}
 
+	static final int TWENTY_FIVE = 25;
+	static final int WORK_BREAK_RATIO = 5;
+	static final int BREAK_DURATION = TWENTY_FIVE / WORK_BREAK_RATIO;
+
 	@Test
 	void breakShouldTakeFiveTimesShorterThanWork() {
 		when(mockClock.currentTimeSeconds())
 						.thenReturn(0)
-						.thenReturn(25);
+						.thenReturn(TWENTY_FIVE)
+						.thenReturn(TWENTY_FIVE);
 		
 		timer.begin();
 		// 25 seconds pass...
 		timer.takeBreak();
-		assertEquals(5, timer.time());
+		assertEquals(BREAK_DURATION, timer.time());
 	}
 
 	@Test
 	void shouldCountDown_WhileTakingBreak() {
 		when(mockClock.currentTimeSeconds())
-						.thenReturn(0)
-						.thenReturn(25)
-						.thenReturn(25)
-						.thenReturn(26);
-		
+				.thenReturn(0)
+				.thenReturn(TWENTY_FIVE)
+				.thenReturn(TWENTY_FIVE)
+				.thenReturn(TWENTY_FIVE + 1);
+
 		timer.begin();
 		// 25 seconds pass...
 		timer.takeBreak();
-		assertEquals(5, timer.time());
+		assertEquals(BREAK_DURATION, timer.time());
 		// 1 second passes...
-		assertEquals(4, timer.time());
+		assertEquals(BREAK_DURATION - 1, timer.time());
 	}
 
 	// what happens if i take a break after 3 seconds? do i go straight back to
@@ -85,14 +90,14 @@ class TestTimer {
 	void shouldStopCountingAfterBreakIsOver() {
 		when(mockClock.currentTimeSeconds())
 						.thenReturn(0)
-						.thenReturn(25)
+						.thenReturn(TWENTY_FIVE)
 						.thenReturn(66);
 	
 		timer.begin();
 		timer.takeBreak();
 		assertEquals(0, timer.time());
 	}
-	
+
 	@Test
 	void shouldResetTimeAfterGoingBackToWork() {
 		timer.begin();

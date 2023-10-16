@@ -25,5 +25,5 @@ Updating the display has a bunch of temporal coupling associated with it.
 But i dont like the alternatives.
 
 TODO:
-Make the string that represents state an enum.
-Refactor tests (take out constants and stuff)
+***Make the string that represents state an enum.
+***Refactor tests (take out constants and stuff)
