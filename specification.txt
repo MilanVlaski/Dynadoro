@@ -1,3 +1,4 @@
+REQUIREMENTS:
 When i open the app i want it to display 00:00.
 When i press Begin it counts and shows me that i am working.
 (Break is displayed).
@@ -12,6 +13,7 @@ When it reaches zero, it plays an alarm.
 ***Verify that the state of display is changing (time), and then
 you dont have to verify whether that works for every single case.
 
+NOTES:
 I have decided not to test whether the display shows the right commands,
 and whether it captures state correctly, therefore saving myself millions of 
 braincells.
@@ -22,5 +24,6 @@ instead of only setTime().
 Updating the display has a bunch of temporal coupling associated with it.
 But i dont like the alternatives.
 
-TODO CLEANUP:
+TODO:
 Make the string that represents state an enum.
+Refactor tests (take out constants and stuff)
