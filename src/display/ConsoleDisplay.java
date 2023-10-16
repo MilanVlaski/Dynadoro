@@ -26,13 +26,13 @@ public class ConsoleDisplay extends Display {
 	@Override
 	public void update() {
 		switch (state) {
-		case "IDLE":
+		case IDLE:
 			System.out.println(idleMessage());
 			break;
-		case "WORKING":
+		case WORKING:
 			System.out.println(workingMessage(time));
 			break;
-		case "TAKING_BREAK":
+		case TAKING_BREAK:
 			System.out.println(breakMessage(time));
 			break;
 

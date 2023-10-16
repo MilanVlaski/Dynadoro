@@ -2,14 +2,20 @@ package display;
 
 public abstract class Display {
 
+	public enum DisplayState {
+		IDLE,
+		WORKING,
+		TAKING_BREAK;
+	}
+	
 	protected int time;
-	protected String state;
+	protected DisplayState state;
 
 	public void setTime(int time) {
 		this.time = time;
 	}
 
-	public void setState(String state) {
+	public void setState(DisplayState state) {
 		this.state = state;
 	}
 

@@ -1,5 +1,6 @@
 package timer.state;
 
+import display.Display.DisplayState;
 import timer.Timer;
 
 public class Idle extends TimerState {
@@ -8,7 +9,7 @@ public class Idle extends TimerState {
 		super(context);
 
 		display.setTime(0);
-		display.setState("IDLE");
+		display.setState(DisplayState.IDLE);
 		display.update();
 	}
 

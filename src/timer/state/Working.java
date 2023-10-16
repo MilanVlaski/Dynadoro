@@ -1,5 +1,6 @@
 package timer.state;
 
+import display.Display.DisplayState;
 import timer.Timer;
 
 public class Working extends TimerState {
@@ -11,7 +12,7 @@ public class Working extends TimerState {
 		startTime = now;
 		
 		display.setTime(0);
-		display.setState("WORKING");
+		display.setState(DisplayState.WORKING);
 		display.update();
 	}
 

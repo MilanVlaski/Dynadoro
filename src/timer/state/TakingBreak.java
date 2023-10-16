@@ -1,5 +1,6 @@
 package timer.state;
 
+import display.Display.DisplayState;
 import timer.Timer;
 
 public class TakingBreak extends TimerState{
@@ -14,7 +15,7 @@ public class TakingBreak extends TimerState{
 		breakDuration = workDuration / BREAK_FACTOR;
 		
 		display.setTime(breakDuration);
-		display.setState("TAKING_BREAK");
+		display.setState(DisplayState.TAKING_BREAK);
 		display.update();
 	}
 

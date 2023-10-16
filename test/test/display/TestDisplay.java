@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import display.Display;
+import display.Display.DisplayState;
 import timer.Clock;
 import timer.Timer;
 
@@ -33,7 +34,7 @@ class TestDisplay {
 	@Test
 	void shouldSetDisplayedTimeToZero() {
 		verify(mockDisplay).setTime(0);
-		verify(mockDisplay).setState("IDLE");
+		verify(mockDisplay).setState(DisplayState.IDLE);
 		verify(mockDisplay, atLeastOnce()).update();
 	}
 
@@ -44,7 +45,7 @@ class TestDisplay {
 		timer.begin();
 		
 		verify(mockDisplay, atLeastOnce()).setTime(0);
-		verify(mockDisplay).setState("WORKING");
+		verify(mockDisplay).setState(DisplayState.WORKING);
 		verify(mockDisplay, atLeastOnce()).update();
 	}
 
@@ -58,7 +59,7 @@ class TestDisplay {
 		timer.takeBreak();
 		
 		verify(mockDisplay).setTime(5);
-		verify(mockDisplay).setState("TAKING_BREAK");
+		verify(mockDisplay).setState(DisplayState.TAKING_BREAK);
 		verify(mockDisplay, atLeastOnce()).update();
 	}
 	
