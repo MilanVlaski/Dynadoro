@@ -3,6 +3,8 @@ package test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
+import static test.TestTimer.TWENTY_FIVE;
+import static test.TestTimer.WORK_BREAK_RATIO;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,13 +20,13 @@ public class TestTimerState {
 
 	Display dummyDisplay = mock(Display.class);
 	Clock dummyClock = mock(Clock.class);
-	
+
 	Timer dummyTimer = new Timer(dummyClock, dummyDisplay);
-	
+
 	@Test
 	void timeShouldAlwaysBeZero() {
 		Idle idle = new Idle(dummyTimer);
-		assertEquals(0, idle.displayedTime(123));
+		assertEquals(0, idle.displayedTime(999));
 	}
 
 	@Test
@@ -35,8 +37,10 @@ public class TestTimerState {
 
 	@Test
 	void shouldMeasureElapsedTime() {
-		Working working = new Working(dummyTimer, 2);
-		assertEquals(5 - 2, working.displayedTime(5));
+		int now = 2;
+		int threeSecondsLater = 5;
+		Working working = new Working(dummyTimer, now);
+		assertEquals(3, working.displayedTime(threeSecondsLater));
 	}
 
 	@Test
@@ -45,24 +49,28 @@ public class TestTimerState {
 		assertThrows(IllegalOperation.class, () -> working.begin(0));
 	}
 
+
 	@Test
 	void shouldShowBreakTime() {
-		TakingBreak takingBreak = new TakingBreak(dummyTimer, 25, 25);
-		assertEquals(25 / 5, takingBreak.displayedTime(25));
+		int now = TWENTY_FIVE;
+		TakingBreak takingBreak = new TakingBreak(dummyTimer, now, now);
+		assertEquals(now / WORK_BREAK_RATIO, takingBreak.displayedTime(now));
 	}
 
 	@Test
 	void shouldShowTimePassingBackwards() {
-		TakingBreak takingBreak = new TakingBreak(dummyTimer, 25, 25);
-		assertEquals(5 - 2, takingBreak.displayedTime(25 + 2));
+		int now = TWENTY_FIVE;
+		TakingBreak takingBreak = new TakingBreak(dummyTimer, now, now);
+		assertEquals(now / WORK_BREAK_RATIO - 2, takingBreak.displayedTime(now + 2));
 	}
 
 	@Test
 	void shouldShowTimeNotGoingPastZero() {
-		TakingBreak takingBreak = new TakingBreak(dummyTimer, 25, 25);
-		assertEquals(0, takingBreak.displayedTime(25 + 999));
+		int now = 123;
+		TakingBreak takingBreak = new TakingBreak(dummyTimer, now, now);
+		assertEquals(0, takingBreak.displayedTime(now + 999));
 	}
-	
+
 	@Test
 	void shouldThrowExceptionIfAlreadyOnBreak() {
 		TakingBreak takingBreak = new TakingBreak(dummyTimer, 0, 0);
