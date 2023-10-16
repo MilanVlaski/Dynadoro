@@ -2,13 +2,14 @@ package timer.state;
 
 import timer.Timer;
 
-public class Idle extends TimerState{
+public class Idle extends TimerState {
 
 	public Idle(Timer context) {
 		super(context);
-		context.setDisplayTime(0);
-		context.setDisplayState("IDLE");
-		context.updateDisplay();
+
+		display.setTime(0);
+		display.setState("IDLE");
+		display.update();
 	}
 
 	@Override
@@ -18,7 +19,7 @@ public class Idle extends TimerState{
 
 	@Override
 	public void begin(int now) {
-		context.changeState(new Working(context, now));		
+		context.changeState(new Working(context, now));
 	}
 
 	@Override

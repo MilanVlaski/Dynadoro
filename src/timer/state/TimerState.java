@@ -1,13 +1,16 @@
 package timer.state;
 
+import display.Display;
 import timer.Timer;
 
 public abstract class TimerState {
 
 	protected final Timer context;
+	protected final Display display;
 
 	public TimerState(Timer context) {
 		this.context = context;
+		this.display = context.getDisplay();
 	}
 
 	public abstract int displayedTime(int now);

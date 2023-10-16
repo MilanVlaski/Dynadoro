@@ -18,3 +18,6 @@ braincells.
 
 CONSIDER that the display may have increment(), decrement(), reset methods,
 instead of only setTime().
+
+TODO CLEANUP:
+Make the string that represents state an enum.

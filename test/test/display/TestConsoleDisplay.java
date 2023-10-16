@@ -31,7 +31,7 @@ class TestConsoleDisplay {
 
 	@Test
 	void shouldDisplayWorkingState() {
-		assertEquals("00:00\nPress 1 to take a break",
+		assertEquals("00:00\nPress 2 to take a break",
 				ConsoleDisplay.workingMessage(0));
 	}
 

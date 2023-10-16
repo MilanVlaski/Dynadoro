@@ -28,19 +28,12 @@ public class Timer {
 		state.takeBreak(clock.currentTimeSeconds());
 	}
 
-	public void setDisplayTime(int time) {
-		display.setTime(time);
-	}
-	
-	public void setDisplayState(String state) {
-		display.setState(state);
-	}
-	
 	public void changeState(TimerState newState) {
 		state = newState;
 	}
 
-	public void updateDisplay() {
-		display.update();
+	public Display getDisplay() {
+		return display;
 	}
+
 }
