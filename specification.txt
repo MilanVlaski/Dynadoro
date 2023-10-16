@@ -15,3 +15,6 @@ you dont have to verify whether that works for every single case.
 I have decided not to test whether the display shows the right commands,
 and whether it captures state correctly, therefore saving myself millions of 
 braincells.
+
+CONSIDER that the display may have increment(), decrement(), reset methods,
+instead of only setTime().
