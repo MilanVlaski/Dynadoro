@@ -5,8 +5,10 @@ When i press Begin it counts and shows me that i am working.
 When i press Break, it start counting down for the duration of the break,
 which lasts 5 times shorter than the time spent working.
 
-When it reaches zero, it plays an alarm until i stop it,
-which restarts the whole process.
+TODO: Thread updating the time of display, right?
 
-Verify that the state of display is changing (time), and then
+When it reaches zero, it plays an alarm.
+
+***Verify that the state of display is changing (time), and then
 you dont have to verify whether that works for every single case.
+

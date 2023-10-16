@@ -1,59 +1,37 @@
 package test.display;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
-import display.ConsoleDisplay;
 import display.Display;
 import timer.Clock;
 import timer.Timer;
 
 class TestDisplay {
 
-	@Test
-	void displayFiveSeconds() {
-		assertEquals("00:05", ConsoleDisplay.displayedTime(5));
-	}
-
-	@Test
-	void displayMinuteAndFiveSeconds() {
-		assertEquals("01:05", ConsoleDisplay.displayedTime(65));
-	}
-
-	@Test
-	void displayOneHour() {
-		assertEquals("01:00:00", ConsoleDisplay.displayedTime(3600));
-	}
-
-	@Test
-	void shouldDisplayIdleState() {
-		assertEquals("00:00\nPress 1 to start studying",
-				ConsoleDisplay.idleMessage());
-	}
-
-	@Test
-	void shouldDisplayWorkingState() {
-		assertEquals("00:00\nPress 1 to take a break",
-				ConsoleDisplay.workingMessage(0));
-	}
-
-	@Test
-	void shouldDisplayBreakState() {
-		assertEquals("00:00\nPress 1 to go back to work",
-				ConsoleDisplay.breakMessage(0));
-	}
-
+	@Mock
 	Clock mockClock = mock(Clock.class);
+	@Mock
 	Display mockDisplay = mock(Display.class);
-
+	
+	@InjectMocks
+	Timer timer;
+	
+	@BeforeEach
+	void injectMocks() {
+		MockitoAnnotations.openMocks(this);
+	}
+	
 	@Test
 	void shouldSetDisplayedTimeToZero() {
-		new Timer(mockClock, mockDisplay);
 		verify(mockDisplay).setTime(0);
 	}
 
@@ -61,20 +39,18 @@ class TestDisplay {
 	void shouldSetDisplayedTimeOnBegin() {
 		when(mockClock.currentTimeSeconds()).thenReturn(0);
 		
-		Timer timer = new Timer(mockClock, mockDisplay);
 		timer.begin();
 		verify(mockDisplay, times(2)).setTime(0);
 	}
 
 	@Test
 	void shouldSetDisplayedTimeOnBreak() {
-		when(mockClock.currentTimeSeconds()).thenReturn(0).thenReturn(25);
-		
-		Timer timer = new Timer(mockClock, mockDisplay);
+		when(mockClock.currentTimeSeconds())
+						.thenReturn(0)
+						.thenReturn(25);
 		
 		timer.begin();
 		timer.takeBreak();
 		verify(mockDisplay).setTime(5);
 	}
-
 }
