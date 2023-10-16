@@ -12,3 +12,6 @@ When it reaches zero, it plays an alarm.
 ***Verify that the state of display is changing (time), and then
 you dont have to verify whether that works for every single case.
 
+I have decided not to test whether the display shows the right commands,
+and whether it captures state correctly, therefore saving myself millions of 
+braincells.

@@ -6,6 +6,9 @@ import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import display.Display;
 import timer.Clock;
@@ -13,14 +16,17 @@ import timer.Timer;
 
 class TestTimer {
 
+	@Mock
 	Clock mockClock = mock(Clock.class);
+	@Mock
 	Display dummyDisplay = mock(Display.class);
 
+	@InjectMocks
 	Timer timer;
 
 	@BeforeEach
 	void setup() {
-		timer = new Timer(mockClock, dummyDisplay);
+		MockitoAnnotations.openMocks(this);
 	}
 
 	@Test

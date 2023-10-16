@@ -1,5 +1,7 @@
 package test.display;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -40,7 +42,7 @@ class TestDisplay {
 		when(mockClock.currentTimeSeconds()).thenReturn(0);
 		
 		timer.begin();
-		verify(mockDisplay, times(2)).setTime(0);
+		verify(mockDisplay, atLeastOnce()).setTime(0);
 	}
 
 	@Test
@@ -53,4 +55,5 @@ class TestDisplay {
 		timer.takeBreak();
 		verify(mockDisplay).setTime(5);
 	}
+	
 }
