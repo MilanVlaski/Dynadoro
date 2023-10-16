@@ -35,6 +35,8 @@ class TestDisplay {
 	@Test
 	void shouldSetDisplayedTimeToZero() {
 		verify(mockDisplay).setTime(0);
+		verify(mockDisplay).setState("IDLE");
+		verify(mockDisplay, atLeastOnce()).update();
 	}
 
 	@Test
@@ -42,7 +44,10 @@ class TestDisplay {
 		when(mockClock.currentTimeSeconds()).thenReturn(0);
 		
 		timer.begin();
+		
 		verify(mockDisplay, atLeastOnce()).setTime(0);
+		verify(mockDisplay).setState("WORKING");
+		verify(mockDisplay, atLeastOnce()).update();
 	}
 
 	@Test
@@ -53,7 +58,10 @@ class TestDisplay {
 		
 		timer.begin();
 		timer.takeBreak();
+		
 		verify(mockDisplay).setTime(5);
+		verify(mockDisplay).setState("TAKING_BREAK");
+		verify(mockDisplay, atLeastOnce()).update();
 	}
 	
 }

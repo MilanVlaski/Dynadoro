@@ -4,11 +4,11 @@ public class ConsoleDisplay extends Display {
 
 	public static String displayedTime(int seconds) {
 		int hours = seconds / 3600;
-	    int minutes = (seconds % 3600) / 60;
-	    int remainingSeconds = seconds % 60;
-	    
-	    return (hours > 0 ? String.format("%02d:", hours) : "") +
-	            String.format("%02d:%02d", minutes, remainingSeconds);
+		int minutes = (seconds % 3600) / 60;
+		int remainingSeconds = seconds % 60;
+
+		return (hours > 0 ? String.format("%02d:", hours) : "") +
+				String.format("%02d:%02d", minutes, remainingSeconds);
 	}
 
 	public static String idleMessage() {
@@ -16,16 +16,29 @@ public class ConsoleDisplay extends Display {
 	}
 
 	public static String workingMessage(int time) {
-		return displayedTime(time) + "\nPress 1 to take a break";
+		return displayedTime(time) + "\nPress 2 to take a break";
 	}
 
 	public static String breakMessage(int time) {
 		return displayedTime(time) + "\nPress 1 to go back to work";
 	}
-
+	
+	@Override
 	public void update() {
-		System.out.println();
+		switch (state) {
+		case "IDLE":
+			System.out.println(idleMessage());
+			break;
+		case "WORKING":
+			System.out.println(workingMessage(time));
+			break;
+		case "TAKING_BREAK":
+			System.out.println(breakMessage(time));
+			break;
+
+		default:
+			break;
+		}
 	}
 
-	
 }

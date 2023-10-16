@@ -10,6 +10,8 @@ public class Working extends TimerState {
 		super(context);
 		startTime = now;
 		context.setDisplayTime(0);
+		context.setDisplayState("WORKING");
+		context.updateDisplay();
 	}
 
 	@Override
@@ -27,5 +29,5 @@ public class Working extends TimerState {
 		int workDuration = displayedTime(now);
 		context.changeState(new TakingBreak(context, now, workDuration));
 	}
-
+	
 }

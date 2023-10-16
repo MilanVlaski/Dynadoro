@@ -13,6 +13,8 @@ public class TakingBreak extends TimerState{
 		startTime = now;
 		breakDuration = workDuration / BREAK_FACTOR;
 		context.setDisplayTime(breakDuration);
+		context.setDisplayState("TAKING_BREAK");
+		context.updateDisplay();
 	}
 
 	@Override
