@@ -19,5 +19,8 @@ braincells.
 CONSIDER that the display may have increment(), decrement(), reset methods,
 instead of only setTime().
 
+Updating the display has a bunch of temporal coupling associated with it.
+But i dont like the alternatives.
+
 TODO CLEANUP:
 Make the string that represents state an enum.
