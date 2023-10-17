@@ -1,10 +1,8 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
-
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,22 +16,22 @@ class TestCounter {
 	@Test
 	void shouldCount() {
 		Counter counter = new Counter(timer);
-		counter.start();
+		counter.countUp();
 		assertTrue(counter.isCounting());
 	}
 	
 	@Test
 	void shouldStopCounter() {
 		Counter counter = new Counter(timer);
-		counter.start();
+		counter.countUp();
 		counter.stop();
 		assertFalse(counter.isCounting());
 	}
 	
 	@Test
 	void shouldCountDown() {
-		Counter counter = new Counter(timer, 5);
-		counter.start();
+		Counter counter = new Counter(timer);
+		counter.countDown(5);
 		assertTrue(counter.isCounting());
 	}
 
