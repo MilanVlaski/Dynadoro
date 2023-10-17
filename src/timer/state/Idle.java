@@ -12,6 +12,13 @@ public class Idle extends TimerState {
 		display.setState(DisplayState.IDLE);
 		display.update();
 	}
+	
+	// Pretty smart implementation, I think!
+	public void updateDisplayedTime(int now) {
+		display.setTime(displayedTime(now));
+		// But updating should update only the timer.
+		display.update();
+	}
 
 	@Override
 	public int displayedTime(int now) {

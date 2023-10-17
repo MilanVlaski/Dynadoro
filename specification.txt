@@ -10,31 +10,17 @@ TODO: Thread updating the time of display, right?
 
 When it reaches zero, it plays an alarm.
 
-***Verify that the state of display is changing (time), and then
-you dont have to verify whether that works for every single case.
-
 NOTES:
-I have decided not to test whether the display shows the right commands,
-and whether it captures state correctly, therefore saving myself millions of 
-braincells.
-
-CONSIDER that the display may have increment(), decrement(), reset methods,
-instead of only setTime().
-
 Updating the display has a bunch of temporal coupling associated with it.
-But i dont like the alternatives.
-
+But i dont like the alternatives yet.
+Maybe display should have different update methods for updating timer or state.
+(or both?) (for console display you have to refresh everything,
+but for a real display, two methods makes lots of sense)
 
 COUNTER:
 You can start it and it counts up (maybe set arbitrary limit).
 You can make it start at a certain number > 0, then count down to 0.
 It can be stopped manually, or once it hits 0.
-If i run a counter for one second, then it updates the display once with param 1.
-If i run it for 10 seconds, it updates in ten times, with params 1,...,10
 HOW TO simulate running it for a certain amount of time?
 CONSIDER just testing that it works for one and two seconds, pausing the test.
-(Pause and resume)
-
-Maybe display should have different update methods for updating timer or state.
-(or both?) (for console display you have to refresh everything,
-but for a real display, two methods makes lots of sense)
+(an integration test! - because you dont mind waiting 2 seconds in that case)

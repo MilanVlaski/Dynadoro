@@ -2,18 +2,26 @@ package timer;
 
 public class Counter {
 
-	public Counter(int now) {
+	private boolean isCounting;
+
+	public Counter(Timer timer) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Counter(Timer timer, int upperBound) {
 		// TODO Auto-generated constructor stub
 	}
 
 	public void start() {
-		// TODO Auto-generated method stub
-		
+		isCounting = true;
 	}
 
 	public boolean isCounting() {
-		// TODO Auto-generated method stub
-		return false;
+		return isCounting;
+	}
+
+	public void stop() {
+		isCounting = false;
 	}
 
 }

@@ -3,7 +3,6 @@ package test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
-import static test.TestTimer.TWENTY_FIVE;
 import static test.TestTimer.WORK_BREAK_RATIO;
 
 import org.junit.jupiter.api.Test;
@@ -49,7 +48,7 @@ public class TestTimerState {
 		assertThrows(IllegalOperation.class, () -> working.begin(0));
 	}
 
-	static final int WORK_DURATION = TWENTY_FIVE;
+	static final int WORK_DURATION = TestTimer.TWENTY_FIVE;
 	
 	@Test
 	void shouldShowBreakTime() {
