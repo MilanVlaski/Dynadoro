@@ -6,6 +6,8 @@ When i press Begin it counts and shows me that i am working.
 When i press Break, it start counting down for the duration of the break,
 which lasts 5 times shorter than the time spent working.
 
+Cancel feature (goes into idle)
+
 TODO: Thread updating the time of display, right?
 
 When it reaches zero, it plays an alarm.

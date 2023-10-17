@@ -20,4 +20,5 @@ public abstract class Display {
 	}
 
 	public abstract void update();
+	public abstract void update(int displayedTime);
 }

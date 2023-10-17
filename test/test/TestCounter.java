@@ -35,8 +35,6 @@ class TestCounter {
 		Counter counter = new Counter(timer, 5);
 		counter.start();
 		assertTrue(counter.isCounting());
-		
-		Executors.newScheduledThreadPool(1).sched
 	}
 
 }

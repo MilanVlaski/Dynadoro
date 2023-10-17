@@ -35,10 +35,13 @@ public class ConsoleDisplay extends Display {
 		case TAKING_BREAK:
 			System.out.println(breakMessage(time));
 			break;
-
-		default:
-			break;
 		}
+	}
+
+	@Override
+	public void update(int displayedTime) {
+		time = displayedTime;
+		update();
 	}
 
 }

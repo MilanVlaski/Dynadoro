@@ -33,7 +33,7 @@ class TestTimer {
 	void timeShouldBeZeroIfNotStarted() {
 		when(mockClock.currentTimeSeconds()).thenReturn(999);
 		
-		assertEquals(0, timer.time());
+		assertEquals(0, timer.displayedTime());
 	}
 
 	@Test
@@ -45,9 +45,9 @@ class TestTimer {
 		
 		timer.begin();
 		// 1 second passes...
-		assertEquals(1, timer.time());
+		assertEquals(1, timer.displayedTime());
 		// 1 second passes...
-		assertEquals(2, timer.time());
+		assertEquals(2, timer.displayedTime());
 	}
 
 	static final int TWENTY_FIVE = 25;
@@ -64,7 +64,7 @@ class TestTimer {
 		timer.begin();
 		// 25 seconds pass...
 		timer.takeBreak();
-		assertEquals(BREAK_DURATION, timer.time());
+		assertEquals(BREAK_DURATION, timer.displayedTime());
 	}
 
 	@Test
@@ -78,9 +78,9 @@ class TestTimer {
 		timer.begin();
 		// 25 seconds pass...
 		timer.takeBreak();
-		assertEquals(BREAK_DURATION, timer.time());
+		assertEquals(BREAK_DURATION, timer.displayedTime());
 		// 1 second passes...
-		assertEquals(BREAK_DURATION - 1, timer.time());
+		assertEquals(BREAK_DURATION - 1, timer.displayedTime());
 	}
 
 	// what happens if i take a break after 3 seconds? do i go straight back to
@@ -95,7 +95,7 @@ class TestTimer {
 	
 		timer.begin();
 		timer.takeBreak();
-		assertEquals(0, timer.time());
+		assertEquals(0, timer.displayedTime());
 	}
 
 	@Test
@@ -103,6 +103,6 @@ class TestTimer {
 		timer.begin();
 		timer.takeBreak();
 		timer.begin();
-		assertEquals(0, timer.time());
+		assertEquals(0, timer.displayedTime());
 	}
 }

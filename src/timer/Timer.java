@@ -8,6 +8,8 @@ public class Timer {
 
 	private final Clock clock;
 	private final Display display;
+	private Counter counter;
+
 	private TimerState state;
 
 	public Timer(Clock clock, Display display) {
@@ -16,7 +18,7 @@ public class Timer {
 		state = new Idle(this);
 	}
 
-	public int time() {
+	public int displayedTime() {
 		return state.displayedTime(clock.currentTimeSeconds());
 	}
 
@@ -34,6 +36,10 @@ public class Timer {
 
 	public Display getDisplay() {
 		return display;
+	}
+
+	public void updateDisplayedTime() {
+		display.update(displayedTime());
 	}
 
 }
