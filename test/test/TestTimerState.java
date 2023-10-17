@@ -49,19 +49,20 @@ public class TestTimerState {
 		assertThrows(IllegalOperation.class, () -> working.begin(0));
 	}
 
-
+	static final int WORK_DURATION = TWENTY_FIVE;
+	
 	@Test
 	void shouldShowBreakTime() {
-		int now = TWENTY_FIVE;
-		TakingBreak takingBreak = new TakingBreak(dummyTimer, now, now);
-		assertEquals(now / WORK_BREAK_RATIO, takingBreak.displayedTime(now));
+		int now = 66;
+		TakingBreak takingBreak = new TakingBreak(dummyTimer, now, WORK_DURATION);
+		assertEquals(WORK_DURATION / WORK_BREAK_RATIO, takingBreak.displayedTime(now));
 	}
 
 	@Test
 	void shouldShowTimePassingBackwards() {
-		int now = TWENTY_FIVE;
-		TakingBreak takingBreak = new TakingBreak(dummyTimer, now, now);
-		assertEquals(now / WORK_BREAK_RATIO - 2, takingBreak.displayedTime(now + 2));
+		int now = 66;
+		TakingBreak takingBreak = new TakingBreak(dummyTimer, now, WORK_DURATION);
+		assertEquals(WORK_DURATION / WORK_BREAK_RATIO - 2, takingBreak.displayedTime(now + 2));
 	}
 
 	@Test
