@@ -40,7 +40,8 @@ class TestTimer {
 
 	@Test
 	void shouldMeasureElapsedTime() {
-		when(mockClock.currentTimeSeconds()).thenReturn(0, 1, 2);
+		when(mockClock.currentTimeSeconds())
+			.thenReturn(0, 1, 2);
 		
 		timer.begin();
 		// 1 second passes...
@@ -74,13 +75,10 @@ class TestTimer {
 		assertEquals(BREAK_DURATION - 1, timer.displayedTime());
 	}
 
-	// what happens if i take a break after 3 seconds? do i go straight back to
-	// work?
-
 	@Test
 	void shouldStopCountingAfterBreakIsOver() {
 		when(mockClock.currentTimeSeconds())
-						.thenReturn(0, TWENTY_FIVE, 66);
+			.thenReturn(0, TWENTY_FIVE, 66);
 	
 		timer.begin();
 		timer.takeBreak();
@@ -102,7 +100,8 @@ class TestTimer {
 
 	@Test
 	void shouldBeRunningWhenStarted() {
-		when(mockClock.currentTimeSeconds()).thenReturn(0, 5);
+		when(mockClock.currentTimeSeconds())
+			.thenReturn(0, 5);
 		
 		timer.begin();
 		assertTrue(timer.isRunning());
@@ -110,8 +109,21 @@ class TestTimer {
 
 	@Test
 	void shouldBeRunningOnBreak() {
+		when(mockClock.currentTimeSeconds())
+			.thenReturn(0, TWENTY_FIVE, TWENTY_FIVE + 1);
+		
 		timer.begin();
 		timer.takeBreak();
 		assertTrue(timer.isRunning());
+	}
+	
+	@Test
+	void shouldStopRunningAfterBreak() {
+		when(mockClock.currentTimeSeconds())
+			.thenReturn(0, TWENTY_FIVE, TWENTY_FIVE + BREAK_DURATION);
+		
+		timer.begin();
+		timer.takeBreak();
+		assertFalse(timer.isRunning());
 	}
 }

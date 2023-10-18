@@ -6,7 +6,7 @@ When i press Begin it counts and shows me that i am working.
 When i press Break, it start counting down for the duration of the break,
 which lasts 5 times shorter than the time spent working.
 
-Cancel feature (goes into idle)
+Cancel at any time. (goes into idle)
 
 TODO: Thread updating the time of display, right?
 
@@ -30,3 +30,5 @@ CONSIDER just testing that it works for one and two seconds, pausing the test.
 
 WHY NOT send data to the Counter about when it was started, so that we can
 verify it later?
+
+What happens if i take a break after 3 seconds? do i go straight back to work?
