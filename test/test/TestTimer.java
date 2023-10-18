@@ -37,36 +37,15 @@ class TestTimer {
 		
 		assertEquals(0, timer.displayedTime());
 	}
-	
-	@Test
-	void shouldNotBeRunning() {
-		assertFalse(timer.isRunning());
-	}
-	
-	@Test
-	void shouldBeRunningWhenStarted() {
-		timer.begin();
-		assertTrue(timer.isRunning());
-	}
-	
-	@Test
-	void shouldBeRunningOnBreak() {
-		timer.begin();
-		timer.takeBreak();
-		assertTrue(timer.isRunning());
-	}
 
 	@Test
 	void shouldMeasureElapsedTime() {
-		when(mockClock.currentTimeSeconds())
-						.thenReturn(0)
-						.thenReturn(1)
-						.thenReturn(2);
+		when(mockClock.currentTimeSeconds()).thenReturn(0, 1, 2);
 		
 		timer.begin();
 		// 1 second passes...
 		assertEquals(1, timer.displayedTime());
-		// 1 second passes...
+		// 2 seeconds pass...
 		assertEquals(2, timer.displayedTime());
 	}
 
@@ -77,12 +56,9 @@ class TestTimer {
 	@Test
 	void breakShouldTakeFiveTimesShorterThanWork() {
 		when(mockClock.currentTimeSeconds())
-						.thenReturn(0)
-						.thenReturn(TWENTY_FIVE)
-						.thenReturn(TWENTY_FIVE);
+			.thenReturn(0, TWENTY_FIVE, TWENTY_FIVE);
 		
 		timer.begin();
-		// 25 seconds pass...
 		timer.takeBreak();
 		assertEquals(BREAK_DURATION, timer.displayedTime());
 	}
@@ -90,16 +66,11 @@ class TestTimer {
 	@Test
 	void shouldCountDown_WhileTakingBreak() {
 		when(mockClock.currentTimeSeconds())
-				.thenReturn(0)
-				.thenReturn(TWENTY_FIVE)
-				.thenReturn(TWENTY_FIVE)
-				.thenReturn(TWENTY_FIVE + 1);
+			.thenReturn(0, TWENTY_FIVE, TWENTY_FIVE, TWENTY_FIVE + 1);
 
 		timer.begin();
-		// 25 seconds pass...
 		timer.takeBreak();
 		assertEquals(BREAK_DURATION, timer.displayedTime());
-		// 1 second passes...
 		assertEquals(BREAK_DURATION - 1, timer.displayedTime());
 	}
 
@@ -109,9 +80,7 @@ class TestTimer {
 	@Test
 	void shouldStopCountingAfterBreakIsOver() {
 		when(mockClock.currentTimeSeconds())
-						.thenReturn(0)
-						.thenReturn(TWENTY_FIVE)
-						.thenReturn(66);
+						.thenReturn(0, TWENTY_FIVE, 66);
 	
 		timer.begin();
 		timer.takeBreak();
@@ -124,5 +93,25 @@ class TestTimer {
 		timer.takeBreak();
 		timer.begin();
 		assertEquals(0, timer.displayedTime());
+	}
+
+	@Test
+	void shouldNotBeRunning() {
+		assertFalse(timer.isRunning());
+	}
+
+	@Test
+	void shouldBeRunningWhenStarted() {
+		when(mockClock.currentTimeSeconds()).thenReturn(0, 5);
+		
+		timer.begin();
+		assertTrue(timer.isRunning());
+	}
+
+	@Test
+	void shouldBeRunningOnBreak() {
+		timer.begin();
+		timer.takeBreak();
+		assertTrue(timer.isRunning());
 	}
 }

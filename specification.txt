@@ -26,3 +26,7 @@ It can be stopped manually, or once it hits 0.
 HOW TO simulate running it for a certain amount of time?
 CONSIDER just testing that it works for one and two seconds, pausing the test.
 (an integration test! - because you dont mind waiting 2 seconds in that case)
+
+
+WHY NOT send data to the Counter about when it was started, so that we can
+verify it later?
