@@ -7,10 +7,10 @@ import java.util.concurrent.TimeUnit;
 public class Counter {
 
 	private final Timer timer;
-	private static final int UPPER_BOUND = 14400;
 	private final ScheduledExecutorService scheduler;
 
 	private boolean isCounting = false;
+	private static final int UPPER_BOUND = 14400;
 
 	/*
 	 * Makes a counter which closes after 4 hours.

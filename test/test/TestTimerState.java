@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import display.Display;
 import timer.Clock;
+import timer.Counter;
 import timer.Timer;
 import timer.state.Idle;
 import timer.state.TakingBreak;

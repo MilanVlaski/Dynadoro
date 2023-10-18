@@ -1,6 +1,8 @@
 package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -34,6 +36,24 @@ class TestTimer {
 		when(mockClock.currentTimeSeconds()).thenReturn(999);
 		
 		assertEquals(0, timer.displayedTime());
+	}
+	
+	@Test
+	void shouldNotBeRunning() {
+		assertFalse(timer.isRunning());
+	}
+	
+	@Test
+	void shouldBeRunningWhenStarted() {
+		timer.begin();
+		assertTrue(timer.isRunning());
+	}
+	
+	@Test
+	void shouldBeRunningOnBreak() {
+		timer.begin();
+		timer.takeBreak();
+		assertTrue(timer.isRunning());
 	}
 
 	@Test

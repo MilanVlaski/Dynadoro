@@ -11,18 +11,18 @@ import timer.Timer;
 
 class TestCounter {
 	
-	Timer timer = mock(Timer.class);
+	Timer dummyTimer = mock(Timer.class);
 	
 	@Test
 	void shouldCount() {
-		Counter counter = new Counter(timer);
+		Counter counter = new Counter(dummyTimer);
 		counter.countUp();
 		assertTrue(counter.isCounting());
 	}
 	
 	@Test
 	void shouldStopCounter() {
-		Counter counter = new Counter(timer);
+		Counter counter = new Counter(dummyTimer);
 		counter.countUp();
 		counter.stop();
 		assertFalse(counter.isCounting());
@@ -30,7 +30,7 @@ class TestCounter {
 	
 	@Test
 	void shouldCountDown() {
-		Counter counter = new Counter(timer);
+		Counter counter = new Counter(dummyTimer);
 		counter.countDown(5);
 		assertTrue(counter.isCounting());
 	}
