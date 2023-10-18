@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import display.Display;
 import timer.Clock;
 import timer.Counter;
+import timer.ScheduledCounter;
 import timer.Timer;
 import timer.state.Idle;
 import timer.state.TakingBreak;
@@ -20,8 +21,9 @@ public class TestTimerState {
 
 	Display dummyDisplay = mock(Display.class);
 	Clock dummyClock = mock(Clock.class);
+	ScheduledCounter dummyCounter = mock(ScheduledCounter.class);
 
-	Timer dummyTimer = new Timer(dummyClock, dummyDisplay);
+	Timer dummyTimer = new Timer(dummyClock, dummyDisplay, dummyCounter);
 
 	@Test
 	void timeShouldAlwaysBeZero() {

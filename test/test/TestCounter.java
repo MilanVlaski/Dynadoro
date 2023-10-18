@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import timer.Counter;
@@ -14,16 +15,22 @@ class TestCounter {
 	
 	Timer dummyTimer = mock(Timer.class);
 	
+	ScheduledCounter counter;
+	
+	@BeforeEach
+	void setup() {
+		counter = new Counter();
+		counter.setTimer(dummyTimer);
+	}
+	
 	@Test
 	void shouldCount() {
-		ScheduledCounter counter = new Counter(dummyTimer);
 		counter.countUp();
 		assertTrue(counter.isCounting());
 	}
 	
 	@Test
 	void shouldStopCounter() {
-		ScheduledCounter counter = new Counter(dummyTimer);
 		counter.countUp();
 		counter.stop();
 		assertFalse(counter.isCounting());
@@ -31,7 +38,6 @@ class TestCounter {
 	
 	@Test
 	void shouldCountDown() {
-		ScheduledCounter counter = new Counter(dummyTimer);
 		counter.countDown(5);
 		assertTrue(counter.isCounting());
 	}

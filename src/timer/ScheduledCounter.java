@@ -10,4 +10,6 @@ public interface ScheduledCounter {
 
 	void countDown(int upperBound);
 
+	void setTimer(Timer timer);
+
 }

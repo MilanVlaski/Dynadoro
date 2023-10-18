@@ -14,6 +14,7 @@ import org.mockito.MockitoAnnotations;
 import display.Display;
 import display.Display.DisplayState;
 import timer.Clock;
+import timer.ScheduledCounter;
 import timer.Timer;
 
 class TestDisplay {
@@ -22,6 +23,8 @@ class TestDisplay {
 	Clock mockClock = mock(Clock.class);
 	@Mock
 	Display mockDisplay = mock(Display.class);
+	@Mock
+	ScheduledCounter mockCounter;
 	
 	@InjectMocks
 	Timer timer;
