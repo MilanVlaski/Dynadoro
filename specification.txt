@@ -32,3 +32,5 @@ WHY NOT send data to the Counter about when it was started, so that we can
 verify it later?
 
 What happens if i take a break after 3 seconds? do i go straight back to work?
+1. Make a CounterInterface, that must depend on timer.
+2. Inject it into timer.

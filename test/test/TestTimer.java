@@ -1,9 +1,6 @@
 package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -14,14 +11,17 @@ import org.mockito.MockitoAnnotations;
 
 import display.Display;
 import timer.Clock;
+import timer.Counter;
 import timer.Timer;
 
 class TestTimer {
 
 	@Mock
-	Clock mockClock = mock(Clock.class);
+	Clock mockClock;
 	@Mock
-	Display dummyDisplay = mock(Display.class);
+	Display dummyDisplay;
+	@Mock
+	Counter mockCounter;
 
 	@InjectMocks
 	Timer timer;
@@ -93,37 +93,32 @@ class TestTimer {
 		assertEquals(0, timer.displayedTime());
 	}
 
-	@Test
-	void shouldNotBeRunning() {
-		assertFalse(timer.isRunning());
-	}
-
-	@Test
-	void shouldBeRunningWhenStarted() {
-		when(mockClock.currentTimeSeconds())
-			.thenReturn(0, 5);
-		
-		timer.begin();
-		assertTrue(timer.isRunning());
-	}
-
-	@Test
-	void shouldBeRunningOnBreak() {
-		when(mockClock.currentTimeSeconds())
-			.thenReturn(0, TWENTY_FIVE, TWENTY_FIVE + 1);
-		
-		timer.begin();
-		timer.takeBreak();
-		assertTrue(timer.isRunning());
-	}
-	
-	@Test
-	void shouldStopRunningAfterBreak() {
-		when(mockClock.currentTimeSeconds())
-			.thenReturn(0, TWENTY_FIVE, TWENTY_FIVE + BREAK_DURATION);
-		
-		timer.begin();
-		timer.takeBreak();
-		assertFalse(timer.isRunning());
-	}
+//	@Test
+//	void shouldBeRunningWhenStarted() {
+//		when(mockClock.currentTimeSeconds())
+//			.thenReturn(0, 5);
+//		
+//		timer.begin();
+//		assertTrue(timer.isRunning());
+//	}
+//
+//	@Test
+//	void shouldBeRunningOnBreak() {
+//		when(mockClock.currentTimeSeconds())
+//			.thenReturn(0, TWENTY_FIVE, TWENTY_FIVE + 1);
+//		
+//		timer.begin();
+//		timer.takeBreak();
+//		assertTrue(timer.isRunning());
+//	}
+//	
+//	@Test
+//	void shouldStopRunningAfterBreak() {
+//		when(mockClock.currentTimeSeconds())
+//			.thenReturn(0, TWENTY_FIVE, TWENTY_FIVE + BREAK_DURATION);
+//		
+//		timer.begin();
+//		timer.takeBreak();
+//		assertFalse(timer.isRunning());
+//	}
 }

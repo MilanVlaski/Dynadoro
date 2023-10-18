@@ -4,7 +4,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class Counter {
+public class Counter implements ScheduledCounter {
 
 	private final Timer timer;
 	private final ScheduledExecutorService scheduler;
@@ -20,19 +20,23 @@ public class Counter {
 		this.scheduler = Executors.newSingleThreadScheduledExecutor();
 	}
 
+	@Override
 	public void countUp() {
 		countDown(UPPER_BOUND);
 	}
 
+	@Override
 	public void stop() {
 		isCounting = false;
 		scheduler.shutdown();
 	}
 
+	@Override
 	public boolean isCounting() {
 		return isCounting;
 	}
 
+	@Override
 	public void countDown(int upperBound) {
 		isCounting = true;
 		

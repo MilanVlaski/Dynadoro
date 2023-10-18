@@ -7,6 +7,7 @@ import static org.mockito.Mockito.mock;
 import org.junit.jupiter.api.Test;
 
 import timer.Counter;
+import timer.ScheduledCounter;
 import timer.Timer;
 
 class TestCounter {
@@ -15,14 +16,14 @@ class TestCounter {
 	
 	@Test
 	void shouldCount() {
-		Counter counter = new Counter(dummyTimer);
+		ScheduledCounter counter = new Counter(dummyTimer);
 		counter.countUp();
 		assertTrue(counter.isCounting());
 	}
 	
 	@Test
 	void shouldStopCounter() {
-		Counter counter = new Counter(dummyTimer);
+		ScheduledCounter counter = new Counter(dummyTimer);
 		counter.countUp();
 		counter.stop();
 		assertFalse(counter.isCounting());
@@ -30,7 +31,7 @@ class TestCounter {
 	
 	@Test
 	void shouldCountDown() {
-		Counter counter = new Counter(dummyTimer);
+		ScheduledCounter counter = new Counter(dummyTimer);
 		counter.countDown(5);
 		assertTrue(counter.isCounting());
 	}

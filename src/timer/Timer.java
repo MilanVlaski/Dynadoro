@@ -10,7 +10,6 @@ public class Timer {
 	private final Display display;
 
 	private TimerState state;
-	private boolean isRunning = false;
 
 	public Timer(Clock clock, Display display) {
 		this.clock = clock;
@@ -24,7 +23,6 @@ public class Timer {
 
 	public void begin() {
 		state.begin(clock.currentTimeSeconds());
-		isRunning = true;
 	}
 
 	public void takeBreak() {
@@ -41,10 +39,6 @@ public class Timer {
 
 	public void updateDisplayedTime() {
 		display.update(displayedTime());
-	}
-
-	public boolean isRunning() {
-		return isRunning;
 	}
 
 }
