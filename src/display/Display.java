@@ -21,4 +21,5 @@ public abstract class Display {
 
 	public abstract void update();
 	public abstract void update(int displayedTime);
+	public abstract void update(int i, DisplayState idle);
 }

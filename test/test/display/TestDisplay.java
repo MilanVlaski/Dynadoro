@@ -36,9 +36,7 @@ class TestDisplay {
 	
 	@Test
 	void shouldSetDisplayedTimeToZero() {
-		verify(mockDisplay).setTime(0);
-		verify(mockDisplay).setState(DisplayState.IDLE);
-		verify(mockDisplay, atLeastOnce()).update();
+		verify(mockDisplay).update(0, DisplayState.IDLE);
 	}
 
 	@Test

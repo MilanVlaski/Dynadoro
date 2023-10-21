@@ -44,4 +44,10 @@ public class ConsoleDisplay extends Display {
 		update();
 	}
 
+	@Override
+	public void update(int i, DisplayState idle) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -8,9 +8,7 @@ public class Idle extends TimerState {
 	public Idle(Timer context) {
 		super(context);
 
-		display.setTime(0);
-		display.setState(DisplayState.IDLE);
-		display.update();
+		display.update(0, DisplayState.IDLE);
 	}
 
 	@Override
