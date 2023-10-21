@@ -99,16 +99,17 @@ class TestTimer {
 		timer.begin();
 		verify(mockCounter).countUp();
 	}
-//
-//	@Test
-//	void shouldBeRunningOnBreak() {
-//		when(mockClock.currentTimeSeconds())
-//			.thenReturn(0, TWENTY_FIVE, TWENTY_FIVE + 1);
-//		
-//		timer.begin();
-//		timer.takeBreak();
-//		assertTrue(timer.isRunning());
-//	}
+
+	@Test
+	void shouldBeRunningOnBreak() {
+		when(mockClock.currentTimeSeconds())
+			.thenReturn(0, TWENTY_FIVE);
+		
+		timer.begin();
+		timer.takeBreak();
+		
+		verify(mockCounter).countDown(BREAK_DURATION);
+	}
 //	
 //	@Test
 //	void shouldStopRunningAfterBreak() {

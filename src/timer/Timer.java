@@ -15,8 +15,8 @@ public class Timer {
 	public Timer(Clock clock, Display display, ScheduledCounter counter) {
 		this.clock = clock;
 		this.display = display;
-		state = new Idle(this);
 		this.counter = counter;
+		state = new Idle(this);
 	}
 
 	public int displayedTime() {
@@ -29,7 +29,9 @@ public class Timer {
 	}
 
 	public void takeBreak() {
-		state.takeBreak(clock.currentTimeSeconds());
+		int now = clock.currentTimeSeconds();
+		state.takeBreak(now);
+		counter.countDown(state.displayedTime(now));
 	}
 
 	public void changeState(TimerState newState) {
