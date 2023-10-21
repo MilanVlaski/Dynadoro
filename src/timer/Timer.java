@@ -42,8 +42,8 @@ public class Timer {
 		return display;
 	}
 
-	public void updateDisplayedTime() {
-		display.update(displayedTime());
+	public void showTime() {
+		display.show(displayedTime());
 	}
 
 }

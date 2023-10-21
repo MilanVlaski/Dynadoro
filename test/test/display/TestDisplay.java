@@ -36,7 +36,7 @@ class TestDisplay {
 	
 	@Test
 	void shouldSetDisplayedTimeToZero() {
-		verify(mockDisplay).update(0, DisplayState.IDLE);
+		verify(mockDisplay).show(0, DisplayState.IDLE);
 	}
 
 	@Test
@@ -45,9 +45,7 @@ class TestDisplay {
 		
 		timer.begin();
 		
-		verify(mockDisplay, atLeastOnce()).setTime(0);
-		verify(mockDisplay).setState(DisplayState.WORKING);
-		verify(mockDisplay, atLeastOnce()).update();
+		verify(mockDisplay).show(0, DisplayState.WORKING);
 	}
 
 	@Test
@@ -59,9 +57,7 @@ class TestDisplay {
 		timer.begin();
 		timer.takeBreak();
 		
-		verify(mockDisplay).setTime(5);
-		verify(mockDisplay).setState(DisplayState.TAKING_BREAK);
-		verify(mockDisplay, atLeastOnce()).update();
+		verify(mockDisplay).show(5, DisplayState.TAKING_BREAK);
 	}
 	
 }

@@ -22,9 +22,26 @@ public class ConsoleDisplay extends Display {
 	public static String breakMessage(int time) {
 		return displayedTime(time) + "\nPress 1 to go back to work";
 	}
-	
+
 	@Override
-	public void update() {
+	public void show() {
+		showWith(time, state);
+	}
+
+	@Override
+	public void show(int displayedTime) {
+		time = displayedTime;
+		show();
+	}
+
+	@Override
+	public void show(int displayedTime, DisplayState state) {
+		this.state = state;
+		time = displayedTime;
+		show();
+	}
+
+	private void showWith(int time, DisplayState state) {
 		switch (state) {
 		case IDLE:
 			System.out.println(idleMessage());
@@ -37,17 +54,4 @@ public class ConsoleDisplay extends Display {
 			break;
 		}
 	}
-
-	@Override
-	public void update(int displayedTime) {
-		time = displayedTime;
-		update();
-	}
-
-	@Override
-	public void update(int i, DisplayState idle) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

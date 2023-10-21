@@ -44,7 +44,7 @@ public class Counter implements ScheduledCounter {
 	public void countDown(int upperBound) {
 		isCounting = true;
 
-		scheduler.scheduleAtFixedRate(timer::updateDisplayedTime, 1, 1, TimeUnit.SECONDS);
+		scheduler.scheduleAtFixedRate(timer::showTime, 1, 1, TimeUnit.SECONDS);
 		scheduler.schedule(() -> stop(), upperBound, TimeUnit.SECONDS);
 	}
 

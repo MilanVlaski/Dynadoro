@@ -10,10 +10,7 @@ public class Working extends TimerState {
 	public Working(Timer context, int now) {
 		super(context);
 		startTime = now;
-		
-		display.setTime(0);
-		display.setState(DisplayState.WORKING);
-		display.update();
+		display.show(0, DisplayState.WORKING);
 	}
 
 	@Override
