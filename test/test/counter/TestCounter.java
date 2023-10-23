@@ -53,13 +53,14 @@ class TestCounter {
 		verify(mockTimer, times(1)).showTime();
 		// TODO this should also actually change state to idle ? or something
 	}
-
+	
 	@Test
-	void should() {
-		counter.countUp();
-		counter.count(55);
+	void shouldCountOnlyOnce_IfStartedTwice() throws InterruptedException {
 		counter.countUp();
 		counter.countUp();
-		assertTrue(counter.isCounting());
+		Thread.sleep((long) (1.5 * DURATION_MILLISECONDS));
+		
+		verify(mockTimer, times(1)).showTime();
 	}
+
 }
