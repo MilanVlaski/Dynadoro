@@ -2,7 +2,6 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -11,7 +10,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import timer.Timer;
-import timer.counter.Counter;
 import timer.counter.ScheduledCounter;
 
 class TestCounter {
@@ -22,7 +20,7 @@ class TestCounter {
 	
 	@BeforeEach
 	void setup() {
-		counter = new Counter();
+		counter = new FastCounter();
 		counter.setTimer(dummyTimer);
 	}
 	
