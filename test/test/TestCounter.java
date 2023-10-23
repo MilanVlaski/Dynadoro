@@ -4,11 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;import java.math.BigDecimal;
-import java.util.Calendar;
-
-import javax.xml.datatype.Duration;
-import javax.xml.datatype.DatatypeConstants.Field;
+import static org.mockito.Mockito.verify;
+import static test.FastCounter.DURATION_MILLISECONDS;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,7 +15,7 @@ import timer.counter.ScheduledCounter;
 
 class TestCounter {
 	
-	Timer dummyTimer = mock(Timer.class);
+	Timer mockTimer = mock(Timer.class);
 	
 	ScheduledCounter counter;
 	
@@ -28,16 +25,16 @@ class TestCounter {
 		// So instead of 1000 miliseconds being one second, its 100 miliseconds.
 		// 10 times faster. So we use Thread.sleep(150).
 		counter = new FastCounter();
-		counter.setTimer(dummyTimer);
+		counter.setTimer(mockTimer);
 	}
 	
 	@Test
 	void shouldCountUp() throws InterruptedException {
 		counter.countUp();
-		Thread.sleep(150);
+		Thread.sleep((long) (1.5 * DURATION_MILLISECONDS));
 		
 		assertTrue(counter.isCounting());
-		verify(dummyTimer, times(1)).showTime();
+		verify(mockTimer, times(1)).showTime();
 	}
 	
 	@Test
@@ -50,10 +47,11 @@ class TestCounter {
 	@Test
 	void shouldCountDown() throws InterruptedException {
 		counter.count(1);
-		Thread.sleep(150);
+		Thread.sleep((long) (1.5 * DURATION_MILLISECONDS));
 		
 		assertFalse(counter.isCounting());
-		verify(dummyTimer, times(1)).showTime();
+		verify(mockTimer, times(1)).showTime();
+		// TODO this should also actually change state to idle ? or something
 	}
 
 	@Test

@@ -4,14 +4,10 @@ import timer.Timer;
 
 public interface ScheduledCounter {
 
-	void countUp();
-
-	void stop();
-
-	boolean isCounting();
-
-	void count(int upperBound);
-
 	void setTimer(Timer timer);
+	void countUp();
+	void count(int upperBound);
+	void stop();
+	boolean isCounting();
 
 }
