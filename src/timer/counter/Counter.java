@@ -11,7 +11,6 @@ public class Counter implements ScheduledCounter {
 	private Timer timer;
 	private ScheduledExecutorService scheduler;
 
-	// four hours, in milliseconds
 	public static final int FOUR_HOURS_IN_SECONDS = 14400;
 	public static final int DURATION_MILLISECONDS = 1000;
 
@@ -30,6 +29,11 @@ public class Counter implements ScheduledCounter {
 	}
 
 	@Override
+	public void count(int times) {
+		count(times, DURATION_MILLISECONDS);
+	}
+
+	@Override
 	public void stop() {
 		scheduler.shutdown();
 	}
@@ -39,16 +43,11 @@ public class Counter implements ScheduledCounter {
 		return !scheduler.isShutdown();
 	}
 
-	@Override
-	public void count(int times) {
-		count(times, DURATION_MILLISECONDS);
-	}
-
 	public void count(int times, int durationMilliseconds) {
 		scheduler.scheduleAtFixedRate(timer::showTime, durationMilliseconds,
 				durationMilliseconds, TimeUnit.MILLISECONDS);
 
-		scheduler.schedule(() -> stop(), times * durationMilliseconds,
+		scheduler.schedule(this::stop, times * durationMilliseconds,
 				TimeUnit.MILLISECONDS);
 	}
 
