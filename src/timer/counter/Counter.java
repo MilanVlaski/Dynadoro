@@ -15,6 +15,10 @@ public class Counter implements ScheduledCounter {
 	public static final int DURATION_MILLISECONDS = 1000;
 
 	public Counter() {
+		initScheduler();
+	}
+
+	private void initScheduler() {
 		scheduler = Executors.newSingleThreadScheduledExecutor();
 	}
 
@@ -44,6 +48,12 @@ public class Counter implements ScheduledCounter {
 	}
 
 	public void count(int times, int durationMilliseconds) {
+		
+		if(isCounting()) {
+			stop();
+			initScheduler();
+		}
+		
 		scheduler.scheduleAtFixedRate(timer::showTime, durationMilliseconds,
 				durationMilliseconds, TimeUnit.MILLISECONDS);
 

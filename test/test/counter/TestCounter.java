@@ -14,53 +14,61 @@ import timer.Timer;
 import timer.counter.ScheduledCounter;
 
 class TestCounter {
-	
+
 	Timer mockTimer = mock(Timer.class);
-	
+
 	ScheduledCounter counter;
-	
+
 	@BeforeEach
 	void setup() {
 		// Fast counter works by using 0.1 * second as a measurement unit.
 		// So instead of 1000 miliseconds being one second, its 100 miliseconds.
-		// 10 times faster. So we use Thread.sleep(150).
 		counter = new FastCounter();
 		counter.setTimer(mockTimer);
 	}
-	
+
 	@Test
-	void shouldCountUp() throws InterruptedException {
+	void shouldCountUp() {
 		counter.countUp();
-		Thread.sleep((long) (1.5 * DURATION_MILLISECONDS));
-		
+		double seconds = 1.5;
+		wait(seconds);
+
 		assertTrue(counter.isCounting());
 		verify(mockTimer, times(1)).showTime();
 	}
-	
+
 	@Test
 	void shouldStopCounter() {
 		counter.countUp();
 		counter.stop();
 		assertFalse(counter.isCounting());
 	}
-	
+
 	@Test
-	void shouldCountDown() throws InterruptedException {
+	void shouldCountDown() {
 		counter.count(1);
-		Thread.sleep((long) (1.5 * DURATION_MILLISECONDS));
-		
+		wait(1.5);
+
 		assertFalse(counter.isCounting());
 		verify(mockTimer, times(1)).showTime();
 		// TODO this should also actually change state to idle ? or something
 	}
-	
+
 	@Test
 	void shouldCountOnlyOnce_IfStartedTwice() throws InterruptedException {
 		counter.countUp();
 		counter.countUp();
-		Thread.sleep((long) (1.5 * DURATION_MILLISECONDS));
-		
+		wait(1.5);
+
 		verify(mockTimer, times(1)).showTime();
+	}
+
+	private void wait(double seconds) {
+		try {
+			Thread.sleep((long) (seconds * DURATION_MILLISECONDS));
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
