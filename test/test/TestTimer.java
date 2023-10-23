@@ -108,7 +108,7 @@ class TestTimer {
 		timer.begin();
 		timer.takeBreak();
 		
-		verify(mockCounter).countDown(BREAK_DURATION);
+		verify(mockCounter).count(BREAK_DURATION);
 	}
 //	
 //	@Test

@@ -11,11 +11,9 @@ public class Counter implements ScheduledCounter {
 	private Timer timer;
 	private ScheduledExecutorService scheduler;
 
-	private static final int UPPER_BOUND = 14400;
+	// four hours, in milliseconds
+	public static final int UPPER_BOUND = 14400;
 
-	/*
-	 * Makes a counter which closes after 4 hours.
-	 */
 	public Counter() {
 		scheduler = Executors.newSingleThreadScheduledExecutor();
 	}
@@ -27,7 +25,7 @@ public class Counter implements ScheduledCounter {
 
 	@Override
 	public void countUp() {
-		countDown(UPPER_BOUND);
+		count(UPPER_BOUND);
 	}
 
 	@Override
@@ -41,11 +39,15 @@ public class Counter implements ScheduledCounter {
 	}
 
 	@Override
-	public void countDown(int upperBound) {
+	public void count(int times) {
+		countDown(times, 1000);
+	}
+	
+	public void countDown(int times, int duration) {
 		scheduler = Executors.newSingleThreadScheduledExecutor();
 		
-		scheduler.scheduleAtFixedRate(timer::showTime, 1, 1, TimeUnit.SECONDS);
-		scheduler.schedule(() -> stop(), upperBound, TimeUnit.SECONDS);
+		scheduler.scheduleAtFixedRate(timer::showTime, duration, duration, TimeUnit.MILLISECONDS);
+		scheduler.schedule(() -> stop(), times * duration, TimeUnit.MILLISECONDS);
 	}
 
 }

@@ -10,7 +10,7 @@ public interface ScheduledCounter {
 
 	boolean isCounting();
 
-	void countDown(int upperBound);
+	void count(int upperBound);
 
 	void setTimer(Timer timer);
 

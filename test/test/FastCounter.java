@@ -10,7 +10,7 @@ public class FastCounter implements ScheduledCounter {
 	
 	@Override
 	public void countUp() {
-		counter.countUp();
+		count(Counter.UPPER_BOUND);
 	}
 
 	@Override
@@ -24,8 +24,8 @@ public class FastCounter implements ScheduledCounter {
 	}
 
 	@Override
-	public void countDown(int upperBound) {	
-		counter.countDown(upperBound);
+	public void count(int upperBound) {	
+		counter.countDown(upperBound, 100);
 	}
 
 	@Override

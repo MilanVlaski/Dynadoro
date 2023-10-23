@@ -35,7 +35,7 @@ public class Timer {
 		int now = clock.currentTimeSeconds();
 		// TODO temporal coupling, state change and then timer must happen
 		state.takeBreak(now);
-		counter.countDown(state.displayedTime(now));
+		counter.count(state.displayedTime(now));
 	}
 
 	public void changeState(TimerState newState) {

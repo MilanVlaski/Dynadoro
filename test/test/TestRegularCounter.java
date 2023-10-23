@@ -4,19 +4,16 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;import java.math.BigDecimal;
-import java.util.Calendar;
-
-import javax.xml.datatype.Duration;
-import javax.xml.datatype.DatatypeConstants.Field;
+import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import timer.Timer;
+import timer.counter.Counter;
 import timer.counter.ScheduledCounter;
 
-class TestCounter {
+class TestRegularCounter {
 	
 	Timer dummyTimer = mock(Timer.class);
 	
@@ -24,17 +21,14 @@ class TestCounter {
 	
 	@BeforeEach
 	void setup() {
-		// Fast counter works by using 0.1 * second as a measurement unit.
-		// So instead of 1000 miliseconds being one second, its 100 miliseconds.
-		// 10 times faster. So we use Thread.sleep(150).
-		counter = new FastCounter();
+		counter = new Counter();
 		counter.setTimer(dummyTimer);
 	}
 	
 	@Test
 	void shouldCountUp() throws InterruptedException {
 		counter.countUp();
-		Thread.sleep(150);
+		Thread.sleep(1500);
 		
 		assertTrue(counter.isCounting());
 		verify(dummyTimer, times(1)).showTime();
@@ -50,7 +44,7 @@ class TestCounter {
 	@Test
 	void shouldCountDown() throws InterruptedException {
 		counter.count(1);
-		Thread.sleep(150);
+		Thread.sleep(1500);
 		
 		assertFalse(counter.isCounting());
 		verify(dummyTimer, times(1)).showTime();
