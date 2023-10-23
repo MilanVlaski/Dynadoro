@@ -10,9 +10,9 @@ import static org.mockito.Mockito.verify;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import timer.Counter;
-import timer.ScheduledCounter;
 import timer.Timer;
+import timer.counter.Counter;
+import timer.counter.ScheduledCounter;
 
 class TestCounter {
 	

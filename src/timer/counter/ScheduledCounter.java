@@ -1,4 +1,6 @@
-package timer;
+package timer.counter;
+
+import timer.Timer;
 
 public interface ScheduledCounter {
 

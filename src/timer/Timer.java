@@ -1,6 +1,7 @@
 package timer;
 
 import display.Display;
+import timer.counter.ScheduledCounter;
 import timer.state.Idle;
 import timer.state.TimerState;
 

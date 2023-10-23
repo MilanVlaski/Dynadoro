@@ -14,8 +14,8 @@ import org.mockito.MockitoAnnotations;
 import display.Display;
 import display.Display.DisplayState;
 import timer.Clock;
-import timer.ScheduledCounter;
 import timer.Timer;
+import timer.counter.ScheduledCounter;
 
 class TestDisplay {
 

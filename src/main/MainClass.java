@@ -5,10 +5,10 @@ import java.util.Scanner;
 import display.ConsoleDisplay;
 import display.Display;
 import timer.Clock;
-import timer.Counter;
-import timer.ScheduledCounter;
 import timer.SystemClock;
 import timer.Timer;
+import timer.counter.Counter;
+import timer.counter.ScheduledCounter;
 
 public class MainClass {
 
