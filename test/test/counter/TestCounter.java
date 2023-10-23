@@ -1,11 +1,14 @@
 package test.counter;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static test.counter.FastCounter.DURATION_MILLISECONDS;
+
+import java.util.concurrent.RejectedExecutionException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,7 +33,7 @@ class TestCounter {
 		counter.countUp();
 		wait(1.5);
 
-		assertTrue(counter.isCounting());
+		assertTrue(counter.isRunning());
 		verify(mockTimer, times(1)).showTime();
 	}
 
@@ -38,7 +41,7 @@ class TestCounter {
 	void shouldStopCounter() {
 		counter.countUp();
 		counter.stop();
-		assertFalse(counter.isCounting());
+		assertFalse(counter.isRunning());
 	}
 
 	@Test
@@ -46,19 +49,35 @@ class TestCounter {
 		counter.count(1);
 		wait(1.5);
 
-		assertFalse(counter.isCounting());
+		assertFalse(counter.isRunning());
 		verify(mockTimer, times(1)).showTime();
 		// TODO this should also actually change state to idle ? or something
 	}
 
 	@Test
-	void shouldCountOnlyOnce_IfStartedTwice() throws InterruptedException {
+	void shouldCountOnlyOnce_IfStartedTwice() {
 		counter.countUp();
 		counter.countUp();
 		wait(1.5);
 
 		verify(mockTimer, times(1)).showTime();
 	}
+	
+	@Test
+	void shouldStopCountingDownAfterTimePasses() {
+		counter.count(1);
+		wait(1.5);
+
+		assertFalse(counter.isRunning());
+		verify(mockTimer, times(1)).showTime();
+	}
+	
+	@Test
+	void shouldNotThrowExceptionToStartAfterStopping() {
+		counter.countUp();
+		counter.stop();
+	}
+
 
 	private void wait(double seconds) {
 		try {

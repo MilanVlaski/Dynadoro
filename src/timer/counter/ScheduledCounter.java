@@ -8,6 +8,6 @@ public interface ScheduledCounter {
 	void countUp();
 	void count(int times);
 	void stop();
-	boolean isCounting();
+	boolean isRunning();
 
 }

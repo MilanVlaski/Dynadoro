@@ -10,6 +10,8 @@ public class Counter implements ScheduledCounter {
 
 	private Timer timer;
 	private ScheduledExecutorService scheduler;
+	private boolean isRunning = false;
+
 
 	public static final int FOUR_HOURS_IN_SECONDS = 14400;
 	public static final int DURATION_MILLISECONDS = 1000;
@@ -39,21 +41,23 @@ public class Counter implements ScheduledCounter {
 
 	@Override
 	public void stop() {
+		isRunning = false;
 		scheduler.shutdown();
 	}
 
 	@Override
-	public boolean isCounting() {
-		return !scheduler.isShutdown();
+	public boolean isRunning() {
+		return isRunning;
 	}
 
 	public void count(int times, int durationMilliseconds) {
 		
-		if(isCounting()) {
+		if(isRunning()) {
 			stop();
-			initScheduler();
 		}
+		initScheduler();
 		
+		isRunning = true;
 		scheduler.scheduleAtFixedRate(timer::showTime, durationMilliseconds,
 				durationMilliseconds, TimeUnit.MILLISECONDS);
 

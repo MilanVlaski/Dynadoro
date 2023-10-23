@@ -26,8 +26,8 @@ public class FastCounter implements ScheduledCounter {
 	}
 
 	@Override
-	public boolean isCounting() {
-		return counter.isCounting();
+	public boolean isRunning() {
+		return counter.isRunning();
 	}
 
 	@Override
