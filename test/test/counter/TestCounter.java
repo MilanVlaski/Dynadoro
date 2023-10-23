@@ -21,8 +21,6 @@ class TestCounter {
 
 	@BeforeEach
 	void setup() {
-		// Fast counter works by using 0.1 * second as a measurement unit.
-		// So instead of 1000 miliseconds being one second, its 100 miliseconds.
 		counter = new FastCounter();
 		counter.setTimer(mockTimer);
 	}
@@ -30,8 +28,7 @@ class TestCounter {
 	@Test
 	void shouldCountUp() {
 		counter.countUp();
-		double seconds = 1.5;
-		wait(seconds);
+		wait(1.5);
 
 		assertTrue(counter.isCounting());
 		verify(mockTimer, times(1)).showTime();
