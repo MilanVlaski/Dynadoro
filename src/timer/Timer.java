@@ -16,6 +16,8 @@ public class Timer {
 		this.clock = clock;
 		this.display = display;
 		this.counter = counter;
+		
+		counter.setTimer(this);
 		state = new Idle(this);
 	}
 
@@ -30,6 +32,7 @@ public class Timer {
 
 	public void takeBreak() {
 		int now = clock.currentTimeSeconds();
+		// TODO temporal coupling, state change and then timer must happen
 		state.takeBreak(now);
 		counter.countDown(state.displayedTime(now));
 	}

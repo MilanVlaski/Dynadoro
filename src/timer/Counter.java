@@ -7,16 +7,15 @@ import java.util.concurrent.TimeUnit;
 public class Counter implements ScheduledCounter {
 
 	private Timer timer;
-	private final ScheduledExecutorService scheduler;
+	private ScheduledExecutorService scheduler;
 
-	private boolean isCounting = false;
 	private static final int UPPER_BOUND = 14400;
 
 	/*
 	 * Makes a counter which closes after 4 hours.
 	 */
 	public Counter() {
-		this.scheduler = Executors.newSingleThreadScheduledExecutor();
+		scheduler = Executors.newSingleThreadScheduledExecutor();
 	}
 
 	@Override
@@ -31,19 +30,18 @@ public class Counter implements ScheduledCounter {
 
 	@Override
 	public void stop() {
-		isCounting = false;
 		scheduler.shutdown();
 	}
 
 	@Override
 	public boolean isCounting() {
-		return isCounting;
+		return !scheduler.isShutdown();
 	}
 
 	@Override
 	public void countDown(int upperBound) {
-		isCounting = true;
-
+		scheduler = Executors.newSingleThreadScheduledExecutor();
+		
 		scheduler.scheduleAtFixedRate(timer::showTime, 1, 1, TimeUnit.SECONDS);
 		scheduler.schedule(() -> stop(), upperBound, TimeUnit.SECONDS);
 	}

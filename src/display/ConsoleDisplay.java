@@ -24,24 +24,19 @@ public class ConsoleDisplay extends Display {
 	}
 
 	@Override
-	public void show() {
-		showWith(time, state);
-	}
-
-	@Override
 	public void show(int displayedTime) {
-		time = displayedTime;
-		show();
+		this.time = displayedTime;
+		update(displayedTime, state);
 	}
 
 	@Override
 	public void show(int displayedTime, DisplayState state) {
 		this.state = state;
-		time = displayedTime;
-		show();
+		this.time = displayedTime;
+		update(displayedTime, state);
 	}
 
-	private void showWith(int time, DisplayState state) {
+	private void update(int time, DisplayState state) {
 		switch (state) {
 		case IDLE:
 			System.out.println(idleMessage());

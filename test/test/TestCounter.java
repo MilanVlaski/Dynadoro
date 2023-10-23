@@ -2,7 +2,10 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,9 +27,12 @@ class TestCounter {
 	}
 	
 	@Test
-	void shouldCount() {
+	void shouldCountUp() throws InterruptedException {
 		counter.countUp();
+		Thread.sleep(1500);
+		
 		assertTrue(counter.isCounting());
+		verify(dummyTimer, times(1)).showTime();
 	}
 	
 	@Test
@@ -38,8 +44,16 @@ class TestCounter {
 	
 	@Test
 	void shouldCountDown() {
-		counter.countDown(5);
+		counter.countDown(1);
 		assertTrue(counter.isCounting());
 	}
 
+	@Test
+	void should() {
+		counter.countUp();
+		counter.countDown(55);
+		counter.countUp();
+		counter.countUp();
+		assertTrue(counter.isCounting());
+	}
 }

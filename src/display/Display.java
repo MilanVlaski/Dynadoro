@@ -19,7 +19,6 @@ public abstract class Display {
 		this.state = state;
 	}
 
-	public abstract void show();
 	public abstract void show(int displayedTime);
-	public abstract void show(int i, DisplayState idle);
+	public abstract void show(int displayedTime, DisplayState idle);
 }
