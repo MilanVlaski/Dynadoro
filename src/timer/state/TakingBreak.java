@@ -15,6 +15,7 @@ public class TakingBreak extends TimerState{
 		breakDuration = workDuration / BREAK_FACTOR;
 		
 		display.show(breakDuration, DisplayState.TAKING_BREAK);
+		counter.count(breakDuration);
 	}
 
 	@Override

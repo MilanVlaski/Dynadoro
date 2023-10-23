@@ -2,15 +2,18 @@ package timer.state;
 
 import display.Display;
 import timer.Timer;
+import timer.counter.ScheduledCounter;
 
 public abstract class TimerState {
 
 	protected final Timer context;
 	protected final Display display;
+	protected final ScheduledCounter counter;
 
 	public TimerState(Timer context) {
 		this.context = context;
 		this.display = context.getDisplay();
+		this.counter = context.getCounter();
 	}
 
 	public abstract int displayedTime(int now);

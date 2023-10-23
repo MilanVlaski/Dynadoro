@@ -28,14 +28,10 @@ public class Timer {
 
 	public void begin() {
 		state.begin(clock.currentTimeSeconds());
-		counter.countUp();
 	}
 
 	public void takeBreak() {
-		int now = clock.currentTimeSeconds();
-		// TODO temporal coupling, state change and then timer must happen
-		state.takeBreak(now);
-		counter.count(state.displayedTime(now));
+		state.takeBreak(clock.currentTimeSeconds());
 	}
 
 	public void changeState(TimerState newState) {
@@ -48,6 +44,10 @@ public class Timer {
 
 	public void showTime() {
 		display.show(displayedTime());
+	}
+	
+	public ScheduledCounter getCounter() {
+		return counter;
 	}
 
 }

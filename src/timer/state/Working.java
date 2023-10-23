@@ -10,7 +10,9 @@ public class Working extends TimerState {
 	public Working(Timer context, int now) {
 		super(context);
 		startTime = now;
+		
 		display.show(0, DisplayState.WORKING);
+		counter.countUp();
 	}
 
 	@Override

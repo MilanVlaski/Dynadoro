@@ -62,7 +62,9 @@ class TestCounter {
 
 	private void wait(double seconds) {
 		try {
+			
 			Thread.sleep((long) (seconds * DURATION_MILLISECONDS));
+			
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
