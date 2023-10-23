@@ -1,4 +1,4 @@
-package test;
+package test.counter;
 
 import timer.Timer;
 import timer.counter.Counter;
