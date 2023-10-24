@@ -13,6 +13,7 @@ import org.mockito.MockitoAnnotations;
 import display.Display;
 import timer.Clock;
 import timer.Timer;
+import timer.counter.Counter;
 import timer.counter.ScheduledCounter;
 
 class TestTimer {
@@ -22,7 +23,7 @@ class TestTimer {
 	@Mock
 	Display dummyDisplay;
 	@Mock
-	ScheduledCounter mockCounter;
+	Counter mockCounter;
 
 	@InjectMocks
 	Timer timer;
