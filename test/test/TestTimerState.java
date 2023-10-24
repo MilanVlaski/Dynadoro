@@ -46,7 +46,7 @@ public class TestTimerState {
 	}
 
 	@Test
-	void shouldThrowExceptionIfTriesToStartTimerAgain() {
+	void shouldThrowExceptionIfTriesToStartTimerWhileItIsRunning() {
 		Working working = new Working(dummyTimer, 0);
 		assertThrows(IllegalOperation.class, () -> working.begin(0));
 	}
@@ -61,14 +61,14 @@ public class TestTimerState {
 	}
 
 	@Test
-	void shouldShowTimePassingBackwards() {
+	void shouldShowTimePassingBackwards_OnBreak() {
 		int now = 66;
 		TakingBreak takingBreak = new TakingBreak(dummyTimer, now, WORK_DURATION);
 		assertEquals(WORK_DURATION / WORK_BREAK_RATIO - 2, takingBreak.displayedTime(now + 2));
 	}
 
 	@Test
-	void shouldShowTimeNotGoingPastZero() {
+	void shouldShowTimeNotGoingPastZero_AfterBreak() {
 		int now = 123;
 		TakingBreak takingBreak = new TakingBreak(dummyTimer, now, now);
 		assertEquals(0, takingBreak.displayedTime(now + 999));

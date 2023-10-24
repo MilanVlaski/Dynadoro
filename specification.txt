@@ -8,33 +8,22 @@ which lasts 5 times shorter than the time spent working.
 
 Cancel at any time. (goes into idle)
 
-TODO: Thread updating the time of display, right?
-
 When it reaches zero, it plays an alarm.
 
-NOTES:
-Updating the display has a bunch of temporal coupling associated with it.
-But i dont like the alternatives yet.
-Maybe display should have different update methods for updating timer or state.
-(or both?) (for console display you have to refresh everything,
-but for a real display, two methods makes lots of sense)
-
-COUNTER:
-You can start it and it counts up (maybe set arbitrary limit).
-You can make it start at a certain number > 0, then count down to 0.
-It can be stopped manually, or once it hits 0.
-HOW TO simulate running it for a certain amount of time?
-CONSIDER just testing that it works for one and two seconds, pausing the test.
-(an integration test! - because you dont mind waiting 2 seconds in that case)
 
 
-WHY NOT send data to the Counter about when it was started, so that we can
-verify it later?
 
-What happens if i take a break after 3 seconds? do i go straight back to work?
 1. Make a CounterInterface, that must depend on timer.
 2. Inject it into timer.
 
 PERHAPS time and period, instead of being an integer, should be refactored to oop?
 
-When i run the counter, then take a break, that lasts 
+- What happens if i take a break after 3 seconds? do i go straight back to work?
+	No, you go to break, I wont force you to do anything.
+- What if its less than a second? (or in the same moment?)
+	???
+
+When the break timer runs out, we are still in break state.
+
+FEATURE: Logging breaks and works. Also, logging how much time you 
+ACTUALLY spent on a break, while the timer was 0.

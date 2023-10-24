@@ -50,4 +50,8 @@ public class Timer {
 		return counter;
 	}
 
+	public void finishBreak() {
+		// TODO Auto-generated method stub
+	}
+
 }

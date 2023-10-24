@@ -51,7 +51,7 @@ class TestCounter {
 
 		assertFalse(counter.isRunning());
 		verify(mockTimer, times(1)).showTime();
-		// TODO this should also actually change state to idle ? or something
+		verify(mockTimer).finishBreak();
 	}
 
 	@Test
