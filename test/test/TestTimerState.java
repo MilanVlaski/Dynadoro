@@ -19,7 +19,14 @@ import timer.state.Idle;
 import timer.state.TakingBreak;
 import timer.state.TimerState.IllegalOperation;
 import timer.state.Working;
-
+/**
+ * These tests may be superflous, because the behavior of each state is invoked
+ * when testing the behavior of Timer class. Having states is implementation
+ * detail that can be left untested. However, since states are kind of crucial
+ * to my understanding of the problem, these tests help to illustrate that.
+ * @author Milan Vlaski
+ *
+ */
 public class TestTimerState {
 
 	@Mock

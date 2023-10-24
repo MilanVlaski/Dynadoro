@@ -110,5 +110,18 @@ class TestTimer {
 		
 		verify(mockCounter).count(BREAK_DURATION);
 	}
+	
+	@Test
+	void timeShouldStopWhenPausing() {
+		when(mockClock.currentTimeSeconds())
+			.thenReturn(0, 5, 10);
+		
+		timer.begin();
+		timer.pause();
+		
+		assertEquals(5, timer.displayedTime());
+		
+	}
+
 
 }

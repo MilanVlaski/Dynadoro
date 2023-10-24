@@ -6,9 +6,11 @@ When i press Begin it counts and shows me that i am working.
 When i press Break, it start counting down for the duration of the break,
 which lasts 5 times shorter than the time spent working.
 
-Cancel at any time. (goes into idle)
-
 When it reaches zero, it plays an alarm.
+
+Cancel at any time. (goes into idle)
+Pause at any time (except when idle)
+
 
 
 
@@ -18,10 +20,15 @@ NOTES:
 
 PERHAPS time and period, instead of being an integer, should be refactored to oop?
 
-- What if you work for less than a second, or less than 5?
-	???
+- Potential errors if you work for less than a second, or less than 5.
 
 When the break timer runs out, we are still in break state.
 
 FEATURE: Logging breaks and works. Also, logging how much time you 
 ACTUALLY spent on a break, while the timer was 0.
+
+TODO:
+- Add tests to TestTimer that trigger exceptions.
+- Pausing while idle throws an exception
+- Pausing then restarting on break
+- Pausing then restarting while working
