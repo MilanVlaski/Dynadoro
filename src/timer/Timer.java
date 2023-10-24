@@ -1,6 +1,7 @@
 package timer;
 
 import display.Display;
+import sound.SoundPlayer;
 import timer.counter.Counter;
 import timer.state.Idle;
 import timer.state.TimerState;
@@ -51,7 +52,7 @@ public class Timer {
 	}
 
 	public void finishBreak() {
-		// TODO Auto-generated method stub
+		SoundPlayer.play();
 	}
 
 }
