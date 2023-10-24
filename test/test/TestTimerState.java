@@ -5,12 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static test.TestTimer.WORK_BREAK_RATIO;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import display.Display;
 import timer.Clock;
 import timer.Timer;
-import timer.counter.ScheduledCounter;
 import timer.counter.Counter;
 import timer.state.Idle;
 import timer.state.TakingBreak;
@@ -19,11 +22,20 @@ import timer.state.Working;
 
 public class TestTimerState {
 
+	@Mock
 	Display dummyDisplay = mock(Display.class);
+	@Mock
 	Clock dummyClock = mock(Clock.class);
+	@Mock
 	Counter dummyCounter = mock(Counter.class);
 
-	Timer dummyTimer = new Timer(dummyClock, dummyDisplay, dummyCounter);
+	@InjectMocks
+	Timer dummyTimer;
+
+	@BeforeEach
+	void injectMocks() {
+		MockitoAnnotations.openMocks(this);
+	}
 
 	@Test
 	void timeShouldAlwaysBeZero() {
@@ -52,7 +64,7 @@ public class TestTimerState {
 	}
 
 	static final int WORK_DURATION = TestTimer.TWENTY_FIVE;
-	
+
 	@Test
 	void shouldShowBreakTime() {
 		int now = 66;

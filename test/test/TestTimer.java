@@ -109,5 +109,5 @@ class TestTimer {
 		
 		verify(mockCounter).count(BREAK_DURATION);
 	}
-	
+
 }

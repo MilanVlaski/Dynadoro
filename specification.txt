@@ -12,15 +12,13 @@ When it reaches zero, it plays an alarm.
 
 
 
-
+NOTES:
 1. Make a CounterInterface, that must depend on timer.
 2. Inject it into timer.
 
 PERHAPS time and period, instead of being an integer, should be refactored to oop?
 
-- What happens if i take a break after 3 seconds? do i go straight back to work?
-	No, you go to break, I wont force you to do anything.
-- What if its less than a second? (or in the same moment?)
+- What if you work for less than a second, or less than 5?
 	???
 
 When the break timer runs out, we are still in break state.
