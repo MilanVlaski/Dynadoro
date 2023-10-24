@@ -14,13 +14,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import timer.Timer;
-import timer.counter.ScheduledCounter;
+import timer.counter.Counter;
 
 class TestCounter {
 
 	Timer mockTimer = mock(Timer.class);
 
-	ScheduledCounter counter;
+	Counter counter;
 
 	@BeforeEach
 	void setup() {

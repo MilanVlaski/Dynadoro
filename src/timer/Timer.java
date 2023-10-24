@@ -1,7 +1,7 @@
 package timer;
 
 import display.Display;
-import timer.counter.ScheduledCounter;
+import timer.counter.Counter;
 import timer.state.Idle;
 import timer.state.TimerState;
 
@@ -9,11 +9,11 @@ public class Timer {
 
 	private final Clock clock;
 	private final Display display;
-	private final ScheduledCounter counter;
+	private final Counter counter;
 
 	private TimerState state;
 
-	public Timer(Clock clock, Display display, ScheduledCounter counter) {
+	public Timer(Clock clock, Display display, Counter counter) {
 		this.clock = clock;
 		this.display = display;
 		this.counter = counter;
@@ -46,7 +46,7 @@ public class Timer {
 		display.show(displayedTime());
 	}
 	
-	public ScheduledCounter getCounter() {
+	public Counter getCounter() {
 		return counter;
 	}
 

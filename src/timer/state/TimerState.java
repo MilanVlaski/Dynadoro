@@ -2,13 +2,13 @@ package timer.state;
 
 import display.Display;
 import timer.Timer;
-import timer.counter.ScheduledCounter;
+import timer.counter.Counter;
 
 public abstract class TimerState {
 
 	protected final Timer context;
 	protected final Display display;
-	protected final ScheduledCounter counter;
+	protected final Counter counter;
 
 	public TimerState(Timer context) {
 		this.context = context;

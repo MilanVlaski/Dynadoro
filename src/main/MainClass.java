@@ -7,15 +7,15 @@ import display.Display;
 import timer.Clock;
 import timer.SystemClock;
 import timer.Timer;
-import timer.counter.Counter;
 import timer.counter.ScheduledCounter;
+import timer.counter.Counter;
 
 public class MainClass {
 
 	public static void main(String[] args) {
 		Clock clock = new SystemClock();
 		Display display = new ConsoleDisplay();
-		ScheduledCounter counter = new Counter();
+		Counter counter = new ScheduledCounter();
 		
 		Timer timer = new Timer(clock, display, counter);
 		

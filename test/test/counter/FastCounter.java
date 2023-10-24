@@ -1,38 +1,38 @@
 package test.counter;
 
 import timer.Timer;
-import timer.counter.Counter;
 import timer.counter.ScheduledCounter;
+import timer.counter.Counter;
 
-public class FastCounter implements ScheduledCounter {
+public class FastCounter implements Counter {
 
-	private final Counter counter = new Counter();
+	private final ScheduledCounter scheduledCounter = new ScheduledCounter();
 
 	public static final int DURATION_MILLISECONDS = 100;
 	
 	@Override
 	public void countUp() {
-		count(Counter.FOUR_HOURS_IN_SECONDS);
+		count(ScheduledCounter.FOUR_HOURS_IN_SECONDS);
 	}
 
 	@Override
 	public void count(int upperBound) {
-		counter.count(upperBound, DURATION_MILLISECONDS);
+		scheduledCounter.count(upperBound, DURATION_MILLISECONDS);
 	}
 
 	@Override
 	public void stop() {
-		counter.stop();
+		scheduledCounter.stop();
 	}
 
 	@Override
 	public boolean isRunning() {
-		return counter.isRunning();
+		return scheduledCounter.isRunning();
 	}
 
 	@Override
 	public void setTimer(Timer timer) {
-		counter.setTimer(timer);
+		scheduledCounter.setTimer(timer);
 	}
 
 }

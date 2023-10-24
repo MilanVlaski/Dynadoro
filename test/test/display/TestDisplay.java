@@ -14,7 +14,7 @@ import display.Display;
 import display.Display.DisplayState;
 import timer.Clock;
 import timer.Timer;
-import timer.counter.ScheduledCounter;
+import timer.counter.Counter;
 
 class TestDisplay {
 
@@ -23,7 +23,7 @@ class TestDisplay {
 	@Mock
 	Display mockDisplay = mock(Display.class);
 	@Mock
-	ScheduledCounter mockCounter;
+	Counter mockCounter;
 	
 	@InjectMocks
 	Timer timer;

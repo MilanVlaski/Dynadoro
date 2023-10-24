@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 import display.Display;
 import timer.Clock;
 import timer.Timer;
-import timer.counter.Counter;
 import timer.counter.ScheduledCounter;
+import timer.counter.Counter;
 import timer.state.Idle;
 import timer.state.TakingBreak;
 import timer.state.TimerState.IllegalOperation;
@@ -21,7 +21,7 @@ public class TestTimerState {
 
 	Display dummyDisplay = mock(Display.class);
 	Clock dummyClock = mock(Clock.class);
-	ScheduledCounter dummyCounter = mock(ScheduledCounter.class);
+	Counter dummyCounter = mock(Counter.class);
 
 	Timer dummyTimer = new Timer(dummyClock, dummyDisplay, dummyCounter);
 
