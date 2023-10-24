@@ -43,6 +43,7 @@ public class Counter implements ScheduledCounter {
 	public void stop() {
 		isRunning = false;
 		scheduler.shutdown();
+		timer.finishBreak();
 	}
 
 	@Override
