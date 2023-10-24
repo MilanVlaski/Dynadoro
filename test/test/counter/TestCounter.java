@@ -73,7 +73,7 @@ class TestCounter {
 	}
 	
 	@Test
-	void shouldNotThrowExceptionToStartAfterStopping() {
+	void shouldNotThrowExceptionIfRestarted() {
 		counter.countUp();
 		counter.stop();
 	}
