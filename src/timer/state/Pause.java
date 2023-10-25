@@ -5,12 +5,10 @@ import timer.Timer;
 public class Pause extends TimerState {
 
 	private final TimerState previousState;
-	private final int startTime;
 	private final int timeDisplayedWhenPaused;
 
 	public Pause(Timer context, TimerState previousState, int now) {
 		super(context);
-		this.startTime = now;
 		this.previousState = previousState;
 		this.timeDisplayedWhenPaused = previousState.displayedTime(now);
 	}
@@ -43,7 +41,7 @@ public class Pause extends TimerState {
 		if(previousState instanceof Working)
 			context.changeState(new Working(context, now, timeDisplayedWhenPaused));
 		else if (previousState instanceof TakingBreak)
-			context.changeState(new TakingBreak(context, now, timeDisplayedWhenPaused * 5));
+			context.changeState(new TakingBreak(timeDisplayedWhenPaused, context, now));
 	}
 
 }

@@ -17,6 +17,15 @@ public class TakingBreak extends TimerState{
 		display.show(breakDuration, DisplayState.TAKING_BREAK);
 		counter.count(breakDuration);
 	}
+	
+	public TakingBreak(int startFrom, Timer context, int now) {
+		super(context);
+		startTime = now;
+		breakDuration = startFrom;
+		
+		display.show(breakDuration, DisplayState.TAKING_BREAK);
+		counter.count(breakDuration);
+	}
 
 	@Override
 	public int displayedTime(int now) {

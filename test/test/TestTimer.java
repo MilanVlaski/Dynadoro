@@ -201,16 +201,16 @@ class TestTimer {
 		assertEquals(3, timer.displayedTime());
 	}
 
-//	@Test
-//	void shouldContinueWork_AfterPausing1() {
-//		when(mockClock.currentTimeSeconds())
-//			.thenReturn(0, 5, 10, 15);
-//		
-//		timer.begin();
-//		timer.pause();
-//		
-//		timer.resume();
-//		assertEquals(10, timer.displayedTime());
-//	}
+	@Test
+	void shouldContinueWork_AfterPausing1() {
+		when(mockClock.currentTimeSeconds())
+			.thenReturn(0, 5, 10, 15);
+		
+		timer.begin();
+		timer.pause();
+		
+		timer.resume();
+		assertEquals(10, timer.displayedTime());
+	}
 
 }
