@@ -6,16 +6,18 @@ public class Pause extends TimerState {
 
 	private final TimerState previousState;
 	private final int pauseTime;
-	
+	private final int previouslyDisplayedTime;
+
 	public Pause(Timer context, TimerState previousState, int now) {
 		super(context);
 		this.pauseTime = now;
 		this.previousState = previousState;
+		this.previouslyDisplayedTime = previousState.displayedTime(now);
 	}
 
 	@Override
 	public int displayedTime(int now) {
-		return previousState.displayedTime(pauseTime);
+		return previouslyDisplayedTime;
 	}
 
 	@Override
@@ -38,8 +40,7 @@ public class Pause extends TimerState {
 
 	@Override
 	public void resume(int now) {
-		int pauseDuration = now - pauseTime;
-		context.changeState(new Working(context, now - pauseDuration));
+		context.changeState(new Working(context, now - previouslyDisplayedTime));
 	}
 
 }

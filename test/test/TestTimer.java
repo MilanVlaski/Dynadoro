@@ -162,8 +162,9 @@ class TestTimer {
 	@Test
 	void shouldStartWorkWhereWeLeftOff_AfterPausing() {
 		when(mockClock.currentTimeSeconds())
-			.thenReturn(0, 5, 10, 10);
+			.thenReturn(0, 5, 6, 6);
 		timer.begin();
+		
 		timer.pause();
 		
 		timer.resume();
