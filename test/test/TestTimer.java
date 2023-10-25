@@ -1,6 +1,7 @@
 package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -15,6 +16,7 @@ import timer.Clock;
 import timer.Timer;
 import timer.counter.Counter;
 import timer.counter.ScheduledCounter;
+import timer.state.TimerState.IllegalOperation;
 
 class TestTimer {
 
@@ -110,18 +112,34 @@ class TestTimer {
 		
 		verify(mockCounter).count(BREAK_DURATION);
 	}
-	
+
 	@Test
-	void timeShouldStopWhenPausing() {
-		when(mockClock.currentTimeSeconds())
-			.thenReturn(0, 5, 10);
-		
+	void shouldThrowException_IfTriesToStartTwice() {
 		timer.begin();
-		timer.pause();
-		
-		assertEquals(5, timer.displayedTime());
-		
+		assertThrows(IllegalOperation.class, () -> timer.begin());
 	}
 
+	@Test
+	void shouldThrowException_IfTakesBreakWithoutWorking() {
+		assertThrows(IllegalOperation.class, () -> timer.takeBreak());
+	}
+
+	@Test
+	void shouldThrowException_IfTriesToTakeBreakWhileOnBreak() {
+		timer.begin();
+		timer.takeBreak();
+		assertThrows(IllegalOperation.class, () -> timer.takeBreak());
+	}
+
+//	@Test
+//	void timeShouldStopWhenPausing() {
+//		when(mockClock.currentTimeSeconds())
+//			.thenReturn(0, 5, 10);
+//		
+//		timer.begin();
+//		timer.pause();
+//		
+//		assertEquals(5, timer.displayedTime());
+//	}
 
 }

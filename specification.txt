@@ -32,3 +32,5 @@ TODO:
 - Pausing while idle throws an exception
 - Pausing then restarting on break
 - Pausing then restarting while working
+- Working, then pausing, then taking break
+- Break, then pausing, then working
