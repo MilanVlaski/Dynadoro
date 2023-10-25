@@ -27,6 +27,7 @@ public class Idle extends TimerState {
 
 	@Override
 	public void pause(int now) {
+		throw new IllegalOperation("Can't pause while doing nothing.");
 	}
 
 }

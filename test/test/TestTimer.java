@@ -130,6 +130,11 @@ class TestTimer {
 		timer.takeBreak();
 		assertThrows(IllegalOperation.class, () -> timer.takeBreak());
 	}
+	
+	@Test
+	void shouldThrowException_IfPausingNothing() {
+		assertThrows(IllegalOperation.class, () -> timer.pause());
+	}
 
 	@Test
 	void timeShouldStopWhenPausing_WhileWorking() {
