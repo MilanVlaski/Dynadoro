@@ -28,7 +28,6 @@ FEATURE: Logging breaks and works. Also, logging how much time you
 ACTUALLY spent on a break, while the timer was 0.
 
 TODO:
-- Add tests to TestTimer that trigger exceptions.
 - Pausing while idle throws an exception
 - Pausing then restarting on break
 - Pausing then restarting while working
