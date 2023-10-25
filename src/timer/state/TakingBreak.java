@@ -30,7 +30,7 @@ public class TakingBreak extends TimerState{
 
 	@Override
 	public void begin(int now) {
-		context.changeState(new Working(context, now));
+		context.changeState(new Working(context, now, 0));
 	}
 
 	@Override
@@ -40,8 +40,7 @@ public class TakingBreak extends TimerState{
 
 	@Override
 	public void pause(int now) {
-		// TODO Auto-generated method stub
-		
+		context.changeState(new Pause(context, this, now));
 	}
 
 	@Override

@@ -17,7 +17,7 @@ public class Idle extends TimerState {
 
 	@Override
 	public void begin(int now) {
-		context.changeState(new Working(context, now));
+		context.changeState(new Working(context, now, 0));
 	}
 
 	@Override

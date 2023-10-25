@@ -34,3 +34,4 @@ TODO:
 - Working, then pausing, then taking break
 - Break, then pausing, then working
 - Remove some dependencies from Counter
+- Counter...

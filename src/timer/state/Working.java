@@ -6,10 +6,12 @@ import timer.Timer;
 public class Working extends TimerState {
 
 	private final int startTime;
+	private final int startFrom;
 
-	public Working(Timer context, int now) {
+	public Working(Timer context, int now, int startFrom) {
 		super(context);
 		startTime = now;
+		this.startFrom = startFrom;
 		
 		display.show(0, DisplayState.WORKING);
 		counter.countUp();
@@ -17,7 +19,7 @@ public class Working extends TimerState {
 
 	@Override
 	public int displayedTime(int now) {
-		return now - startTime;
+		return startFrom + now - startTime;
 	}
 
 	@Override

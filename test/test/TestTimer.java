@@ -130,7 +130,7 @@ class TestTimer {
 		timer.takeBreak();
 		assertThrows(IllegalOperation.class, () -> timer.takeBreak());
 	}
-	
+
 	@Test
 	void shouldThrowException_IfPausingNothing() {
 		assertThrows(IllegalOperation.class, () -> timer.pause());
@@ -146,7 +146,7 @@ class TestTimer {
 		
 		assertEquals(5, timer.displayedTime());
 	}
-	
+
 	@Test
 	void timeShouldStopWhenPausing_WhileOnBreak() {
 		when(mockClock.currentTimeSeconds())
@@ -158,7 +158,7 @@ class TestTimer {
 		timer.pause();
 		assertEquals(4, timer.displayedTime());
 	}
-	
+
 	@Test
 	void shouldStartWorkWhereWeLeftOff_AfterPausing() {
 		when(mockClock.currentTimeSeconds())
@@ -170,17 +170,47 @@ class TestTimer {
 		timer.resume();
 		assertEquals(5, timer.displayedTime());
 	}
-	
+
 	@Test
-	void shouldContinueWorkAfterPausing() {
+	void shouldContinueWork_AfterPausing() {
 		when(mockClock.currentTimeSeconds())
 			.thenReturn(0, 5, 10, 15);
 		
-		timer.begin();
-		timer.pause();
+		timer.begin(); // time = 0
+		timer.pause(); // 5
 		
-		timer.resume();
+		timer.resume(); // 5
+		
 		assertEquals(10, timer.displayedTime());
 	}
+
+//	@Test
+//	void shouldResumeBreak() {
+//		int TWENTY_SIX = TWENTY_FIVE+1;
+//		when(mockClock.currentTimeSeconds())
+//			.thenReturn(0, TWENTY_FIVE, TWENTY_SIX, TWENTY_SIX, TWENTY_SIX, TWENTY_SIX+1);
+//		timer.begin();
+//		
+//		timer.takeBreak(); // time =  5
+//		
+//		timer.pause(); // time = 4
+//		
+//		timer.resume();
+//		assertEquals(4, timer.displayedTime());
+//		
+//		assertEquals(3, timer.displayedTime());
+//	}
+
+//	@Test
+//	void shouldContinueWork_AfterPausing1() {
+//		when(mockClock.currentTimeSeconds())
+//			.thenReturn(0, 5, 10, 15);
+//		
+//		timer.begin();
+//		timer.pause();
+//		
+//		timer.resume();
+//		assertEquals(10, timer.displayedTime());
+//	}
 
 }
