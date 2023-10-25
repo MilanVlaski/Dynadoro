@@ -154,9 +154,32 @@ class TestTimer {
 		
 		timer.begin();
 		timer.takeBreak();
+		
+		timer.pause();
+		assertEquals(4, timer.displayedTime());
+	}
+	
+	@Test
+	void shouldStartWorkWhereWeLeftOff_AfterPausing() {
+		when(mockClock.currentTimeSeconds())
+			.thenReturn(0, 5, 10, 10);
+		timer.begin();
 		timer.pause();
 		
-		assertEquals(4, timer.displayedTime());
+		timer.resume();
+		assertEquals(5, timer.displayedTime());
+	}
+	
+	@Test
+	void shouldContinueWorkAfterPausing() {
+		when(mockClock.currentTimeSeconds())
+			.thenReturn(0, 5, 10, 15);
+		
+		timer.begin();
+		timer.pause();
+		
+		timer.resume();
+		assertEquals(10, timer.displayedTime());
 	}
 
 }

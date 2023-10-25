@@ -59,4 +59,8 @@ public class Timer {
 		SoundPlayer.play();
 	}
 
+	public void resume() {
+		state.resume(clock.currentTimeSeconds());
+	}
+
 }

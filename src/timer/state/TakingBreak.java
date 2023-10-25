@@ -44,4 +44,8 @@ public class TakingBreak extends TimerState{
 		
 	}
 
+	@Override
+	public void resume(int now) {
+	}
+
 }

@@ -30,4 +30,8 @@ public class Idle extends TimerState {
 		throw new IllegalOperation("Can't pause while doing nothing.");
 	}
 
+	@Override
+	public void resume(int now) {
+	}
+
 }

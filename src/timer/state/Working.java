@@ -35,5 +35,10 @@ public class Working extends TimerState {
 	public void pause(int now) {
 		context.changeState(new Pause(context, this, now));
 	}
+
+	@Override
+	public void resume(int now) {
+		
+	}
 	
 }
