@@ -19,6 +19,7 @@ public abstract class TimerState {
 	public abstract int displayedTime(int now);
 	public abstract void begin(int now);
 	public abstract void takeBreak(int now);
+	public abstract void pause(int now);
 
 	public static class IllegalOperation extends RuntimeException {
 
@@ -28,4 +29,5 @@ public abstract class TimerState {
 			super(message);
 		}
 	}
+
 }

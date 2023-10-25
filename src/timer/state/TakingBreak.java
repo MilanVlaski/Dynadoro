@@ -38,4 +38,10 @@ public class TakingBreak extends TimerState{
 		throw new IllegalOperation("Already taking a break.");
 	}
 
+	@Override
+	public void pause(int now) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

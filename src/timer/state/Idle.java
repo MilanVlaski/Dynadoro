@@ -25,4 +25,8 @@ public class Idle extends TimerState {
 		throw new IllegalOperation("Can't take break if haven't started work.");
 	}
 
+	@Override
+	public void pause(int now) {
+	}
+
 }

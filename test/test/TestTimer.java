@@ -131,15 +131,15 @@ class TestTimer {
 		assertThrows(IllegalOperation.class, () -> timer.takeBreak());
 	}
 
-//	@Test
-//	void timeShouldStopWhenPausing() {
-//		when(mockClock.currentTimeSeconds())
-//			.thenReturn(0, 5, 10);
-//		
-//		timer.begin();
-//		timer.pause();
-//		
-//		assertEquals(5, timer.displayedTime());
-//	}
+	@Test
+	void timeShouldStopWhenPausing() {
+		when(mockClock.currentTimeSeconds())
+			.thenReturn(0, 5, 10);
+		
+		timer.begin();
+		timer.pause();
+		
+		assertEquals(5, timer.displayedTime());
+	}
 
 }

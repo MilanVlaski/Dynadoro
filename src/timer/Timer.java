@@ -32,7 +32,7 @@ public class Timer {
 	}
 
 	public void pause() {
-		clock.currentTimeSeconds();
+		state.pause(clock.currentTimeSeconds());
 	}
 
 	public void takeBreak() {
