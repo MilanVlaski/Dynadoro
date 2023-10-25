@@ -60,13 +60,13 @@ public class TestTimerState {
 	void shouldMeasureElapsedTime() {
 		int now = 2;
 		int threeSecondsLater = 5;
-		Working working = new Working(dummyTimer, now, 0);
+		Working working = new Working(dummyTimer, now);
 		assertEquals(3, working.displayedTime(threeSecondsLater));
 	}
 
 	@Test
 	void shouldThrowExceptionIfTriesToStartTimerWhileItIsRunning() {
-		Working working = new Working(dummyTimer, 0, 0);
+		Working working = new Working(dummyTimer, 0);
 		assertThrows(IllegalOperation.class, () -> working.begin(0));
 	}
 

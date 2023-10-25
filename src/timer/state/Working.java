@@ -6,14 +6,18 @@ import timer.Timer;
 public class Working extends TimerState {
 
 	private final int startTime;
-	private final int startFrom;
+	private int startFrom = 0;
+
+	public Working(Timer context, int now) {
+		this(context, now, 0);
+	}
 
 	public Working(Timer context, int now, int startFrom) {
 		super(context);
-		startTime = now;
 		this.startFrom = startFrom;
+		startTime = now;
 		
-		display.show(0, DisplayState.WORKING);
+		display.show(startFrom, DisplayState.WORKING);
 		counter.countUp();
 	}
 

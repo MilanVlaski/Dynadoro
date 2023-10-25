@@ -40,8 +40,10 @@ public class Pause extends TimerState {
 
 	@Override
 	public void resume(int now) {
-		context.changeState(new Working(context, now, previouslyDisplayedTime));
-//		context.changeState(new TakingBreak(context, now, now));
+		if(previousState instanceof Working)
+			context.changeState(new Working(context, now, previouslyDisplayedTime));
+		else if (previousState instanceof TakingBreak)
+			context.changeState(new TakingBreak(context, now, previouslyDisplayedTime));
 	}
 
 }

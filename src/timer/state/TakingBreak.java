@@ -30,7 +30,7 @@ public class TakingBreak extends TimerState{
 
 	@Override
 	public void begin(int now) {
-		context.changeState(new Working(context, now, 0));
+		context.changeState(new Working(context, now));
 	}
 
 	@Override

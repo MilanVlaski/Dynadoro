@@ -34,4 +34,5 @@ TODO:
 - Working, then pausing, then taking break
 - Break, then pausing, then working
 - Remove some dependencies from Counter
-- Counter...
+- Counter could perhaps have no need for pausing, but it just gets restarted using
+  data from states
