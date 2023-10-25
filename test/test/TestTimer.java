@@ -184,22 +184,22 @@ class TestTimer {
 		assertEquals(10, timer.displayedTime());
 	}
 
-//	@Test
-//	void shouldResumeBreak() {
-//		int TWENTY_SIX = TWENTY_FIVE+1;
-//		when(mockClock.currentTimeSeconds())
-//			.thenReturn(0, TWENTY_FIVE, TWENTY_SIX, TWENTY_SIX, TWENTY_SIX, TWENTY_SIX+1);
-//		timer.begin();
-//		
-//		timer.takeBreak(); // time =  5
-//		
-//		timer.pause(); // time = 4
-//		
-//		timer.resume();
-//		assertEquals(4, timer.displayedTime());
-//		
-//		assertEquals(3, timer.displayedTime());
-//	}
+	@Test
+	void shouldResumeBreak() {
+		int TWENTY_SIX = TWENTY_FIVE+1;
+		when(mockClock.currentTimeSeconds())
+			.thenReturn(0, TWENTY_FIVE, TWENTY_SIX, TWENTY_SIX, TWENTY_SIX, TWENTY_SIX+1);
+		timer.begin();
+		
+		timer.takeBreak(); // time =  5
+		
+		timer.pause(); // time = 4
+		
+		timer.resume();
+		assertEquals(4, timer.displayedTime());
+		
+		assertEquals(3, timer.displayedTime());
+	}
 
 //	@Test
 //	void shouldContinueWork_AfterPausing1() {
