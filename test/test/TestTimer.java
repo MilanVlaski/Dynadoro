@@ -132,7 +132,7 @@ class TestTimer {
 	}
 
 	@Test
-	void timeShouldStopWhenPausing() {
+	void timeShouldStopWhenPausing_WhileWorking() {
 		when(mockClock.currentTimeSeconds())
 			.thenReturn(0, 5, 10);
 		
@@ -140,6 +140,18 @@ class TestTimer {
 		timer.pause();
 		
 		assertEquals(5, timer.displayedTime());
+	}
+	
+	@Test
+	void timeShouldStopWhenPausing_WhileOnBreak() {
+		when(mockClock.currentTimeSeconds())
+			.thenReturn(0, TWENTY_FIVE, TWENTY_FIVE + 1, TWENTY_FIVE + 1);
+		
+		timer.begin();
+		timer.takeBreak();
+		timer.pause();
+		
+		assertEquals(4, timer.displayedTime());
 	}
 
 }
