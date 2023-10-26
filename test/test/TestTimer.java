@@ -139,7 +139,7 @@ class TestTimer {
 	@Test
 	void timeShouldStopWhenPausing_WhileWorking() {
 		when(mockClock.currentTimeSeconds())
-			.thenReturn(0, 5, 10);
+			.thenReturn(0, 5, 6);
 		
 		timer.begin();
 		timer.pause();
@@ -161,9 +161,9 @@ class TestTimer {
 	}
 
 	@Test
-	void shouldStartWorkWhereWeLeftOff_AfterPausing() {
+	void shouldResumeWork() {
 		when(mockClock.currentTimeSeconds())
-			.thenReturn(0, 5, 6, 6);
+			.thenReturn(0, 5, 6, 6, 7);
 		
 		timer.begin();
 		
@@ -171,35 +171,24 @@ class TestTimer {
 		
 		timer.resume();
 		assertEquals(5, timer.displayedTime());
-	}
-
-	@Test
-	void shouldContinueWork_AfterPausing() {
-		when(mockClock.currentTimeSeconds())
-			.thenReturn(0, 5, 10, 15);
+		assertEquals(6, timer.displayedTime());
 		
-		timer.begin(); // time = 0
-		timer.pause(); // 5
-		
-		timer.resume(); // 5
-		
-		assertEquals(10, timer.displayedTime());
 	}
 
 	@Test
 	void shouldResumeBreak() {
-		int TWENTY_SIX = TWENTY_FIVE+1;
+		int TWENTY_SIX = TWENTY_FIVE + 1;
 		when(mockClock.currentTimeSeconds())
-			.thenReturn(0, TWENTY_FIVE, TWENTY_SIX, TWENTY_SIX, TWENTY_SIX, TWENTY_SIX+1);
+				.thenReturn(0, TWENTY_FIVE, TWENTY_SIX, TWENTY_SIX, TWENTY_SIX, TWENTY_SIX + 1);
 		timer.begin();
-		
-		timer.takeBreak(); // time =  5
-		
+
+		timer.takeBreak(); // time = 5
+
 		timer.pause(); // time = 4
-		
+
 		timer.resume();
 		assertEquals(4, timer.displayedTime());
-		
+
 		assertEquals(3, timer.displayedTime());
 	}
 
