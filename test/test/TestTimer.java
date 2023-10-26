@@ -171,8 +171,23 @@ class TestTimer {
 		
 		timer.resume();
 		assertEquals(5, timer.displayedTime());
-		assertEquals(6, timer.displayedTime());
 		
+		assertEquals(6, timer.displayedTime());
+	}
+	
+	@Test
+	void shouldResumeWork2() {
+		when(mockClock.currentTimeSeconds())
+			.thenReturn(100, 105, 106, 106, 107);
+		
+		timer.begin();
+		
+		timer.pause();
+		
+		timer.resume();
+		assertEquals(5, timer.displayedTime());
+		
+		assertEquals(6, timer.displayedTime());
 	}
 
 	@Test

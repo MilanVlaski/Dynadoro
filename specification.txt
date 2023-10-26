@@ -28,9 +28,9 @@ FEATURE: Logging breaks and works. Also, logging how much time you
 ACTUALLY spent on a break, while the timer was 0.
 
 TODO:
-- Pausing while idle throws an exception
-- Pausing then restarting on break
-- Pausing then restarting while working
+***- Pausing while idle throws an exception
+***- Pausing then restarting on break
+***- Pausing then restarting while working
 - Working, then pausing, then taking break
 - Break, then pausing, then working
 - Remove some dependencies from Counter

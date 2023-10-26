@@ -6,7 +6,7 @@ import timer.Timer;
 public class Working extends TimerState {
 
 	private final int startTime;
-	private int startFrom = 0;
+	private int startFrom;
 
 	public Working(Timer context, int now) {
 		this(context, now, 0);
@@ -45,7 +45,8 @@ public class Working extends TimerState {
 
 	@Override
 	public void resume(int now, int pauseTime) {
-		context.changeState(new Working(context, now, pauseTime));
+		int startFrom = displayedTime(pauseTime);
+		context.changeState(new Working(context, now, startFrom));
 	}
 
 }
