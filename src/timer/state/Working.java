@@ -44,7 +44,6 @@ public class Working extends TimerState {
 
 	@Override
 	public void resume(int now) {
-		
 	}
 	
 }

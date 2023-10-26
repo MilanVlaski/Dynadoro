@@ -42,6 +42,7 @@ public class Pause extends TimerState {
 			context.changeState(new Working(context, now, timeDisplayedWhenPaused));
 		else if (previousState instanceof TakingBreak)
 			context.changeState(new TakingBreak(timeDisplayedWhenPaused, context, now));
+//		previousState.resume(now, );
 	}
 
 }

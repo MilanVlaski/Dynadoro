@@ -10,12 +10,7 @@ public class TakingBreak extends TimerState{
 	private static final int BREAK_FACTOR = 5;
 
 	public TakingBreak(Timer context, int now, int workDuration) {
-		super(context);
-		startTime = now;
-		breakDuration = workDuration / BREAK_FACTOR;
-		
-		display.show(breakDuration, DisplayState.TAKING_BREAK);
-		counter.count(breakDuration);
+		this(workDuration / BREAK_FACTOR, context, now);
 	}
 	
 	public TakingBreak(int startFrom, Timer context, int now) {
