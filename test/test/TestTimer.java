@@ -163,7 +163,7 @@ class TestTimer {
 	@Test
 	void shouldResumeWork() {
 		when(mockClock.currentTimeSeconds())
-			.thenReturn(0, 5, 6, 6, 7);
+			.thenReturn(100, 105, 106, 106, 107, 108);
 		
 		timer.begin();
 		
@@ -174,11 +174,11 @@ class TestTimer {
 		
 		assertEquals(6, timer.displayedTime());
 	}
-	
+
 	@Test
-	void shouldResumeWork2() {
+	void shouldPauseAndResumeWorkTwice() {
 		when(mockClock.currentTimeSeconds())
-			.thenReturn(100, 105, 106, 106, 107);
+			.thenReturn(100, 105, 106, 106, 107, 108, 109, 109, 110);
 		
 		timer.begin();
 		
@@ -188,6 +188,13 @@ class TestTimer {
 		assertEquals(5, timer.displayedTime());
 		
 		assertEquals(6, timer.displayedTime());
+		
+		timer.pause();
+		
+		timer.resume();
+		assertEquals(7, timer.displayedTime());
+		
+		assertEquals(8, timer.displayedTime());
 	}
 
 	@Test
@@ -205,6 +212,32 @@ class TestTimer {
 		assertEquals(4, timer.displayedTime());
 
 		assertEquals(3, timer.displayedTime());
+	}
+	
+	@Test
+	void shouldResumeBreakTwice() {
+		int TWENTY_SIX = TWENTY_FIVE + 1;
+		when(mockClock.currentTimeSeconds())
+				.thenReturn(0, TWENTY_FIVE, TWENTY_SIX, TWENTY_SIX, TWENTY_SIX, TWENTY_SIX + 1,
+						TWENTY_SIX + 2, TWENTY_SIX + 3, TWENTY_SIX + 3, TWENTY_SIX + 4);
+		timer.begin();
+
+		timer.takeBreak(); // time = 5
+
+		timer.pause(); // time = 4
+
+		timer.resume();
+		assertEquals(4, timer.displayedTime());
+
+		assertEquals(3, timer.displayedTime());
+		
+		
+		timer.pause(); 
+
+		timer.resume();
+		assertEquals(2, timer.displayedTime());
+
+		assertEquals(1, timer.displayedTime());
 	}
 
 }
