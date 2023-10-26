@@ -51,7 +51,6 @@ class TestCounter {
 
 		assertFalse(counter.isRunning());
 		verify(mockTimer, times(1)).showTime();
-		verify(mockTimer).finishBreak();
 	}
 
 	@Test

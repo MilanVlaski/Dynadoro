@@ -4,6 +4,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import sound.SoundPlayer;
 import timer.Timer;
 
 public class ScheduledCounter implements Counter {
@@ -66,7 +67,7 @@ public class ScheduledCounter implements Counter {
 
 	private void onFinish() {
 		stop();
-		timer.finishBreak();
+		SoundPlayer.play();
 	}
 
 }
