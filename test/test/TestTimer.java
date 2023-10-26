@@ -157,9 +157,13 @@ class TestTimer {
 		timer.takeBreak();
 		
 		timer.pause();
-		assertEquals(4, timer.displayedTime());
+		assertEquals(BREAK_DURATION - 1, timer.displayedTime());
 	}
 
+	// I use hundreds here for time because when you start from 0, you get uncaught
+	// errors. The reason is that at runtime clock always returns time > 0,
+	// so if we were to use 0, that itself is not a problem, but it doesn't
+	// force us to actually compute the time properly, because adding 0 does nothing.
 	@Test
 	void shouldResumeWork() {
 		when(mockClock.currentTimeSeconds())
@@ -199,9 +203,8 @@ class TestTimer {
 
 	@Test
 	void shouldResumeBreak() {
-		int TWENTY_SIX = TWENTY_FIVE + 1;
 		when(mockClock.currentTimeSeconds())
-				.thenReturn(0, TWENTY_FIVE, TWENTY_SIX, TWENTY_SIX, TWENTY_SIX, TWENTY_SIX + 1);
+				.thenReturn(100, 125, 126, 126, 126, 127);
 		timer.begin();
 
 		timer.takeBreak(); // time = 5
@@ -213,13 +216,11 @@ class TestTimer {
 
 		assertEquals(3, timer.displayedTime());
 	}
-	
+
 	@Test
 	void shouldResumeBreakTwice() {
-		int TWENTY_SIX = TWENTY_FIVE + 1;
 		when(mockClock.currentTimeSeconds())
-				.thenReturn(0, TWENTY_FIVE, TWENTY_SIX, TWENTY_SIX, TWENTY_SIX, TWENTY_SIX + 1,
-						TWENTY_SIX + 2, TWENTY_SIX + 3, TWENTY_SIX + 3, TWENTY_SIX + 4);
+				.thenReturn(100, 125, 126, 126, 126, 127, 128, 129, 129, 130);
 		timer.begin();
 
 		timer.takeBreak(); // time = 5
