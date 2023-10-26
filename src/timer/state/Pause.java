@@ -37,7 +37,7 @@ public class Pause extends TimerState {
 	}
 
 	@Override
-	public void resume(int now, int pauseDuration) {
+	public void resume(int now, int pauseTime) {
 		previousState.resume(now, startTime);
 	}
 

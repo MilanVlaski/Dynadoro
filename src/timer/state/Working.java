@@ -16,8 +16,9 @@ public class Working extends TimerState {
 		super(context);
 		this.startFrom = startFrom;
 		startTime = now;
-
-		display.show(startFrom, DisplayState.WORKING);
+		
+		// NOTE: this may not be correct
+		display.show(displayedTime(now), DisplayState.WORKING);
 		counter.countUp();
 	}
 

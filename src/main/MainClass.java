@@ -23,11 +23,15 @@ public class MainClass {
 		try (Scanner scanner = new Scanner(System.in)) {
 			while (true) {
 				String input = scanner.nextLine();
-				if (input.equals("1")) {
+				if (input.equals("1"))
 					timer.begin();
-				} else if (input.equals("2")) {
+				else if (input.equals("2"))
 					timer.takeBreak();
-				}
+				else if (input.equals("3"))
+					timer.pause();
+				else if (input.equals("4"))
+					timer.resume();
+					
 			}
 		}
 	}

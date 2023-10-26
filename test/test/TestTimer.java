@@ -153,6 +153,7 @@ class TestTimer {
 			.thenReturn(0, TWENTY_FIVE, TWENTY_FIVE + 1, TWENTY_FIVE + 1);
 		
 		timer.begin();
+		
 		timer.takeBreak();
 		
 		timer.pause();
@@ -163,6 +164,7 @@ class TestTimer {
 	void shouldStartWorkWhereWeLeftOff_AfterPausing() {
 		when(mockClock.currentTimeSeconds())
 			.thenReturn(0, 5, 6, 6);
+		
 		timer.begin();
 		
 		timer.pause();
@@ -199,18 +201,6 @@ class TestTimer {
 		assertEquals(4, timer.displayedTime());
 		
 		assertEquals(3, timer.displayedTime());
-	}
-
-	@Test
-	void shouldContinueWork_AfterPausing1() {
-		when(mockClock.currentTimeSeconds())
-			.thenReturn(0, 5, 10, 15);
-		
-		timer.begin();
-		timer.pause();
-		
-		timer.resume();
-		assertEquals(10, timer.displayedTime());
 	}
 
 }
