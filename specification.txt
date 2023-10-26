@@ -33,7 +33,6 @@ TODO:
 ***- Pausing then restarting while working
 - Working, then pausing, then taking break
 - Break, then pausing, then working
-***- Remove some dependencies from Counter
 - Counter could perhaps have no need for pausing, but it just gets restarted using
   data from states (already done?)
 - Counter stops when you pause
