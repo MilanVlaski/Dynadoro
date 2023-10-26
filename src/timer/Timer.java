@@ -20,7 +20,7 @@ public class Timer {
 		this.counter = counter;
 
 		counter.setTimer(this);
-		state = new Idle(this);
+		state = new Idle(this, clock.currentTimeSeconds());
 	}
 
 	public int displayedTime() {

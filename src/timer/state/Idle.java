@@ -5,8 +5,8 @@ import timer.Timer;
 
 public class Idle extends TimerState {
 
-	public Idle(Timer context) {
-		super(context);
+	public Idle(Timer context, int now) {
+		super(context, now);
 		display.show(0, DisplayState.IDLE);
 	}
 

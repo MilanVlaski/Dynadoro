@@ -5,7 +5,6 @@ import timer.Timer;
 
 public class TakingBreak extends TimerState{
 
-	private final int startTime;
 	private final int breakDuration;
 	private static final int BREAK_FACTOR = 5;
 
@@ -14,8 +13,7 @@ public class TakingBreak extends TimerState{
 	}
 	
 	private TakingBreak(int breakDuration, Timer context, int now) {
-		super(context);
-		startTime = now;
+		super(context, now);
 		this.breakDuration = breakDuration;
 		
 		display.show(breakDuration, DisplayState.TAKING_BREAK);

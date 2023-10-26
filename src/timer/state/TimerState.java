@@ -9,11 +9,15 @@ public abstract class TimerState {
 	protected final Timer context;
 	protected final Display display;
 	protected final Counter counter;
+	
+	protected final int startTime;
 
-	public TimerState(Timer context) {
+	public TimerState(Timer context, int now) {
 		this.context = context;
 		this.display = context.getDisplay();
 		this.counter = context.getCounter();
+		
+		this.startTime = now;
 	}
 
 	public abstract int displayedTime(int now);
