@@ -19,9 +19,9 @@ import timer.counter.Counter;
 class TestDisplay {
 
 	@Mock
-	Clock mockClock = mock(Clock.class);
+	Clock mockClock;
 	@Mock
-	Display mockDisplay = mock(Display.class);
+	Display mockDisplay;
 	@Mock
 	Counter mockCounter;
 	
