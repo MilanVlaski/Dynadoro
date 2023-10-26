@@ -13,7 +13,7 @@ public class TakingBreak extends TimerState{
 		this(workDuration / BREAK_FACTOR, context, now);
 	}
 	
-	public TakingBreak(int breakDuration, Timer context, int now) {
+	private TakingBreak(int breakDuration, Timer context, int now) {
 		super(context);
 		startTime = now;
 		this.breakDuration = breakDuration;

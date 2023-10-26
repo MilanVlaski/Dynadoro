@@ -55,10 +55,6 @@ public class Timer {
 		return counter;
 	}
 
-	public void finishBreak() {
-		SoundPlayer.play();
-	}
-
 	public void resume() {
 		state.resume(clock.currentTimeSeconds(), 0);
 	}

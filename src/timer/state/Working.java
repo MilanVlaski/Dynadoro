@@ -6,13 +6,13 @@ import timer.Timer;
 public class Working extends TimerState {
 
 	private final int startTime;
-	private int startFrom;
+	private final int startFrom;
 
 	public Working(Timer context, int now) {
 		this(context, now, 0);
 	}
 
-	public Working(Timer context, int now, int startFrom) {
+	private Working(Timer context, int now, int startFrom) {
 		super(context);
 		this.startFrom = startFrom;
 		startTime = now;
