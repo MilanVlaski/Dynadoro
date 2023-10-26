@@ -31,7 +31,9 @@ public class Idle extends TimerState {
 	}
 
 	@Override
-	public void resume(int now) {
+	public void resume(int now, int pauseDuration) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

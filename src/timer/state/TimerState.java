@@ -20,7 +20,7 @@ public abstract class TimerState {
 	public abstract void begin(int now);
 	public abstract void takeBreak(int now);
 	public abstract void pause(int now);
-	public abstract void resume(int now);
+	public abstract void resume(int now, int pauseDuration);
 
 	public static class IllegalOperation extends RuntimeException {
 

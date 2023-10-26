@@ -48,7 +48,8 @@ public class TakingBreak extends TimerState{
 	}
 
 	@Override
-	public void resume(int now) {
+	public void resume(int now, int pauseTime) {
+		context.changeState(new TakingBreak(displayedTime(pauseTime), context, now));
 	}
 
 }

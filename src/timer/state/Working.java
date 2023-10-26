@@ -16,7 +16,7 @@ public class Working extends TimerState {
 		super(context);
 		this.startFrom = startFrom;
 		startTime = now;
-		
+
 		display.show(startFrom, DisplayState.WORKING);
 		counter.countUp();
 	}
@@ -43,7 +43,8 @@ public class Working extends TimerState {
 	}
 
 	@Override
-	public void resume(int now) {
+	public void resume(int now, int pauseTime) {
+		context.changeState(new Working(context, now, pauseTime));
 	}
-	
+
 }

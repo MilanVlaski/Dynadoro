@@ -60,7 +60,7 @@ public class Timer {
 	}
 
 	public void resume() {
-		state.resume(clock.currentTimeSeconds());
+		state.resume(clock.currentTimeSeconds(), 0);
 	}
 
 }
