@@ -18,8 +18,9 @@ public class Timer {
 		this.clock = clock;
 		this.display = display;
 		this.counter = counter;
-
+		
 		counter.setTimer(this);
+		// I thought that calling clock here might cause issues with mocking, but it doesn't.
 		state = new Idle(this, clock.currentTimeSeconds());
 	}
 
