@@ -13,10 +13,10 @@ public class TakingBreak extends TimerState{
 		this(workDuration / BREAK_FACTOR, context, now);
 	}
 	
-	public TakingBreak(int startFrom, Timer context, int now) {
+	public TakingBreak(int breakDuration, Timer context, int now) {
 		super(context);
 		startTime = now;
-		breakDuration = startFrom;
+		this.breakDuration = breakDuration;
 		
 		display.show(breakDuration, DisplayState.TAKING_BREAK);
 		counter.count(breakDuration);
@@ -49,7 +49,8 @@ public class TakingBreak extends TimerState{
 
 	@Override
 	public void resume(int now, int pauseTime) {
-		context.changeState(new TakingBreak(displayedTime(pauseTime), context, now));
+		int breakDuration = displayedTime(pauseTime);
+		context.changeState(new TakingBreak(breakDuration, context, now));
 	}
 
 }
