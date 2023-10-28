@@ -9,6 +9,8 @@ public class Pause extends TimerState {
 	public Pause(Timer context, TimerState previousState, int now) {
 		super(context, now);
 		this.previousState = previousState;
+		
+		counter.stop();
 	}
 
 	@Override

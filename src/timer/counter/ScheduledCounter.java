@@ -12,7 +12,6 @@ public class ScheduledCounter implements Counter {
 	private Timer timer;
 	private ScheduledExecutorService scheduler;
 	private boolean isRunning = false;
-	private final SoundPlayer soundPlayer = new SoundPlayer();
 
 	public static final int FOUR_HOURS_IN_SECONDS = 14400;
 	public static final int DURATION_MILLISECONDS = 1000;
@@ -53,9 +52,9 @@ public class ScheduledCounter implements Counter {
 
 	public void count(int times, int durationMilliseconds) {
 
-		if (isRunning()) {
+		if (isRunning())
 			stop();
-		}
+		
 		initScheduler();
 
 		isRunning = true;

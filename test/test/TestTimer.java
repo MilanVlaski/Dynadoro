@@ -241,10 +241,10 @@ class TestTimer {
 		assertEquals(1, timer.displayedTime());
 	}
 	
-//	@Test
-//	void shouldStopCounterWhenPause() {
-//		timer.begin();
-//		timer.pause();
-//		verify(mockCounter).stop();
-//	}
+	@Test
+	void shouldStopCounterWhenPause() {
+		timer.begin();
+		timer.pause();
+		verify(mockCounter).stop();
+	}
 }

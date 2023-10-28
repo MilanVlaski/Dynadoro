@@ -20,7 +20,8 @@ public class Timer {
 		this.counter = counter;
 		
 		counter.setTimer(this);
-		// I thought that calling clock here might cause issues with mocking, but it doesn't.
+		// This doesn't interfere with mocks, because initialization happens
+		// outside of the test cases in the @BeforeEach.
 		state = new Idle(this, clock.currentTimeSeconds());
 	}
 
