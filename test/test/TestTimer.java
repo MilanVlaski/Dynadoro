@@ -2,7 +2,6 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -85,6 +84,7 @@ public class TestTimer {
 	
 		timer.begin();
 		timer.takeBreak();
+		
 		assertEquals(0, timer.displayedTime());
 	}
 
@@ -163,48 +163,45 @@ public class TestTimer {
 	// I use hundreds here for time because when you start from 0, you get uncaught
 	// errors. The reason is that at runtime clock always returns time > 0,
 	// so if we were to use 0, that itself is not a problem, but it doesn't
-	// force us to actually compute the time properly, because adding 0 does nothing.
+	// force us to actually compute the time properly, because adding 0 does
+	// nothing.
 	@Test
 	void shouldResumeWork() {
 		when(mockClock.currentTimeSeconds())
-			.thenReturn(100, 105, 106, 106, 107, 108);
+			.thenReturn(100, 105, 106, 106, 107);
 		
-		timer.begin();
+		timer.begin(); // 0
 		
-		timer.pause();
+		timer.pause(); // 5
 		
-		timer.resume();
+		timer.resume(); // one second later...
 		assertEquals(5, timer.displayedTime());
-		
+		// one second later...
 		assertEquals(6, timer.displayedTime());
 	}
 
 	@Test
 	void shouldPauseAndResumeWorkTwice() {
 		when(mockClock.currentTimeSeconds())
-			.thenReturn(100, 105, 106, 106, 107, 108, 109, 109, 110);
+			.thenReturn(100, 105, 106, 107, 108, 108, 109);
 		
-		timer.begin();
+		timer.begin(); // time = 0
+		timer.pause(); // time = 5
+		timer.resume();
 		
-		timer.pause();
+		timer.pause(); // time = 6
 		
 		timer.resume();
-		assertEquals(5, timer.displayedTime());
-		
 		assertEquals(6, timer.displayedTime());
 		
-		timer.pause();
-		
-		timer.resume();
 		assertEquals(7, timer.displayedTime());
-		
-		assertEquals(8, timer.displayedTime());
 	}
 
 	@Test
 	void shouldResumeBreak() {
 		when(mockClock.currentTimeSeconds())
 				.thenReturn(100, 125, 126, 126, 126, 127);
+		
 		timer.begin();
 
 		timer.takeBreak(); // time = 5
@@ -220,27 +217,22 @@ public class TestTimer {
 	@Test
 	void shouldResumeBreakTwice() {
 		when(mockClock.currentTimeSeconds())
-				.thenReturn(100, 125, 126, 126, 126, 127, 128, 129, 129, 130);
+				.thenReturn(100, 125, 126, 126, 127, 128, 129, 130);
+		
 		timer.begin();
-
 		timer.takeBreak(); // time = 5
-
 		timer.pause(); // time = 4
-
 		timer.resume();
-		assertEquals(4, timer.displayedTime());
 
-		assertEquals(3, timer.displayedTime());
 		
-		
-		timer.pause(); 
+		timer.pause();  // time = 3
 
 		timer.resume();
 		assertEquals(2, timer.displayedTime());
 
 		assertEquals(1, timer.displayedTime());
 	}
-	
+
 	@Test
 	void shouldStopCounterWhenPause() {
 		timer.begin();

@@ -1,7 +1,5 @@
 package test.display;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -17,7 +15,6 @@ import test.TestTimer;
 import timer.Clock;
 import timer.Timer;
 import timer.counter.Counter;
-import timer.state.TimerState;
 
 class TestDisplay {
 
