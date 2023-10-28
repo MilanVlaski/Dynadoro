@@ -5,7 +5,8 @@ public abstract class Display {
 	public enum DisplayState {
 		IDLE,
 		WORKING,
-		TAKING_BREAK;
+		TAKING_BREAK,
+		PAUSED;
 	}
 	
 	protected int time;

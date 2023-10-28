@@ -1,5 +1,6 @@
 package timer.state;
 
+import display.Display.DisplayState;
 import timer.Timer;
 
 public class Pause extends TimerState {
@@ -11,6 +12,7 @@ public class Pause extends TimerState {
 		this.previousState = previousState;
 		
 		counter.stop();
+		display.show(displayedTime(now), DisplayState.PAUSED);
 	}
 
 	@Override

@@ -18,7 +18,7 @@ import timer.Timer;
 import timer.counter.Counter;
 import timer.state.TimerState.IllegalOperation;
 
-class TestTimer {
+public class TestTimer {
 
 	@Mock
 	Clock mockClock;
@@ -54,9 +54,9 @@ class TestTimer {
 		assertEquals(2, timer.displayedTime());
 	}
 
-	static final int TWENTY_FIVE = 25;
-	static final int WORK_BREAK_RATIO = 5;
-	static final int BREAK_DURATION = TWENTY_FIVE / WORK_BREAK_RATIO;
+	public static final int TWENTY_FIVE = 25;
+	public static final int WORK_BREAK_RATIO = 5;
+	public static final int BREAK_DURATION = TWENTY_FIVE / WORK_BREAK_RATIO;
 
 	@Test
 	void breakShouldTakeFiveTimesShorterThanWork() {
