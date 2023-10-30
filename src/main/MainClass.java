@@ -31,6 +31,8 @@ public class MainClass {
 					timer.pause();
 				else if (input.equals("4"))
 					timer.resume();
+				else if (input.equals("5"))
+					timer.reset();
 					
 			}
 		}

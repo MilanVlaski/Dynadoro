@@ -67,8 +67,8 @@ public class ScheduledCounter implements Counter {
 
 	private void onFinish() {
 	    if (isRunning) {
+	    	timer.finishBreak();
 	        stop();
-	        timer.finishBreak();
 	    }
 	}
 

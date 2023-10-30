@@ -1,5 +1,7 @@
 package test.display;
 
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.atMost;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -70,7 +72,7 @@ class TestDisplay {
 		timer.pause();
 		
 		verify(mockDisplay).show(5, DisplayState.WORK_PAUSE);
-		verify(mockCounter).stop();
+		verify(mockCounter, atLeastOnce()).stop();
 	}
 
 	@Test
@@ -85,7 +87,7 @@ class TestDisplay {
 		timer.pause();
 		
 		verify(mockDisplay).show(TestTimer.BREAK_DURATION - 2, DisplayState.BREAK_PAUSE);
-		verify(mockCounter).stop();
+		verify(mockCounter, atLeastOnce()).stop();
 	}
 
 	@Test
@@ -118,4 +120,11 @@ class TestDisplay {
 		verify(mockCounter).count(TestTimer.BREAK_DURATION - 1);
 	}
 
+	@Test
+	void shouldStopCounter_WhenResetting() {
+		timer.begin();
+		timer.reset();
+		
+		verify(mockCounter, atLeastOnce()).stop();
+	}
 }

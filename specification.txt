@@ -1,15 +1,15 @@
 REQUIREMENTS:
-When i open the app i want it to display 00:00.
-When i press Begin it counts and shows me that i am working.
-(Break is displayed).
+*When i open the app i want it to display 00:00.
+*When i press Begin it counts and shows me that i am working.
+*(Break is displayed).
 
-When i press Break, it start counting down for the duration of the break,
-which lasts 5 times shorter than the time spent working.
+*When i press Break, it start counting down for the duration of the break,
+*which lasts 5 times shorter than the time spent working.
 
-When it reaches zero, it plays an alarm.
+*When it reaches zero, it plays an alarm.
 
 Cancel at any time. (goes into idle)
-Pause at any time (except when idle)
+***Pause at any time (except when idle)
 
 
 

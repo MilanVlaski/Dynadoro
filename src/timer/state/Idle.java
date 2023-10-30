@@ -8,6 +8,7 @@ public class Idle extends TimerState {
 	public Idle(Timer context, int now) {
 		super(context, now);
 		display.show(0, DisplayState.IDLE);
+		counter.stop();
 	}
 
 	@Override

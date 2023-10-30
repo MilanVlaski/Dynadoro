@@ -252,4 +252,16 @@ public class TestTimer {
 		assertThrows(IllegalOperationException.class, () -> timer.takeBreak());
 	}
 
+	@Test
+	void shouldResetTimer() {
+		when(mockClock.currentTimeSeconds())
+			.thenReturn(0)
+			.thenReturn(5)
+			.thenReturn(6);
+		
+		timer.begin();
+		timer.reset();
+		
+		assertEquals(0, timer.displayedTime());
+	}
 }

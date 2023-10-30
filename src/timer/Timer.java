@@ -68,4 +68,8 @@ public class Timer {
 		display.show(0, DisplayState.BREAK_FINISHED);
 	}
 
+	public void reset() {
+		changeState(new Idle(this, clock.currentTimeSeconds()));
+	}
+
 }
