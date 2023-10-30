@@ -231,17 +231,25 @@ public class TestTimer {
 		assertThrows(IllegalOperationException.class, () -> timer.resume());
 	}
 
-	// BUG can't continue go to break, after pausing
 	@Test
 	void shouldGoToBreak_WhilePausingWork() {
 		when(mockClock.currentTimeSeconds())
-			.thenReturn(100, 100 + TWENTY_FIVE, 100 + TWENTY_FIVE + 1);
+			.thenReturn(100, 100 + TWENTY_FIVE, 100 + TWENTY_FIVE + 1, 100 + TWENTY_FIVE + 2);
 		
 		timer.begin();
-		timer.pause();
-		timer.takeBreak();
+		timer.pause(); // 25
+		timer.takeBreak(); // 5
 		
-		assertEquals(5, timer.displayedTime());
+		assertEquals(4, timer.displayedTime());
+	}
+	
+	@Test
+	void shouldThrowIfTakesBreak_WhilePausingBreak() {
+		timer.begin();
+		timer.takeBreak();
+		timer.pause();
+		
+		assertThrows(IllegalOperationException.class, () -> timer.takeBreak());
 	}
 
 }
