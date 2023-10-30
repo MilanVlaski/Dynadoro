@@ -32,20 +32,16 @@ public class Pause extends TimerState {
 
 	@Override
 	public void begin(int now) {
-		// TODO Auto-generated method stub
-
+		context.changeState(new Working(context, now));
 	}
 
 	@Override
 	public void takeBreak(int now) {
-		// TODO Auto-generated method stub
-
+		throw new IllegalOperationException("Can't take a break if haven't done work.");
 	}
 
 	@Override
 	public void pause(int now) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
