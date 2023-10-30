@@ -53,6 +53,7 @@ public class ConsoleDisplay extends Display {
 	}
 
 	private void update(int time, DisplayState state) {
+
 		switch (state) {
 		case IDLE:
 			System.out.println(idleMessage());
@@ -63,7 +64,11 @@ public class ConsoleDisplay extends Display {
 		case TAKING_BREAK:
 			System.out.println(breakMessage(time));
 			break;
-		case PAUSED:
+		case BREAK_PAUSE:
+			System.out.println(breakPauseMessage(time));
+			break;
+		case WORK_PAUSE:
+			System.out.println(workPauseMessage(time));
 			break;
 		}
 	}

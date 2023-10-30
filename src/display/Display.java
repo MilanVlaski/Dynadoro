@@ -6,7 +6,6 @@ public abstract class Display {
 		IDLE,
 		WORKING,
 		TAKING_BREAK,
-		PAUSED,
 		WORK_PAUSE,
 		BREAK_PAUSE;
 	}
