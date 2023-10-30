@@ -52,7 +52,7 @@ public class ScheduledCounter implements Counter {
 
 	public void count(int times, int durationMilliseconds) {
 
-		if (isRunning())
+		if (isRunning)
 			stop();
 		
 		initScheduler();
@@ -60,14 +60,16 @@ public class ScheduledCounter implements Counter {
 		isRunning = true;
 		scheduler.scheduleAtFixedRate(timer::showTime, durationMilliseconds,
 				durationMilliseconds, TimeUnit.MILLISECONDS);
-
+		
 		scheduler.schedule(this::onFinish, times * durationMilliseconds,
 				TimeUnit.MILLISECONDS);
 	}
 
 	private void onFinish() {
-		stop();
-		timer.finishBreak();
+	    if (isRunning) {
+	        stop();
+	        timer.finishBreak();
+	    }
 	}
 
 }

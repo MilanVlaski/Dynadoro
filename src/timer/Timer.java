@@ -59,7 +59,8 @@ public class Timer {
 	}
 
 	public void resume() {
-		state.resume(clock.currentTimeSeconds(), 0);
+		int now = clock.currentTimeSeconds();
+		state.resume(now, now);
 	}
 
 	public void finishBreak() {

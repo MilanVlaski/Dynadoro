@@ -31,9 +31,14 @@ TODO:
 ***- Pausing while idle throws an exception
 ***- Pausing then restarting on break
 ***- Pausing then restarting while working
-REJECTED- Working, then pausing, then taking break (BAD)
+***- Working, then pausing, then taking break - actually an easy feature
 REJECTED- Break, then pausing, then working (BAD because its annoying to do, and not a useful feature)
 ***- Counter could perhaps have no need for pausing, but it just gets restarted using
   data from states (already done?)
 ***- Counter stops when you pause
 ***- Test display behavior (mocks)
+
+BUGFIX: When pausing while on break the timer correctly stops counting. But it
+incorrectly says Break over! when and displays 00:00.
+FIXED: It was because the counter is a little weirdo. Scheduled tasks can't be
+stopped, i had to add logic that prevents that. I don't understand the library fully...
