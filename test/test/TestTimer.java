@@ -2,7 +2,6 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +15,16 @@ import timer.Clock;
 import timer.Timer;
 import timer.counter.Counter;
 import timer.state.TimerState.IllegalOperation;
-
+/**
+ * This class tests the Timer internals related to checking time.
+ * I used TestDisplay to test that Counter and Display are exhibiting the 
+ * appropriate behavior. This is done so that the simple, time related behavior
+ * stays here, and updating the display and starting a counter (which mostly
+ * just updated the display) is separate. There is some overlap in test setup
+ * between these, but it shouldn't be major.
+ * @author Milan Vlaski
+ *
+ */
 public class TestTimer {
 
 	@Mock
@@ -24,7 +32,7 @@ public class TestTimer {
 	@Mock
 	Display dummyDisplay;
 	@Mock
-	Counter mockCounter;
+	Counter dummyCounter;
 
 	@InjectMocks
 	Timer timer;
@@ -94,23 +102,6 @@ public class TestTimer {
 		timer.takeBreak();
 		timer.begin();
 		assertEquals(0, timer.displayedTime());
-	}
-
-	@Test
-	void shouldStartCounting_WhenStartTimer() {
-		timer.begin();
-		verify(mockCounter).countUp();
-	}
-
-	@Test
-	void shouldBeRunningOnBreak_ForCorrectDuration() {
-		when(mockClock.currentTimeSeconds())
-			.thenReturn(0, TWENTY_FIVE);
-		
-		timer.begin();
-		timer.takeBreak();
-		
-		verify(mockCounter).count(BREAK_DURATION);
 	}
 
 	@Test
@@ -231,12 +222,5 @@ public class TestTimer {
 		assertEquals(2, timer.displayedTime());
 
 		assertEquals(1, timer.displayedTime());
-	}
-
-	@Test
-	void shouldStopCounterWhenPause() {
-		timer.begin();
-		timer.pause();
-		verify(mockCounter).stop();
 	}
 }
