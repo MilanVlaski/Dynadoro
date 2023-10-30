@@ -35,5 +35,5 @@ TODO:
 - Break, then pausing, then working
 - Counter could perhaps have no need for pausing, but it just gets restarted using
   data from states (already done?)
-- Counter stops when you pause
- 
+***- Counter stops when you pause
+- Test display behavior (mocks)

@@ -43,6 +43,11 @@ public class ConsoleDisplay extends Display {
 				+ "\nPress 2 to take a break";
 	}
 
+	public static String breakFinishedMessage() {
+		return displayedTime(0) + "\nBreak over!"
+				+ "\nPress 1 to go back to work";
+	}
+
 	public static String breakPauseMessage(int time) {
 		return displayedTime(time) + "\nPress 4 to resume";
 	}
