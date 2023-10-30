@@ -70,6 +70,9 @@ public class ConsoleDisplay extends Display {
 		case WORK_PAUSE:
 			System.out.println(workPauseMessage(time));
 			break;
+		case BREAK_FINISHED:
+			System.out.println(breakFinishedMessage());
+			break;
 		}
 	}
 

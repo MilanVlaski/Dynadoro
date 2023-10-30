@@ -7,7 +7,8 @@ public abstract class Display {
 		WORKING,
 		TAKING_BREAK,
 		WORK_PAUSE,
-		BREAK_PAUSE;
+		BREAK_PAUSE,
+		BREAK_FINISHED;
 	}
 	
 	protected int time;

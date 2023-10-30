@@ -31,9 +31,9 @@ TODO:
 ***- Pausing while idle throws an exception
 ***- Pausing then restarting on break
 ***- Pausing then restarting while working
-- Working, then pausing, then taking break
-- Break, then pausing, then working
-- Counter could perhaps have no need for pausing, but it just gets restarted using
+REJECTED- Working, then pausing, then taking break (BAD)
+REJECTED- Break, then pausing, then working (BAD because its annoying to do, and not a useful feature)
+***- Counter could perhaps have no need for pausing, but it just gets restarted using
   data from states (already done?)
 ***- Counter stops when you pause
-- Test display behavior (mocks)
+***- Test display behavior (mocks)

@@ -1,6 +1,7 @@
 package timer;
 
 import display.Display;
+import display.Display.DisplayState;
 import sound.SoundPlayer;
 import timer.counter.Counter;
 import timer.state.Idle;
@@ -63,6 +64,7 @@ public class Timer {
 
 	public void finishBreak() {
 		SoundPlayer.play();
+		display.show(0, DisplayState.BREAK_FINISHED);
 	}
 
 }
