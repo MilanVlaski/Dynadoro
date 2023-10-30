@@ -14,7 +14,7 @@ import display.Display;
 import timer.Clock;
 import timer.Timer;
 import timer.counter.Counter;
-import timer.state.TimerState.IllegalOperation;
+import timer.state.TimerState.IllegalOperationException;
 /**
  * This class tests the Timer internals related to checking time.
  * I used TestDisplay to test that Counter and Display are exhibiting the 
@@ -107,24 +107,24 @@ public class TestTimer {
 	@Test
 	void shouldThrowException_IfTriesToStartTwice() {
 		timer.begin();
-		assertThrows(IllegalOperation.class, () -> timer.begin());
+		assertThrows(IllegalOperationException.class, () -> timer.begin());
 	}
 
 	@Test
 	void shouldThrowException_IfTakesBreakWithoutWorking() {
-		assertThrows(IllegalOperation.class, () -> timer.takeBreak());
+		assertThrows(IllegalOperationException.class, () -> timer.takeBreak());
 	}
 
 	@Test
 	void shouldThrowException_IfTriesToTakeBreakWhileOnBreak() {
 		timer.begin();
 		timer.takeBreak();
-		assertThrows(IllegalOperation.class, () -> timer.takeBreak());
+		assertThrows(IllegalOperationException.class, () -> timer.takeBreak());
 	}
 
 	@Test
 	void shouldThrowException_IfPausingNothing() {
-		assertThrows(IllegalOperation.class, () -> timer.pause());
+		assertThrows(IllegalOperationException.class, () -> timer.pause());
 	}
 
 	@Test
@@ -222,5 +222,10 @@ public class TestTimer {
 		assertEquals(2, timer.displayedTime());
 
 		assertEquals(1, timer.displayedTime());
+	}
+	
+	@Test
+	void shouldThrow_IfTriesToResumeInIdleState() {
+		assertThrows(IllegalOperationException.class, () -> timer.resume());
 	}
 }

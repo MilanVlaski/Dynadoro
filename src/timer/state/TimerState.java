@@ -26,11 +26,11 @@ public abstract class TimerState {
 	public abstract void pause(int now);
 	public abstract void resume(int now, int pauseTime);
 
-	public static class IllegalOperation extends RuntimeException {
+	public static class IllegalOperationException extends RuntimeException {
 
 		private static final long serialVersionUID = 1L;
 
-		public IllegalOperation(String message) {
+		public IllegalOperationException(String message) {
 			super(message);
 		}
 	}

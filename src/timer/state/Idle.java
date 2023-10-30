@@ -22,18 +22,16 @@ public class Idle extends TimerState {
 
 	@Override
 	public void takeBreak(int now) {
-		throw new IllegalOperation("Can't take break if haven't started work.");
+		throw new IllegalOperationException("Can't take break if haven't started work.");
 	}
 
 	@Override
 	public void pause(int now) {
-		throw new IllegalOperation("Can't pause while doing nothing.");
+		throw new IllegalOperationException("Can't pause while doing nothing.");
 	}
 
 	@Override
 	public void resume(int now, int pauseDuration) {
-		// TODO Auto-generated method stub
-		
+		throw new IllegalOperationException("Can't resume while idle.");
 	}
-
 }

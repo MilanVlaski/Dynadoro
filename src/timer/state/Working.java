@@ -26,7 +26,7 @@ public class Working extends TimerState {
 
 	@Override
 	public void begin(int now) {
-		throw new IllegalOperation("Timer is already running.");
+		throw new IllegalOperationException("Timer is already running.");
 	}
 
 	@Override

@@ -37,7 +37,7 @@ public class TakingBreak extends TimerState{
 
 	@Override
 	public void takeBreak(int now) {
-		throw new IllegalOperation("Already taking a break.");
+		throw new IllegalOperationException("Already taking a break.");
 	}
 
 	@Override
