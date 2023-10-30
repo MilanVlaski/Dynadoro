@@ -1,5 +1,6 @@
 package test.display;
 
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -84,6 +85,7 @@ class TestDisplay {
 		timer.pause();
 		
 		verify(mockDisplay).show(TestTimer.BREAK_DURATION - 2, DisplayState.BREAK_PAUSE);
+		verify(mockCounter).stop();
 	}
 
 	@Test
@@ -96,20 +98,24 @@ class TestDisplay {
 		timer.resume();
 		
 		verify(mockDisplay).show(1, DisplayState.WORKING);
+		verify(mockCounter, times(2)).countUp();
 	}
 	
 	@Test
-	void shouldShowPause_duringBreak() {
+	void shouldShowResumingBreak() {
 		when(mockClock.currentTimeSeconds())
 			.thenReturn(100)
 			.thenReturn(100 + TestTimer.TWENTY_FIVE)
+			.thenReturn(100 + TestTimer.TWENTY_FIVE + 1)
 			.thenReturn(100 + TestTimer.TWENTY_FIVE + 2);
 		
 		timer.begin();
 		timer.takeBreak();
 		timer.pause();
+		timer.resume();
 		
-		verify(mockDisplay).show(TestTimer.BREAK_DURATION - 2, DisplayState.BREAK_PAUSE);
+		verify(mockDisplay).show(TestTimer.BREAK_DURATION - 1, DisplayState.BREAK_PAUSE);
+		verify(mockCounter).count(TestTimer.BREAK_DURATION - 1);
 	}
 
 }
