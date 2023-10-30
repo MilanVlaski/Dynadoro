@@ -31,14 +31,29 @@ class TestConsoleDisplay {
 
 	@Test
 	void shouldDisplayWorkingState() {
-		assertEquals("00:00\nPress 2 to take a break",
+		assertEquals("00:00\nPress 2 to take a break"
+				+ "\nPress 3 to pause",
 				ConsoleDisplay.workingMessage(0));
 	}
 
 	@Test
 	void shouldDisplayBreakState() {
-		assertEquals("00:00\nPress 1 to go back to work",
+		assertEquals("00:00\nPress 1 to go back to work"
+				+ "\nPress 3 to pause",
 				ConsoleDisplay.breakMessage(0));
+	}
+
+	@Test
+	void shouldDisplayWorkPause() {
+		assertEquals("00:00\nPress 4 to resume"
+				+ "\nPress 2 to take a break",
+				ConsoleDisplay.workPauseMessage(0));
+	}
+	
+	@Test
+	void shouldDisplayBreakPause() {
+		assertEquals("00:00\nPress 4 to resume",
+				ConsoleDisplay.breakPauseMessage(0));
 	}
 
 }

@@ -163,8 +163,8 @@ public class TestTimer {
 	// I use hundreds here for time because when you start from 0, you get uncaught
 	// errors. The reason is that at runtime clock always returns time > 0,
 	// so if we were to use 0, that itself is not a problem, but it doesn't
-	// force us to actually compute the time properly, because adding 0 does
-	// nothing.
+	// force us to actually compute the time properly, because using adding or
+	// subtracting with 0 does nothing (untested behavior).
 	@Test
 	void shouldResumeWork() {
 		when(mockClock.currentTimeSeconds())
