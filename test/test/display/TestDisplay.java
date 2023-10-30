@@ -83,4 +83,16 @@ class TestDisplay {
 		verify(mockDisplay).show(TestTimer.BREAK_DURATION - 2, DisplayState.BREAK_PAUSE);
 	}
 
+	@Test
+	void shouldShowResumingWork() {
+		when(mockClock.currentTimeSeconds())
+			.thenReturn(1).thenReturn(2).thenReturn(3);
+		
+		timer.begin();
+		timer.pause();
+		timer.resume();
+		
+		verify(mockDisplay).show(1, DisplayState.WORKING);
+	}
+
 }
