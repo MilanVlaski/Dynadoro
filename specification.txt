@@ -8,17 +8,13 @@ REQUIREMENTS:
 
 *When it reaches zero, it plays an alarm.
 
-Cancel at any time. (goes into idle)
+***Cancel at any time. (goes into idle)
 ***Pause at any time (except when idle)
 
 
 
 
-NOTES:
-1. Make a CounterInterface, that must depend on timer.
-2. Inject it into timer.
-
-PERHAPS time and period, instead of being an integer, should be refactored to oop?
+PERHAPS time and period, instead of being an integer, should be refactored to value objects?
 
 - Potential errors if you work for less than a second, or less than 5.
 

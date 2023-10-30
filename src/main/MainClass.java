@@ -16,9 +16,8 @@ public class MainClass {
 		Clock clock = new SystemClock();
 		Display display = new ConsoleDisplay();
 		Counter counter = new ScheduledCounter();
-		
+
 		Timer timer = new Timer(clock, display, counter);
-		
 
 		try (Scanner scanner = new Scanner(System.in)) {
 			while (true) {
@@ -33,7 +32,6 @@ public class MainClass {
 					timer.resume();
 				else if (input.equals("5"))
 					timer.reset();
-					
 			}
 		}
 	}
