@@ -15,13 +15,15 @@ import timer.Clock;
 import timer.Timer;
 import timer.counter.Counter;
 import timer.state.TimerState.IllegalOperationException;
+
 /**
- * This class tests the Timer internals related to checking time.
- * I used TestDisplay to test that Counter and Display are exhibiting the 
- * appropriate behavior. This is done so that the simple, time related behavior
- * stays here, and updating the display and starting a counter (which mostly
- * just updated the display) is separate. There is some overlap in test setup
- * between these, but it shouldn't be major.
+ * This class tests the Timer internals related to checking time. I used
+ * TestDisplay to test that Counter and Display are exhibiting the appropriate
+ * behavior. This is done so that the simple, time related behavior stays here,
+ * and updating the display and starting a counter (which mostly just updated
+ * the display) is separate. There is some overlap in test setup between these,
+ * but it shouldn't be major.
+ * 
  * @author Milan Vlaski
  *
  */
@@ -223,9 +225,23 @@ public class TestTimer {
 
 		assertEquals(1, timer.displayedTime());
 	}
-	
+
 	@Test
 	void shouldThrow_IfTriesToResumeInIdleState() {
 		assertThrows(IllegalOperationException.class, () -> timer.resume());
 	}
+
+	// BUG can't continue go to break, after pausing
+	@Test
+	void shouldGoToBreak_WhilePausingWork() {
+		when(mockClock.currentTimeSeconds())
+			.thenReturn(100, 100 + TWENTY_FIVE, 100 + TWENTY_FIVE + 1);
+		
+		timer.begin();
+		timer.pause();
+		timer.takeBreak();
+		
+		assertEquals(5, timer.displayedTime());
+	}
+
 }

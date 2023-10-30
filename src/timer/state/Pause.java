@@ -37,7 +37,8 @@ public class Pause extends TimerState {
 
 	@Override
 	public void takeBreak(int now) {
-		throw new IllegalOperationException("Can't take a break if haven't done work.");
+		previousState.takeBreak(now);
+//		throw new IllegalOperationException("Can't take a break if haven't done work.");
 	}
 
 	@Override
