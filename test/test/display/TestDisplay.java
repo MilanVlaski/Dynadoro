@@ -23,7 +23,7 @@ class TestDisplay {
 	@Mock
 	Display mockDisplay;
 	@Mock
-	Counter mockCounter;
+	Counter dummyCounter;
 
 	@InjectMocks
 	Timer timer;
@@ -34,12 +34,12 @@ class TestDisplay {
 	}
 
 	@Test
-	void shouldSetDisplayedTimeToZero() {
+	void shouldShowIdle_OnInit() {
 		verify(mockDisplay).show(0, DisplayState.IDLE);
 	}
 
 	@Test
-	void shouldSetDisplayedTimeOnBegin() {
+	void shouldShowWorkingState_OnBegin() {
 		when(mockClock.currentTimeSeconds()).thenReturn(0);
 		
 		timer.begin();
@@ -48,7 +48,7 @@ class TestDisplay {
 	}
 
 	@Test
-	void shouldSetDisplayedTimeOnBreak() {
+	void shouldShowAppropriateTime_AndState_WhenTakingBreak() {
 		when(mockClock.currentTimeSeconds())
 			.thenReturn(0)
 			.thenReturn(TestTimer.TWENTY_FIVE);
@@ -60,17 +60,17 @@ class TestDisplay {
 	}
 
 	@Test
-	void shouldPause() {
+	void shouldShowPause_DuringWork() {
 		when(mockClock.currentTimeSeconds()).thenReturn(5).thenReturn(10);
 		
 		timer.begin();
 		timer.pause();
 		
-		verify(mockDisplay).show(5, DisplayState.PAUSED);
+		verify(mockDisplay).show(5, DisplayState.WORK_PAUSE);
 	}
 
 	@Test
-	void shouldPauseOnBreak() {
+	void shouldShowPause_DuringBreak() {
 		when(mockClock.currentTimeSeconds())
 			.thenReturn(0)
 			.thenReturn(TestTimer.TWENTY_FIVE)
@@ -80,7 +80,7 @@ class TestDisplay {
 		timer.takeBreak();
 		timer.pause();
 		
-		verify(mockDisplay).show(TestTimer.BREAK_DURATION - 2, DisplayState.PAUSED);
+		verify(mockDisplay).show(TestTimer.BREAK_DURATION - 2, DisplayState.BREAK_PAUSE);
 	}
 
 }

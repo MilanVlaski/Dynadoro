@@ -10,9 +10,19 @@ public class Pause extends TimerState {
 	public Pause(Timer context, TimerState previousState, int now) {
 		super(context, now);
 		this.previousState = previousState;
-		
+
+		sendDataToDisplay(previousState, now);
 		counter.stop();
-		display.show(displayedTime(now), DisplayState.PAUSED);
+	}
+
+	private void sendDataToDisplay(TimerState previousState, int now) {
+		DisplayState displayState;
+		if (previousState instanceof Working)
+			displayState = DisplayState.WORK_PAUSE;
+		else
+			displayState = DisplayState.BREAK_PAUSE;
+
+		display.show(displayedTime(now), displayState);
 	}
 
 	@Override
