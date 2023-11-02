@@ -39,6 +39,7 @@ public class ConsoleDisplay extends Display {
 				+ "\nPress 1 to go back to work";
 	}
 
+	@Override
 	protected void update(int time, DisplayState state) {
 
 		switch (state) {
@@ -61,6 +62,11 @@ public class ConsoleDisplay extends Display {
 			System.out.println(breakFinishedMessage());
 			break;
 		}
+	}
+
+	@Override
+	protected void update(int displayedTime) {
+		update(displayedTime, state);
 	}
 
 }

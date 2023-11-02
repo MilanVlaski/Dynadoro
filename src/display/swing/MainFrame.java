@@ -1,6 +1,8 @@
 package display.swing;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Toolkit;
 
@@ -8,41 +10,65 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import display.ConsoleDisplay;
+import timer.Timer;
 
 public class MainFrame extends JFrame {
 
+	private final JPanel mainPanel = new JPanel(true);
+	private final JLabel clock = new JLabel();
+	public Timer timer;
+
 	public MainFrame() {
-		JLabel timeLabel = new JLabel("00:00");
+
+		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+		mainPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+		mainPanel.setBackground(Color.red);
+
 		Font font = new Font("Loto", Font.PLAIN, 50);
-		timeLabel.setFont(font);
+		clock.setFont(font);
+		mainPanel.add(clock);
+
 		
 		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = screenSize.width - getWidth() - 400;
+		int y = 100;
+		setLocation(x, y);
 		
-		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-		setSize(200, 200);
+		setLayout(new FlowLayout());
+
+		add(mainPanel);
+
 		
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        
-        int x = screenSize.width - getWidth() - 120; 
-        int y = 60;
-        
-        setLocation(x, y);
-		
-		add(timeLabel);
-		
+		setSize(210, 210);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
 
 	public void setTime(int displayedTime) {
-		// TODO Auto-generated method stub
-		
+		clock.setText(ConsoleDisplay.displayedTime(displayedTime));
 	}
 
 	public void showStartButton() {
 		Font font1 = new Font("Loto", Font.PLAIN, 40);
 		JButton startButton = new JButton("Start");
 		startButton.setFont(font1);
-		add(startButton);
+		startButton.addActionListener((e) -> timer.begin());
+		
+		mainPanel.add(startButton);
+	}
+
+	public void showPauseButton() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void showBreakButton() {
+		// TODO Auto-generated method stub
+		
 	}
 }

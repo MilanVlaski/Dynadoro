@@ -1,6 +1,7 @@
 package display;
 
 import display.swing.MainFrame;
+import timer.Timer;
 
 public class SwingDisplay extends Display {
 
@@ -19,13 +20,15 @@ public class SwingDisplay extends Display {
 		case IDLE:
 			mainFrame.showStartButton();
 			break;
+		case WORKING:
+//			mainFrame.showPauseButton();
+//			mainFrame.showBreakButton();
+			break;
 		case BREAK_FINISHED:
 			break;
 		case BREAK_PAUSE:
 			break;
 		case TAKING_BREAK:
-			break;
-		case WORKING:
 			break;
 		case WORK_PAUSE:
 			break;
@@ -33,6 +36,15 @@ public class SwingDisplay extends Display {
 			break;
 
 		}
+	}
+
+	@Override
+	protected void update(int displayedTime) {
+		mainFrame.setTime(displayedTime);
+	}
+
+	public void setModel(Timer timer) {
+		mainFrame.timer = timer;
 	}
 
 }

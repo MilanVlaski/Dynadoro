@@ -15,11 +15,12 @@ public class MainClass {
 
 	public static void main(String[] args) {
 		Clock clock = new SystemClock();
-		Display display = new SwingDisplay();
+		SwingDisplay display = new SwingDisplay();
 		Counter counter = new ScheduledCounter();
 
 		Timer timer = new Timer(clock, display, counter);
-
+		display.setModel(timer);
+		
 		try (Scanner scanner = new Scanner(System.in)) {
 			while (true) {
 				String input = scanner.nextLine();
