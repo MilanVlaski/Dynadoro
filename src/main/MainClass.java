@@ -18,8 +18,16 @@ public class MainClass {
 		SwingDisplay display = new SwingDisplay();
 		Counter counter = new ScheduledCounter();
 
+		startSwingApplication(clock, display, counter);
+	}
+
+	private static void startSwingApplication(Clock clock, SwingDisplay display, Counter counter) {
 		Timer timer = new Timer(clock, display, counter);
 		display.setModel(timer);
+	}
+
+	private static void startConsoleApplication(Clock clock, Display display, Counter counter) {
+		Timer timer = new Timer(clock, display, counter);
 		
 		try (Scanner scanner = new Scanner(System.in)) {
 			while (true) {
@@ -37,5 +45,4 @@ public class MainClass {
 			}
 		}
 	}
-
 }
