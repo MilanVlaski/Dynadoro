@@ -51,7 +51,7 @@ public class TestTimer {
 
 	@InjectMocks
 	Timer timer;
-	
+
 	Moment m;
 
 	@BeforeEach
@@ -86,23 +86,11 @@ public class TestTimer {
 	@Test
 	void breakShouldTakeFiveTimesShorterThanWork() {
 		when(mockClock.currentTimeSeconds())
-				.thenReturn(m.current(), m.after(TWENTY_FIVE),
-						m.current());
+				.thenReturn(m.current(), m.after(TWENTY_FIVE), m.current());
 
 		timer.begin();
 		timer.takeBreak();
 		assertEquals(BREAK_DURATION, timer.displayedTime());
-	}
-
-	@Test
-	void shouldCountDown_WhileTakingBreak() {
-		when(mockClock.currentTimeSeconds())
-				.thenReturn(m.current(), m.after(TWENTY_FIVE),
-						m.after(1));
-
-		timer.begin();
-		timer.takeBreak();
-		assertEquals(BREAK_DURATION - 1, timer.displayedTime());
 	}
 
 	@Test
@@ -160,16 +148,25 @@ public class TestTimer {
 	}
 
 	@Test
+	void shouldCountDown_WhileTakingBreak() {
+		when(mockClock.currentTimeSeconds())
+		.thenReturn(m.current(), m.after(TWENTY_FIVE), m.after(1));
+		
+		timer.begin();
+		timer.takeBreak();
+		assertEquals(BREAK_DURATION - 1, timer.displayedTime());
+	}
+
+	@Test
 	void timeShouldStopWhenPausing_WhileOnBreak() {
 		when(mockClock.currentTimeSeconds())
-				.thenReturn(m.current(), m.after(TWENTY_FIVE),
-						m.after(1), m.current());
+				.thenReturn(m.current(), m.after(TWENTY_FIVE), m.after(1),
+						m.current());
 
 		timer.begin();
-
 		timer.takeBreak();
-
 		timer.pause();
+		
 		assertEquals(BREAK_DURATION - 1, timer.displayedTime());
 	}
 
@@ -183,13 +180,13 @@ public class TestTimer {
 		when(mockClock.currentTimeSeconds())
 				.thenReturn(m.current(), m.after(5), m.after(1), m.current(), m.after(1));
 
-		timer.begin(); // 0
+		timer.begin();
 
-		timer.pause(); // 5
+		timer.pause(); 
 
-		timer.resume(); // one second later...
+		timer.resume(); 
 		assertEquals(5, timer.displayedTime());
-		// one second later...
+		
 		assertEquals(6, timer.displayedTime());
 	}
 
@@ -199,11 +196,11 @@ public class TestTimer {
 				.thenReturn(m.current(), m.after(5), m.after(1),
 						m.after(1), m.after(1), m.current(), m.after(1));
 
-		timer.begin(); // time = 0
-		timer.pause(); // time = 5
+		timer.begin();
+		timer.pause(); 
 		timer.resume();
 
-		timer.pause(); // time = 6
+		timer.pause(); 
 
 		timer.resume();
 		assertEquals(6, timer.displayedTime());
@@ -236,11 +233,11 @@ public class TestTimer {
 						m.current(), m.after(1), m.after(1), m.after(1), m.after(1));
 
 		timer.begin();
-		timer.takeBreak(); // time = 5
-		timer.pause(); // time = 4
+		timer.takeBreak();
+		timer.pause();
 		timer.resume();
 
-		timer.pause(); // time = 3
+		timer.pause();
 
 		timer.resume();
 		assertEquals(2, timer.displayedTime());
@@ -256,7 +253,7 @@ public class TestTimer {
 	@Test
 	void shouldGoToBreak_AfterPausingWork() {
 		when(mockClock.currentTimeSeconds())
-				.thenReturn(m.current(), m.after(TWENTY_FIVE), m.after(TWENTY_FIVE),
+				.thenReturn(m.current(), m.after(TWENTY_FIVE), m.after(123),
 						m.after(1));
 
 		timer.begin();
