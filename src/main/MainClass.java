@@ -15,7 +15,7 @@ public class MainClass {
 
 	public static void main(String[] args) {
 		Clock clock = new SystemClock();
-		Display display = new ConsoleDisplay();
+		Display display = new SwingDisplay();
 		Counter counter = new ScheduledCounter();
 
 		Timer timer = new Timer(clock, display, counter);

@@ -43,7 +43,7 @@ class TestDisplay {
 
 	@Test
 	void shouldShowWorkingState_OnBegin() {
-		when(mockClock.currentTimeSeconds()).thenReturn(0);
+		when(mockClock.currentTimeSeconds()).thenReturn(123);
 		
 		timer.begin();
 		
@@ -84,12 +84,11 @@ class TestDisplay {
 		
 		timer.begin();
 		timer.takeBreak();
-		timer.pause();
+		timer.pause();  
 		
 		verify(mockDisplay).show(TestTimer.BREAK_DURATION - 2, DisplayState.BREAK_PAUSE);
 		verify(mockCounter, atLeastOnce()).stop();
 	}
-
 	@Test
 	void shouldShowResumingWork() {
 		when(mockClock.currentTimeSeconds())

@@ -14,12 +14,8 @@ public class MainFrame extends JFrame {
 	public MainFrame() {
 		JLabel timeLabel = new JLabel("00:00");
 		Font font = new Font("Loto", Font.PLAIN, 50);
-		Font font1 = new Font("Loto", Font.PLAIN, 50);
 		timeLabel.setFont(font);
 		
-		
-		JButton startButton = new JButton("Start");
-		startButton.setFont(font);
 		
 		
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
@@ -33,9 +29,20 @@ public class MainFrame extends JFrame {
         setLocation(x, y);
 		
 		add(timeLabel);
-		add(startButton);
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
+	}
+
+	public void setTime(int displayedTime) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void showStartButton() {
+		Font font1 = new Font("Loto", Font.PLAIN, 40);
+		JButton startButton = new JButton("Start");
+		startButton.setFont(font1);
+		add(startButton);
 	}
 }
