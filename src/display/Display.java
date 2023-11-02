@@ -1,5 +1,7 @@
 package display;
 
+import display.Display.DisplayState;
+
 public abstract class Display {
 
 	public enum DisplayState {
@@ -22,6 +24,16 @@ public abstract class Display {
 		this.state = state;
 	}
 
-	public abstract void show(int displayedTime);
-	public abstract void show(int displayedTime, DisplayState idle);
+	public void show(int displayedTime) {
+		this.time = displayedTime;
+		update(displayedTime, state);
+	}
+
+	public void show(int displayedTime, DisplayState state) {
+		this.state = state;
+		this.time = displayedTime;
+		update(displayedTime, state);
+	}
+	
+	protected abstract void update(int displayedTime, DisplayState state);
 }

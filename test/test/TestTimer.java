@@ -230,15 +230,15 @@ public class TestTimer {
 	void shouldThrow_IfTriesToResumeInIdleState() {
 		assertThrows(IllegalOperationException.class, () -> timer.resume());
 	}
-
+	
 	@Test
-	void shouldGoToBreak_WhilePausingWork() {
+	void shouldGoToBreak_AfterPausingWork() {
 		when(mockClock.currentTimeSeconds())
-			.thenReturn(100, 100 + TWENTY_FIVE, 100 + TWENTY_FIVE + 1, 100 + TWENTY_FIVE + 2);
+			.thenReturn(100, 100 + TWENTY_FIVE, 100 + TWENTY_FIVE + 25, 100 + TWENTY_FIVE + 25 + 1);
 		
 		timer.begin();
-		timer.pause(); // 25
-		timer.takeBreak(); // 5
+		timer.pause();
+		timer.takeBreak();
 		
 		assertEquals(4, timer.displayedTime());
 	}

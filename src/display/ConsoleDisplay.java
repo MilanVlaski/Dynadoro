@@ -2,19 +2,6 @@ package display;
 
 public class ConsoleDisplay extends Display {
 
-	@Override
-	public void show(int displayedTime) {
-		this.time = displayedTime;
-		update(displayedTime, state);
-	}
-
-	@Override
-	public void show(int displayedTime, DisplayState state) {
-		this.state = state;
-		this.time = displayedTime;
-		update(displayedTime, state);
-	}
-
 	public static String displayedTime(int seconds) {
 		int hours = seconds / 3600;
 		int minutes = (seconds % 3600) / 60;
@@ -52,7 +39,7 @@ public class ConsoleDisplay extends Display {
 				+ "\nPress 1 to go back to work";
 	}
 
-	private void update(int time, DisplayState state) {
+	protected void update(int time, DisplayState state) {
 
 		switch (state) {
 		case IDLE:

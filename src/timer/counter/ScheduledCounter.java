@@ -42,7 +42,7 @@ public class ScheduledCounter implements Counter {
 	@Override
 	public void stop() {
 		isRunning = false;
-		scheduler.shutdown();
+		scheduler.shutdownNow();
 	}
 
 	@Override

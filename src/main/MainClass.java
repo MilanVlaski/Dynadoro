@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import display.ConsoleDisplay;
 import display.Display;
+import display.SwingDisplay;
 import timer.Clock;
 import timer.SystemClock;
 import timer.Timer;
