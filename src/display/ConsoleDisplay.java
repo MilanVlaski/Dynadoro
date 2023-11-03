@@ -40,33 +40,44 @@ public class ConsoleDisplay extends Display {
 	}
 
 	@Override
-	protected void update(int time, DisplayState state) {
-
-		switch (state) {
-		case IDLE:
-			System.out.println(idleMessage());
-			break;
-		case WORKING:
-			System.out.println(workingMessage(time));
-			break;
-		case TAKING_BREAK:
-			System.out.println(breakMessage(time));
-			break;
-		case BREAK_PAUSE:
-			System.out.println(breakPauseMessage(time));
-			break;
-		case WORK_PAUSE:
-			System.out.println(workPauseMessage(time));
-			break;
-		case BREAK_FINISHED:
-			System.out.println(breakFinishedMessage());
-			break;
-		}
+	protected void pauseWork() {
+		System.out.println(workPauseMessage(time));
 	}
 
 	@Override
-	protected void update(int displayedTime) {
-		update(displayedTime, state);
+	protected void pauseBreak() {
+		System.out.println(breakPauseMessage(time));
 	}
 
+	@Override
+	protected void finishBreak() {
+		System.out.println(breakFinishedMessage());
+	}
+
+	@Override
+	protected void showBreak() {
+		System.out.println(breakMessage(time));
+	}
+
+	@Override
+	protected void showWorking() {
+		System.out.println(workingMessage(time));
+	}
+
+	@Override
+	protected void showIdle() {
+		System.out.println(idleMessage());
+	}
+
+	@Override
+	protected void updateTime(int displayedTime) {
+		updateState(state);
+	}
+	
+	@Override
+	protected void updateTimeAndState(int displayedTime, DisplayState state) {
+		updateState(state);
+	}
+
+	
 }

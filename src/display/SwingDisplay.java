@@ -6,42 +6,38 @@ import timer.Timer;
 public class SwingDisplay extends Display {
 
 	private final MainFrame mainFrame;
-	
+
 	public SwingDisplay() {
 		mainFrame = new MainFrame();
 	}
-	
-	@Override
-	protected void update(int displayedTime, DisplayState state) {
-		
-		mainFrame.setTime(displayedTime);
-		
-		switch (state) {
-		case IDLE:
-			mainFrame.showStartButton();
-			break;
-		case WORKING:
-			mainFrame.removeAll();
-			mainFrame.showPauseButton();
-			mainFrame.showBreakButton();
-			break;
-		case BREAK_FINISHED:
-			break;
-		case BREAK_PAUSE:
-			break;
-		case TAKING_BREAK:
-			break;
-		case WORK_PAUSE:
-			break;
-		default:
-			break;
 
-		}
+	@Override
+	protected void updateTime(int displayedTime) {
+		mainFrame.setTime(displayedTime);
 	}
 
-	@Override
-	protected void update(int displayedTime) {
-		mainFrame.setTime(displayedTime);
+	protected void pauseWork() {
+		mainFrame.showWorkPause();
+	}
+
+	protected void pauseBreak() {
+		mainFrame.showBreakPause();
+	}
+
+	protected void finishBreak() {
+		mainFrame.showBreakFinished();
+	}
+
+	protected void showBreak() {
+		mainFrame.showBreak();
+	}
+
+	protected void showWorking() {
+		mainFrame.showWorking();
+	}
+
+	protected void showIdle() {
+		mainFrame.showIdle();
 	}
 
 	public void setModel(Timer timer) {

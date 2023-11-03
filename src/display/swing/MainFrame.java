@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import display.ConsoleDisplay;
@@ -21,10 +22,10 @@ public class MainFrame extends JFrame {
 	private final JPanel mainPanel = new JPanel(true);
 	private final JPanel controlPanel = new JPanel();
 	private final JLabel clock = new JLabel();
-	
+
 	public static final Font BUTTON_FONT = new Font("Loto", Font.PLAIN, 40);
 	public static final Font CLOCK_FONT = new Font("Loto", Font.PLAIN, 50);
-	
+
 	public Timer timer;
 
 	public MainFrame() {
@@ -37,21 +38,18 @@ public class MainFrame extends JFrame {
 		mainPanel.add(clock);
 
 		controlPanel.setBackground(Color.red);
-		
-		
+
 		mainPanel.add(controlPanel);
-		
-		
+
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int x = screenSize.width - getWidth() - 400;
 		int y = 100;
 		setLocation(x, y);
-		
+
 		setLayout(new FlowLayout());
 
 		add(mainPanel);
 
-		
 		setSize(300, 300);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
@@ -65,7 +63,7 @@ public class MainFrame extends JFrame {
 		JButton startButton = new JButton("Start");
 		startButton.setFont(BUTTON_FONT);
 		startButton.addActionListener((e) -> timer.begin());
-		
+
 		controlPanel.add(startButton);
 	}
 
@@ -73,7 +71,7 @@ public class MainFrame extends JFrame {
 		JButton pauseButton = new JButton("| |");
 		pauseButton.setFont(BUTTON_FONT);
 		pauseButton.addActionListener((e) -> timer.pause());
-		
+
 		controlPanel.add(pauseButton);
 	}
 
@@ -81,15 +79,53 @@ public class MainFrame extends JFrame {
 		JButton breakButton = new JButton("Take break");
 		breakButton.setFont(BUTTON_FONT);
 		breakButton.addActionListener((e) -> timer.takeBreak());
-		
+
 		controlPanel.add(breakButton);
 	}
-	
-	@Override
-	public void removeAll() {
+
+	public void clearControls() {
 		controlPanel.removeAll();
 		controlPanel.invalidate();
 		controlPanel.revalidate();
 		controlPanel.repaint();
 	}
+
+	public void showWorking() {
+		SwingUtilities.invokeLater(() -> {
+			clearControls();
+			showPauseButton();
+			showBreakButton();
+		});
+	}
+
+	public void showIdle() {
+		SwingUtilities.invokeLater(() -> {
+			clearControls();
+			showStartButton();
+		});
+	}
+
+	public void showBreak() {
+		SwingUtilities.invokeLater(() -> {
+			clearControls();
+			showPauseButton();
+			showStartButton(/* lighter */);
+		});
+	}
+
+	public void showBreakFinished() {
+		SwingUtilities.invokeLater(() -> {
+			clearControls();
+			showStartButton(/* stronger */);
+		});
+	}
+
+	public void showBreakPause() {
+
+	}
+
+	public void showWorkPause() {
+
+	}
+
 }

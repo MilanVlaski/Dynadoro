@@ -18,27 +18,57 @@ public abstract class Display {
 	protected DisplayState state;
 	protected Timer timer;
 
-	public void setTime(int time) {
-		this.time = time;
-	}
-
-	public void setState(DisplayState state) {
-		this.state = state;
-	}
-
 	public void show(int displayedTime) {
 		this.time = displayedTime;
-		update(displayedTime);
+		updateTime(displayedTime);
 	}
 
 	public void show(int displayedTime, DisplayState state) {
 		this.state = state;
 		this.time = displayedTime;
-		update(displayedTime, state);
+		updateTimeAndState(displayedTime, state);
 	}
 
-	protected abstract void update(int displayedTime);
+	protected void updateTimeAndState(int displayedTime, DisplayState state) {
+		updateTime(displayedTime);
+		updateState(state);
+	}
 
-	protected abstract void update(int displayedTime, DisplayState state);
+	protected void updateState(DisplayState state) {
+		switch (state) {
+		case IDLE:
+			showIdle();
+			break;
+		case WORKING:
+			showWorking();
+			break;
+		case TAKING_BREAK:
+			showBreak();
+			break;
+		case BREAK_FINISHED:
+			finishBreak();
+			break;
+		case BREAK_PAUSE:
+			pauseBreak();
+			break;
+		case WORK_PAUSE:
+			pauseWork();
+			break;
+		}
+	}
+
+	protected abstract void updateTime(int displayedTime);
+
+	protected abstract void pauseWork();
+
+	protected abstract void pauseBreak();
+
+	protected abstract void finishBreak();
+
+	protected abstract void showBreak();
+
+	protected abstract void showWorking();
+
+	protected abstract void showIdle();
 
 }
