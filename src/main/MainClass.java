@@ -16,8 +16,8 @@ public class MainClass {
 		Clock clock = new SystemClock();
 		Counter counter = new ScheduledCounter();
 
-//		startSwingApplication(clock, counter);
-		startConsoleApplication(clock, counter);
+		startSwingApplication(clock, counter);
+//		startConsoleApplication(clock, counter);
 	}
 
 	private static void startSwingApplication(Clock clock, Counter counter) {

@@ -121,11 +121,27 @@ public class MainFrame extends JFrame {
 	}
 
 	public void showBreakPause() {
+		SwingUtilities.invokeLater(() -> {
+			clearControls();
+			showResumeButton();
+			showStartButton(/* lighter */);
+		});
+	}
 
+	private void showResumeButton() {
+		JButton pauseButton = new JButton(">");
+		pauseButton.setFont(BUTTON_FONT);
+		pauseButton.addActionListener((e) -> timer.resume());
+
+		controlPanel.add(pauseButton);
 	}
 
 	public void showWorkPause() {
-
+		SwingUtilities.invokeLater(() -> {
+			clearControls();
+			showResumeButton();
+			showBreakButton();
+		});
 	}
 
 }
