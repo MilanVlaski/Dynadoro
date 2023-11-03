@@ -1,18 +1,18 @@
 package display.swing;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Toolkit;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import javax.swing.border.EmptyBorder;
 
 import display.ConsoleDisplay;
 import timer.Timer;
@@ -31,26 +31,31 @@ public class MainFrame extends JFrame {
 	public MainFrame() {
 
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-		mainPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+		
+	    mainPanel.add(Box.createVerticalGlue());
 		mainPanel.setBackground(Color.red);
+		setBackground(Color.green);
 
 		clock.setFont(CLOCK_FONT);
-		mainPanel.add(clock);
+		JPanel clockPanel = new JPanel();
+		clockPanel.setBackground(Color.red);
+		clockPanel.add(clock);
+		mainPanel.add(clockPanel);
 
 		controlPanel.setBackground(Color.red);
 
 		mainPanel.add(controlPanel);
+	    mainPanel.add(Box.createVerticalGlue());
 
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int x = screenSize.width - getWidth() - 400;
 		int y = 100;
 		setLocation(x, y);
 
-		setLayout(new FlowLayout());
+		setLayout(new BorderLayout());
+		add(mainPanel, BorderLayout.CENTER);
 
-		add(mainPanel);
-
-		setSize(300, 300);
+		setSize(330, 200);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
