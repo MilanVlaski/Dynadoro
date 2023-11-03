@@ -19,7 +19,12 @@ import timer.Timer;
 public class MainFrame extends JFrame {
 
 	private final JPanel mainPanel = new JPanel(true);
+	private final JPanel controlPanel = new JPanel();
 	private final JLabel clock = new JLabel();
+	
+	public static final Font BUTTON_FONT = new Font("Loto", Font.PLAIN, 40);
+	public static final Font CLOCK_FONT = new Font("Loto", Font.PLAIN, 50);
+	
 	public Timer timer;
 
 	public MainFrame() {
@@ -28,10 +33,13 @@ public class MainFrame extends JFrame {
 		mainPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 		mainPanel.setBackground(Color.red);
 
-		Font font = new Font("Loto", Font.PLAIN, 50);
-		clock.setFont(font);
+		clock.setFont(CLOCK_FONT);
 		mainPanel.add(clock);
 
+		controlPanel.setBackground(Color.red);
+		
+		
+		mainPanel.add(controlPanel);
 		
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -44,7 +52,7 @@ public class MainFrame extends JFrame {
 		add(mainPanel);
 
 		
-		setSize(210, 210);
+		setSize(300, 300);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
@@ -54,21 +62,34 @@ public class MainFrame extends JFrame {
 	}
 
 	public void showStartButton() {
-		Font font1 = new Font("Loto", Font.PLAIN, 40);
 		JButton startButton = new JButton("Start");
-		startButton.setFont(font1);
+		startButton.setFont(BUTTON_FONT);
 		startButton.addActionListener((e) -> timer.begin());
 		
-		mainPanel.add(startButton);
+		controlPanel.add(startButton);
 	}
 
 	public void showPauseButton() {
-		// TODO Auto-generated method stub
+		JButton pauseButton = new JButton("| |");
+		pauseButton.setFont(BUTTON_FONT);
+		pauseButton.addActionListener((e) -> timer.pause());
 		
+		controlPanel.add(pauseButton);
 	}
 
 	public void showBreakButton() {
-		// TODO Auto-generated method stub
+		JButton breakButton = new JButton("Take break");
+		breakButton.setFont(BUTTON_FONT);
+		breakButton.addActionListener((e) -> timer.takeBreak());
 		
+		controlPanel.add(breakButton);
+	}
+	
+	@Override
+	public void removeAll() {
+		controlPanel.removeAll();
+		controlPanel.invalidate();
+		controlPanel.revalidate();
+		controlPanel.repaint();
 	}
 }

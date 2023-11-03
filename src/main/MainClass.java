@@ -3,30 +3,31 @@ package main;
 import java.util.Scanner;
 
 import display.ConsoleDisplay;
-import display.Display;
 import display.SwingDisplay;
 import timer.Clock;
 import timer.SystemClock;
 import timer.Timer;
-import timer.counter.ScheduledCounter;
 import timer.counter.Counter;
+import timer.counter.ScheduledCounter;
 
 public class MainClass {
 
 	public static void main(String[] args) {
 		Clock clock = new SystemClock();
-		SwingDisplay display = new SwingDisplay();
 		Counter counter = new ScheduledCounter();
 
-		startSwingApplication(clock, display, counter);
+//		startSwingApplication(clock, counter);
+		startConsoleApplication(clock, counter);
 	}
 
-	private static void startSwingApplication(Clock clock, SwingDisplay display, Counter counter) {
+	private static void startSwingApplication(Clock clock, Counter counter) {
+		SwingDisplay display = new SwingDisplay();
 		Timer timer = new Timer(clock, display, counter);
 		display.setModel(timer);
 	}
 
-	private static void startConsoleApplication(Clock clock, Display display, Counter counter) {
+	private static void startConsoleApplication(Clock clock,  Counter counter) {
+		ConsoleDisplay display = new ConsoleDisplay();
 		Timer timer = new Timer(clock, display, counter);
 		
 		try (Scanner scanner = new Scanner(System.in)) {

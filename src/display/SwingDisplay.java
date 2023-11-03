@@ -21,8 +21,9 @@ public class SwingDisplay extends Display {
 			mainFrame.showStartButton();
 			break;
 		case WORKING:
-//			mainFrame.showPauseButton();
-//			mainFrame.showBreakButton();
+			mainFrame.removeAll();
+			mainFrame.showPauseButton();
+			mainFrame.showBreakButton();
 			break;
 		case BREAK_FINISHED:
 			break;

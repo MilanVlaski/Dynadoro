@@ -24,6 +24,7 @@ FEATURE: Logging breaks and works. Also, logging how much time you
 ACTUALLY spent on a break, while the timer was 0.
 
 TODO:
+- maybe make console app and swing app have the same setup
 
 BUGFIX: When pausing while on break the timer correctly stops counting. But it
 incorrectly says Break over! when and displays 00:00.
