@@ -24,7 +24,7 @@ public class MainFrame extends JFrame {
 	private final JLabel clock = new JLabel();
 	private final JPanel clockPanel;
 
-	public static final Font BUTTON_FONT = new Font("Loto", Font.PLAIN, 40);
+	public static final Font BUTTON_FONT = new Font("Loto", Font.PLAIN, 30);
 	public static final Font CLOCK_FONT = new Font("Loto", Font.PLAIN, 50);
 
 	public Timer timer;
@@ -51,7 +51,7 @@ public class MainFrame extends JFrame {
 		setLayout(new BorderLayout());
 		add(mainPanel, BorderLayout.CENTER);
 
-		setSize(330, 200);
+		setSize(330, 270);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
@@ -69,6 +69,7 @@ public class MainFrame extends JFrame {
 	public void showStartButton() {
 		JButton startButton = new JButton("Start");
 		startButton.setFont(BUTTON_FONT);
+		startButton.setPreferredSize(new Dimension(120, 70));
 		startButton.addActionListener((e) -> timer.begin());
 
 		controlPanel.add(startButton);
@@ -77,6 +78,7 @@ public class MainFrame extends JFrame {
 	public void showPauseButton() {
 		JButton pauseButton = new JButton("| |");
 		pauseButton.setFont(BUTTON_FONT);
+		pauseButton.setPreferredSize(new Dimension(70, 70));
 		pauseButton.addActionListener((e) -> timer.pause());
 
 		controlPanel.add(pauseButton);
@@ -85,9 +87,19 @@ public class MainFrame extends JFrame {
 	public void showBreakButton() {
 		JButton breakButton = new JButton("Take break");
 		breakButton.setFont(BUTTON_FONT);
+		breakButton.setPreferredSize(new Dimension(200, 70));
 		breakButton.addActionListener((e) -> timer.takeBreak());
 
 		controlPanel.add(breakButton);
+	}
+
+	private void showResumeButton() {
+		JButton resumeButton = new JButton(">");
+		resumeButton.setFont(BUTTON_FONT);
+		resumeButton.setPreferredSize(new Dimension(70, 70));
+		resumeButton.addActionListener((e) -> timer.resume());
+
+		controlPanel.add(resumeButton);
 	}
 
 	public void clearControls() {
@@ -150,14 +162,6 @@ public class MainFrame extends JFrame {
 			showBreakButton();
 			paintBackground(new Color(134, 215, 197));
 		});
-	}
-
-	private void showResumeButton() {
-		JButton pauseButton = new JButton(">");
-		pauseButton.setFont(BUTTON_FONT);
-		pauseButton.addActionListener((e) -> timer.resume());
-
-		controlPanel.add(pauseButton);
 	}
 
 }
