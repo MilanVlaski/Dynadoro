@@ -52,12 +52,12 @@ public class TestTimer {
 	@InjectMocks
 	Timer timer;
 
-	Moment m;
+	Moment moment;
 
 	@BeforeEach
 	void setup() {
 		MockitoAnnotations.openMocks(this);
-		m = new Moment();
+		moment = new Moment();
 	}
 
 	@Test
@@ -70,7 +70,7 @@ public class TestTimer {
 	@Test
 	void shouldMeasureElapsedTime() {
 		when(mockClock.currentTimeSeconds())
-				.thenReturn(m.current(), m.after(1), m.after(1));
+				.thenReturn(moment.current(), moment.after(1), moment.after(1));
 
 		timer.begin();
 		// 1 second passes...
@@ -86,7 +86,7 @@ public class TestTimer {
 	@Test
 	void breakShouldTakeFiveTimesShorterThanWork() {
 		when(mockClock.currentTimeSeconds())
-				.thenReturn(m.current(), m.after(TWENTY_FIVE), m.current());
+				.thenReturn(moment.current(), moment.after(TWENTY_FIVE), moment.current());
 
 		timer.begin();
 		timer.takeBreak();
@@ -96,8 +96,8 @@ public class TestTimer {
 	@Test
 	void shouldStopCountingAfterBreakIsOver() {
 		when(mockClock.currentTimeSeconds())
-				.thenReturn(m.current(), m.after(TWENTY_FIVE),
-						m.after(999));
+				.thenReturn(moment.current(), moment.after(TWENTY_FIVE),
+						moment.after(999));
 
 		timer.begin();
 		timer.takeBreak();
@@ -139,7 +139,7 @@ public class TestTimer {
 	@Test
 	void timeShouldStopWhenPausing_WhileWorking() {
 		when(mockClock.currentTimeSeconds())
-				.thenReturn(m.current(), m.after(5), m.after(1));
+				.thenReturn(moment.current(), moment.after(5), moment.after(1));
 
 		timer.begin();
 		timer.pause();
@@ -150,7 +150,7 @@ public class TestTimer {
 	@Test
 	void shouldCountDown_WhileTakingBreak() {
 		when(mockClock.currentTimeSeconds())
-		.thenReturn(m.current(), m.after(TWENTY_FIVE), m.after(1));
+		.thenReturn(moment.current(), moment.after(TWENTY_FIVE), moment.after(1));
 		
 		timer.begin();
 		timer.takeBreak();
@@ -160,8 +160,8 @@ public class TestTimer {
 	@Test
 	void timeShouldStopWhenPausing_WhileOnBreak() {
 		when(mockClock.currentTimeSeconds())
-				.thenReturn(m.current(), m.after(TWENTY_FIVE), m.after(1),
-						m.current());
+				.thenReturn(moment.current(), moment.after(TWENTY_FIVE), moment.after(1),
+						moment.current());
 
 		timer.begin();
 		timer.takeBreak();
@@ -170,15 +170,10 @@ public class TestTimer {
 		assertEquals(BREAK_DURATION - 1, timer.displayedTime());
 	}
 
-	// I use hundreds here for time because when you start from 0, you get uncaught
-	// errors. The reason is that at runtime clock always returns time > 0,
-	// so if we were to use 0, that itself is not a problem, but it doesn't
-	// force us to actually compute the time properly, because using adding or
-	// subtracting with 0 does nothing (untested behavior).
 	@Test
 	void shouldResumeWork() {
 		when(mockClock.currentTimeSeconds())
-				.thenReturn(m.current(), m.after(5), m.after(1), m.current(), m.after(1));
+				.thenReturn(moment.current(), moment.after(5), moment.after(1), moment.current(), moment.after(1));
 
 		timer.begin();
 
@@ -193,8 +188,8 @@ public class TestTimer {
 	@Test
 	void shouldPauseAndResumeWorkTwice() {
 		when(mockClock.currentTimeSeconds())
-				.thenReturn(m.current(), m.after(5), m.after(1),
-						m.after(1), m.after(1), m.current(), m.after(1));
+				.thenReturn(moment.current(), moment.after(5), moment.after(1),
+						moment.after(1), moment.after(1), moment.current(), moment.after(1));
 
 		timer.begin();
 		timer.pause(); 
@@ -211,8 +206,8 @@ public class TestTimer {
 	@Test
 	void shouldResumeBreak() {
 		when(mockClock.currentTimeSeconds())
-				.thenReturn(m.current(), m.after(TWENTY_FIVE), m.after(1),
-						m.current(), m.current(), m.after(1));
+				.thenReturn(moment.current(), moment.after(TWENTY_FIVE), moment.after(1),
+						moment.current(), moment.current(), moment.after(1));
 
 		timer.begin();
 
@@ -229,8 +224,8 @@ public class TestTimer {
 	@Test
 	void shouldResumeBreakTwice() {
 		when(mockClock.currentTimeSeconds())
-				.thenReturn(m.current(), m.after(TWENTY_FIVE), m.after(1),
-						m.current(), m.after(1), m.after(1), m.after(1), m.after(1));
+				.thenReturn(moment.current(), moment.after(TWENTY_FIVE), moment.after(1),
+						moment.current(), moment.after(1), moment.after(1), moment.after(1), moment.after(1));
 
 		timer.begin();
 		timer.takeBreak();
@@ -253,8 +248,8 @@ public class TestTimer {
 	@Test
 	void shouldGoToBreak_AfterPausingWork() {
 		when(mockClock.currentTimeSeconds())
-				.thenReturn(m.current(), m.after(TWENTY_FIVE), m.after(123),
-						m.after(1));
+				.thenReturn(moment.current(), moment.after(TWENTY_FIVE), moment.after(123),
+						moment.after(1));
 
 		timer.begin();
 		timer.pause();
@@ -276,7 +271,7 @@ public class TestTimer {
 	@Test
 	void shouldResetTimer() {
 		when(mockClock.currentTimeSeconds())
-			.thenReturn(m.current(), m.after(5), m.after(1));
+			.thenReturn(moment.current(), moment.after(5), moment.after(1));
 		
 		timer.begin();
 		timer.reset();

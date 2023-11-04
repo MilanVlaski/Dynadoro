@@ -26,8 +26,24 @@ ACTUALLY spent on a break, while the timer was 0.
 TODO:
 - add a reset button
 - while break ticks down you could have a charging battery filling up (maybe in thirds,
-battery with 3 bars)
-- 
+battery with 3 bars
+LOGS:
+- Capturing the states of studying and breaking etc. (when state changes
+write data about that state in a file (state, hh:mm when started, day of week and date)
+If you just keep switching, state and it's start time is enough data to know everything.
+But if you exit the app, that needs to be captured.
+- We send a record object and then we check it.
+- Convert currentTime to date data
+
+2023-10-23,Monday,Study,09:00,10:30
+2023-10-23,Monday,Break,10:30,11:00
+2023-10-24,Tuesday,Study,09:15,10:45
+2023-10-24,Tuesday,Break,10:45,11:15
+
+- Within a day
+- Making images that are shown by date (Date + Day of the week)
+- + how many hours studying per day
+- hours studying per week
 
 BUGFIX: When pausing while on break the timer correctly stops counting. But it
 incorrectly says Break over! when and displays 00:00.
