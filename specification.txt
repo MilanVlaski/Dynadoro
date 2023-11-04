@@ -34,3 +34,22 @@ FIXED: It was because the counter is a little weirdo. Scheduled tasks can't be
 stopped, i had to add logic that prevents that. I don't understand the library fully...
 BUG: If you pause and resume before the original break interval, you get alarmed twice.
 FIXED: shutdowNow() does a full shutdown, so that works.
+
+COLORS:
+    Working: You might want to use a calming color like Green to signify productive work.
+     Green is often associated with growth and positive progress.
+
+    Taking Break: Use a contrasting color like Blue to indicate a shift in focus.
+     Blue is calming and can represent relaxation.
+
+    Idle: Consider using a neutral color like Gray for the idle state.
+     Gray can signify a state of inactivity or waiting.
+
+    Work Pause: A slightly lighter or desaturated shade of your Working color
+     can signify a temporary pause in work.
+
+    Break Pause: Similarly, use a lighter or desaturated shade of your Taking
+     Break color to signify a temporary pause during a break.
+
+    Break Finished: To signal the end of a break, you can use a brighter shade
+     or a transition back to the Working color to indicate the return to work.

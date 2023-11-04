@@ -22,6 +22,7 @@ public class MainFrame extends JFrame {
 	private final JPanel mainPanel = new JPanel(true);
 	private final JPanel controlPanel = new JPanel();
 	private final JLabel clock = new JLabel();
+	private final JPanel clockPanel;
 
 	public static final Font BUTTON_FONT = new Font("Loto", Font.PLAIN, 40);
 	public static final Font CLOCK_FONT = new Font("Loto", Font.PLAIN, 50);
@@ -31,21 +32,16 @@ public class MainFrame extends JFrame {
 	public MainFrame() {
 
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-		
-	    mainPanel.add(Box.createVerticalGlue());
-		mainPanel.setBackground(Color.red);
-		setBackground(Color.green);
+
+		mainPanel.add(Box.createVerticalGlue());
 
 		clock.setFont(CLOCK_FONT);
-		JPanel clockPanel = new JPanel();
-		clockPanel.setBackground(Color.red);
+		clockPanel = new JPanel();
 		clockPanel.add(clock);
 		mainPanel.add(clockPanel);
 
-		controlPanel.setBackground(Color.red);
-
 		mainPanel.add(controlPanel);
-	    mainPanel.add(Box.createVerticalGlue());
+		mainPanel.add(Box.createVerticalGlue());
 
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int x = screenSize.width - getWidth() - 400;
@@ -58,6 +54,12 @@ public class MainFrame extends JFrame {
 		setSize(330, 200);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
+	}
+
+	private void paintBackground(Color color) {
+		mainPanel.setBackground(color);
+		clockPanel.setBackground(color);
+		controlPanel.setBackground(color);
 	}
 
 	public void setTime(int displayedTime) {
@@ -100,6 +102,8 @@ public class MainFrame extends JFrame {
 			clearControls();
 			showPauseButton();
 			showBreakButton();
+			paintBackground(new Color(126, 223, 202));
+			clock.setForeground(new Color(13, 22, 20));
 		});
 	}
 
@@ -107,6 +111,7 @@ public class MainFrame extends JFrame {
 		SwingUtilities.invokeLater(() -> {
 			clearControls();
 			showStartButton();
+			paintBackground(new Color(170, 195, 220));
 		});
 	}
 
@@ -115,6 +120,8 @@ public class MainFrame extends JFrame {
 			clearControls();
 			showPauseButton();
 			showStartButton(/* lighter */);
+			paintBackground(new Color(231, 176, 243));
+			clock.setForeground(new Color(23, 18, 24));
 		});
 	}
 
@@ -122,6 +129,8 @@ public class MainFrame extends JFrame {
 		SwingUtilities.invokeLater(() -> {
 			clearControls();
 			showStartButton(/* stronger */);
+			paintBackground(new Color(255, 176, 243));
+			clock.setForeground(new Color(25, 18, 24));
 		});
 	}
 
@@ -130,6 +139,16 @@ public class MainFrame extends JFrame {
 			clearControls();
 			showResumeButton();
 			showStartButton(/* lighter */);
+			paintBackground(new Color(224, 188, 231));
+		});
+	}
+
+	public void showWorkPause() {
+		SwingUtilities.invokeLater(() -> {
+			clearControls();
+			showResumeButton();
+			showBreakButton();
+			paintBackground(new Color(134, 215, 197));
 		});
 	}
 
@@ -139,14 +158,6 @@ public class MainFrame extends JFrame {
 		pauseButton.addActionListener((e) -> timer.resume());
 
 		controlPanel.add(pauseButton);
-	}
-
-	public void showWorkPause() {
-		SwingUtilities.invokeLater(() -> {
-			clearControls();
-			showResumeButton();
-			showBreakButton();
-		});
 	}
 
 }
