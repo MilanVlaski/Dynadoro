@@ -136,8 +136,8 @@ public class MainFrame extends JFrame {
 			clearControls();
 			showPauseButton();
 			showStartButton(/* lighter */);
-			paintBackground(new Color(231, 176, 243));
-			clock.setForeground(new Color(23, 18, 24));
+			paintBackground(new Color(207, 176, 243));
+			clock.setForeground(new Color(21, 18, 23));
 		});
 	}
 
@@ -145,8 +145,8 @@ public class MainFrame extends JFrame {
 		SwingUtilities.invokeLater(() -> {
 			clearControls();
 			showStartButton(/* stronger */);
-			paintBackground(new Color(255, 176, 243));
-			clock.setForeground(new Color(25, 18, 24));
+			paintBackground(new Color(217, 176, 243));
+			clock.setForeground(new Color(25, 18, 23));
 		});
 	}
 
@@ -155,7 +155,7 @@ public class MainFrame extends JFrame {
 			clearControls();
 			showResumeButton();
 			showStartButton(/* lighter */);
-			paintBackground(new Color(224, 188, 231));
+			paintBackground(new Color(207, 182, 237));
 		});
 	}
 
