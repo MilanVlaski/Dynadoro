@@ -27,6 +27,7 @@ TODO:
 - add a reset button
 - while break ticks down you could have a charging battery filling up (maybe in thirds,
 battery with 3 bars
+- refactor the gui code (MainFrame)
 LOGS:
 - Capturing the states of studying and breaking etc. (when state changes
 write data about that state in a file (state, hh:mm when started, day of week and date)

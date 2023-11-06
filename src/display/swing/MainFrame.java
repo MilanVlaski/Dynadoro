@@ -70,6 +70,7 @@ public class MainFrame extends JFrame {
 		JButton startButton = new JButton("Start");
 		startButton.setFont(BUTTON_FONT);
 		startButton.setPreferredSize(new Dimension(120, 70));
+		startButton.setFocusPainted(false);
 		startButton.addActionListener((e) -> timer.begin());
 
 		controlPanel.add(startButton);
@@ -79,6 +80,7 @@ public class MainFrame extends JFrame {
 		JButton pauseButton = new JButton("| |");
 		pauseButton.setFont(BUTTON_FONT);
 		pauseButton.setPreferredSize(new Dimension(70, 70));
+		pauseButton.setFocusPainted(false);
 		pauseButton.addActionListener((e) -> timer.pause());
 
 		controlPanel.add(pauseButton);
@@ -88,6 +90,7 @@ public class MainFrame extends JFrame {
 		JButton breakButton = new JButton("Take break");
 		breakButton.setFont(BUTTON_FONT);
 		breakButton.setPreferredSize(new Dimension(200, 70));
+		breakButton.setFocusPainted(false);
 		breakButton.addActionListener((e) -> timer.takeBreak());
 
 		controlPanel.add(breakButton);
@@ -97,6 +100,7 @@ public class MainFrame extends JFrame {
 		JButton resumeButton = new JButton(">");
 		resumeButton.setFont(BUTTON_FONT);
 		resumeButton.setPreferredSize(new Dimension(70, 70));
+		resumeButton.setFocusPainted(false);
 		resumeButton.addActionListener((e) -> timer.resume());
 
 		controlPanel.add(resumeButton);
