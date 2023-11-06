@@ -12,6 +12,7 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.stubbing.OngoingStubbing;
 
 import display.Display;
+import record.UsageRecord;
 import timer.Clock;
 import timer.Timer;
 import timer.counter.Counter;
@@ -31,6 +32,7 @@ import timer.state.TimerState.IllegalOperationException;
 public class TestTimer {
 
 	public static class Moment {
+		// number is random, serves currentTime() returns a random number
 		private int currentTime = 36;
 
 		private int after(int seconds) {
@@ -265,7 +267,7 @@ public class TestTimer {
 //		timer.takeBreak();
 //		timer.pause();
 //		
-//		assertThrows(IllegalOperationException.class, () -> timer.takeBreak());
+//		assertThrows(IllegalOperationrxception.class, () -> timer.takeBreak());
 //	}
 
 	@Test
@@ -278,4 +280,12 @@ public class TestTimer {
 		
 		assertEquals(0, timer.displayedTime());
 	}
+
+	@Test
+	void shouldStartRecording() {
+		UsageRecord record = new UsageRecord();
+		timer.startRecording(record);
+		assertEquals("2023-10-23, Monday, Idle, 09:00, -'\n", record.toString());
+	}
+	
 }

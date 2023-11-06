@@ -2,6 +2,7 @@ package timer;
 
 import display.Display;
 import display.Display.DisplayState;
+import record.UsageRecord;
 import sound.SoundPlayer;
 import timer.counter.Counter;
 import timer.state.Idle;
@@ -20,9 +21,8 @@ public class Timer {
 		this.display = display;
 		this.counter = counter;
 		
+		// this can be moved to an initialize method
 		counter.setTimer(this);
-		// This doesn't interfere with mocks, because initialization happens
-		// outside of the test cases in the @BeforeEach.
 		state = new Idle(this, clock.currentTimeSeconds());
 	}
 
@@ -70,6 +70,16 @@ public class Timer {
 
 	public void reset() {
 		changeState(new Idle(this, clock.currentTimeSeconds()));
+	}
+
+	public void startRecording(UsageRecord record) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void stopRecording() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

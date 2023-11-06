@@ -37,7 +37,6 @@ public class MainFrame extends JFrame {
 	public MainFrame() {
 
 		mainPanelSetup();
-
 		locationSetup();
 
 		setSize(310, 290);
@@ -45,6 +44,7 @@ public class MainFrame extends JFrame {
 		setLayout(new BorderLayout());
 		add(MAIN_PANEL, BorderLayout.CENTER);
 
+		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
@@ -72,15 +72,6 @@ public class MainFrame extends JFrame {
 		int x = screenSize.width - getWidth() - 400;
 		int y = 100;
 		setLocation(x, y);
-	}
-
-	private void paintBackground(Color color) {
-		MAIN_PANEL.setBackground(color);
-		CLOCK_PANEL.setBackground(color);
-		CONTROL_PANEL.setBackground(color);
-		CLOCK.setForeground(new Color(color.getRed() / 10,
-				color.getGreen() / 10,
-				color.getBlue() / 10));
 	}
 
 	public void showStartButton() {
@@ -158,7 +149,17 @@ public class MainFrame extends JFrame {
 		});
 	}
 
-	private void showButton(String text, int width, int height, ActionListener actionListener) {
+	private void paintBackground(Color color) {
+		MAIN_PANEL.setBackground(color);
+		CLOCK_PANEL.setBackground(color);
+		CONTROL_PANEL.setBackground(color);
+		CLOCK.setForeground(new Color(color.getRed() / 10,
+				color.getGreen() / 10,
+				color.getBlue() / 10));
+	}
+
+	private void showButton(String text, int width, int height,
+							ActionListener actionListener) {
 		CONTROL_PANEL.add(new CoolButton(text, width, height, actionListener));
 	}
 
