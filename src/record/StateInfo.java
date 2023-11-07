@@ -8,19 +8,17 @@ import java.util.Date;
 public class StateInfo {
 
 	private final String name;
-	private final long startTime;
-	private int endTime;
+	private final Date start;
 
-	private Date date;
+	private Date end;
 
-	public StateInfo(String name, long startTime) {
+	public StateInfo(String name, int startTime) {
 		this.name = name;
-		this.startTime = startTime;
+		start = new Date(secondsToMillis(startTime));
+	}
 
-		long time = startTime * 1000;
-		date = new Date(time);
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(date);
+	private long secondsToMillis(int time) {
+		return (long) time * 1000;
 	}
 
 	@Override
@@ -28,9 +26,7 @@ public class StateInfo {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd, EEEE");
 		DateFormat hourFormat = new SimpleDateFormat("HH:mm");
 
-		String endTimeString = endTime == 0 ? "unknown" : hourFormat.format(new Date(endTime));
-
-		return dateFormat.format(date) + ", " + name + ", "
-				+ hourFormat.format(date) + ", " + endTimeString;
+		return dateFormat.format(start) + ", " + name + ", "
+				+ hourFormat.format(start) + ", " + "unknown";
 	}
 }

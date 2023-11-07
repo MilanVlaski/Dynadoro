@@ -46,14 +46,16 @@ class TestRecord {
 
 	@Test
 	void stateShouldProvideStateInfoObject() {
-		Working working = new Working(timer, 1699368029);
+		Moment m = new Moment(1699368029);
+		Working working = new Working(timer, m.current());
 		StateInfo stateInfo = working.info();
 		assertEquals("2023-11-07, Tuesday, Working, 15:40, unknown", stateInfo.toString());
 	}
 	
 	@Test
 	void stateShouldProvideStateInfoObject1() {
-		Working working = new Working(timer, 1699368029 + 60*5);
+		Moment m = new Moment(1699368029);
+		Working working = new Working(timer, m.after(60 * 5));
 		StateInfo stateInfo = working.info();
 		assertEquals("2023-11-07, Tuesday, Working, 15:45, unknown", stateInfo.toString());
 	}
