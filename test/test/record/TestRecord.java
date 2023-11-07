@@ -83,7 +83,7 @@ class TestRecord {
 		timer.begin();
 		timer.reset();
 
-		assertEquals("2023-11-07, Tuesday, Working, 15:40, 14:05\n", record.toString());
+		assertEquals("2023-11-07, Tuesday, Working, 15:40, 15:45\n", record.toString());
 	}
 
 }

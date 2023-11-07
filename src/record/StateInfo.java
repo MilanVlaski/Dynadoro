@@ -2,7 +2,6 @@ package record;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 public class StateInfo {
@@ -14,16 +13,12 @@ public class StateInfo {
 
 	public StateInfo(String name, int startTime) {
 		this.name = name;
-		start = new Date(secondsToMillis(startTime));
+		start = secondsToDate(startTime);
 	}
 
-	private long secondsToMillis(int time) {
-		return (long) time * 1000;
+	private Date secondsToDate(int time) {
+		return new Date((long) time * 1000);
 	}
-	
-//	public boolean hasEnded() {
-//		return end != null;
-//	}
 
 	@Override
 	public String toString() {
@@ -31,6 +26,14 @@ public class StateInfo {
 		DateFormat hourFormat = new SimpleDateFormat("HH:mm");
 
 		return dateFormat.format(start) + ", " + name + ", "
-				+ hourFormat.format(start) + ", " + "unknown";
+				+ hourFormat.format(start) + ", " + endTimeString(hourFormat);
+	}
+
+	private String endTimeString(DateFormat hourFormat) {
+		return end != null ? hourFormat.format(end) : "unknown";
+	}
+
+	public void finish(int endTime) {
+		end = secondsToDate(endTime);
 	}
 }

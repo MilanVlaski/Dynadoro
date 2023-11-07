@@ -41,8 +41,7 @@ public class Idle extends TimerState {
 
 	@Override
 	public void record(UsageRecord record) {
-		// TODO Auto-generated method stub
-		
+		record.finishPrevious(startTime);
 	}
 
 }
