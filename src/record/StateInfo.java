@@ -8,26 +8,29 @@ import java.util.Date;
 public class StateInfo {
 
 	private final String name;
-	private final int startTime;
-	private int year;
+	private final long startTime;
+	private int endTime;
 
-	public StateInfo(String name, int startTime) {
+	private Date date;
+
+	public StateInfo(String name, long startTime) {
 		this.name = name;
 		this.startTime = startTime;
-		
-		long time = startTime;
-		Date date = new Date(time * 1000);
+
+		long time = startTime * 1000;
+		date = new Date(time);
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
-		
-		year = calendar.get(Calendar.YEAR);
-		int month = calendar.get(Calendar.MONTH);
-		int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-		int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
 	}
 
 	@Override
 	public String toString() {
-		return year + "-11-07, Tuesday, " + name + ", 14:00, unknown";
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd, EEEE");
+		DateFormat hourFormat = new SimpleDateFormat("HH:mm");
+
+		String endTimeString = endTime == 0 ? "unknown" : hourFormat.format(new Date(endTime));
+
+		return dateFormat.format(date) + ", " + name + ", "
+				+ hourFormat.format(date) + ", " + endTimeString;
 	}
 }

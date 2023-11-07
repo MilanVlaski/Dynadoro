@@ -46,18 +46,16 @@ class TestRecord {
 
 	@Test
 	void stateShouldProvideStateInfoObject() {
-		Working working = new Working(timer, 1699365866);
-		
+		Working working = new Working(timer, 1699368029);
 		StateInfo stateInfo = working.info();
-		assertEquals("2023-11-07, Tuesday, Working, 14:00, unknown", stateInfo.toString());
+		assertEquals("2023-11-07, Tuesday, Working, 15:40, unknown", stateInfo.toString());
 	}
 	
 	@Test
 	void stateShouldProvideStateInfoObject1() {
-		Working working = new Working(timer, 1699365866);
-		System.out.println(System.currentTimeMillis());
+		Working working = new Working(timer, 1699368029 + 60*5);
 		StateInfo stateInfo = working.info();
-		assertEquals("2023-11-07, Tuesday, Working, 14:05, unknown", stateInfo.toString());
+		assertEquals("2023-11-07, Tuesday, Working, 15:45, unknown", stateInfo.toString());
 	}
 
 	// TODO begin then break/pause.
