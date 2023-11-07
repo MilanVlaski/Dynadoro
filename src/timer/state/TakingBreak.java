@@ -1,9 +1,10 @@
 package timer.state;
 
 import display.Display.DisplayState;
+import record.StateInfo;
 import timer.Timer;
 
-public class TakingBreak extends TimerState{
+public class TakingBreak extends TimerState {
 
 	private final int breakDuration;
 	private static final int BREAK_FACTOR = 5;
@@ -11,11 +12,11 @@ public class TakingBreak extends TimerState{
 	public TakingBreak(Timer context, int now, int workDuration) {
 		this(workDuration / BREAK_FACTOR, context, now);
 	}
-	
+
 	private TakingBreak(int breakDuration, Timer context, int now) {
 		super(context, now);
 		this.breakDuration = breakDuration;
-		
+
 		display.show(breakDuration, DisplayState.TAKING_BREAK);
 		counter.count(breakDuration);
 	}
@@ -23,7 +24,7 @@ public class TakingBreak extends TimerState{
 	@Override
 	public int displayedTime(int now) {
 		int remainingBreakDuration = breakDuration - (now - startTime);
-		
+
 		if (remainingBreakDuration > 0)
 			return remainingBreakDuration;
 		else
@@ -49,6 +50,12 @@ public class TakingBreak extends TimerState{
 	public void resume(int now, int pauseTime) {
 		int breakDuration = displayedTime(pauseTime);
 		context.changeState(new TakingBreak(breakDuration, context, now));
+	}
+
+	@Override
+	public StateInfo info() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

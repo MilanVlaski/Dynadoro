@@ -1,6 +1,10 @@
 package timer.state;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import display.Display.DisplayState;
+import record.StateInfo;
 import timer.Timer;
 
 public class Working extends TimerState {
@@ -44,6 +48,11 @@ public class Working extends TimerState {
 	public void resume(int now, int pauseTime) {
 		int startFrom = displayedTime(pauseTime);
 		context.changeState(new Working(context, now, startFrom));
+	}
+
+	@Override
+	public StateInfo info() {
+		return new StateInfo("Working", startTime);
 	}
 
 }

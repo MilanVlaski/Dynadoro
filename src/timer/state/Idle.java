@@ -1,6 +1,7 @@
 package timer.state;
 
 import display.Display.DisplayState;
+import record.StateInfo;
 import timer.Timer;
 
 public class Idle extends TimerState {
@@ -35,4 +36,11 @@ public class Idle extends TimerState {
 	public void resume(int now, int pauseDuration) {
 		throw new IllegalOperationException("Can't resume while idle.");
 	}
+
+	@Override
+	public StateInfo info() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

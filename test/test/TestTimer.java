@@ -32,14 +32,22 @@ import timer.state.TimerState.IllegalOperationException;
 public class TestTimer {
 
 	public static class Moment {
-		// number is random, serves currentTime() returns a random number
+		// number is randomly picked, because currentTime() returns a random number
 		private int currentTime = 36;
 
-		private int after(int seconds) {
+		public Moment() {
+			
+		}
+		
+		public Moment(int currentTime) {
+			this.currentTime = currentTime;
+		}
+
+		public int after(int seconds) {
 			return currentTime += seconds;
 		}
 
-		private int current() {
+		public int current() {
 			return currentTime;
 		}
 	}
@@ -267,7 +275,7 @@ public class TestTimer {
 //		timer.takeBreak();
 //		timer.pause();
 //		
-//		assertThrows(IllegalOperationrxception.class, () -> timer.takeBreak());
+//		assertThrows(IllegalOperationexception.class, () -> timer.takeBreak());
 //	}
 
 	@Test
@@ -281,11 +289,4 @@ public class TestTimer {
 		assertEquals(0, timer.displayedTime());
 	}
 
-	@Test
-	void shouldStartRecording() {
-		UsageRecord record = new UsageRecord();
-		timer.startRecording(record);
-		assertEquals("2023-10-23, Monday, Idle, 09:00, -'\n", record.toString());
-	}
-	
 }

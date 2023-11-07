@@ -1,6 +1,7 @@
 package timer.state;
 
 import display.Display.DisplayState;
+import record.StateInfo;
 import timer.Timer;
 
 public class Pause extends TimerState {
@@ -47,6 +48,12 @@ public class Pause extends TimerState {
 	@Override
 	public void resume(int now, int pauseTime) {
 		previousState.resume(now, startTime);
+	}
+
+	@Override
+	public StateInfo info() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

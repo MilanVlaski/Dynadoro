@@ -15,12 +15,13 @@ public class Timer {
 	private final Counter counter;
 
 	private TimerState state;
+	private UsageRecord record;
 
 	public Timer(Clock clock, Display display, Counter counter) {
 		this.clock = clock;
 		this.display = display;
 		this.counter = counter;
-		
+
 		// this can be moved to an initialize method
 		counter.setTimer(this);
 		state = new Idle(this, clock.currentTimeSeconds());
@@ -42,20 +43,19 @@ public class Timer {
 		state.takeBreak(clock.currentTimeSeconds());
 	}
 
-	public void changeState(TimerState newState) {
-		state = newState;
+	public void reset() {
+		changeState(new Idle(this, clock.currentTimeSeconds()));
 	}
 
-	public Display getDisplay() {
-		return display;
+	public void changeState(TimerState newState) {
+		if(record != null)
+			record.capture(state.info());
+		
+		this.state = newState;
 	}
 
 	public void showTime() {
 		display.show(displayedTime());
-	}
-
-	public Counter getCounter() {
-		return counter;
 	}
 
 	public void resume() {
@@ -68,18 +68,16 @@ public class Timer {
 		display.show(0, DisplayState.BREAK_FINISHED);
 	}
 
-	public void reset() {
-		changeState(new Idle(this, clock.currentTimeSeconds()));
-	}
-
 	public void startRecording(UsageRecord record) {
-		// TODO Auto-generated method stub
-		
+		this.record = record;
 	}
 
-	public void stopRecording() {
-		// TODO Auto-generated method stub
-		
+	public Display getDisplay() {
+		return display;
+	}
+
+	public Counter getCounter() {
+		return counter;
 	}
 
 }

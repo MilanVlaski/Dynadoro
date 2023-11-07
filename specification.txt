@@ -32,6 +32,7 @@ battery with 3 bars
 - consider testing the logging of tests with calling timer.changeState(new Working()) ...
 
 LOGS:
+- STATE only needs to be written if its finished (that means it always has an end time)
 - Capturing the states of studying and breaking etc. (when state changes
 write data about that state in a file (state, hh:mm when started, day of week and date)
 If you just keep switching, state and it's start time is enough data to know everything.
