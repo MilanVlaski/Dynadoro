@@ -48,9 +48,9 @@ public class Timer {
 	}
 
 	public void changeState(TimerState newState) {
-		if(record != null)
-			record.capture(state.info());
-		
+		if (record != null)
+			newState.info(record);
+
 		this.state = newState;
 	}
 

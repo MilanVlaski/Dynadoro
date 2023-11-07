@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 
 import display.Display.DisplayState;
 import record.StateInfo;
+import record.UsageRecord;
 import timer.Timer;
 
 public class Working extends TimerState {
@@ -51,8 +52,9 @@ public class Working extends TimerState {
 	}
 
 	@Override
-	public StateInfo info() {
-		return new StateInfo("Working", startTime);
+	public void info(UsageRecord record) {
+		record.capture(new StateInfo("Working", startTime));
 	}
+
 
 }

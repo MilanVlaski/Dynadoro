@@ -2,6 +2,7 @@ package timer.state;
 
 import display.Display;
 import record.StateInfo;
+import record.UsageRecord;
 import timer.Timer;
 import timer.counter.Counter;
 
@@ -26,7 +27,7 @@ public abstract class TimerState {
 	public abstract void takeBreak(int now);
 	public abstract void pause(int now);
 	public abstract void resume(int now, int pauseTime);
-	public abstract StateInfo info();
+	public abstract void info(UsageRecord record);
 
 	public static class IllegalOperationException extends RuntimeException {
 

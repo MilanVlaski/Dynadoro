@@ -1,15 +1,16 @@
 package record;
 
-import timer.state.TimerState;
-
 public class UsageRecord {
-
+	
+	private StateInfo stateInfo;
 
 	@Override
 	public String toString() {
-		return "";
+		return stateInfo != null ? stateInfo.toString() + "\n" : "";
 	}
 
 	public void capture(StateInfo stateInfo) {
+		this.stateInfo = stateInfo;
 	}
 }
+	

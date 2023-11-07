@@ -33,9 +33,12 @@ class TestRecord {
 	@InjectMocks
 	Timer timer;
 
+	Moment moment;
+
 	@BeforeEach
 	void setup() {
 		MockitoAnnotations.openMocks(this);
+		moment = new Moment(1699368029);
 	}
 
 	@Test
@@ -46,48 +49,42 @@ class TestRecord {
 
 	@Test
 	void stateShouldProvideStateInfoObject() {
-		Moment m = new Moment(1699368029);
-		Working working = new Working(timer, m.current());
-		StateInfo stateInfo = working.info();
+		StateInfo stateInfo = new StateInfo("Working", moment.current());
 		assertEquals("2023-11-07, Tuesday, Working, 15:40, unknown", stateInfo.toString());
 	}
-	
+
 	@Test
 	void stateShouldProvideStateInfoObject1() {
-		Moment m = new Moment(1699368029);
-		Working working = new Working(timer, m.after(60 * 5));
-		StateInfo stateInfo = working.info();
+		StateInfo stateInfo = new StateInfo("Working", moment.after(60 * 5));
 		assertEquals("2023-11-07, Tuesday, Working, 15:45, unknown", stateInfo.toString());
 	}
 
-	// TODO begin then break/pause.
-//	@Test
-//	void shouldRecordWorking_WhileWorking() {
-//		Moment m = new Moment(1700);
-//		when(mockClock.currentTimeSeconds())
-//				.thenReturn(m.current());
-//
-//		UsageRecord record = new UsageRecord();
-//		timer.startRecording(record);
-//
-//		timer.begin();
-//
-//		assertEquals("2023-11-07, Tuesday, Working, 14:00, unknown\n", record.toString());
-//	}
+	// TODO begin, then break/pause.
+	@Test
+	void shouldRecordWorking_WhileWorking() {
+		when(mockClock.currentTimeSeconds()).thenReturn(moment.current());
 
-//	@Test
-//	void shouldRecordWorking_FiveMinutes() {
-//		Moment m = new Moment(1700);
-//		when(mockClock.currentTimeSeconds())
-//				.thenReturn(m.current(), m.after(5 * 60));
-//
-//		UsageRecord record = new UsageRecord();
-//		timer.startRecording(record);
-//
-//		timer.begin();
-//		timer.reset();
-//
-//		assertEquals("2023-11-07, Tuesday, Working, 14:00, 14:05\n", record.toString());
-//	}
+		UsageRecord record = new UsageRecord();
+		timer.startRecording(record);
+
+		timer.begin();
+
+		assertEquals("2023-11-07, Tuesday, Working, 15:40, unknown\n", record.toString());
+	}
+
+	@Test
+	void shouldRecordWorking_FiveMinutes() {
+		Moment m = new Moment(1700);
+		when(mockClock.currentTimeSeconds())
+				.thenReturn(m.current(), m.after(5 * 60));
+
+		UsageRecord record = new UsageRecord();
+		timer.startRecording(record);
+
+		timer.begin();
+		timer.reset();
+
+		assertEquals("2023-11-07, Tuesday, Working, 14:00, 14:05\n", record.toString());
+	}
 
 }

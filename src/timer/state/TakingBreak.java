@@ -2,6 +2,7 @@ package timer.state;
 
 import display.Display.DisplayState;
 import record.StateInfo;
+import record.UsageRecord;
 import timer.Timer;
 
 public class TakingBreak extends TimerState {
@@ -53,9 +54,10 @@ public class TakingBreak extends TimerState {
 	}
 
 	@Override
-	public StateInfo info() {
+	public void info(UsageRecord record) {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
+
 
 }

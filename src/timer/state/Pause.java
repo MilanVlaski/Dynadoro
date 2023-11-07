@@ -2,6 +2,7 @@ package timer.state;
 
 import display.Display.DisplayState;
 import record.StateInfo;
+import record.UsageRecord;
 import timer.Timer;
 
 public class Pause extends TimerState {
@@ -51,9 +52,9 @@ public class Pause extends TimerState {
 	}
 
 	@Override
-	public StateInfo info() {
+	public void info(UsageRecord record) {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 }
