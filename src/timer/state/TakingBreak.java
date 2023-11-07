@@ -55,8 +55,7 @@ public class TakingBreak extends TimerState {
 
 	@Override
 	public void record(UsageRecord record) {
-		// TODO Auto-generated method stub
-		
+		record.capture(new StateInfo("Break", startTime));
 	}
 
 

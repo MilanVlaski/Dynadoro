@@ -18,11 +18,14 @@ public class UsageRecord {
 	}
 
 	public void capture(StateInfo stateInfo) {
+		finishPrevious(stateInfo.getStartTime());
 		states.add(stateInfo);
 	}
 
 	public void finishPrevious(int endTime) {
-		StateInfo latestState = states.get(states.size() - 1);
-		latestState.finish(endTime);
+		if (!states.isEmpty()) {
+			StateInfo latestState = states.get(states.size() - 1);
+			latestState.finish(endTime);
+		}
 	}
 }

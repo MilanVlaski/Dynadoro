@@ -2,6 +2,7 @@ package test.record;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
+import static test.TestTimer.TWENTY_FIVE;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -34,11 +35,14 @@ class TestRecord {
 	Timer timer;
 
 	Moment moment;
+	UsageRecord record;
 
 	@BeforeEach
 	void setup() {
 		MockitoAnnotations.openMocks(this);
 		moment = new Moment(1699368029);
+		record = new UsageRecord();
+		timer.startRecording(record);
 	}
 
 	@Test
@@ -64,9 +68,6 @@ class TestRecord {
 	void shouldRecordWorking_WhileWorking() {
 		when(mockClock.currentTimeSeconds()).thenReturn(moment.current());
 
-		UsageRecord record = new UsageRecord();
-		timer.startRecording(record);
-
 		timer.begin();
 
 		assertEquals("2023-11-07, Tuesday, Working, 15:40, unknown\n", record.toString());
@@ -77,13 +78,22 @@ class TestRecord {
 		when(mockClock.currentTimeSeconds())
 				.thenReturn(moment.current(), moment.after(5 * 60));
 
-		UsageRecord record = new UsageRecord();
-		timer.startRecording(record);
-
 		timer.begin();
 		timer.reset();
 
 		assertEquals("2023-11-07, Tuesday, Working, 15:40, 15:45\n", record.toString());
+	}
+
+	@Test
+	void shouldRecordWorking_TwentyFive_ThenTakingBreakFive() {
+		when(mockClock.currentTimeSeconds())
+				.thenReturn(moment.current(), moment.after(TWENTY_FIVE * 60));
+
+		timer.begin();
+		timer.takeBreak();
+
+		assertEquals("2023-11-07, Tuesday, Working, 15:40, 16:05\n"
+				+ "2023-11-07, Tuesday, Break, 16:05, unknown\n", record.toString());
 	}
 
 }
