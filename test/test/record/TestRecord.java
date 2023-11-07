@@ -74,9 +74,8 @@ class TestRecord {
 
 	@Test
 	void shouldRecordWorking_FiveMinutes() {
-		Moment m = new Moment(1700);
 		when(mockClock.currentTimeSeconds())
-				.thenReturn(m.current(), m.after(5 * 60));
+				.thenReturn(moment.current(), moment.after(5 * 60));
 
 		UsageRecord record = new UsageRecord();
 		timer.startRecording(record);
@@ -84,7 +83,7 @@ class TestRecord {
 		timer.begin();
 		timer.reset();
 
-		assertEquals("2023-11-07, Tuesday, Working, 14:00, 14:05\n", record.toString());
+		assertEquals("2023-11-07, Tuesday, Working, 15:40, 14:05\n", record.toString());
 	}
 
 }

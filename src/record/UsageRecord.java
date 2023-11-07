@@ -1,16 +1,23 @@
 package record;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UsageRecord {
-	
-	private StateInfo stateInfo;
+
+	private List<StateInfo> states = new ArrayList<>();
 
 	@Override
 	public String toString() {
-		return stateInfo != null ? stateInfo.toString() + "\n" : "";
+		String result = "";
+
+		for (StateInfo stateInfo : states)
+			result += stateInfo.toString() + "\n";
+
+		return result;
 	}
 
 	public void capture(StateInfo stateInfo) {
-		this.stateInfo = stateInfo;
+		states.add(stateInfo);
 	}
 }
-	
