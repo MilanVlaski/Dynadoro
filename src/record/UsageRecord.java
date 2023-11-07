@@ -18,6 +18,7 @@ public class UsageRecord {
 	}
 
 	public void capture(StateInfo stateInfo) {
+		// TODO fix temporal coupling
 		finishPrevious(stateInfo.getStartTime());
 		states.add(stateInfo);
 	}

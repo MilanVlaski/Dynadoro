@@ -96,4 +96,32 @@ class TestRecord {
 				+ "2023-11-07, Tuesday, Break, 16:05, unknown\n", record.toString());
 	}
 
+	@Test
+	void shouldRecordWorkAndThenBreak() {
+		when(mockClock.currentTimeSeconds())
+				.thenReturn(moment.current(), moment.after(TWENTY_FIVE * 60),
+							moment.after(5 * 60));
+
+		timer.begin();
+		timer.takeBreak();
+		timer.reset();
+
+		assertEquals("2023-11-07, Tuesday, Working, 15:40, 16:05\n"
+				+ "2023-11-07, Tuesday, Break, 16:05, 16:10\n", record.toString());
+	}
+	
+	@Test
+	void shouldRecordWorkAndThenBreak_IfBreakIsntCancelled() {
+		when(mockClock.currentTimeSeconds())
+				.thenReturn(moment.current(), moment.after(TWENTY_FIVE * 60),
+							moment.after(8 * 60));
+
+		timer.begin();
+		timer.takeBreak();
+		timer.reset();
+
+		assertEquals("2023-11-07, Tuesday, Working, 15:40, 16:05\n"
+				+ "2023-11-07, Tuesday, Break, 16:05, 16:13\n", record.toString());
+	}
+
 }
