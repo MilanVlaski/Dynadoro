@@ -27,7 +27,7 @@ public abstract class TimerState {
 	public abstract void takeBreak(int now);
 	public abstract void pause(int now);
 	public abstract void resume(int now, int pauseTime);
-	public abstract void info(UsageRecord record);
+	public abstract void record(UsageRecord record);
 
 	public static class IllegalOperationException extends RuntimeException {
 

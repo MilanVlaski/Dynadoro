@@ -49,7 +49,7 @@ public class Timer {
 
 	public void changeState(TimerState newState) {
 		if (record != null)
-			newState.info(record);
+			newState.record(record);
 
 		this.state = newState;
 	}

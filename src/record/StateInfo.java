@@ -20,6 +20,10 @@ public class StateInfo {
 	private long secondsToMillis(int time) {
 		return (long) time * 1000;
 	}
+	
+//	public boolean hasEnded() {
+//		return end != null;
+//	}
 
 	@Override
 	public String toString() {
