@@ -36,13 +36,14 @@ class TestRecord {
 
 	Moment moment;
 	UsageRecord record;
-	UsageFile mockEmptyFile = new EmptyFile();
+	UsageFile mockEmptyFile;
 
 	@BeforeEach
 	void setup() {
 		MockitoAnnotations.openMocks(this);
 		moment = new Moment(1699368029);
-		
+
+		mockEmptyFile = new EmptyFile();
 		record = new UsageRecord(mockEmptyFile);
 		timer.startRecording(record);
 	}
@@ -87,6 +88,27 @@ class TestRecord {
 		assertEquals(expected, mockEmptyFile.read());
 	}
 
+	// @formatter:off
+	@Test
+	void shouldWriteToNonEmptyFileCorrectly() {
+
+		String previousData = "data-data-data\n";
+		UsageFile fileWithData = new File(previousData);
+		UsageRecord record = new UsageRecord(fileWithData);
+
+		when(mockClock.currentTimeSeconds())
+				.thenReturn(moment.current(), moment.after(5 * 60));
+
+		
+		timer.startRecording(record);
+		timer.begin();
+		timer.reset();
+
+		String runtimeData = "2023-11-07, Tuesday, Working, 15:40, 15:45\n";
+		assertEquals(runtimeData, record.toString());
+		assertEquals(previousData + runtimeData, fileWithData.read());
+	}
+
 	@Test
 	void shouldRecordWorking_TwentyFive_ThenTakingBreakFive() {
 		when(mockClock.currentTimeSeconds())
@@ -114,7 +136,7 @@ class TestRecord {
 		assertEquals(expected, record.toString());
 		assertEquals(expected, mockEmptyFile.read());
 	}
-	
+
 	@Test
 	void shouldRecordWorkAndThenBreak_IfBreakIsntCancelled() {
 		when(mockClock.currentTimeSeconds())
@@ -128,7 +150,7 @@ class TestRecord {
 		assertEquals("2023-11-07, Tuesday, Working, 15:40, 16:05\n"
 				+ "2023-11-07, Tuesday, Break, 16:05, 16:13\n", record.toString());
 	}
-	
+
 	@Test
 	void shouldRecordAFinishedWorkSession_BecauseOfPause() {
 		when(mockClock.currentTimeSeconds())
@@ -153,4 +175,5 @@ class TestRecord {
 		assertEquals("2023-11-07, Tuesday, Working, 15:40, 15:43\n"
 				+ "2023-11-07, Tuesday, Working, 15:45, unknown\n", record.toString());
 	}
+
 }
