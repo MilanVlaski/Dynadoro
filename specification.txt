@@ -19,9 +19,6 @@ battery with 3 bars
 - remove the window bar and add rounded borders (same color as text maybe)
 
 LOGS:
-- Actual file, on write and read, should check if it exists. If not, then
-read returns "". Write creates the file and does the write.
-If exists, then read returns the content. And write writes to it.
 - If you exit the app, that needs to finish the previous state.
 
 - Creating images for date (displays Date + Day of the week)
@@ -32,9 +29,6 @@ If exists, then read returns the content. And write writes to it.
 PERHAPS time and period, instead of being an integer, should be refactored to value objects?
 
 - Potential errors if you work for less than a second, or less than 5.
-
-FEATURE: Logging breaks and works. Also, logging how much time you 
-ACTUALLY spent on a break, while the timer was 0.
 ---------------------------------------------------------------------------------------
 
 BUGFIX: When pausing while on break the timer correctly stops counting. But it

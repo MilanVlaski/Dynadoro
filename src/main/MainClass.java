@@ -3,7 +3,7 @@ package main;
 import java.util.Scanner;
 
 import display.ConsoleDisplay;
-import display.SwingDisplay;
+import display.swing.SwingDisplay;
 import record.UsageFile;
 import record.UsageRecord;
 import timer.Clock;

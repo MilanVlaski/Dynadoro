@@ -1,6 +1,6 @@
-package display;
+package display.swing;
 
-import display.swing.MainFrame;
+import display.Display;
 import timer.Timer;
 
 public class SwingDisplay extends Display
