@@ -60,7 +60,7 @@ public class StateInfo
 	public void finish(int endTime)
 	{ endDate = secondsToDate(endTime); }
 
-	public int getStartTime()
+	public int startTime()
 	{ return startTime; }
 
 	public boolean shouldBeRecorded()

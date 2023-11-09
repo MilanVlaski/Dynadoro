@@ -25,21 +25,21 @@ public class UsageRecord
 			        .collect(Collectors.joining("\n", "", "\n"));
 	}
 
-	public void capture(StateInfo stateInfo)
+	public void capture(StateInfo newState)
 	{
 		if (!states.isEmpty())
 		{
-			StateInfo latestState = states.get(states.size() - 1);
-			finishAndWrite(latestState, stateInfo.getStartTime());
+			StateInfo previousState = states.get(states.size() - 1);
+			finishAndWrite(previousState, newState.startTime());
 		}
-		states.add(stateInfo);
+		states.add(newState);
 	}
 
-	private void finishAndWrite(StateInfo latestState, int endTime)
+	private void finishAndWrite(StateInfo previousState, int endTime)
 	{
-		latestState.finish(endTime);
+		previousState.finish(endTime);
 
-		if (latestState.shouldBeRecorded())
-			file.write(latestState.toString() + "\n");
+		if (previousState.shouldBeRecorded())
+			file.write(previousState.toString() + "\n");
 	}
 }
