@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import display.ConsoleDisplay;
 import display.SwingDisplay;
+import record.UsageRecord;
 import timer.Clock;
 import timer.SystemClock;
 import timer.Timer;
@@ -23,6 +24,7 @@ public class MainClass {
 	private static void startSwingApplication(Clock clock, Counter counter) {
 		SwingDisplay display = new SwingDisplay();
 		Timer timer = new Timer(clock, display, counter);
+//		timer.startRecording(new UsageRecord(new ));
 		display.setModel(timer);
 	}
 

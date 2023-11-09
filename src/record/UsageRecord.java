@@ -8,9 +8,9 @@ public class UsageRecord
 {
 
 	private final List<StateInfo> states = new ArrayList<>();
-	private UsageFile file;
+	private File file;
 
-	public UsageRecord(UsageFile file)
+	public UsageRecord(File file)
 	{ this.file = file; }
 
 	@Override

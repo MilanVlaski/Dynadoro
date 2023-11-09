@@ -1,8 +1,8 @@
 package test.record;
 
-import record.UsageFile;
+import record.File;
 
-public class MockFile implements UsageFile
+public class MockFile implements File
 {
 
 	private String contents = "";
