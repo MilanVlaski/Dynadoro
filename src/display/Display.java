@@ -64,17 +64,11 @@ public abstract class Display
 	}
 
 	protected abstract void updateTime(int displayedTime);
-
 	protected abstract void pauseWork();
-
 	protected abstract void pauseBreak();
-
 	protected abstract void finishBreak();
-
 	protected abstract void showBreak();
-
 	protected abstract void showWorking();
-
 	protected abstract void showIdle();
 
 }
