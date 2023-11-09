@@ -19,6 +19,6 @@ public class MockFile implements File
 
 	@Override
 	public void write(String contents)
-	{ this.contents += contents; }
+	{ this.contents += contents + "\n"; }
 
 }

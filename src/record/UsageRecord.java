@@ -40,6 +40,6 @@ public class UsageRecord
 		previousState.finish(endTime);
 
 		if (previousState.shouldBeRecorded())
-			file.write(previousState.toString() + "\n");
+			file.write(previousState.toString());
 	}
 }
