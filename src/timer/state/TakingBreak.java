@@ -3,6 +3,7 @@ package timer.state;
 import display.Display.DisplayState;
 import record.StateInfo;
 import record.UsageRecord;
+import record.StateInfo.State;
 import timer.Timer;
 
 public class TakingBreak extends TimerState {
@@ -55,7 +56,7 @@ public class TakingBreak extends TimerState {
 
 	@Override
 	public void record(UsageRecord record) {
-		record.capture(new StateInfo("Break", startTime));
+		record.capture(new StateInfo(State.BREAK, startTime));
 	}
 
 

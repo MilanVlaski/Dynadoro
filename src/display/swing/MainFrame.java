@@ -74,15 +74,15 @@ public class MainFrame extends JFrame {
 		setLocation(x, y);
 	}
 
-	public void showStartButton() {
+	private void showStartButton() {
 		showButton("Start", 120, 70, (e) -> timer.begin());
 	}
 
-	public void showPauseButton() {
+	private void showPauseButton() {
 		showButton("| |", 70, 70, (e) -> timer.pause());
 	}
 
-	public void showBreakButton() {
+	private void showBreakButton() {
 		showButton("Take break", 182, 70, (e) -> timer.takeBreak());
 	}
 
@@ -90,7 +90,7 @@ public class MainFrame extends JFrame {
 		showButton(">", 70, 70, (e) -> timer.resume());
 	}
 
-	public void clearControls() {
+	private void clearControls() {
 		CONTROL_PANEL.removeAll();
 		CONTROL_PANEL.invalidate();
 		CONTROL_PANEL.revalidate();

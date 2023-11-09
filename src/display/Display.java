@@ -1,6 +1,5 @@
 package display;
 
-import display.Display.DisplayState;
 import timer.Timer;
 
 public abstract class Display {

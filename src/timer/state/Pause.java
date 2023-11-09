@@ -3,6 +3,7 @@ package timer.state;
 import display.Display.DisplayState;
 import record.StateInfo;
 import record.UsageRecord;
+import record.StateInfo.State;
 import timer.Timer;
 
 public class Pause extends TimerState {
@@ -34,7 +35,6 @@ public class Pause extends TimerState {
 
 	@Override
 	public void begin(int now) {
-		context.changeState(new Working(context, now));
 	}
 
 	@Override
@@ -53,8 +53,7 @@ public class Pause extends TimerState {
 
 	@Override
 	public void record(UsageRecord record) {
-		// TODO Auto-generated method stub
-		
+		record.capture(new StateInfo(State.PAUSE, startTime));
 	}
 
 }

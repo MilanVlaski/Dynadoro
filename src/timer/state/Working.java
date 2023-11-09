@@ -1,10 +1,8 @@
 package timer.state;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-
 import display.Display.DisplayState;
 import record.StateInfo;
+import record.StateInfo.State;
 import record.UsageRecord;
 import timer.Timer;
 
@@ -53,7 +51,7 @@ public class Working extends TimerState {
 
 	@Override
 	public void record(UsageRecord record) {
-		record.capture(new StateInfo("Working", startTime));
+		record.capture(new StateInfo(State.WORKING, startTime));
 	}
 
 
