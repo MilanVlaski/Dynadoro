@@ -8,7 +8,8 @@ import timer.counter.Counter;
 import timer.state.Idle;
 import timer.state.TimerState;
 
-public class Timer {
+public class Timer
+{
 
 	private final Clock clock;
 	private final Display display;
@@ -17,7 +18,8 @@ public class Timer {
 	private TimerState state;
 	private UsageRecord record;
 
-	public Timer(Clock clock, Display display, Counter counter) {
+	public Timer(Clock clock, Display display, Counter counter)
+	{
 		this.clock = clock;
 		this.display = display;
 		this.counter = counter;
@@ -27,57 +29,51 @@ public class Timer {
 		state = new Idle(this, clock.currentTimeSeconds());
 	}
 
-	public int displayedTime() {
-		return state.displayedTime(clock.currentTimeSeconds());
-	}
+	public int displayedTime()
+	{ return state.displayedTime(clock.currentTimeSeconds()); }
 
-	public void begin() {
-		state.begin(clock.currentTimeSeconds());
-	}
+	public void begin()
+	{ state.begin(clock.currentTimeSeconds()); }
 
-	public void pause() {
-		state.pause(clock.currentTimeSeconds());
-	}
+	public void pause()
+	{ state.pause(clock.currentTimeSeconds()); }
 
-	public void takeBreak() {
-		state.takeBreak(clock.currentTimeSeconds());
-	}
+	public void takeBreak()
+	{ state.takeBreak(clock.currentTimeSeconds()); }
 
-	public void reset() {
-		changeState(new Idle(this, clock.currentTimeSeconds()));
-	}
+	public void reset()
+	{ changeState(new Idle(this, clock.currentTimeSeconds())); }
 
-	public void changeState(TimerState newState) {
+	public void changeState(TimerState newState)
+	{
 		if (record != null)
 			newState.record(record);
 
 		this.state = newState;
 	}
 
-	public void showTime() {
-		display.show(displayedTime());
-	}
+	public void showTime()
+	{ display.show(displayedTime()); }
 
-	public void resume() {
+	public void resume()
+	{
 		int now = clock.currentTimeSeconds();
 		state.resume(now, now);
 	}
 
-	public void finishBreak() {
+	public void finishBreak()
+	{
 		SoundPlayer.play();
 		display.show(0, DisplayState.BREAK_FINISHED);
 	}
 
-	public void startRecording(UsageRecord record) {
-		this.record = record;
-	}
+	public void startRecording(UsageRecord record)
+	{ this.record = record; }
 
-	public Display getDisplay() {
-		return display;
-	}
+	public Display getDisplay()
+	{ return display; }
 
-	public Counter getCounter() {
-		return counter;
-	}
+	public Counter getCounter()
+	{ return counter; }
 
 }

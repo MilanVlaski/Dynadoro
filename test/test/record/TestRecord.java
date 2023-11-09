@@ -88,7 +88,6 @@ class TestRecord {
 		assertEquals(expected, mockEmptyFile.read());
 	}
 
-	// @formatter:off
 	@Test
 	void shouldWriteToNonEmptyFileCorrectly() {
 
@@ -98,7 +97,7 @@ class TestRecord {
 
 		when(mockClock.currentTimeSeconds())
 				.thenReturn(moment.current(), moment.after(5 * 60));
-
+		//
 		
 		timer.startRecording(record);
 		timer.begin();

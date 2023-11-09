@@ -19,7 +19,8 @@ import javax.swing.border.BevelBorder;
 import display.ConsoleDisplay;
 import timer.Timer;
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame
+{
 
 	private static final JPanel MAIN_PANEL = new JPanel(true);
 	private static final JPanel CONTROL_PANEL = new JPanel();
@@ -34,7 +35,8 @@ public class MainFrame extends JFrame {
 
 	public Timer timer;
 
-	public MainFrame() {
+	public MainFrame()
+	{
 
 		mainPanelSetup();
 		locationSetup();
@@ -48,7 +50,8 @@ public class MainFrame extends JFrame {
 		setVisible(true);
 	}
 
-	private void mainPanelSetup() {
+	private void mainPanelSetup()
+	{
 		MAIN_PANEL.setLayout(new BoxLayout(MAIN_PANEL, BoxLayout.Y_AXIS));
 
 		MAIN_PANEL.add(Box.createVerticalGlue());
@@ -62,42 +65,41 @@ public class MainFrame extends JFrame {
 		MAIN_PANEL.add(Box.createVerticalGlue());
 	}
 
-	public void setTime(int time) {
-		CLOCK.setText(ConsoleDisplay.displayedTime(time));
-	}
+	public void setTime(int time)
+	{ CLOCK.setText(ConsoleDisplay.displayedTime(time)); }
 
-	private void locationSetup() {
+	private void locationSetup()
+	{
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int x = screenSize.width - getWidth() - 400;
 		int y = 100;
 		setLocation(x, y);
 	}
 
-	private void showStartButton() {
-		showButton("Start", 120, 70, (e) -> timer.begin());
-	}
+	private void showStartButton()
+	{ showButton("Start", 120, 70, (e) -> timer.begin()); }
 
-	private void showPauseButton() {
-		showButton("| |", 70, 70, (e) -> timer.pause());
-	}
+	private void showPauseButton()
+	{ showButton("| |", 70, 70, (e) -> timer.pause()); }
 
-	private void showBreakButton() {
-		showButton("Take break", 182, 70, (e) -> timer.takeBreak());
-	}
+	private void showBreakButton()
+	{ showButton("Take break", 182, 70, (e) -> timer.takeBreak()); }
 
-	private void showResumeButton() {
-		showButton(">", 70, 70, (e) -> timer.resume());
-	}
+	private void showResumeButton()
+	{ showButton(">", 70, 70, (e) -> timer.resume()); }
 
-	private void clearControls() {
+	private void clearControls()
+	{
 		CONTROL_PANEL.removeAll();
 		CONTROL_PANEL.invalidate();
 		CONTROL_PANEL.revalidate();
 		CONTROL_PANEL.repaint();
 	}
 
-	public void showWorking() {
-		SwingUtilities.invokeLater(() -> {
+	public void showWorking()
+	{
+		SwingUtilities.invokeLater(() ->
+		{
 			clearControls();
 			showPauseButton();
 			showBreakButton();
@@ -105,16 +107,20 @@ public class MainFrame extends JFrame {
 		});
 	}
 
-	public void showIdle() {
-		SwingUtilities.invokeLater(() -> {
+	public void showIdle()
+	{
+		SwingUtilities.invokeLater(() ->
+		{
 			clearControls();
 			showStartButton();
 			paintBackground(IDLE);
 		});
 	}
 
-	public void showBreak() {
-		SwingUtilities.invokeLater(() -> {
+	public void showBreak()
+	{
+		SwingUtilities.invokeLater(() ->
+		{
 			clearControls();
 			showPauseButton();
 			showStartButton(/* lighter */);
@@ -122,16 +128,20 @@ public class MainFrame extends JFrame {
 		});
 	}
 
-	public void showBreakFinished() {
-		SwingUtilities.invokeLater(() -> {
+	public void showBreakFinished()
+	{
+		SwingUtilities.invokeLater(() ->
+		{
 			clearControls();
 			showStartButton(/* stronger */);
 			paintBackground(new Color(217, 176, 243));
 		});
 	}
 
-	public void showBreakPause() {
-		SwingUtilities.invokeLater(() -> {
+	public void showBreakPause()
+	{
+		SwingUtilities.invokeLater(() ->
+		{
 			clearControls();
 			showResumeButton();
 			showStartButton(/* lighter */);
@@ -139,8 +149,10 @@ public class MainFrame extends JFrame {
 		});
 	}
 
-	public void showWorkPause() {
-		SwingUtilities.invokeLater(() -> {
+	public void showWorkPause()
+	{
+		SwingUtilities.invokeLater(() ->
+		{
 			clearControls();
 			showResumeButton();
 			showBreakButton();
@@ -148,18 +160,18 @@ public class MainFrame extends JFrame {
 		});
 	}
 
-	private void paintBackground(Color color) {
+	private void paintBackground(Color color)
+	{
 		MAIN_PANEL.setBackground(color);
 		CLOCK_PANEL.setBackground(color);
 		CONTROL_PANEL.setBackground(color);
 		CLOCK.setForeground(new Color(color.getRed() / 10,
-				color.getGreen() / 10,
-				color.getBlue() / 10));
+		        color.getGreen() / 10,
+		        color.getBlue() / 10));
 	}
 
 	private void showButton(String text, int width, int height,
-							ActionListener actionListener) {
-		CONTROL_PANEL.add(new CoolButton(text, width, height, actionListener));
-	}
+	                        ActionListener actionListener)
+	{ CONTROL_PANEL.add(new CoolButton(text, width, height, actionListener)); }
 
 }

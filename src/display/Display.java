@@ -2,9 +2,11 @@ package display;
 
 import timer.Timer;
 
-public abstract class Display {
+public abstract class Display
+{
 
-	public enum DisplayState {
+	public enum DisplayState
+	{
 		IDLE,
 		WORKING,
 		TAKING_BREAK,
@@ -17,24 +19,29 @@ public abstract class Display {
 	protected DisplayState state;
 	protected Timer timer;
 
-	public void show(int displayedTime) {
+	public void show(int displayedTime)
+	{
 		this.time = displayedTime;
 		updateTime(displayedTime);
 	}
 
-	public void show(int displayedTime, DisplayState state) {
+	public void show(int displayedTime, DisplayState state)
+	{
 		this.state = state;
 		this.time = displayedTime;
 		updateTimeAndState(displayedTime, state);
 	}
 
-	protected void updateTimeAndState(int displayedTime, DisplayState state) {
+	protected void updateTimeAndState(int displayedTime, DisplayState state)
+	{
 		updateTime(displayedTime);
 		updateState(state);
 	}
 
-	protected void updateState(DisplayState state) {
-		switch (state) {
+	protected void updateState(DisplayState state)
+	{
+		switch (state)
+		{
 		case IDLE:
 			showIdle();
 			break;
