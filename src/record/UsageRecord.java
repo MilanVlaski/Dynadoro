@@ -7,6 +7,11 @@ import java.util.stream.Collectors;
 public class UsageRecord {
 
 	private final List<StateInfo> states = new ArrayList<>();
+	private UsageFile file;
+
+	public UsageRecord(UsageFile file) {
+		this.file = file;
+	}
 
 	@Override
 	public String toString() {
@@ -28,7 +33,9 @@ public class UsageRecord {
 		if (!states.isEmpty()) {
 			StateInfo latestState = states.get(states.size() - 1);
 			latestState.finish(endTime);
-//			write the latest state to file, because its finished!
+			
+			if(latestState.getsRecorded())
+				file.write(latestState.toString());
 		}
 	}
 }

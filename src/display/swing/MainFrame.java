@@ -44,7 +44,6 @@ public class MainFrame extends JFrame {
 		setLayout(new BorderLayout());
 		add(MAIN_PANEL, BorderLayout.CENTER);
 
-		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}

@@ -1,6 +1,7 @@
 package test.record;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static test.TestTimer.BREAK_DURATION;
 import static test.TestTimer.TWENTY_FIVE;
@@ -13,6 +14,7 @@ import org.mockito.MockitoAnnotations;
 
 import display.Display;
 import record.StateInfo;
+import record.UsageFile;
 import record.UsageRecord;
 import record.StateInfo.State;
 import test.TestTimer.Moment;
@@ -34,18 +36,19 @@ class TestRecord {
 
 	Moment moment;
 	UsageRecord record;
+	UsageFile mockEmptyFile = new EmptyFile();
 
 	@BeforeEach
 	void setup() {
 		MockitoAnnotations.openMocks(this);
 		moment = new Moment(1699368029);
-		record = new UsageRecord();
+		
+		record = new UsageRecord(mockEmptyFile);
 		timer.startRecording(record);
 	}
 
 	@Test
 	void recordShouldBeEmpty() {
-		UsageRecord record = new UsageRecord();
 		assertEquals("", record.toString());
 	}
 
@@ -61,7 +64,6 @@ class TestRecord {
 		assertEquals("2023-11-07, Tuesday, Working, 15:45, unknown", stateInfo.toString());
 	}
 
-	// TODO begin, then break/pause.
 	@Test
 	void shouldRecordWorking_WhileWorking() {
 		when(mockClock.currentTimeSeconds()).thenReturn(moment.current());
@@ -69,6 +71,7 @@ class TestRecord {
 		timer.begin();
 
 		assertEquals("2023-11-07, Tuesday, Working, 15:40, unknown\n", record.toString());
+		assertEquals("", mockEmptyFile.read());
 	}
 
 	@Test
