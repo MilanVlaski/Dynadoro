@@ -19,7 +19,7 @@ public class UsageRecord {
 			return "";
 		else
 			return states.stream()
-					.filter((state) -> state.getsRecorded())
+					.filter((state) -> state.shouldBeRecorded())
 					.map(StateInfo::toString)
 					.collect(Collectors.joining("\n", "", "\n"));
 	}
@@ -34,8 +34,8 @@ public class UsageRecord {
 			StateInfo latestState = states.get(states.size() - 1);
 			latestState.finish(endTime);
 			
-			if(latestState.getsRecorded())
-				file.write(latestState.toString());
+			if(latestState.shouldBeRecorded())
+				file.write(latestState.toString() + "\n");
 		}
 	}
 }

@@ -61,7 +61,7 @@ public class StateInfo {
 		return startTime;
 	}
 
-	public boolean getsRecorded() {
+	public boolean shouldBeRecorded() {
 		return getsRecorded;
 	}
 
