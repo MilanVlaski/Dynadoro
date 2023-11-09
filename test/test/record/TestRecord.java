@@ -22,7 +22,8 @@ import timer.Clock;
 import timer.Timer;
 import timer.counter.Counter;
 
-class TestRecord {
+class TestRecord
+{
 
 	@Mock
 	Clock mockClock;
@@ -39,7 +40,8 @@ class TestRecord {
 	UsageFile mockEmptyFile;
 
 	@BeforeEach
-	void setup() {
+	void setup()
+	{
 		MockitoAnnotations.openMocks(this);
 		moment = new Moment(1699368029);
 
@@ -49,20 +51,23 @@ class TestRecord {
 	}
 
 	@Test
-	void recordShouldBeEmpty() {
-		assertEquals("", record.toString());
-	}
+	void recordShouldBeEmpty()
+	{ assertEquals("", record.toString()); }
 
 	@Test
-	void stateShouldProvideStateInfoObject() {
+	void stateShouldProvideStateInfoObject()
+	{
 		StateInfo stateInfo = new StateInfo(State.WORKING, moment.current());
-		assertEquals("2023-11-07, Tuesday, Working, 15:40, unknown", stateInfo.toString());
+		assertEquals("2023-11-07, Tuesday, Working, 15:40, unknown",
+		        stateInfo.toString());
 	}
 
 	@Test
-	void stateShouldProvideStateInfoObject1() {
+	void stateShouldProvideStateInfoObject1()
+	{
 		StateInfo stateInfo = new StateInfo(State.WORKING, moment.after(60 * 5));
-		assertEquals("2023-11-07, Tuesday, Working, 15:45, unknown", stateInfo.toString());
+		assertEquals("2023-11-07, Tuesday, Working, 15:45, unknown",
+		        stateInfo.toString());
 	}
 
 	@Test
@@ -89,16 +94,17 @@ class TestRecord {
 	}
 
 	@Test
-	void shouldWriteToNonEmptyFileCorrectly() {
+	void shouldWriteToNonEmptyFileCorrectly()
+	{
 
 		String previousData = "data-data-data\n";
 		UsageFile fileWithData = new File(previousData);
 		UsageRecord record = new UsageRecord(fileWithData);
 
 		when(mockClock.currentTimeSeconds())
-				.thenReturn(moment.current(), moment.after(5 * 60));
+		        .thenReturn(moment.current(), moment.after(5 * 60));
 		//
-		
+
 		timer.startRecording(record);
 		timer.begin();
 		timer.reset();
@@ -166,7 +172,7 @@ class TestRecord {
 		when(mockClock.currentTimeSeconds())
 				.thenReturn(moment.current(), moment.after(3 * 60),
 						moment.after(2 * 60));
-
+		
 		timer.begin();
 		timer.pause();
 		timer.resume();
