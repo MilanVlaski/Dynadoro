@@ -3,8 +3,10 @@ package record;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 public class UsageFile implements File
 {
@@ -34,20 +36,26 @@ public class UsageFile implements File
 	{
 		try
 		{
-
 			if (Files.notExists(path))
 			{
 				Files.createDirectories(path.getParent());
 				Files.createFile(path);
-			} else
-			{
-				Files.writeString(path, text);
 			}
-
 		} catch (IOException e)
 		{
 			e.printStackTrace();
 		}
+
+		try (BufferedWriter writer = Files.newBufferedWriter(path,
+		        StandardOpenOption.APPEND))
+		{
+			writer.write(text);
+			writer.newLine();
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+
 	}
 
 	public static void main(String[] args)
