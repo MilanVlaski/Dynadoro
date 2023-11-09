@@ -45,7 +45,7 @@ class TestRecord
 		MockitoAnnotations.openMocks(this);
 		moment = new Moment(1699368029);
 
-		mockEmptyFile = new EmptyFile();
+		mockEmptyFile = new MockFile();
 		record = new UsageRecord(mockEmptyFile);
 		timer.startRecording(record);
 	}
@@ -66,8 +66,7 @@ class TestRecord
 	void stateShouldProvideStateInfoObject1()
 	{
 		StateInfo stateInfo = new StateInfo(State.WORKING, moment.after(60 * 5));
-		assertEquals("2023-11-07, Tuesday, Working, 15:45, unknown",
-		        stateInfo.toString());
+		assertEquals("2023-11-07, Tuesday, Working, 15:45, unknown", stateInfo.toString());
 	}
 
 	@Test
@@ -98,7 +97,7 @@ class TestRecord
 	{
 
 		String previousData = "data-data-data\n";
-		UsageFile fileWithData = new File(previousData);
+		UsageFile fileWithData = new MockFile(previousData);
 		UsageRecord record = new UsageRecord(fileWithData);
 
 		when(mockClock.currentTimeSeconds())
