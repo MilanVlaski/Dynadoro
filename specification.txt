@@ -12,43 +12,39 @@ REQUIREMENTS:
 ***Pause at any time (except when idle)
 
 
+TODO:
+- add a reset button
+- while break ticks down you could have a charging battery filling up (maybe in thirds,
+battery with 3 bars
+- remove the window bar and add rounded borders (same color as text maybe)
+
+LOGS:
+But if you exit the app, that needs to be captured (logged).
+
+- Within a day
+- Making images that are shown by date (Date + Day of the week)
+- hours studying per day
+- hours studying per week
+
+
+
 
 
 PERHAPS time and period, instead of being an integer, should be refactored to value objects?
 
 - Potential errors if you work for less than a second, or less than 5.
 
-When the break timer runs out, we are still in break state.
-
 FEATURE: Logging breaks and works. Also, logging how much time you 
 ACTUALLY spent on a break, while the timer was 0.
 
-TODO:
-- add a reset button
-- while break ticks down you could have a charging battery filling up (maybe in thirds,
-battery with 3 bars
-- refactor the gui code (MainFrame)
-- remove the window bar and add rounded borders (same color as text maybe)
-- consider testing the logging of tests with calling timer.changeState(new Working()) ...
 
-LOGS:
-- STATE only needs to be written if its finished (that means it always has an end time)
-- Capturing the states of studying and breaking etc. (when state changes
-write data about that state in a file (state, hh:mm when started, day of week and date)
-If you just keep switching, state and it's start time is enough data to know everything.
-But if you exit the app, that needs to be captured.
-- We send a record object and then we check it.
-- Convert currentTime to date data
 
-2023-10-23,Monday,Study,09:00,10:30
-2023-10-23,Monday,Break,10:30,11:00
-2023-10-24,Tuesday,Study,09:15,10:45
-2023-10-24,Tuesday,Break,10:45,11:15
 
-- Within a day
-- Making images that are shown by date (Date + Day of the week)
-- + how many hours studying per day
-- hours studying per week
+
+
+
+
+
 
 BUGFIX: When pausing while on break the timer correctly stops counting. But it
 incorrectly says Break over! when and displays 00:00.
