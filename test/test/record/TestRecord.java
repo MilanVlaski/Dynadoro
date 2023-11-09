@@ -109,8 +109,10 @@ class TestRecord {
 		timer.takeBreak();
 		timer.reset();
 
-		assertEquals("2023-11-07, Tuesday, Working, 15:40, 16:05\n"
-				+ "2023-11-07, Tuesday, Break, 16:05, 16:10\n", record.toString());
+		String expected = "2023-11-07, Tuesday, Working, 15:40, 16:05\n"
+				+ "2023-11-07, Tuesday, Break, 16:05, 16:10\n";
+		assertEquals(expected, record.toString());
+		assertEquals(expected, mockEmptyFile.read());
 	}
 	
 	@Test
