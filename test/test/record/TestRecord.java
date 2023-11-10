@@ -37,7 +37,7 @@ class TestRecord
 
 	Moment moment;
 	UsageRecord record;
-	History mockEmptyFile;
+	History fakeEmptyHistory;
 
 	@BeforeEach
 	void setup()
@@ -45,8 +45,8 @@ class TestRecord
 		MockitoAnnotations.openMocks(this);
 		moment = new Moment(1699368029);
 
-		mockEmptyFile = new MockFile();
-		record = new UsageRecord(mockEmptyFile);
+		fakeEmptyHistory = new FakeHistory();
+		record = new UsageRecord(fakeEmptyHistory);
 		timer.startRecording(record);
 	}
 
@@ -76,7 +76,7 @@ class TestRecord
 		timer.begin();
 
 		assertEquals("2023-11-07, Tuesday, Working, 15:40, unknown\n", record.toString());
-		assertEquals("", mockEmptyFile.read());
+		assertEquals("", fakeEmptyHistory.read());
 	}
 
 	@Test
@@ -89,7 +89,7 @@ class TestRecord
 
 		String expected = "2023-11-07, Tuesday, Working, 15:40, 15:45\n";
 		assertEquals(expected, record.toString());
-		assertEquals(expected, mockEmptyFile.read());
+		assertEquals(expected, fakeEmptyHistory.read());
 	}
 
 	@Test
@@ -97,8 +97,8 @@ class TestRecord
 	{
 
 		String previousData = "data-data-data\n";
-		History fileWithData = new MockFile(previousData);
-		UsageRecord record = new UsageRecord(fileWithData);
+		History fakeHistory = new FakeHistory(previousData);
+		UsageRecord record = new UsageRecord(fakeHistory);
 
 		when(mockClock.currentTimeSeconds())
 		        .thenReturn(moment.current(), moment.after(5 * 60));
@@ -110,7 +110,7 @@ class TestRecord
 
 		String runtimeData = "2023-11-07, Tuesday, Working, 15:40, 15:45\n";
 		assertEquals(runtimeData, record.toString());
-		assertEquals(previousData + runtimeData, fileWithData.read());
+		assertEquals(previousData + runtimeData, fakeHistory.read());
 	}
 
 	@Test
@@ -138,7 +138,7 @@ class TestRecord
 		String expected = "2023-11-07, Tuesday, Working, 15:40, 16:05\n"
 				+ "2023-11-07, Tuesday, Break, 16:05, 16:10\n";
 		assertEquals(expected, record.toString());
-		assertEquals(expected, mockEmptyFile.read());
+		assertEquals(expected, fakeEmptyHistory.read());
 	}
 
 	@Test

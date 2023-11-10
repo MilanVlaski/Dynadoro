@@ -2,15 +2,15 @@ package test.record;
 
 import record.History;
 
-public class MockFile implements History
+public class FakeHistory implements History
 {
 
 	private String contents = "";
 
-	public MockFile(String contents)
+	public FakeHistory(String contents)
 	{ this.contents = contents; }
 
-	public MockFile()
+	public FakeHistory()
 	{}
 
 	@Override
