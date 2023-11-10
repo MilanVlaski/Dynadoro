@@ -13,10 +13,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import display.Display;
-import record.StateInfo;
+import record.StateData;
 import record.History;
 import record.UsageRecord;
-import record.StateInfo.State;
+import record.StateData.State;
 import test.TestTimer.Moment;
 import timer.Clock;
 import timer.Timer;
@@ -57,16 +57,16 @@ class TestRecord
 	@Test
 	void stateShouldProvideStateInfoObject()
 	{
-		StateInfo stateInfo = new StateInfo(State.WORKING, moment.current());
+		StateData stateData = new StateData(State.WORKING, moment.current());
 		assertEquals("2023-11-07, Tuesday, Working, 15:40, unknown",
-		        stateInfo.toString());
+		        stateData.toString());
 	}
 
 	@Test
 	void stateShouldProvideStateInfoObject1()
 	{
-		StateInfo stateInfo = new StateInfo(State.WORKING, moment.after(60 * 5));
-		assertEquals("2023-11-07, Tuesday, Working, 15:45, unknown", stateInfo.toString());
+		StateData stateData = new StateData(State.WORKING, moment.after(60 * 5));
+		assertEquals("2023-11-07, Tuesday, Working, 15:45, unknown", stateData.toString());
 	}
 
 	@Test

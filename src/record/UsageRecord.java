@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class UsageRecord
 {
 
-	private final List<StateInfo> states = new ArrayList<>();
+	private final List<StateData> states = new ArrayList<>();
 	private History history;
 
 	public UsageRecord(History history)
@@ -21,21 +21,21 @@ public class UsageRecord
 		else
 			return states.stream()
 			        .filter((state) -> state.shouldBeRecorded())
-			        .map(StateInfo::toString)
+			        .map(StateData::toString)
 			        .collect(Collectors.joining("\n", "", "\n"));
 	}
 
-	public void capture(StateInfo newState)
+	public void capture(StateData newState)
 	{
 		if (!states.isEmpty())
 		{
-			StateInfo previousState = states.get(states.size() - 1);
+			StateData previousState = states.get(states.size() - 1);
 			finishAndWrite(previousState, newState.startTime());
 		}
 		states.add(newState);
 	}
 
-	private void finishAndWrite(StateInfo previousState, int endTime)
+	private void finishAndWrite(StateData previousState, int endTime)
 	{
 		previousState.finish(endTime);
 

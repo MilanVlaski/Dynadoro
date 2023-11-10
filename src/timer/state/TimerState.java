@@ -1,7 +1,7 @@
 package timer.state;
 
 import display.Display;
-import record.StateInfo;
+import record.StateData;
 import record.UsageRecord;
 import timer.Timer;
 import timer.counter.Counter;

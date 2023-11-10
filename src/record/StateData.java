@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class StateInfo
+public class StateData
 {
 
 	public enum State
@@ -33,7 +33,7 @@ public class StateInfo
 	private final Date startDate;
 	private Date endDate;
 
-	public StateInfo(State state, int startTime)
+	public StateData(State state, int startTime)
 	{
 		this.name = state.name;
 		this.startTime = startTime;

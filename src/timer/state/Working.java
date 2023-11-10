@@ -1,8 +1,8 @@
 package timer.state;
 
 import display.Display.DisplayState;
-import record.StateInfo;
-import record.StateInfo.State;
+import record.StateData;
+import record.StateData.State;
 import record.UsageRecord;
 import timer.Timer;
 
@@ -51,7 +51,7 @@ public class Working extends TimerState {
 
 	@Override
 	public void record(UsageRecord record) {
-		record.capture(new StateInfo(State.WORKING, startTime));
+		record.capture(new StateData(State.WORKING, startTime));
 	}
 
 

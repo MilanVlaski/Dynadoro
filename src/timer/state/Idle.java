@@ -1,9 +1,9 @@
 package timer.state;
 
 import display.Display.DisplayState;
-import record.StateInfo;
+import record.StateData;
 import record.UsageRecord;
-import record.StateInfo.State;
+import record.StateData.State;
 import timer.Timer;
 
 public class Idle extends TimerState {
@@ -42,7 +42,7 @@ public class Idle extends TimerState {
 
 	@Override
 	public void record(UsageRecord record) {
-		record.capture(new StateInfo(State.IDLE, startTime));
+		record.capture(new StateData(State.IDLE, startTime));
 	}
 
 }
