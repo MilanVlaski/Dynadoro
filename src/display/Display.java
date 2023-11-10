@@ -11,8 +11,8 @@ public abstract class Display
 		WORKING,
 		RESTING,
 		WORK_PAUSE,
-		BREAK_PAUSE,
-		BREAK_FINISHED;
+		REST_PAUSE,
+		REST_FINISHED;
 	}
 
 	protected int time;
@@ -51,10 +51,10 @@ public abstract class Display
 		case RESTING:
 			showResting();
 			break;
-		case BREAK_FINISHED:
+		case REST_FINISHED:
 			finishRest();
 			break;
-		case BREAK_PAUSE:
+		case REST_PAUSE:
 			pauseRest();
 			break;
 		case WORK_PAUSE:

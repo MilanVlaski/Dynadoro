@@ -58,7 +58,7 @@ class TestDisplay
 	}
 
 	@Test
-	void shouldShowAppropriateTime_AndState_WhenTakingBreak() {
+	void shouldShowAppropriateTime_AndState_WhenResting() {
 		when(mockClock.currentTimeSeconds())
 			.thenReturn(moment.current(), moment.after(TWENTY_FIVE));
 		
@@ -83,7 +83,7 @@ class TestDisplay
 	}
 
 	@Test
-	void shouldShowPause_DuringBreak() {
+	void shouldShowPause_DuringRest() {
 		when(mockClock.currentTimeSeconds())
 			.thenReturn(moment.current())
 			.thenReturn(moment.after(TWENTY_FIVE))
@@ -94,7 +94,7 @@ class TestDisplay
 		timer.rest();
 		timer.pause();  
 		
-		verify(mockDisplay).show(REST_DURATION - 2, DisplayState.BREAK_PAUSE);
+		verify(mockDisplay).show(REST_DURATION - 2, DisplayState.REST_PAUSE);
 		verify(mockCounter, atLeastOnce()).stop();
 	}
 
@@ -113,7 +113,7 @@ class TestDisplay
 	}
 
 	@Test
-	void shouldShowResumingBreak() {
+	void shouldShowResumingRest() {
 		when(mockClock.currentTimeSeconds())
 			.thenReturn(moment.current(), moment.after(TWENTY_FIVE),
 						moment.after(1), moment.after(1));
@@ -124,7 +124,7 @@ class TestDisplay
 		timer.pause();
 		timer.resume();
 		
-		verify(mockDisplay).show(REST_DURATION - 1, DisplayState.BREAK_PAUSE);
+		verify(mockDisplay).show(REST_DURATION - 1, DisplayState.REST_PAUSE);
 		verify(mockCounter).count(REST_DURATION - 1);
 	}
 

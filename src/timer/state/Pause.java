@@ -23,7 +23,7 @@ public class Pause extends TimerState {
 		if (previousState instanceof Working)
 			displayState = DisplayState.WORK_PAUSE;
 		else
-			displayState = DisplayState.BREAK_PAUSE;
+			displayState = DisplayState.REST_PAUSE;
 
 		display.show(displayedTime(now), displayState);
 	}

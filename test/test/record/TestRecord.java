@@ -113,7 +113,7 @@ class TestRecord
 	}
 
 	@Test
-	void shouldRecordWorking_TwentyFive_ThenTakingBreakFive() {
+	void shouldRecordWorking_TwentyFive_ThenRestingFiveMinutes() {
 		when(mockClock.currentTimeSeconds())
 				.thenReturn(moment.current(), moment.after(TWENTY_FIVE * 60));
 
@@ -125,7 +125,7 @@ class TestRecord
 	}
 
 	@Test
-	void shouldRecordWorkAndThenBreak() {
+	void shouldRecordWorkAndThenRest() {
 		when(mockClock.currentTimeSeconds())
 				.thenReturn(moment.current(), moment.after(TWENTY_FIVE * 60),
 							moment.after(REST_DURATION * 60));
@@ -141,7 +141,7 @@ class TestRecord
 	}
 
 	@Test
-	void shouldRecordWorkAndThenBreak_IfBreakIsntCancelled() {
+	void shouldRecordWorkAndThenRest_IfRestIsntCancelled() {
 		when(mockClock.currentTimeSeconds())
 				.thenReturn(moment.current(), moment.after(TWENTY_FIVE * 60),
 							moment.after(8 * 60));

@@ -64,7 +64,7 @@ public class Timer
 	public void finishBreak()
 	{
 		SoundPlayer.play();
-		display.show(0, DisplayState.BREAK_FINISHED);
+		display.show(0, DisplayState.REST_FINISHED);
 	}
 
 	public void startRecording(UsageRecord record)

@@ -37,10 +37,10 @@ class TestConsoleDisplay {
 	}
 
 	@Test
-	void breakStateMessage() {
+	void restStateMessage() {
 		assertEquals("00:00\nPress 1 to go back to work"
 				+ "\nPress 3 to pause",
-				ConsoleDisplay.breakMessage(0));
+				ConsoleDisplay.restMessage(0));
 	}
 
 	@Test
@@ -51,16 +51,16 @@ class TestConsoleDisplay {
 	}
 
 	@Test
-	void breakPauseMessage() {
+	void restPauseMessage() {
 		assertEquals("00:00\nPress 4 to resume",
-				ConsoleDisplay.breakPauseMessage(0));
+				ConsoleDisplay.restPauseMessage(0));
 	}
 
 	@Test
 	void breakFinishedMessage() {
 		assertEquals("00:00\nBreak over!"
 				+ "\nPress 1 to go back to work",
-				ConsoleDisplay.breakFinishedMessage());
+				ConsoleDisplay.restFinishedMessage());
 	}
 
 }

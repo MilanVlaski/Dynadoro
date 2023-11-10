@@ -21,7 +21,7 @@ public class ConsoleDisplay extends Display
 		        + "\nPress 3 to pause";
 	}
 
-	public static String breakMessage(int time) {
+	public static String restMessage(int time) {
 		return displayedTime(time) + "\nPress 1 to go back to work"
 		        + "\nPress 3 to pause";
 	}
@@ -31,11 +31,11 @@ public class ConsoleDisplay extends Display
 		        + "\nPress 2 to take a break";
 	}
 
-	public static String breakPauseMessage(int time) {
+	public static String restPauseMessage(int time) {
 		return displayedTime(time) + "\nPress 4 to resume";
 	}
 
-	public static String breakFinishedMessage() {
+	public static String restFinishedMessage() {
 		return displayedTime(0) + "\nBreak over!"
 		        + "\nPress 1 to go back to work";
 	}
@@ -44,13 +44,13 @@ public class ConsoleDisplay extends Display
 	protected void pauseWork() { System.out.println(workPauseMessage(time)); }
 
 	@Override
-	protected void pauseRest() { System.out.println(breakPauseMessage(time)); }
+	protected void pauseRest() { System.out.println(restPauseMessage(time)); }
 
 	@Override
-	protected void finishRest() { System.out.println(breakFinishedMessage()); }
+	protected void finishRest() { System.out.println(restFinishedMessage()); }
 
 	@Override
-	protected void showResting() { System.out.println(breakMessage(time)); }
+	protected void showResting() { System.out.println(restMessage(time)); }
 
 	@Override
 	protected void showWorking() { System.out.println(workingMessage(time)); }

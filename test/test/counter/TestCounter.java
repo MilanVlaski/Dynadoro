@@ -13,20 +13,23 @@ import org.junit.jupiter.api.Test;
 import timer.Timer;
 import timer.counter.Counter;
 
-class TestCounter {
+class TestCounter
+{
 
 	Timer mockTimer = mock(Timer.class);
 
 	Counter counter;
 
 	@BeforeEach
-	void setup() {
+	void setup()
+	{
 		counter = new FastCounter();
 		counter.setTimer(mockTimer);
 	}
 
 	@Test
-	void shouldCountUp() {
+	void shouldCountUp()
+	{
 		counter.countUp();
 		wait(1.5);
 
@@ -35,14 +38,16 @@ class TestCounter {
 	}
 
 	@Test
-	void shouldStopCounter() {
+	void shouldStopCounter()
+	{
 		counter.countUp();
 		counter.stop();
 		assertFalse(counter.isRunning());
 	}
 
 	@Test
-	void shouldCountDown() {
+	void shouldCountDown()
+	{
 		counter.count(1);
 		wait(1.5);
 
@@ -51,36 +56,40 @@ class TestCounter {
 	}
 
 	@Test
-	void shouldCountOnlyOnce_IfStartedTwice() {
+	void shouldCountOnlyOnce_IfStartedTwice()
+	{
 		counter.countUp();
 		counter.countUp();
 		wait(1.5);
 
 		verify(mockTimer, times(1)).showTime();
 	}
-	
+
 	@Test
-	void shouldStopCountingDownAfterTimePasses() {
+	void shouldStopCountingDownAfterTimePasses()
+	{
 		counter.count(1);
 		wait(1.5);
 
 		assertFalse(counter.isRunning());
 		verify(mockTimer, times(1)).showTime();
 	}
-	
+
 	@Test
-	void shouldNotThrowExceptionIfRestarted() {
+	void shouldNotThrowExceptionIfRestarted()
+	{
 		counter.countUp();
 		counter.stop();
 	}
 
-
-	private void wait(double seconds) {
-		try {
-			
+	private void wait(double seconds)
+	{
+		try
+		{
 			Thread.sleep((long) (seconds * DURATION_MILLISECONDS));
-			
-		} catch (InterruptedException e) {
+
+		} catch (InterruptedException e)
+		{
 			e.printStackTrace();
 		}
 	}
