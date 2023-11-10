@@ -5,6 +5,8 @@ import static org.mockito.Mockito.atMost;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static test.TestTimer.BREAK_DURATION;
+import static test.TestTimer.TWENTY_FIVE;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,13 +16,13 @@ import org.mockito.MockitoAnnotations;
 
 import display.Display;
 import display.Display.DisplayState;
-import test.TestTimer;
 import test.TestTimer.Moment;
 import timer.Clock;
 import timer.Timer;
 import timer.counter.Counter;
 
-class TestDisplay {
+class TestDisplay
+{
 
 	@Mock
 	Clock mockClock;
@@ -31,19 +33,19 @@ class TestDisplay {
 
 	@InjectMocks
 	Timer timer;
-	
+
 	Moment moment;
 
 	@BeforeEach
-	void injectMocks() {
+	void injectMocks()
+	{
 		MockitoAnnotations.openMocks(this);
 		moment = new Moment();
 	}
 
 	@Test
-	void shouldShowIdle_OnInit() {
-		verify(mockDisplay).show(0, DisplayState.IDLE);
-	}
+	void shouldShowIdle_OnInit()
+	{ verify(mockDisplay).show(0, DisplayState.IDLE); }
 
 	@Test
 	void shouldShowWorkingState_OnBegin() {
@@ -54,49 +56,53 @@ class TestDisplay {
 		verify(mockDisplay).show(0, DisplayState.WORKING);
 		verify(mockCounter).countUp();
 	}
-	
+
 	@Test
 	void shouldShowAppropriateTime_AndState_WhenTakingBreak() {
 		when(mockClock.currentTimeSeconds())
-			.thenReturn(moment.current())
-			.thenReturn(moment.after(TestTimer.TWENTY_FIVE));
+			.thenReturn(moment.current(), moment.after(TWENTY_FIVE));
 		
 		timer.begin();
 		timer.rest();
 		
-		verify(mockDisplay).show(TestTimer.BREAK_DURATION,  DisplayState.RESTING);
-		verify(mockCounter).count(TestTimer.BREAK_DURATION);
+		verify(mockDisplay).show(BREAK_DURATION,  DisplayState.RESTING);
+		verify(mockCounter).count(BREAK_DURATION);
 	}
 
 	@Test
 	void shouldShowPause_DuringWork() {
-		when(mockClock.currentTimeSeconds()).thenReturn(5).thenReturn(10);
+		when(mockClock.currentTimeSeconds())
+			.thenReturn(moment.current()).thenReturn(moment.after(3));
+		
 		
 		timer.begin();
 		timer.pause();
 		
-		verify(mockDisplay).show(5, DisplayState.WORK_PAUSE);
+		verify(mockDisplay).show(3, DisplayState.WORK_PAUSE);
 		verify(mockCounter, atLeastOnce()).stop();
 	}
 
 	@Test
 	void shouldShowPause_DuringBreak() {
 		when(mockClock.currentTimeSeconds())
-			.thenReturn(100)
-			.thenReturn(100 + TestTimer.TWENTY_FIVE)
-			.thenReturn(100 + TestTimer.TWENTY_FIVE + 2);
+			.thenReturn(moment.current())
+			.thenReturn(moment.after(TWENTY_FIVE))
+			.thenReturn(moment.after(2));
+		
 		
 		timer.begin();
 		timer.rest();
 		timer.pause();  
 		
-		verify(mockDisplay).show(TestTimer.BREAK_DURATION - 2, DisplayState.BREAK_PAUSE);
+		verify(mockDisplay).show(BREAK_DURATION - 2, DisplayState.BREAK_PAUSE);
 		verify(mockCounter, atLeastOnce()).stop();
 	}
+
 	@Test
 	void shouldShowResumingWork() {
 		when(mockClock.currentTimeSeconds())
-			.thenReturn(1).thenReturn(2).thenReturn(3);
+			.thenReturn(moment.current(), moment.after(1), moment.after(1));
+		
 		
 		timer.begin();
 		timer.pause();
@@ -105,29 +111,29 @@ class TestDisplay {
 		verify(mockDisplay).show(1, DisplayState.WORKING);
 		verify(mockCounter, times(2)).countUp();
 	}
-	
+
 	@Test
 	void shouldShowResumingBreak() {
 		when(mockClock.currentTimeSeconds())
-			.thenReturn(100)
-			.thenReturn(100 + TestTimer.TWENTY_FIVE)
-			.thenReturn(100 + TestTimer.TWENTY_FIVE + 1)
-			.thenReturn(100 + TestTimer.TWENTY_FIVE + 2);
+			.thenReturn(moment.current(), moment.after(TWENTY_FIVE),
+						moment.after(1), moment.after(1));
+
 		
 		timer.begin();
 		timer.rest();
 		timer.pause();
 		timer.resume();
 		
-		verify(mockDisplay).show(TestTimer.BREAK_DURATION - 1, DisplayState.BREAK_PAUSE);
-		verify(mockCounter).count(TestTimer.BREAK_DURATION - 1);
+		verify(mockDisplay).show(BREAK_DURATION - 1, DisplayState.BREAK_PAUSE);
+		verify(mockCounter).count(BREAK_DURATION - 1);
 	}
 
 	@Test
-	void shouldStopCounter_WhenResetting() {
+	void shouldStopCounter_WhenResetting()
+	{
 		timer.begin();
 		timer.reset();
-		
+
 		verify(mockCounter, atLeastOnce()).stop();
 	}
 }
