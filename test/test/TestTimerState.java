@@ -16,7 +16,7 @@
 //import timer.Timer;
 //import timer.counter.Counter;
 //import timer.state.Idle;
-//import timer.state.TakingBreak;
+//import timer.state.Resting;
 //import timer.state.TimerState.IllegalOperation;
 //import timer.state.Working;
 ///**
@@ -75,27 +75,27 @@
 //	@Test
 //	void shouldShowBreakTime() {
 //		int now = 66;
-//		TakingBreak takingBreak = new TakingBreak(dummyTimer, now, WORK_DURATION);
+//		Resting takingBreak = new Resting(dummyTimer, now, WORK_DURATION);
 //		assertEquals(WORK_DURATION / WORK_BREAK_RATIO, takingBreak.displayedTime(now));
 //	}
 //
 //	@Test
 //	void shouldShowTimePassingBackwards_OnBreak() {
 //		int now = 66;
-//		TakingBreak takingBreak = new TakingBreak(dummyTimer, now, WORK_DURATION);
+//		Resting takingBreak = new Resting(dummyTimer, now, WORK_DURATION);
 //		assertEquals(WORK_DURATION / WORK_BREAK_RATIO - 2, takingBreak.displayedTime(now + 2));
 //	}
 //
 //	@Test
 //	void shouldShowTimeNotGoingPastZero_AfterBreak() {
 //		int now = 123;
-//		TakingBreak takingBreak = new TakingBreak(dummyTimer, now, now);
+//		Resting takingBreak = new Resting(dummyTimer, now, now);
 //		assertEquals(0, takingBreak.displayedTime(now + 999));
 //	}
 //
 //	@Test
 //	void shouldThrowExceptionIfAlreadyOnBreak() {
-//		TakingBreak takingBreak = new TakingBreak(dummyTimer, 0, 0);
+//		Resting takingBreak = new Resting(dummyTimer, 0, 0);
 //		assertThrows(IllegalOperation.class, () -> takingBreak.takeBreak(0));
 //	}
 //}

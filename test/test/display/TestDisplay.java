@@ -60,7 +60,7 @@ class TestDisplay {
 		timer.begin();
 		timer.takeBreak();
 		
-		verify(mockDisplay).show(TestTimer.BREAK_DURATION,  DisplayState.TAKING_BREAK);
+		verify(mockDisplay).show(TestTimer.BREAK_DURATION,  DisplayState.RESTING);
 		verify(mockCounter).count(TestTimer.BREAK_DURATION);
 	}
 

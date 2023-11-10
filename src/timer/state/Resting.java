@@ -6,29 +6,29 @@ import record.UsageRecord;
 import record.StateInfo.State;
 import timer.Timer;
 
-public class TakingBreak extends TimerState {
+public class Resting extends TimerState {
 
-	private final int breakDuration;
-	private static final int BREAK_FACTOR = 5;
+	private final int restDuration;
+	private static final int REST_FACTOR = 5;
 
-	public TakingBreak(Timer context, int now, int workDuration) {
-		this(workDuration / BREAK_FACTOR, context, now);
+	public Resting(Timer context, int now, int workDuration) {
+		this(workDuration / REST_FACTOR, context, now);
 	}
 
-	private TakingBreak(int breakDuration, Timer context, int now) {
+	private Resting(int restDuration, Timer context, int now) {
 		super(context, now);
-		this.breakDuration = breakDuration;
+		this.restDuration = restDuration;
 
-		display.show(breakDuration, DisplayState.TAKING_BREAK);
-		counter.count(breakDuration);
+		display.show(restDuration, DisplayState.RESTING);
+		counter.count(restDuration);
 	}
 
 	@Override
 	public int displayedTime(int now) {
-		int remainingBreakDuration = breakDuration - (now - startTime);
+		int remainingRestDuration = restDuration - (now - startTime);
 
-		if (remainingBreakDuration > 0)
-			return remainingBreakDuration;
+		if (remainingRestDuration > 0)
+			return remainingRestDuration;
 		else
 			return 0;
 	}
@@ -39,7 +39,7 @@ public class TakingBreak extends TimerState {
 	}
 
 	@Override
-	public void takeBreak(int now) {
+	public void rest(int now) {
 		throw new IllegalOperationException("Already taking a break.");
 	}
 
@@ -50,8 +50,8 @@ public class TakingBreak extends TimerState {
 
 	@Override
 	public void resume(int now, int pauseTime) {
-		int breakDuration = displayedTime(pauseTime);
-		context.changeState(new TakingBreak(breakDuration, context, now));
+		int restDuration = displayedTime(pauseTime);
+		context.changeState(new Resting(restDuration, context, now));
 	}
 
 	@Override

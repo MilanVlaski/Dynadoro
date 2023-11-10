@@ -33,9 +33,9 @@ public class Working extends TimerState {
 	}
 
 	@Override
-	public void takeBreak(int now) {
+	public void rest(int now) {
 		int workDuration = displayedTime(now);
-		context.changeState(new TakingBreak(context, now, workDuration));
+		context.changeState(new Resting(context, now, workDuration));
 	}
 
 	@Override

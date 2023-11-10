@@ -29,27 +29,25 @@ import timer.state.TimerState.IllegalOperationException;
  * @author Milan Vlaski
  *
  */
-public class TestTimer {
+public class TestTimer
+{
 
-	public static class Moment {
+	public static class Moment
+	{
 		// number is randomly picked, because currentTime() returns a random number
 		private int currentTime = 36;
 
-		public Moment() {
-			
-		}
-		
-		public Moment(int currentTime) {
-			this.currentTime = currentTime;
-		}
+		public Moment()
+		{}
 
-		public int after(int seconds) {
-			return currentTime += seconds;
-		}
+		public Moment(int currentTime)
+		{ this.currentTime = currentTime; }
 
-		public int current() {
-			return currentTime;
-		}
+		public int after(int seconds)
+		{ return currentTime += seconds; }
+
+		public int current()
+		{ return currentTime; }
 	}
 
 	@Mock
@@ -65,7 +63,8 @@ public class TestTimer {
 	Moment moment;
 
 	@BeforeEach
-	void setup() {
+	void setup()
+	{
 		MockitoAnnotations.openMocks(this);
 		moment = new Moment();
 	}
@@ -116,7 +115,8 @@ public class TestTimer {
 	}
 
 	@Test
-	void shouldResetTimeAfterGoingBackToWork() {
+	void shouldResetTimeAfterGoingBackToWork()
+	{
 		timer.begin();
 		timer.takeBreak();
 		timer.begin();
@@ -124,27 +124,27 @@ public class TestTimer {
 	}
 
 	@Test
-	void shouldThrowException_IfTriesToStartTwice() {
+	void shouldThrowException_IfTriesToStartTwice()
+	{
 		timer.begin();
 		assertThrows(IllegalOperationException.class, () -> timer.begin());
 	}
 
 	@Test
-	void shouldThrowException_IfTakesBreakWithoutWorking() {
-		assertThrows(IllegalOperationException.class, () -> timer.takeBreak());
-	}
+	void shouldThrowException_IfTakesBreakWithoutWorking()
+	{ assertThrows(IllegalOperationException.class, () -> timer.takeBreak()); }
 
 	@Test
-	void shouldThrowException_IfTriesToTakeBreakWhileOnBreak() {
+	void shouldThrowException_IfTriesToTakeBreakWhileOnBreak()
+	{
 		timer.begin();
 		timer.takeBreak();
 		assertThrows(IllegalOperationException.class, () -> timer.takeBreak());
 	}
 
 	@Test
-	void shouldThrowException_IfPausingNothing() {
-		assertThrows(IllegalOperationException.class, () -> timer.pause());
-	}
+	void shouldThrowException_IfPausingNothing()
+	{ assertThrows(IllegalOperationException.class, () -> timer.pause()); }
 
 	@Test
 	void timeShouldStopWhenPausing_WhileWorking() {
@@ -251,9 +251,8 @@ public class TestTimer {
 	}
 
 	@Test
-	void shouldThrow_IfTriesToResumeInIdleState() {
-		assertThrows(IllegalOperationException.class, () -> timer.resume());
-	}
+	void shouldThrow_IfTriesToResumeInIdleState()
+	{ assertThrows(IllegalOperationException.class, () -> timer.resume()); }
 
 	@Test
 	void shouldGoToBreak_AfterPausingWork() {

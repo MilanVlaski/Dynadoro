@@ -13,7 +13,7 @@ public class StateInfo
 		IDLE("Idle", false),
 		PAUSE("Paused", false),
 		WORKING("Working", true),
-		BREAK("Break", true);
+		RESTING("Resting", true);
 
 		private final String name;
 		private final boolean getsRecorded;

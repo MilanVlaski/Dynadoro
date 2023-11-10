@@ -9,7 +9,7 @@ public abstract class Display
 	{
 		IDLE,
 		WORKING,
-		TAKING_BREAK,
+		RESTING,
 		WORK_PAUSE,
 		BREAK_PAUSE,
 		BREAK_FINISHED;
@@ -48,7 +48,7 @@ public abstract class Display
 		case WORKING:
 			showWorking();
 			break;
-		case TAKING_BREAK:
+		case RESTING:
 			showBreak();
 			break;
 		case BREAK_FINISHED:

@@ -39,7 +39,7 @@ public class Timer
 	{ state.pause(clock.currentTimeSeconds()); }
 
 	public void takeBreak()
-	{ state.takeBreak(clock.currentTimeSeconds()); }
+	{ state.rest(clock.currentTimeSeconds()); }
 
 	public void reset()
 	{ changeState(new Idle(this, clock.currentTimeSeconds())); }

@@ -26,7 +26,7 @@ public abstract class TimerState
 
 	public abstract int displayedTime(int now);
 	public abstract void begin(int now);
-	public abstract void takeBreak(int now);
+	public abstract void rest(int now);
 	public abstract void pause(int now);
 	public abstract void resume(int now, int pauseTime);
 	public abstract void record(UsageRecord record);
