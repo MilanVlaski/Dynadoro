@@ -2,7 +2,7 @@ package test.record;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
-import static test.TestTimer.BREAK_DURATION;
+import static test.TestTimer.REST_DURATION;
 import static test.TestTimer.TWENTY_FIVE;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -128,7 +128,7 @@ class TestRecord
 	void shouldRecordWorkAndThenBreak() {
 		when(mockClock.currentTimeSeconds())
 				.thenReturn(moment.current(), moment.after(TWENTY_FIVE * 60),
-							moment.after(BREAK_DURATION * 60));
+							moment.after(REST_DURATION * 60));
 
 		timer.begin();
 		timer.rest();

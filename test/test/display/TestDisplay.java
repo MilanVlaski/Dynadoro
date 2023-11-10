@@ -5,7 +5,7 @@ import static org.mockito.Mockito.atMost;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static test.TestTimer.BREAK_DURATION;
+import static test.TestTimer.REST_DURATION;
 import static test.TestTimer.TWENTY_FIVE;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -65,8 +65,8 @@ class TestDisplay
 		timer.begin();
 		timer.rest();
 		
-		verify(mockDisplay).show(BREAK_DURATION,  DisplayState.RESTING);
-		verify(mockCounter).count(BREAK_DURATION);
+		verify(mockDisplay).show(REST_DURATION,  DisplayState.RESTING);
+		verify(mockCounter).count(REST_DURATION);
 	}
 
 	@Test
@@ -94,7 +94,7 @@ class TestDisplay
 		timer.rest();
 		timer.pause();  
 		
-		verify(mockDisplay).show(BREAK_DURATION - 2, DisplayState.BREAK_PAUSE);
+		verify(mockDisplay).show(REST_DURATION - 2, DisplayState.BREAK_PAUSE);
 		verify(mockCounter, atLeastOnce()).stop();
 	}
 
@@ -124,8 +124,8 @@ class TestDisplay
 		timer.pause();
 		timer.resume();
 		
-		verify(mockDisplay).show(BREAK_DURATION - 1, DisplayState.BREAK_PAUSE);
-		verify(mockCounter).count(BREAK_DURATION - 1);
+		verify(mockDisplay).show(REST_DURATION - 1, DisplayState.BREAK_PAUSE);
+		verify(mockCounter).count(REST_DURATION - 1);
 	}
 
 	@Test

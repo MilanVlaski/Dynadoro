@@ -90,20 +90,20 @@ public class TestTimer
 
 	public static final int TWENTY_FIVE = 25;
 	public static final int WORK_REST_RATIO = 5 / 1;
-	public static final int BREAK_DURATION = TWENTY_FIVE / WORK_REST_RATIO;
+	public static final int REST_DURATION = TWENTY_FIVE / WORK_REST_RATIO;
 
 	@Test
-	void breakShouldTakeFiveTimesShorterThanWork() {
+	void restShouldTakeFiveTimesShorterThanWork() {
 		when(mockClock.currentTimeSeconds())
 				.thenReturn(moment.current(), moment.after(TWENTY_FIVE), moment.current());
 
 		timer.begin();
 		timer.rest();
-		assertEquals(BREAK_DURATION, timer.displayedTime());
+		assertEquals(REST_DURATION, timer.displayedTime());
 	}
 
 	@Test
-	void shouldStopCountingAfterBreakIsOver() {
+	void shouldStopCountingAfterRestIsOver() {
 		when(mockClock.currentTimeSeconds())
 				.thenReturn(moment.current(), moment.after(TWENTY_FIVE),
 						moment.after(999));
@@ -131,11 +131,11 @@ public class TestTimer
 	}
 
 	@Test
-	void shouldThrowException_IfTakesBreakWithoutWorking()
+	void shouldThrowException_IfTakesRestWithoutWorking()
 	{ assertThrows(IllegalOperationException.class, () -> timer.rest()); }
 
 	@Test
-	void shouldThrowException_IfTriesToTakeBreakWhileOnBreak()
+	void shouldThrowException_IfTriesToTakeRestWhileResting()
 	{
 		timer.begin();
 		timer.rest();
@@ -158,17 +158,17 @@ public class TestTimer
 	}
 
 	@Test
-	void shouldCountDown_WhileTakingBreak() {
+	void shouldCountDown_WhileTakingRest() {
 		when(mockClock.currentTimeSeconds())
 		.thenReturn(moment.current(), moment.after(TWENTY_FIVE), moment.after(1));
 		
 		timer.begin();
 		timer.rest();
-		assertEquals(BREAK_DURATION - 1, timer.displayedTime());
+		assertEquals(REST_DURATION - 1, timer.displayedTime());
 	}
 
 	@Test
-	void timeShouldStopWhenPausing_WhileOnBreak() {
+	void timeShouldStopWhenPausing_WhileResting() {
 		when(mockClock.currentTimeSeconds())
 				.thenReturn(moment.current(), moment.after(TWENTY_FIVE), moment.after(1),
 						moment.current());
@@ -177,7 +177,7 @@ public class TestTimer
 		timer.rest();
 		timer.pause();
 		
-		assertEquals(BREAK_DURATION - 1, timer.displayedTime());
+		assertEquals(REST_DURATION - 1, timer.displayedTime());
 	}
 
 	@Test
@@ -214,7 +214,7 @@ public class TestTimer
 	}
 
 	@Test
-	void shouldResumeBreak() {
+	void shouldResumeRest() {
 		when(mockClock.currentTimeSeconds())
 				.thenReturn(moment.current(), moment.after(TWENTY_FIVE), moment.after(1),
 						moment.current(), moment.current(), moment.after(1));
@@ -232,7 +232,7 @@ public class TestTimer
 	}
 
 	@Test
-	void shouldResumeBreakTwice() {
+	void shouldResumeRestTwice() {
 		when(mockClock.currentTimeSeconds())
 				.thenReturn(moment.current(), moment.after(TWENTY_FIVE), moment.after(1),
 						moment.current(), moment.after(1), moment.after(1), moment.after(1), moment.after(1));
@@ -255,7 +255,7 @@ public class TestTimer
 	{ assertThrows(IllegalOperationException.class, () -> timer.resume()); }
 
 	@Test
-	void shouldGoToBreak_AfterPausingWork() {
+	void shouldRest_AfterPausingWork() {
 		when(mockClock.currentTimeSeconds())
 				.thenReturn(moment.current(), moment.after(TWENTY_FIVE), moment.after(123),
 						moment.after(1));
@@ -269,12 +269,12 @@ public class TestTimer
 
 	// TODO make it pass
 //	@Test
-//	void shouldThrowIfTakesBreak_WhilePausingBreak() {
+//	void shouldThrowIfRests_WhilePausingRest() {
 //		timer.begin();
-//		timer.takeBreak();
+//		timer.rest();
 //		timer.pause();
 //		
-//		assertThrows(IllegalOperationexception.class, () -> timer.takeBreak());
+//		assertThrows(IllegalOperationexception.class, () -> timer.rest());
 //	}
 
 	@Test
