@@ -10,13 +10,15 @@ public class StateInfo
 
 	public enum State
 	{
-		IDLE("Idle", false), PAUSE("Paused", false), WORKING("Working", true),
+		IDLE("Idle", false),
+		PAUSE("Paused", false),
+		WORKING("Working", true),
 		BREAK("Break", true);
 
 		private final String name;
 		private final boolean getsRecorded;
 
-		private State(String name, boolean getsRecorded) 
+		private State(String name, boolean getsRecorded)
 		{
 			this.name = name;
 			this.getsRecorded = getsRecorded;

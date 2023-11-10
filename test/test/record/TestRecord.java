@@ -14,7 +14,7 @@ import org.mockito.MockitoAnnotations;
 
 import display.Display;
 import record.StateInfo;
-import record.File;
+import record.History;
 import record.UsageRecord;
 import record.StateInfo.State;
 import test.TestTimer.Moment;
@@ -37,7 +37,7 @@ class TestRecord
 
 	Moment moment;
 	UsageRecord record;
-	File mockEmptyFile;
+	History mockEmptyFile;
 
 	@BeforeEach
 	void setup()
@@ -97,7 +97,7 @@ class TestRecord
 	{
 
 		String previousData = "data-data-data\n";
-		File fileWithData = new MockFile(previousData);
+		History fileWithData = new MockFile(previousData);
 		UsageRecord record = new UsageRecord(fileWithData);
 
 		when(mockClock.currentTimeSeconds())

@@ -1,6 +1,6 @@
 package record;
 
-public interface File
+public interface History
 {
 	String read();
 	void write(String text);

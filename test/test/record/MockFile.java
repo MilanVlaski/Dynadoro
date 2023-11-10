@@ -1,8 +1,8 @@
 package test.record;
 
-import record.File;
+import record.History;
 
-public class MockFile implements File
+public class MockFile implements History
 {
 
 	private String contents = "";

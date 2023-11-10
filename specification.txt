@@ -13,13 +13,20 @@ REQUIREMENTS:
 ---------------------------------------------------------------------------------------
 
 TODO:
-- add a reset button
 - while break ticks down you could have a charging battery filling up (maybe in thirds,
 battery with 3 bars
 - remove the window bar and add rounded borders (same color as text maybe)
 
 LOGS:
-- If you exit the app, that needs to finish the previous state.
+- If you exit the app, the previous state needs to finish.
+- We have our UsageFile and our VisualDay. When we select the option to show these images,
+it shows all of them, with (November, 23, Tuesday... + Thumbnail or full image). We keep
+the images and file consistent by loading the file data to memory (creating objects out of
+collections of StateInfos and mapping them to images). If extra images exist, we delete them.
+And if an object (a Day), doesn't have an image (Tuesday_23_November.png - DayVisual),
+it gets created. A Day has States, and a Day must have a VisualDay. States have start
+and end time. (Based on this you can make an arc. Combining the arcs gives you whole picture).
+(we don't care about a day that doesn't have states, it doesn't get logged).
 
 - Creating images for date (displays Date + Day of the week)
 - hours studying per day
@@ -37,4 +44,5 @@ FIXED: It was because the counter is a little weirdo. Scheduled tasks can't be
 stopped, i had to add logic that prevents that. I don't understand the library fully...
 BUG: If you pause and resume before the original break interval, you get alarmed twice.
 FIXED: shutdowNow() does a full shutdown, so that works.
+TODO: Test this bug, and fix it
 

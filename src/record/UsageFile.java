@@ -8,7 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
-public class UsageFile implements File
+public class UsageFile implements History
 {
 
 	private static final String APP_NAME = "Dynadoro";

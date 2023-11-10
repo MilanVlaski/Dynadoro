@@ -3,6 +3,7 @@ package display.swing;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
@@ -24,8 +25,9 @@ public class MainFrame extends JFrame
 
 	private static final JPanel MAIN_PANEL = new JPanel(true);
 	private static final JPanel CONTROL_PANEL = new JPanel();
-	private static final JLabel CLOCK = new JLabel();
+	private static final JPanel TOP_PANEL = new JPanel();
 	private static final JPanel CLOCK_PANEL = new JPanel();
+	private static final JLabel CLOCK = new JLabel();
 
 	public static final Font CLOCK_FONT = new Font("Loto", Font.PLAIN, 50);
 
@@ -43,8 +45,18 @@ public class MainFrame extends JFrame
 
 		setSize(310, 290);
 
+		TOP_PANEL.setLayout(new BorderLayout());
+		TOP_PANEL.setPreferredSize(new Dimension(30, 20));
+		TOP_PANEL.add(new CoolButton("Reset", 75, 5, (e) -> timer.reset(), 12),
+		        BorderLayout.WEST);
+
+		TOP_PANEL.add(new CoolButton("X", 75, 75, (e) -> timer.reset(), 12),
+		        BorderLayout.EAST);
+
+		//
 		setLayout(new BorderLayout());
 		add(MAIN_PANEL, BorderLayout.CENTER);
+		add(TOP_PANEL, BorderLayout.NORTH);
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
@@ -53,6 +65,7 @@ public class MainFrame extends JFrame
 	private void mainPanelSetup()
 	{
 		MAIN_PANEL.setLayout(new BoxLayout(MAIN_PANEL, BoxLayout.Y_AXIS));
+		//
 
 		MAIN_PANEL.add(Box.createVerticalGlue());
 
@@ -165,9 +178,14 @@ public class MainFrame extends JFrame
 		MAIN_PANEL.setBackground(color);
 		CLOCK_PANEL.setBackground(color);
 		CONTROL_PANEL.setBackground(color);
-		CLOCK.setForeground(new Color(color.getRed() / 10,
+		CLOCK.setForeground(new Color(
+		        color.getRed() / 10,
 		        color.getGreen() / 10,
 		        color.getBlue() / 10));
+		TOP_PANEL.setBackground(new Color(
+		        color.getRed() - 30,
+		        color.getGreen() - 30,
+		        color.getBlue() - 30));
 	}
 
 	private void showButton(String text, int width, int height,

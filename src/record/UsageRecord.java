@@ -8,10 +8,10 @@ public class UsageRecord
 {
 
 	private final List<StateInfo> states = new ArrayList<>();
-	private File file;
+	private History history;
 
-	public UsageRecord(File file)
-	{ this.file = file; }
+	public UsageRecord(History history)
+	{ this.history = history; }
 
 	@Override
 	public String toString()
@@ -40,6 +40,6 @@ public class UsageRecord
 		previousState.finish(endTime);
 
 		if (previousState.shouldBeRecorded())
-			file.write(previousState.toString());
+			history.write(previousState.toString());
 	}
 }
