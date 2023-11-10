@@ -9,10 +9,10 @@ import timer.Timer;
 public class Resting extends TimerState {
 
 	private final int restDuration;
-	private static final int REST_FACTOR = 5;
+	private static final int WORK_REST_RATIO = 5 / 1;
 
 	public Resting(Timer context, int now, int workDuration) {
-		this(workDuration / REST_FACTOR, context, now);
+		this(workDuration / WORK_REST_RATIO, context, now);
 	}
 
 	private Resting(int restDuration, Timer context, int now) {
