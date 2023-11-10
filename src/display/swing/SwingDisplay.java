@@ -18,13 +18,13 @@ public class SwingDisplay extends Display
 	protected void pauseWork()
 	{ mainFrame.showWorkPause(); }
 
-	protected void pauseBreak()
+	protected void pauseRest()
 	{ mainFrame.showBreakPause(); }
 
-	protected void finishBreak()
+	protected void finishRest()
 	{ mainFrame.showBreakFinished(); }
 
-	protected void showBreak()
+	protected void showResting()
 	{ mainFrame.showBreak(); }
 
 	protected void showWorking()

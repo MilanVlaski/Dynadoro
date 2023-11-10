@@ -58,7 +58,7 @@ class TestDisplay {
 			.thenReturn(TestTimer.TWENTY_FIVE);
 		
 		timer.begin();
-		timer.takeBreak();
+		timer.rest();
 		
 		verify(mockDisplay).show(TestTimer.BREAK_DURATION,  DisplayState.RESTING);
 		verify(mockCounter).count(TestTimer.BREAK_DURATION);
@@ -83,7 +83,7 @@ class TestDisplay {
 			.thenReturn(100 + TestTimer.TWENTY_FIVE + 2);
 		
 		timer.begin();
-		timer.takeBreak();
+		timer.rest();
 		timer.pause();  
 		
 		verify(mockDisplay).show(TestTimer.BREAK_DURATION - 2, DisplayState.BREAK_PAUSE);
@@ -111,7 +111,7 @@ class TestDisplay {
 			.thenReturn(100 + TestTimer.TWENTY_FIVE + 2);
 		
 		timer.begin();
-		timer.takeBreak();
+		timer.rest();
 		timer.pause();
 		timer.resume();
 		

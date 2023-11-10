@@ -96,7 +96,7 @@ public class MainFrame extends JFrame
 	{ showButton("| |", 70, 70, (e) -> timer.pause()); }
 
 	private void showBreakButton()
-	{ showButton("Take break", 182, 70, (e) -> timer.takeBreak()); }
+	{ showButton("Take break", 182, 70, (e) -> timer.rest()); }
 
 	private void showResumeButton()
 	{ showButton(">", 70, 70, (e) -> timer.resume()); }

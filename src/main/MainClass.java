@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import display.ConsoleDisplay;
 import display.swing.SwingDisplay;
-import record.UsageFile;
+import record.UsageHistory;
 import record.UsageRecord;
 import timer.Clock;
 import timer.SystemClock;
@@ -35,7 +35,7 @@ public class MainClass
 
 	private static void startRecording(Timer timer)
 	{
-		UsageFile file = new UsageFile();
+		UsageHistory file = new UsageHistory();
 		UsageRecord record = new UsageRecord(file);
 		timer.startRecording(record);
 	}
@@ -55,7 +55,7 @@ public class MainClass
 				if (input.equals("1"))
 					timer.begin();
 				else if (input.equals("2"))
-					timer.takeBreak();
+					timer.rest();
 				else if (input.equals("3"))
 					timer.pause();
 				else if (input.equals("4"))

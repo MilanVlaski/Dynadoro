@@ -49,13 +49,13 @@ public abstract class Display
 			showWorking();
 			break;
 		case RESTING:
-			showBreak();
+			showResting();
 			break;
 		case BREAK_FINISHED:
-			finishBreak();
+			finishRest();
 			break;
 		case BREAK_PAUSE:
-			pauseBreak();
+			pauseRest();
 			break;
 		case WORK_PAUSE:
 			pauseWork();
@@ -65,9 +65,9 @@ public abstract class Display
 
 	protected abstract void updateTime(int displayedTime);
 	protected abstract void pauseWork();
-	protected abstract void pauseBreak();
-	protected abstract void finishBreak();
-	protected abstract void showBreak();
+	protected abstract void pauseRest();
+	protected abstract void finishRest();
+	protected abstract void showResting();
 	protected abstract void showWorking();
 	protected abstract void showIdle();
 

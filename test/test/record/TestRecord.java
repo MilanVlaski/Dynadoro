@@ -119,7 +119,7 @@ class TestRecord
 				.thenReturn(moment.current(), moment.after(TWENTY_FIVE * 60));
 
 		timer.begin();
-		timer.takeBreak();
+		timer.rest();
 
 		assertEquals("2023-11-07, Tuesday, Working, 15:40, 16:05\n"
 				+ "2023-11-07, Tuesday, Break, 16:05, unknown\n", record.toString());
@@ -132,7 +132,7 @@ class TestRecord
 							moment.after(BREAK_DURATION * 60));
 
 		timer.begin();
-		timer.takeBreak();
+		timer.rest();
 		timer.reset();
 
 		String expected = "2023-11-07, Tuesday, Working, 15:40, 16:05\n"
@@ -148,7 +148,7 @@ class TestRecord
 							moment.after(8 * 60));
 
 		timer.begin();
-		timer.takeBreak();
+		timer.rest();
 		timer.reset();
 
 		assertEquals("2023-11-07, Tuesday, Working, 15:40, 16:05\n"

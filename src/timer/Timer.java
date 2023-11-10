@@ -38,7 +38,7 @@ public class Timer
 	public void pause()
 	{ state.pause(clock.currentTimeSeconds()); }
 
-	public void takeBreak()
+	public void rest()
 	{ state.rest(clock.currentTimeSeconds()); }
 
 	public void reset()

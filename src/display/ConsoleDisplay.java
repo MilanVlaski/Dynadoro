@@ -44,13 +44,13 @@ public class ConsoleDisplay extends Display
 	protected void pauseWork() { System.out.println(workPauseMessage(time)); }
 
 	@Override
-	protected void pauseBreak() { System.out.println(breakPauseMessage(time)); }
+	protected void pauseRest() { System.out.println(breakPauseMessage(time)); }
 
 	@Override
-	protected void finishBreak() { System.out.println(breakFinishedMessage()); }
+	protected void finishRest() { System.out.println(breakFinishedMessage()); }
 
 	@Override
-	protected void showBreak() { System.out.println(breakMessage(time)); }
+	protected void showResting() { System.out.println(breakMessage(time)); }
 
 	@Override
 	protected void showWorking() { System.out.println(workingMessage(time)); }

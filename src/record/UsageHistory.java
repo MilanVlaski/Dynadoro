@@ -8,7 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
-public class UsageFile implements History
+public class UsageHistory implements History
 {
 
 	private static final String APP_NAME = "Dynadoro";
@@ -34,34 +34,29 @@ public class UsageFile implements History
 	@Override
 	public void write(String text)
 	{
-		try
+		try (BufferedWriter writer = Files.newBufferedWriter(path,
+		        StandardOpenOption.APPEND))
 		{
 			if (Files.notExists(path))
 			{
 				Files.createDirectories(path.getParent());
 				Files.createFile(path);
 			}
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
 
-		try (BufferedWriter writer = Files.newBufferedWriter(path,
-		        StandardOpenOption.APPEND))
-		{
 			writer.write(text);
 			writer.newLine();
+
 		} catch (IOException e)
 		{
 			e.printStackTrace();
 		}
-
 	}
 
 	public static void main(String[] args)
 	{
-		UsageFile file = new UsageFile();
-		file.read();
+		// Makes a file and prints "true" if it exists
+		UsageHistory history = new UsageHistory();
+		history.read();
 		System.out.println(Files.exists(path));
 	}
 }

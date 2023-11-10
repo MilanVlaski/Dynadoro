@@ -98,7 +98,7 @@ public class TestTimer
 				.thenReturn(moment.current(), moment.after(TWENTY_FIVE), moment.current());
 
 		timer.begin();
-		timer.takeBreak();
+		timer.rest();
 		assertEquals(BREAK_DURATION, timer.displayedTime());
 	}
 
@@ -109,7 +109,7 @@ public class TestTimer
 						moment.after(999));
 
 		timer.begin();
-		timer.takeBreak();
+		timer.rest();
 
 		assertEquals(0, timer.displayedTime());
 	}
@@ -118,7 +118,7 @@ public class TestTimer
 	void shouldResetTimeAfterGoingBackToWork()
 	{
 		timer.begin();
-		timer.takeBreak();
+		timer.rest();
 		timer.begin();
 		assertEquals(0, timer.displayedTime());
 	}
@@ -132,14 +132,14 @@ public class TestTimer
 
 	@Test
 	void shouldThrowException_IfTakesBreakWithoutWorking()
-	{ assertThrows(IllegalOperationException.class, () -> timer.takeBreak()); }
+	{ assertThrows(IllegalOperationException.class, () -> timer.rest()); }
 
 	@Test
 	void shouldThrowException_IfTriesToTakeBreakWhileOnBreak()
 	{
 		timer.begin();
-		timer.takeBreak();
-		assertThrows(IllegalOperationException.class, () -> timer.takeBreak());
+		timer.rest();
+		assertThrows(IllegalOperationException.class, () -> timer.rest());
 	}
 
 	@Test
@@ -163,7 +163,7 @@ public class TestTimer
 		.thenReturn(moment.current(), moment.after(TWENTY_FIVE), moment.after(1));
 		
 		timer.begin();
-		timer.takeBreak();
+		timer.rest();
 		assertEquals(BREAK_DURATION - 1, timer.displayedTime());
 	}
 
@@ -174,7 +174,7 @@ public class TestTimer
 						moment.current());
 
 		timer.begin();
-		timer.takeBreak();
+		timer.rest();
 		timer.pause();
 		
 		assertEquals(BREAK_DURATION - 1, timer.displayedTime());
@@ -221,7 +221,7 @@ public class TestTimer
 
 		timer.begin();
 
-		timer.takeBreak(); // time = 5
+		timer.rest(); // time = 5
 
 		timer.pause(); // time = 4
 
@@ -238,7 +238,7 @@ public class TestTimer
 						moment.current(), moment.after(1), moment.after(1), moment.after(1), moment.after(1));
 
 		timer.begin();
-		timer.takeBreak();
+		timer.rest();
 		timer.pause();
 		timer.resume();
 
@@ -262,7 +262,7 @@ public class TestTimer
 
 		timer.begin();
 		timer.pause();
-		timer.takeBreak();
+		timer.rest();
 
 		assertEquals(4, timer.displayedTime());
 	}
