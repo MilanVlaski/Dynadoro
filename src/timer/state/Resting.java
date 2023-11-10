@@ -56,7 +56,7 @@ public class Resting extends TimerState {
 
 	@Override
 	public void record(UsageRecord record) {
-		record.capture(new StateData(State.BREAK, startTime));
+		record.capture(new StateData(State.RESTING, startTime));
 	}
 
 

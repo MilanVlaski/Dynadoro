@@ -15,6 +15,7 @@ import org.mockito.MockitoAnnotations;
 import display.Display;
 import display.Display.DisplayState;
 import test.TestTimer;
+import test.TestTimer.Moment;
 import timer.Clock;
 import timer.Timer;
 import timer.counter.Counter;
@@ -30,10 +31,13 @@ class TestDisplay {
 
 	@InjectMocks
 	Timer timer;
+	
+	Moment moment;
 
 	@BeforeEach
 	void injectMocks() {
 		MockitoAnnotations.openMocks(this);
+		moment = new Moment();
 	}
 
 	@Test
@@ -54,8 +58,8 @@ class TestDisplay {
 	@Test
 	void shouldShowAppropriateTime_AndState_WhenTakingBreak() {
 		when(mockClock.currentTimeSeconds())
-			.thenReturn(0)
-			.thenReturn(TestTimer.TWENTY_FIVE);
+			.thenReturn(moment.current())
+			.thenReturn(moment.after(TestTimer.TWENTY_FIVE));
 		
 		timer.begin();
 		timer.rest();

@@ -1,7 +1,6 @@
 package test.record;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static test.TestTimer.BREAK_DURATION;
 import static test.TestTimer.TWENTY_FIVE;
@@ -13,10 +12,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import display.Display;
-import record.StateData;
 import record.History;
-import record.UsageRecord;
+import record.StateData;
 import record.StateData.State;
+import record.UsageRecord;
 import test.TestTimer.Moment;
 import timer.Clock;
 import timer.Timer;
@@ -122,7 +121,7 @@ class TestRecord
 		timer.rest();
 
 		assertEquals("2023-11-07, Tuesday, Working, 15:40, 16:05\n"
-				+ "2023-11-07, Tuesday, Break, 16:05, unknown\n", record.toString());
+				+ "2023-11-07, Tuesday, Resting, 16:05, unknown\n", record.toString());
 	}
 
 	@Test
@@ -136,7 +135,7 @@ class TestRecord
 		timer.reset();
 
 		String expected = "2023-11-07, Tuesday, Working, 15:40, 16:05\n"
-				+ "2023-11-07, Tuesday, Break, 16:05, 16:10\n";
+				+ "2023-11-07, Tuesday, Resting, 16:05, 16:10\n";
 		assertEquals(expected, record.toString());
 		assertEquals(expected, fakeEmptyHistory.read());
 	}
@@ -152,7 +151,7 @@ class TestRecord
 		timer.reset();
 
 		assertEquals("2023-11-07, Tuesday, Working, 15:40, 16:05\n"
-				+ "2023-11-07, Tuesday, Break, 16:05, 16:13\n", record.toString());
+				+ "2023-11-07, Tuesday, Resting, 16:05, 16:13\n", record.toString());
 	}
 
 	@Test
