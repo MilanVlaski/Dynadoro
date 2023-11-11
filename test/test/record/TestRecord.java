@@ -39,11 +39,13 @@ class TestRecord
 	UsageRecord record;
 	History fakeHistory;
 
+	static final int SEVENTH_NOVEMBER_15_40 = 1699368029;
+	
 	@BeforeEach
 	void setup()
 	{
 		MockitoAnnotations.openMocks(this);
-		moment = new Moment(1699368029);
+		moment = new Moment(SEVENTH_NOVEMBER_15_40);
 
 		fakeHistory = new FakeHistory();
 		record = new UsageRecord(fakeHistory);

@@ -9,6 +9,9 @@
 - Pause and resume at any time, while resting or working.
 
 ## TODO
+- For Day visualization the input is StateData and output is a nice drawing.
+- study java.util.time
+- Moment returns an int, representing time that passed. But it would be nice if it could convert to Date, with all data that that entails.
 
 - while break ticks down you could have a charging battery filling up (maybe in thirds, battery with 3 bars
 

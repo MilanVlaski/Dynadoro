@@ -29,14 +29,12 @@ public class StateData
 	private final String name;
 	private final boolean getsRecorded;
 
-	private final int startTime;
 	private final Date startDate;
 	private Date endDate;
 
 	public StateData(State state, int startTime)
 	{
 		this.name = state.name;
-		this.startTime = startTime;
 		this.startDate = secondsToDate(startTime);
 		this.getsRecorded = state.getsRecorded;
 	}
@@ -59,13 +57,13 @@ public class StateData
 		        name, hourFormat.format(startDate), endTime);
 	}
 
-	public void finish(int endTime)
-	{ endDate = secondsToDate(endTime); }
-
-	public int startTime()
-	{ return startTime; }
+	public Date startDate()
+	{ return startDate; }
 
 	public boolean shouldBeRecorded()
 	{ return getsRecorded; }
+
+	public void finish(Date endDate)
+	{ this.endDate = endDate; }
 
 }

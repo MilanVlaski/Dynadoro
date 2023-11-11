@@ -1,6 +1,7 @@
 package record;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,16 +31,17 @@ public class UsageRecord
 		if (!states.isEmpty())
 		{
 			StateData previousState = states.get(states.size() - 1);
-			finishAndWrite(previousState, newState.startTime());
+			finishAndWrite(previousState, newState.startDate());
 		}
 		states.add(newState);
 	}
 
-	private void finishAndWrite(StateData previousState, int endTime)
+	private void finishAndWrite(StateData previousState, Date endDate)
 	{
-		previousState.finish(endTime);
+		previousState.finish(endDate);
 
 		if (previousState.shouldBeRecorded())
 			history.write(previousState.toString());
 	}
+
 }
