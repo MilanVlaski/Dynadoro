@@ -34,9 +34,10 @@ class TestRecord
 	@InjectMocks
 	Timer timer;
 
+	//
 	Moment moment;
 	UsageRecord record;
-	History fakeEmptyHistory;
+	History fakeHistory;
 
 	@BeforeEach
 	void setup()
@@ -44,8 +45,8 @@ class TestRecord
 		MockitoAnnotations.openMocks(this);
 		moment = new Moment(1699368029);
 
-		fakeEmptyHistory = new FakeHistory();
-		record = new UsageRecord(fakeEmptyHistory);
+		fakeHistory = new FakeHistory();
+		record = new UsageRecord(fakeHistory);
 		timer.startRecording(record);
 	}
 
@@ -65,7 +66,8 @@ class TestRecord
 	void stateShouldProvideStateInfoObject1()
 	{
 		StateData stateData = new StateData(State.WORKING, moment.after(60 * 5));
-		assertEquals("2023-11-07, Tuesday, Working, 15:45, unknown", stateData.toString());
+		assertEquals("2023-11-07, Tuesday, Working, 15:45, unknown",
+		        stateData.toString());
 	}
 
 	@Test
@@ -75,7 +77,7 @@ class TestRecord
 		timer.begin();
 
 		assertEquals("2023-11-07, Tuesday, Working, 15:40, unknown\n", record.toString());
-		assertEquals("", fakeEmptyHistory.read());
+		assertEquals("", fakeHistory.read());
 	}
 
 	@Test
@@ -88,13 +90,12 @@ class TestRecord
 
 		String expected = "2023-11-07, Tuesday, Working, 15:40, 15:45\n";
 		assertEquals(expected, record.toString());
-		assertEquals(expected, fakeEmptyHistory.read());
+		assertEquals(expected, fakeHistory.read());
 	}
 
 	@Test
 	void shouldWriteToNonEmptyFileCorrectly()
 	{
-
 		String previousData = "data-data-data\n";
 		History fakeHistory = new FakeHistory(previousData);
 		UsageRecord record = new UsageRecord(fakeHistory);
@@ -137,7 +138,7 @@ class TestRecord
 		String expected = "2023-11-07, Tuesday, Working, 15:40, 16:05\n"
 				+ "2023-11-07, Tuesday, Resting, 16:05, 16:10\n";
 		assertEquals(expected, record.toString());
-		assertEquals(expected, fakeEmptyHistory.read());
+		assertEquals(expected, fakeHistory.read());
 	}
 
 	@Test
@@ -166,7 +167,7 @@ class TestRecord
 	}
 
 	@Test
-	void shouldRecordWorkTwice_AfterPauseAndResume() {
+	void shouldRecordWorkTwice_AfterPartuseAndResume() {
 		when(mockClock.currentTimeSeconds())
 				.thenReturn(moment.current(), moment.after(3 * 60),
 						moment.after(2 * 60));
