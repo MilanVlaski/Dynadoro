@@ -76,4 +76,7 @@ public class Timer
 	public Counter getCounter()
 	{ return counter; }
 
+	public int displayedTime(Moment current)
+	{ return 0; }
+
 }
