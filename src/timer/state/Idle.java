@@ -6,43 +6,38 @@ import record.UsageRecord;
 import record.StateData.State;
 import timer.Timer;
 
-public class Idle extends TimerState {
+public class Idle extends TimerState
+{
 
-	public Idle(Timer context, int now) {
+	public Idle(Timer context, int now)
+	{
 		super(context, now);
 		display.show(0, DisplayState.IDLE);
 		counter.stop();
 	}
 
 	@Override
-	public int displayedTime(int now) {
-		return 0;
-	}
+	public int displayedTime(int now)
+	{ return 0; }
 
 	@Override
-	public void begin(int now) {
-		context.changeState(new Working(context, now));
-	}
+	public void begin(int now)
+	{ context.changeState(new Working(context, now)); }
 
 	@Override
-	public void rest(int now) {
-		throw new IllegalOperationException("Can't take break if haven't started work.");
-	}
+	public void rest(int now)
+	{ throw new IllegalOperationException("Can't take break if haven't started work."); }
 
 	@Override
-	public void pause(int now) {
-		throw new IllegalOperationException("Can't pause while doing nothing.");
-	}
+	public void pause(int now)
+	{ throw new IllegalOperationException("Can't pause while doing nothing."); }
 
 	@Override
-	public void resume(int now, int pauseDuration) {
-		throw new IllegalOperationException("Can't resume while idle.");
-	}
-
+	public void resume(int now, int pauseDuration)
+	{ throw new IllegalOperationException("Can't resume while idle."); }
 
 	@Override
-	public void record(UsageRecord record) {
-		record.capture(new StateData(State.IDLE, startTime));
-	}
+	public void record(UsageRecord record)
+	{ record.capture(new StateData(State.IDLE, startTime)); }
 
 }

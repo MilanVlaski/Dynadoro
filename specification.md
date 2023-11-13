@@ -9,11 +9,14 @@
 - Pause and resume at any time, while resting or working.
 
 ## TODO
-- For Day visualization the input is StateData and output is a nice drawing.
+- i want to push Clock interface to outside collaborators (Display and Counter), because
+they are the only ones that need clock. then they can provide a Moment object as parameter,
+and from there we can manipulate those as we see fit, but there is no need for mocking.
+- For Day visualization the input is StateData and output is a .png. But an intermediate step could be turning the startTime and endTime into Period objects that hold data about a period of time spent working (from 12:00 to 12:30). (fields from and to, maybe). And then these periods are used as drawing data.
 - study java.util.time
 - Moment returns an int, representing time that passed. But it would be nice if it could convert to Date, with all data that that entails.
 
-- while break ticks down you could have a charging battery filling up (maybe in thirds, battery with 3 bars
+- while break ticks down you could have a charging battery filling up (maybe in thirds, battery with 3 bars)
 
 - remove the window bar and add rounded borders (same color as text maybe)
 
