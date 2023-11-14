@@ -1,6 +1,7 @@
 package timer.state;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 import display.Display.DisplayState;
 import record.StateData;
@@ -43,11 +44,11 @@ public class Idle extends TimerState
 	{ record.capture(new StateData(State.IDLE, startTime)); }
 
 	@Override
-	public long displayedTime(Instant instant)
+	public long displayedTime(LocalDateTime time)
 	{ return 0; }
 
 	@Override
-	public void begin(Instant instant)
-	{ context.changeState(new Working(context, instant));}
+	public void begin(LocalDateTime now)
+	{context.changeState(new Working(context, now));}
 
 }

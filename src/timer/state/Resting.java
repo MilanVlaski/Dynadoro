@@ -1,6 +1,7 @@
 package timer.state;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 import display.Display.DisplayState;
 import record.StateData;
@@ -62,12 +63,13 @@ public class Resting extends TimerState {
 	}
 
 
+
 	@Override
-	public long displayedTime(Instant instant)
+	public long displayedTime(LocalDateTime time)
 	{ return 0; }
 
 	@Override
-	public void begin(Instant instant)
+	public void begin(LocalDateTime time)
 	{}
 
 

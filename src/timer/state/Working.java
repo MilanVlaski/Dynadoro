@@ -2,6 +2,7 @@ package timer.state;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.time.Period;
 
 import display.Display.DisplayState;
@@ -27,11 +28,11 @@ public class Working extends TimerState
 		counter.countUp();
 	}
 
-	public Working(Timer context, Instant current)
+	public Working(Timer context, LocalDateTime now)
 	{
 		super(context, 0);
 		startFrom = 0;
-		start = current;
+		start = now;
 	}
 
 	@Override
@@ -65,11 +66,12 @@ public class Working extends TimerState
 	{ record.capture(new StateData(State.WORKING, startTime)); }
 
 	@Override
-	public long displayedTime(Instant now)
+	public long displayedTime(LocalDateTime now)
 	{ return Duration.between(start, now).toSeconds(); }
 
 	@Override
-	public void begin(Instant instant)
+	public void begin(LocalDateTime time)
 	{}
+
 
 }

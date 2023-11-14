@@ -17,7 +17,7 @@ public abstract class TimerState
 	protected final Counter counter;
 
 	protected final int startTime;
-	protected Instant start;
+	protected LocalDateTime start;
 
 	public TimerState(Timer context, int now)
 	{
@@ -44,7 +44,7 @@ public abstract class TimerState
 		{ super(message); }
 	}
 
-	public abstract long displayedTime(Instant now);
-	public abstract void begin(Instant now);
+	public abstract long displayedTime(LocalDateTime time);
+	public abstract void begin(LocalDateTime time);
 
 }

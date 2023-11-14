@@ -33,31 +33,27 @@ public class TestRedesignedTimer
 	Timer timer;
 
 	//
-	private LocalDateTime time;
-	private Instant instant;
+	private static final LocalDateTime TIME = LocalDateTime.of(2023, 11, 13, 16, 37);
 
 	@BeforeEach
 	void setup()
 	{
 		MockitoAnnotations.openMocks(this);
-		time = LocalDateTime.of(2023, 11, 13, 16, 37);
-		ZoneId zone = ZoneId.of("UTC+1");
-		instant = time.atZone(zone).toInstant();
 	}
 
 	@Test
 	void timeShouldBeZero_IfNotStarted()
-	{ assertEquals(0, timer.displayedTime(instant)); }
+	{ assertEquals(0, timer.displayedTime(TIME)); }
 
 	@Test
 	void shouldMeasureElapsedTime()
 	{
-		Instant oneSecLater = instant.plusSeconds(1);
-		Instant plusSeconds = oneSecLater.plusSeconds(1);
+		LocalDateTime oneSecLater = TIME.plusSeconds(1);
+		LocalDateTime twoSecLater = oneSecLater.plusSeconds(1);
 		
-		timer.begin(instant);
+		timer.begin(TIME);
 		assertEquals(1, timer.displayedTime(oneSecLater));
-		assertEquals(2, timer.displayedTime(plusSeconds));
+		assertEquals(2, timer.displayedTime(twoSecLater));
 	}
 
 }

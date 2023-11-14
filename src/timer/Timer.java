@@ -1,6 +1,7 @@
 package timer;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 import display.Display;
 import display.Display.DisplayState;
@@ -78,10 +79,10 @@ public class Timer
 	public Counter getCounter()
 	{ return counter; }
 
-	public long displayedTime(Instant instant)
-	{ return state.displayedTime(instant); }
+	public long displayedTime(LocalDateTime time)
+	{ return state.displayedTime(time); }
 
-	public void begin(Instant instant)
-	{state.begin(instant);}
+	public void begin(LocalDateTime time)
+	{state.begin(time);}
 
 }
