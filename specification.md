@@ -9,6 +9,7 @@
 - Pause and resume at any time, while resting or working.
 
 ## TODO
+- add a moment class for testing purposes
 - i want to push Clock interface to outside collaborators (Display and Counter), because
 they are the only ones that need clock. then they can provide a Moment object as parameter,
 and from there we can manipulate those as we see fit, but there is no need for mocking.

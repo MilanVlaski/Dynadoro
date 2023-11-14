@@ -48,12 +48,11 @@ public class TestRedesignedTimer
 	@Test
 	void shouldMeasureElapsedTime()
 	{
-		LocalDateTime oneSecLater = TIME.plusSeconds(1);
-		LocalDateTime twoSecLater = oneSecLater.plusSeconds(1);
+		Moment moment = new Moment(TIME);
 		
-		timer.begin(TIME);
-		assertEquals(1, timer.displayedTime(oneSecLater));
-		assertEquals(2, timer.displayedTime(twoSecLater));
+		timer.begin(moment.current());
+		assertEquals(1, timer.displayedTime(moment.afterSeconds(1)));
+		assertEquals(2, timer.displayedTime(moment.afterSeconds(1)));
 	}
 
 }
