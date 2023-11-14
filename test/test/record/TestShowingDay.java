@@ -1,14 +1,7 @@
 package test.record;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.Date;
-
 import org.junit.jupiter.api.Test;
 
-import record.Day;
-import record.StateData;
-import record.StateData.State;
 import test.TestTimer.Moment;
 
 class TestShowingDay

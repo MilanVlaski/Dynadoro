@@ -9,10 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.stubbing.OngoingStubbing;
-
 import display.Display;
-import record.UsageRecord;
 import timer.Clock;
 import timer.Timer;
 import timer.counter.Counter;

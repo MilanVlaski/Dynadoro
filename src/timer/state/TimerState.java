@@ -1,5 +1,8 @@
 package timer.state;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+
 import display.Display;
 import record.StateData;
 import record.UsageRecord;
@@ -14,6 +17,7 @@ public abstract class TimerState
 	protected final Counter counter;
 
 	protected final int startTime;
+	protected Instant start;
 
 	public TimerState(Timer context, int now)
 	{
@@ -39,5 +43,8 @@ public abstract class TimerState
 		public IllegalOperationException(String message)
 		{ super(message); }
 	}
+
+	public abstract long displayedTime(Instant now);
+	public abstract void begin(Instant now);
 
 }

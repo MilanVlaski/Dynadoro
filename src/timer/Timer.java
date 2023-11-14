@@ -1,5 +1,7 @@
 package timer;
 
+import java.time.Instant;
+
 import display.Display;
 import display.Display.DisplayState;
 import record.UsageRecord;
@@ -76,7 +78,10 @@ public class Timer
 	public Counter getCounter()
 	{ return counter; }
 
-	public int displayedTime(Moment current)
-	{ return 0; }
+	public long displayedTime(Instant instant)
+	{ return state.displayedTime(instant); }
+
+	public void begin(Instant instant)
+	{state.begin(instant);}
 
 }

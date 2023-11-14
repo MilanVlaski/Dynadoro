@@ -1,5 +1,7 @@
 package timer.state;
 
+import java.time.Instant;
+
 import display.Display.DisplayState;
 import record.StateData;
 import record.UsageRecord;
@@ -55,5 +57,14 @@ public class Pause extends TimerState {
 	public void record(UsageRecord record) {
 		record.capture(new StateData(State.PAUSE, startTime));
 	}
+
+
+	@Override
+	public long displayedTime(Instant instant)
+	{ return 0; }
+
+	@Override
+	public void begin(Instant instant)
+	{}
 
 }
