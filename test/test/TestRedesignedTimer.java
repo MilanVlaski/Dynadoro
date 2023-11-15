@@ -79,4 +79,13 @@ public class TestRedesignedTimer
 
 		assertEquals(REST_DURATION - 1, timer.seconds(moment.afterSeconds(1)));
 	}
+	
+	@Test
+	void shouldStopCounting_AfterRestIsOver() {
+
+		timer.begin(moment.current());
+		timer.rest(moment.afterSeconds(WORK_DURATION));
+
+		assertEquals(0, timer.seconds(moment.afterSeconds(REST_DURATION + 100)));
+	}
 }

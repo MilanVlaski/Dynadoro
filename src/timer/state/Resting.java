@@ -70,7 +70,10 @@ public class Resting extends TimerState
 
 	@Override
 	public int seconds(LocalDateTime now)
-	{ return restDuration - (int) Duration.between(start, now).toSeconds(); }
+	{
+		int remaining = restDuration - (int) Duration.between(start, now).toSeconds();
+		return remaining > 0 ? remaining : 0;
+	}
 
 	@Override
 	public void begin(LocalDateTime time)
