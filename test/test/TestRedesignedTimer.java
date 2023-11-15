@@ -79,13 +79,26 @@ public class TestRedesignedTimer
 
 		assertEquals(REST_DURATION - 1, timer.seconds(moment.afterSeconds(1)));
 	}
-	
-	@Test
-	void shouldStopCounting_AfterRestIsOver() {
 
+	@Test
+	void shouldStopCounting_AfterRestIsOver()
+	{
 		timer.begin(moment.current());
 		timer.rest(moment.afterSeconds(WORK_DURATION));
 
 		assertEquals(0, timer.seconds(moment.afterSeconds(REST_DURATION + 100)));
 	}
+	
+	@Test
+	void shouldResetTime_AfterGoingBackToWork_FromBreak()
+	{
+		int greaterThanMinimumBreakSeconds = 123;
+		
+		timer.begin(moment.current());
+		timer.rest(moment.afterSeconds(greaterThanMinimumBreakSeconds));
+		timer.begin(moment.current());
+		
+		assertEquals(0, timer.seconds(moment.current()));
+	}
+
 }
