@@ -21,7 +21,7 @@ public class MainClass
 		Counter counter = new ScheduledCounter();
 
 		startSwingApplication(clock, counter);
-//		startConsoleApplication(clock, counter);
+//		startConsoleApplication(clock, dummyCounter);
 	}
 
 	private static void startSwingApplication(Clock clock, Counter counter)

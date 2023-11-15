@@ -27,7 +27,7 @@ public class TestRedesignedTimer
 	@Mock
 	Display dummyDisplay;
 	@Mock
-	Counter counter;
+	Counter dummyCounter;
 
 	@InjectMocks
 	Timer timer;
@@ -37,19 +37,17 @@ public class TestRedesignedTimer
 
 	@BeforeEach
 	void setup()
-	{
-		MockitoAnnotations.openMocks(this);
-	}
+	{ MockitoAnnotations.openMocks(this); }
 
 	@Test
 	void timeShouldBeZero_IfNotStarted()
 	{ assertEquals(0, timer.displayedTime(TIME)); }
 
 	@Test
-	void shouldMeasureElapsedTime()
+	void timeShouldMoveForward_MomentToMoment()
 	{
 		Moment moment = new Moment(TIME);
-		
+
 		timer.begin(moment.current());
 		assertEquals(1, timer.displayedTime(moment.afterSeconds(1)));
 		assertEquals(2, timer.displayedTime(moment.afterSeconds(1)));

@@ -19,7 +19,7 @@ import timer.state.TimerState.IllegalOperationException;
  * This class tests the Timer internals related to checking time. I used
  * TestDisplay to test that Counter and Display are exhibiting the appropriate
  * behavior. This is done so that the simple, time related behavior stays here,
- * and updating the display and starting a counter (which mostly just updated
+ * and updating the display and starting a dummyCounter (which mostly just updated
  * the display) is separate. There is some overlap in test setup between these,
  * but it shouldn't be major.
  * 
