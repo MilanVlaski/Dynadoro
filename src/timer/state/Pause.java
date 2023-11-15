@@ -9,11 +9,13 @@ import record.UsageRecord;
 import record.StateData.State;
 import timer.Timer;
 
-public class Pause extends TimerState {
+public class Pause extends TimerState
+{
 
 	private final TimerState previousState;
 
-	public Pause(Timer context, TimerState previousState, int now) {
+	public Pause(Timer context, TimerState previousState, int now)
+	{
 		super(context, now);
 		this.previousState = previousState;
 
@@ -21,7 +23,14 @@ public class Pause extends TimerState {
 		counter.stop();
 	}
 
-	private void sendDataToDisplay(TimerState previousState, int now) {
+	public Pause(Timer context, Working previousState, LocalDateTime now)
+	{
+		super(context, now);
+		this.previousState = previousState;
+	}
+
+	private void sendDataToDisplay(TimerState previousState, int now)
+	{
 		DisplayState displayState;
 		if (previousState instanceof Working)
 			displayState = DisplayState.WORK_PAUSE;
@@ -32,41 +41,38 @@ public class Pause extends TimerState {
 	}
 
 	@Override
-	public int displayedTime(int now) {
-		return previousState.displayedTime(startTime);
+	public int displayedTime(int now)
+	{ return previousState.displayedTime(startTime); }
+
+	@Override
+	public void begin(int now)
+	{}
+
+	@Override
+	public void rest(int now)
+	{
+		context.changeState(
+		        new Resting(context, now, previousState.displayedTime(startTime)));
 	}
 
 	@Override
-	public void begin(int now) {
-	}
+	public void pause(int now)
+	{}
 
 	@Override
-	public void rest(int now) {
-		context.changeState(new Resting(context, now, previousState.displayedTime(startTime)));
-	}
+	public void resume(int now, int pauseTime)
+	{ previousState.resume(now, startTime); }
 
 	@Override
-	public void pause(int now) {
-	}
+	public void record(UsageRecord record)
+	{ record.capture(new StateData(State.PAUSE, startTime)); }
 
 	@Override
-	public void resume(int now, int pauseTime) {
-		previousState.resume(now, startTime);
-	}
+	public int seconds(LocalDateTime now)
+	{ return previousState.seconds(start); }
 
 	@Override
-	public void record(UsageRecord record) {
-		record.capture(new StateData(State.PAUSE, startTime));
-	}
-
-
-
-	@Override
-	public int seconds(LocalDateTime time)
-	{ return 0; }
-
-	@Override
-	public void begin(LocalDateTime time)
+	public void begin(LocalDateTime now)
 	{}
 
 	@Override

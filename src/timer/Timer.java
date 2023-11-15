@@ -9,7 +9,8 @@ import record.UsageRecord;
 import sound.SoundPlayer;
 import timer.counter.Counter;
 import timer.state.Idle;
-import timer.state.TimerState;import timer.state.Working;
+import timer.state.TimerState;
+import timer.state.Working;
 
 public class Timer
 {
@@ -89,12 +90,12 @@ public class Timer
 	{ state.rest(now); }
 
 	public void pause(LocalDateTime now)
-	{ state.pause(now);; }
+	{ state.pause(now); }
 
 	public void resume(LocalDateTime now)
-	{ state.resume(now, now);; }
+	{ state.resume(now, now); }
 
 	public void reset(LocalDateTime now)
-	{changeState(new Idle(this, now));}
+	{ changeState(new Idle(this, now)); }
 
 }

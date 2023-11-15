@@ -41,7 +41,6 @@ public class TestRedesignedTimer
 
 	@BeforeEach
 	void setup()
-
 	{
 		MockitoAnnotations.openMocks(this);
 		moment = new Moment(TIME);
@@ -65,21 +64,33 @@ public class TestRedesignedTimer
 	public static final int REST_DURATION = WORK_DURATION / WORK_REST_RATIO;
 
 	@Test
-	void restShouldTakeFiveTimesShorterThanWork()
+	void restShouldBeCorrectlyShorterThanWork()
 	{
 		timer.begin(moment.current());
 		timer.rest(moment.afterSeconds(WORK_DURATION));
 
-		assertEquals(REST_DURATION, timer.seconds(moment.current()));
+		assertEquals(WORK_DURATION / WORK_REST_RATIO, timer.seconds(moment.current()));
 	}
 
 	@Test
-	void shouldCountDown_WhileTakingRest()
+	void shouldCountDown_WhileTakingRest1()
 	{
 		timer.begin(moment.current());
 		timer.rest(moment.afterSeconds(WORK_DURATION));
 
 		assertEquals(REST_DURATION - 1, timer.seconds(moment.afterSeconds(1)));
+	}
+
+	@Test
+	void shouldCountDown_WhileTakingRest2()
+	{
+		LocalDateTime now = TIME;
+		LocalDateTime afterWork = now.plusSeconds(WORK_DURATION);
+		LocalDateTime oneSecondAfterWork = afterWork.plusSeconds(1);
+
+		timer.begin(now);
+		timer.rest(afterWork);
+		assertEquals(REST_DURATION - 1, timer.seconds(oneSecondAfterWork));
 	}
 
 	@Test
@@ -102,12 +113,13 @@ public class TestRedesignedTimer
 
 		assertEquals(0, timer.seconds(moment.current()));
 	}
-	
+
 	@Test
-	void shouldResetTime_AfterReset() {
+	void shouldResetTime_AfterReset()
+	{
 		timer.begin(moment.current());
 		timer.reset(moment.afterSeconds(3));
-		
+
 		assertEquals(0, timer.seconds(moment.current()));
 	}
 }

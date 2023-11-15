@@ -82,7 +82,7 @@ public class Working extends TimerState
 
 	@Override
 	public void pause(LocalDateTime now)
-	{}
+	{ context.changeState(new Pause(context, this, now));}
 
 	@Override
 	public void resume(LocalDateTime now, LocalDateTime pauseTime)
