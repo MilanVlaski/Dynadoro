@@ -102,4 +102,12 @@ public class TestRedesignedTimer
 
 		assertEquals(0, timer.seconds(moment.current()));
 	}
+	
+	@Test
+	void shouldResetTime_AfterReset() {
+		timer.begin(moment.current());
+		timer.reset(moment.afterSeconds(3));
+		
+		assertEquals(0, timer.seconds(moment.current()));
+	}
 }

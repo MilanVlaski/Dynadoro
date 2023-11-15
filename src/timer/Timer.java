@@ -9,7 +9,7 @@ import record.UsageRecord;
 import sound.SoundPlayer;
 import timer.counter.Counter;
 import timer.state.Idle;
-import timer.state.TimerState;
+import timer.state.TimerState;import timer.state.Working;
 
 public class Timer
 {
@@ -93,5 +93,8 @@ public class Timer
 
 	public void resume(LocalDateTime now)
 	{ state.resume(now, now);; }
+
+	public void reset(LocalDateTime now)
+	{changeState(new Idle(this, now));}
 
 }

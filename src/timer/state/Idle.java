@@ -19,6 +19,9 @@ public class Idle extends TimerState
 		counter.stop();
 	}
 
+	public Idle(Timer context, LocalDateTime now)
+	{ super(context, now); }
+
 	@Override
 	public int displayedTime(int now)
 	{ return 0; }
