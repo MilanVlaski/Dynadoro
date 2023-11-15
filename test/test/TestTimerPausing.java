@@ -75,60 +75,25 @@ public class TestTimerPausing
 	@Test
 	void shouldResumeRest_WhereLeftOff_AfterPausing()
 	{
+		int timeAfterBreakBeforePausing = 3;
+
 		timer.begin(moment.current());
 		timer.rest(moment.afterSeconds(WORK_DURATION));
 
-		int timeAfterBreakBeforePausing = 3;
 		timer.pause(moment.afterSeconds(timeAfterBreakBeforePausing));
 		timer.resume(moment.afterSeconds(123));
 
 		assertEquals(REST_DURATION - timeAfterBreakBeforePausing,
 		        timer.seconds(moment.current()));
 	}
-//
-//	@Test
-//	void shouldResumeRestTwice() {
-//		when(mockClock.currentTimeSeconds())
-//				.thenReturn(moment.current(), moment.after(TWENTY_FIVE), moment.after(1),
-//						moment.current(), moment.after(1), moment.after(1), moment.after(1), moment.after(1));
-//
-//		timer.begin();
-//		timer.rest();
-//		timer.pause();
-//		timer.resume();
-//
-//		timer.pause();
-//
-//		timer.resume();
-//		assertEquals(2, timer.displayedTime());
-//
-//		assertEquals(1, timer.displayedTime());
-//	}
-//
-//	@Test
-//	void shouldThrow_IfTriesToResumeInIdleState()
-//	{ assertThrows(IllegalOperationException.class, () -> timer.resume()); }
-//
-//	@Test
-//	void shouldRest_AfterPausingWork() {
-//		when(mockClock.currentTimeSeconds())
-//				.thenReturn(moment.current(), moment.after(TWENTY_FIVE), moment.after(123),
-//						moment.after(1));
-//
-//		timer.begin();
-//		timer.pause();
-//		timer.rest();
-//
-//		assertEquals(4, timer.displayedTime());
-//	}
 
-	// TODO make it pass
-//	@Test
-//	void shouldThrowIfRests_WhilePausingRest() {
-//		timer.begin();
-//		timer.rest();
-//		timer.pause();
-//		
-//		assertThrows(IllegalOperationexception.class, () -> timer.rest());
-//	}
+	@Test
+	void shouldRest_AfterPausingWork() {
+		timer.begin(moment.current());
+		timer.pause(moment.afterSeconds(WORK_DURATION));
+		timer.rest(moment.afterSeconds(123));
+
+		assertEquals(REST_DURATION, timer.seconds(moment.current()));
+	}
+
 }

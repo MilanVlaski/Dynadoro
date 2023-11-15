@@ -77,7 +77,7 @@ public class Pause extends TimerState
 
 	@Override
 	public void rest(LocalDateTime now)
-	{}
+	{ context.changeState(new Resting(context, now, previousState.seconds(start)));}
 
 	@Override
 	public void pause(LocalDateTime now)
