@@ -53,7 +53,7 @@ public class TestRedesignedTimer
 	void timeShouldMoveForward_AfterOneSecond()
 	{
 		timer.begin(moment.current());
-		
+
 		assertEquals(0, timer.seconds(moment.current()));
 		assertEquals(1, timer.seconds(moment.afterSeconds(1)));
 	}
@@ -63,7 +63,16 @@ public class TestRedesignedTimer
 	{
 		timer.begin(moment.current());
 		timer.rest(moment.afterSeconds(25));
-		
+
 		assertEquals(5, timer.seconds(moment.current()));
+	}
+
+	@Test
+	void shouldCountDown_WhileTakingRest()
+	{
+		timer.begin(moment.current());
+		timer.rest(moment.afterSeconds(25));
+		
+		assertEquals(4, timer.seconds(moment.afterSeconds(1)));
 	}
 }
