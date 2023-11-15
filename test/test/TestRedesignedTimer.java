@@ -58,21 +58,25 @@ public class TestRedesignedTimer
 		assertEquals(1, timer.seconds(moment.afterSeconds(1)));
 	}
 
+	public static final int WORK_DURATION = 25;
+	public static final int WORK_REST_RATIO = 5 / 1;
+	public static final int REST_DURATION = WORK_DURATION / WORK_REST_RATIO;
+
 	@Test
 	void restShouldTakeFiveTimesShorterThanWork()
 	{
 		timer.begin(moment.current());
-		timer.rest(moment.afterSeconds(25));
+		timer.rest(moment.afterSeconds(WORK_DURATION));
 
-		assertEquals(5, timer.seconds(moment.current()));
+		assertEquals(REST_DURATION, timer.seconds(moment.current()));
 	}
 
 	@Test
 	void shouldCountDown_WhileTakingRest()
 	{
 		timer.begin(moment.current());
-		timer.rest(moment.afterSeconds(25));
-		
-		assertEquals(4, timer.seconds(moment.afterSeconds(1)));
+		timer.rest(moment.afterSeconds(WORK_DURATION));
+
+		assertEquals(REST_DURATION - 1, timer.seconds(moment.afterSeconds(1)));
 	}
 }
