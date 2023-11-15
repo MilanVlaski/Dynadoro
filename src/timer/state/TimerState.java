@@ -54,7 +54,7 @@ public abstract class TimerState
 		{ super(message); }
 	}
 
-	public abstract int displayedTime(LocalDateTime now);
+	public abstract int seconds(LocalDateTime now);
 	public abstract void begin(LocalDateTime now);
 	public abstract void rest(LocalDateTime now);
 

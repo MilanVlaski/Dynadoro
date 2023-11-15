@@ -69,8 +69,8 @@ public class Resting extends TimerState
 	{ record.capture(new StateData(State.RESTING, startTime)); }
 
 	@Override
-	public int displayedTime(LocalDateTime now)
-	{ return (int) (restDuration - Duration.between(start, now).toSeconds()); }
+	public int seconds(LocalDateTime now)
+	{ return restDuration - (int) Duration.between(start, now).toSeconds(); }
 
 	@Override
 	public void begin(LocalDateTime time)

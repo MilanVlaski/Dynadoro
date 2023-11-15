@@ -66,7 +66,7 @@ public class Working extends TimerState
 	{ record.capture(new StateData(State.WORKING, startTime)); }
 
 	@Override
-	public int displayedTime(LocalDateTime now)
+	public int seconds(LocalDateTime now)
 	{ return (int) Duration.between(start, now).toSeconds(); }
 
 	@Override
@@ -76,7 +76,7 @@ public class Working extends TimerState
 	@Override
 	public void rest(LocalDateTime now)
 	{
-		int workDuration = displayedTime(now);
+		int workDuration = seconds(now);
 		context.changeState(new Resting(context, now, workDuration));
 	}
 

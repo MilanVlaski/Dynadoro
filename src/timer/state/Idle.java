@@ -44,7 +44,7 @@ public class Idle extends TimerState
 	{ record.capture(new StateData(State.IDLE, startTime)); }
 
 	@Override
-	public int displayedTime(LocalDateTime time)
+	public int seconds(LocalDateTime time)
 	{ return 0; }
 
 	@Override

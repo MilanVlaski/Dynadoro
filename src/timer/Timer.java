@@ -80,7 +80,7 @@ public class Timer
 	{ return counter; }
 
 	public long seconds(LocalDateTime now)
-	{ return state.displayedTime(now); }
+	{ return state.seconds(now); }
 
 	public void begin(LocalDateTime now)
 	{state.begin(now);}
