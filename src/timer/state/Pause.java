@@ -84,7 +84,7 @@ public class Pause extends TimerState
 	{}
 
 	@Override
-	public void resume(LocalDateTime now, LocalDateTime pauseTime)
-	{}
+	public void resume(LocalDateTime now, LocalDateTime DONT_USE)
+	{ previousState.resume(now, start); }
 
 }

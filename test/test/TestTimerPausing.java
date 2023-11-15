@@ -51,64 +51,40 @@ public class TestTimerPausing
 	}
 
 	@Test
-	void timeShouldStopWhenPausing_WhileResting() {
+	void timeShouldStopWhenPausing_WhileResting()
+	{
 		timer.begin(moment.current());
 		timer.rest(moment.afterSeconds(WORK_DURATION));
 		timer.pause(moment.afterSeconds(1));
-		
-		assertEquals(REST_DURATION, timer.displayedTime());
+
+		assertEquals(REST_DURATION - 1, timer.seconds(moment.afterSeconds(1)));
 	}
-//
-//	@Test
-//	void shouldResumeWork() {
-//		when(mockClock.currentTimeSeconds())
-//				.thenReturn(moment.current(), moment.after(5), moment.after(1), moment.current(), moment.after(1));
-//
-//		timer.begin();
-//
-//		timer.pause(); 
-//
-//		timer.resume(); 
-//		assertEquals(5, timer.displayedTime());
-//		
-//		assertEquals(6, timer.displayedTime());
-//	}
-//
-//	@Test
-//	void shouldPauseAndResumeWorkTwice() {
-//		when(mockClock.currentTimeSeconds())
-//				.thenReturn(moment.current(), moment.after(5), moment.after(1),
-//						moment.after(1), moment.after(1), moment.current(), moment.after(1));
-//
-//		timer.begin();
-//		timer.pause(); 
-//		timer.resume();
-//
-//		timer.pause(); 
-//
-//		timer.resume();
-//		assertEquals(6, timer.displayedTime());
-//
-//		assertEquals(7, timer.displayedTime());
-//	}
-//
-//	@Test
-//	void shouldResumeRest() {
-//		when(mockClock.currentTimeSeconds())
-//				.thenReturn(moment.current(), moment.after(TWENTY_FIVE), moment.after(1),
-//						moment.current(), moment.current(), moment.after(1));
-//
-//		timer.begin();
-//
-//		timer.rest(); // time = 5
-//
-//		timer.pause(); // time = 4
-//
-//		timer.resume();
-//		assertEquals(4, timer.displayedTime());
-//
-//		assertEquals(3, timer.displayedTime());
-//	}
+
+	@Test
+	void shouldResumeWork_WhereLeftOff_AfterPausing()
+	{
+		int timeAtPause = 3;
+
+		timer.begin(moment.current());
+		timer.pause(moment.afterSeconds(timeAtPause));
+		timer.resume(moment.afterSeconds(123));
+
+		assertEquals(timeAtPause, timer.seconds(moment.current()));
+	}
+
+	@Test
+	void shouldResumeRest_WhereLeftOff_AfterPausing()
+	{
+		timer.begin(moment.current());
+		timer.rest(moment.afterSeconds(WORK_DURATION));
+
+		int timeAfterBreakBeforePausing = 3;
+		timer.pause(moment.afterSeconds(timeAfterBreakBeforePausing));
+		timer.resume(moment.afterSeconds(123));
+
+		assertEquals(REST_DURATION - timeAfterBreakBeforePausing,
+		        timer.seconds(moment.current()));
+	}
 //
 //	@Test
 //	void shouldResumeRestTwice() {

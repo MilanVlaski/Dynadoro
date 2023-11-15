@@ -14,7 +14,7 @@ import timer.Timer;
 public class Working extends TimerState
 {
 
-	private final int startFrom;
+	private final int offset;
 
 	public Working(Timer context, int now)
 	{ this(context, now, 0); }
@@ -22,7 +22,7 @@ public class Working extends TimerState
 	private Working(Timer context, int now, int startFrom)
 	{
 		super(context, now);
-		this.startFrom = startFrom;
+		this.offset = startFrom;
 
 		display.show(startFrom, DisplayState.WORKING);
 		counter.countUp();
@@ -31,13 +31,20 @@ public class Working extends TimerState
 	public Working(Timer context, LocalDateTime now)
 	{
 		super(context, now);
-		startFrom = 0;
+		offset = 0;
+//		start = now;
+	}
+
+	public Working(Timer context, LocalDateTime now, int offset)
+	{
+		super(context, now);
+		this.offset = offset;
 		start = now;
 	}
 
 	@Override
 	public int displayedTime(int now)
-	{ return startFrom + now - startTime; }
+	{ return offset + now - startTime; }
 
 	@Override
 	public void begin(int now)
@@ -67,7 +74,7 @@ public class Working extends TimerState
 
 	@Override
 	public int seconds(LocalDateTime now)
-	{ return (int) Duration.between(start, now).toSeconds(); }
+	{ return offset + (int) Duration.between(start, now).toSeconds(); }
 
 	@Override
 	public void begin(LocalDateTime time)
@@ -82,10 +89,13 @@ public class Working extends TimerState
 
 	@Override
 	public void pause(LocalDateTime now)
-	{ context.changeState(new Pause(context, this, now));}
+	{ context.changeState(new Pause(context, this, now)); }
 
 	@Override
 	public void resume(LocalDateTime now, LocalDateTime pauseTime)
-	{}
+	{
+		int startFrom = seconds(pauseTime);
+		context.changeState(new Working(context, now, startFrom));
+	}
 
 }
