@@ -83,4 +83,8 @@ public class Resting extends TimerState
 	public void rest(LocalDateTime now)
 	{ throw new IllegalOperationException("Already taking a break."); }
 
+	@Override
+	public void pause(LocalDateTime now)
+	{}
+
 }

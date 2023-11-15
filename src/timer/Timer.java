@@ -83,9 +83,12 @@ public class Timer
 	{ return state.seconds(now); }
 
 	public void begin(LocalDateTime now)
-	{state.begin(now);}
+	{ state.begin(now); }
 
 	public void rest(LocalDateTime now)
-	{state.rest(now);}
+	{ state.rest(now); }
+
+	public void pause(LocalDateTime now)
+	{ state.pause(now);; }
 
 }

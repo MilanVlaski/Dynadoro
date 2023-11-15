@@ -55,4 +55,8 @@ public class Idle extends TimerState
 	public void rest(LocalDateTime now)
 	{ throw new IllegalOperationException("Can't take break if haven't started work."); }
 
+	@Override
+	public void pause(LocalDateTime now)
+	{ throw new IllegalOperationException("Can't pause while doing nothing."); }
+
 }

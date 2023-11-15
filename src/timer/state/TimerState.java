@@ -33,7 +33,7 @@ public abstract class TimerState
 		this.context = context;
 		this.display = context.getDisplay();
 		this.counter = context.getCounter();
-		
+
 		this.start = now;
 		this.startTime = 0;
 	}
@@ -57,5 +57,6 @@ public abstract class TimerState
 	public abstract int seconds(LocalDateTime now);
 	public abstract void begin(LocalDateTime now);
 	public abstract void rest(LocalDateTime now);
+	public abstract void pause(LocalDateTime now);
 
 }

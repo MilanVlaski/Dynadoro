@@ -73,4 +73,8 @@ public class Pause extends TimerState {
 	public void rest(LocalDateTime now)
 	{}
 
+	@Override
+	public void pause(LocalDateTime now)
+	{}
+
 }

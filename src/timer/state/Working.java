@@ -80,4 +80,8 @@ public class Working extends TimerState
 		context.changeState(new Resting(context, now, workDuration));
 	}
 
+	@Override
+	public void pause(LocalDateTime now)
+	{}
+
 }

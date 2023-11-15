@@ -103,17 +103,21 @@ public class TestRedesignedTimer
 
 		assertEquals(0, timer.seconds(moment.current()));
 	}
-
+	
 	@Test
 	void shouldThrow_IfTriesToStartTwice()
 	{
-		timer.begin(null);
-		assertThrows(IllegalOperationException.class, () -> timer.begin(null));
+		timer.begin(moment.current());
+		assertThrows(IllegalOperationException.class, () -> timer.begin(moment.current()));
 	}
+	
+	@Test
+	void shouldThrowException_IfPausingNothing()
+	{ assertThrows(IllegalOperationException.class, () -> timer.pause(moment.current())); }
 
 	@Test
 	void shouldThrow_IfTakesRestWithoutWorking()
-	{ assertThrows(IllegalOperationException.class, () -> timer.rest(null)); }
+	{ assertThrows(IllegalOperationException.class, () -> timer.rest(moment.current())); }
 	
 	@Test
 	void shouldThrow_IfTriesToTakeRestWhileResting()
