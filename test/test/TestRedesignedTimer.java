@@ -96,6 +96,7 @@ public class TestRedesignedTimer
 	{
 		int greaterThanMinimumBreakSeconds = 123;
 
+		
 		timer.begin(moment.current());
 		timer.rest(moment.afterSeconds(greaterThanMinimumBreakSeconds));
 		timer.begin(moment.current());
@@ -111,6 +112,14 @@ public class TestRedesignedTimer
 	}
 
 	@Test
-	void shouldThrowException_IfTakesRestWithoutWorking()
+	void shouldThrow_IfTakesRestWithoutWorking()
 	{ assertThrows(IllegalOperationException.class, () -> timer.rest(null)); }
+	
+	@Test
+	void shouldThrow_IfTriesToTakeRestWhileResting()
+	{
+		timer.begin(moment.current());
+		timer.rest(moment.current());
+		assertThrows(IllegalOperationException.class, () -> timer.rest(moment.current()));
+	}
 }
