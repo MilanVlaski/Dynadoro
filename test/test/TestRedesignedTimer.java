@@ -110,4 +110,7 @@ public class TestRedesignedTimer
 		assertThrows(IllegalOperationException.class, () -> timer.begin(null));
 	}
 
+	@Test
+	void shouldThrowException_IfTakesRestWithoutWorking()
+	{ assertThrows(IllegalOperationException.class, () -> timer.rest(null)); }
 }
