@@ -23,7 +23,7 @@ public class Pause extends TimerState
 		counter.stop();
 	}
 
-	public Pause(Timer context, Working previousState, LocalDateTime now)
+	public Pause(Timer context, TimerState previousState, LocalDateTime now)
 	{
 		super(context, now);
 		this.previousState = previousState;

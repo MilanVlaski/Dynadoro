@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
+import static test.TestRedesignedTimer.REST_DURATION;
+import static test.TestRedesignedTimer.WORK_DURATION;
 
 import java.time.LocalDateTime;
 
@@ -40,36 +42,22 @@ public class TestTimerPausing
 	}
 
 	@Test
-	void timeShouldStopWhenPausing_WhileWorking()
+	void timeShouldStop_WhenPausing_WhileWorking()
 	{
 		timer.begin(moment.current());
 		timer.pause(moment.afterSeconds(3));
 
 		assertEquals(3, timer.seconds(moment.afterSeconds(123)));
 	}
-//
-//	@Test
-//	void shouldCountDown_WhileTakingRest() {
-//		when(mockClock.currentTimeSeconds())
-//		.thenReturn(moment.current(), moment.after(TWENTY_FIVE), moment.after(1));
-//		
-//		timer.begin();
-//		timer.rest();
-//		assertEquals(REST_DURATION - 1, timer.displayedTime());
-//	}
-//
-//	@Test
-//	void timeShouldStopWhenPausing_WhileResting() {
-//		when(mockClock.currentTimeSeconds())
-//				.thenReturn(moment.current(), moment.after(TWENTY_FIVE), moment.after(1),
-//						moment.current());
-//
-//		timer.begin();
-//		timer.rest();
-//		timer.pause();
-//		
-//		assertEquals(REST_DURATION - 1, timer.displayedTime());
-//	}
+
+	@Test
+	void timeShouldStopWhenPausing_WhileResting() {
+		timer.begin(moment.current());
+		timer.rest(moment.afterSeconds(WORK_DURATION));
+		timer.pause(moment.afterSeconds(1));
+		
+		assertEquals(REST_DURATION, timer.displayedTime());
+	}
 //
 //	@Test
 //	void shouldResumeWork() {
