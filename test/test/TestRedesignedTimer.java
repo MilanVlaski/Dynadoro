@@ -1,6 +1,7 @@
 package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 import java.time.Duration;
@@ -19,6 +20,7 @@ import display.Display;
 import timer.Clock;
 import timer.Timer;
 import timer.counter.Counter;
+import timer.state.TimerState.IllegalOperationException;
 
 public class TestRedesignedTimer
 {
@@ -88,17 +90,24 @@ public class TestRedesignedTimer
 
 		assertEquals(0, timer.seconds(moment.afterSeconds(REST_DURATION + 100)));
 	}
-	
+
 	@Test
 	void shouldResetTime_AfterGoingBackToWork_FromBreak()
 	{
 		int greaterThanMinimumBreakSeconds = 123;
-		
+
 		timer.begin(moment.current());
 		timer.rest(moment.afterSeconds(greaterThanMinimumBreakSeconds));
 		timer.begin(moment.current());
-		
+
 		assertEquals(0, timer.seconds(moment.current()));
+	}
+
+	@Test
+	void shouldThrow_IfTriesToStartTwice()
+	{
+		timer.begin(null);
+		assertThrows(IllegalOperationException.class, () -> timer.begin(null));
 	}
 
 }

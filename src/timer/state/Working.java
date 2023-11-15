@@ -71,7 +71,7 @@ public class Working extends TimerState
 
 	@Override
 	public void begin(LocalDateTime time)
-	{}
+	{ throw new IllegalOperationException("Timer is already running."); }
 
 	@Override
 	public void rest(LocalDateTime now)
