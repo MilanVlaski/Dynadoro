@@ -84,4 +84,8 @@ public class Working extends TimerState
 	public void pause(LocalDateTime now)
 	{}
 
+	@Override
+	public void resume(LocalDateTime now, LocalDateTime pauseTime)
+	{}
+
 }

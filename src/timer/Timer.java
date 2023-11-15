@@ -91,4 +91,7 @@ public class Timer
 	public void pause(LocalDateTime now)
 	{ state.pause(now);; }
 
+	public void resume(LocalDateTime now)
+	{ state.resume(now, now);; }
+
 }

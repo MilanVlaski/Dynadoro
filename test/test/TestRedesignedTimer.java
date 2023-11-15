@@ -36,7 +36,7 @@ public class TestRedesignedTimer
 	Timer timer;
 
 	//
-	private static final LocalDateTime TIME = LocalDateTime.of(2023, 11, 13, 16, 37);
+	public static final LocalDateTime TIME = LocalDateTime.of(2023, 11, 13, 16, 37);
 	private Moment moment;
 
 	@BeforeEach
@@ -96,34 +96,10 @@ public class TestRedesignedTimer
 	{
 		int greaterThanMinimumBreakSeconds = 123;
 
-		
 		timer.begin(moment.current());
 		timer.rest(moment.afterSeconds(greaterThanMinimumBreakSeconds));
 		timer.begin(moment.current());
 
 		assertEquals(0, timer.seconds(moment.current()));
-	}
-	
-	@Test
-	void shouldThrow_IfTriesToStartTwice()
-	{
-		timer.begin(moment.current());
-		assertThrows(IllegalOperationException.class, () -> timer.begin(moment.current()));
-	}
-	
-	@Test
-	void shouldThrowException_IfPausingNothing()
-	{ assertThrows(IllegalOperationException.class, () -> timer.pause(moment.current())); }
-
-	@Test
-	void shouldThrow_IfTakesRestWithoutWorking()
-	{ assertThrows(IllegalOperationException.class, () -> timer.rest(moment.current())); }
-	
-	@Test
-	void shouldThrow_IfTriesToTakeRestWhileResting()
-	{
-		timer.begin(moment.current());
-		timer.rest(moment.current());
-		assertThrows(IllegalOperationException.class, () -> timer.rest(moment.current()));
 	}
 }

@@ -59,4 +59,6 @@ public abstract class TimerState
 	public abstract void rest(LocalDateTime now);
 	public abstract void pause(LocalDateTime now);
 
+	public abstract void resume(LocalDateTime now, LocalDateTime pauseTime);
+
 }
