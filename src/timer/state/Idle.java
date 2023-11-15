@@ -44,11 +44,15 @@ public class Idle extends TimerState
 	{ record.capture(new StateData(State.IDLE, startTime)); }
 
 	@Override
-	public long displayedTime(LocalDateTime time)
+	public int displayedTime(LocalDateTime time)
 	{ return 0; }
 
 	@Override
 	public void begin(LocalDateTime now)
 	{context.changeState(new Working(context, now));}
+
+	@Override
+	public void rest(LocalDateTime now)
+	{}
 
 }

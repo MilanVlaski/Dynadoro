@@ -3,6 +3,7 @@ package test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
+import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -34,23 +35,35 @@ public class TestRedesignedTimer
 
 	//
 	private static final LocalDateTime TIME = LocalDateTime.of(2023, 11, 13, 16, 37);
+	private Moment moment;
 
 	@BeforeEach
 	void setup()
-	{ MockitoAnnotations.openMocks(this); }
+
+	{
+		MockitoAnnotations.openMocks(this);
+		moment = new Moment(TIME);
+	}
 
 	@Test
 	void timeShouldBeZero_IfNotStarted()
-	{ assertEquals(0, timer.displayedTime(TIME)); }
+	{ assertEquals(0, timer.seconds(TIME)); }
 
 	@Test
-	void timeShouldMoveForward_MomentToMoment()
+	void timeShouldMoveForward_AfterOneSecond()
 	{
-		Moment moment = new Moment(TIME);
-
 		timer.begin(moment.current());
-		assertEquals(1, timer.displayedTime(moment.afterSeconds(1)));
-		assertEquals(2, timer.displayedTime(moment.afterSeconds(1)));
+		
+		assertEquals(0, timer.seconds(moment.current()));
+		assertEquals(1, timer.seconds(moment.afterSeconds(1)));
 	}
 
+	@Test
+	void restShouldTakeFiveTimesShorterThanWork()
+	{
+		timer.begin(moment.current());
+		timer.rest(moment.afterSeconds(25));
+		
+		assertEquals(5, timer.seconds(moment.current()));
+	}
 }

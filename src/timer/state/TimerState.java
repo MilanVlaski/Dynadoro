@@ -28,6 +28,16 @@ public abstract class TimerState
 		this.startTime = now;
 	}
 
+	public TimerState(Timer context, LocalDateTime now)
+	{
+		this.context = context;
+		this.display = context.getDisplay();
+		this.counter = context.getCounter();
+		
+		this.start = now;
+		this.startTime = 0;
+	}
+
 	public abstract int displayedTime(int now);
 	public abstract void begin(int now);
 	public abstract void rest(int now);
@@ -44,7 +54,8 @@ public abstract class TimerState
 		{ super(message); }
 	}
 
-	public abstract long displayedTime(LocalDateTime time);
-	public abstract void begin(LocalDateTime time);
+	public abstract int displayedTime(LocalDateTime now);
+	public abstract void begin(LocalDateTime now);
+	public abstract void rest(LocalDateTime now);
 
 }

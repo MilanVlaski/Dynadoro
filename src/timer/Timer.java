@@ -79,10 +79,13 @@ public class Timer
 	public Counter getCounter()
 	{ return counter; }
 
-	public long displayedTime(LocalDateTime time)
-	{ return state.displayedTime(time); }
+	public long seconds(LocalDateTime now)
+	{ return state.displayedTime(now); }
 
-	public void begin(LocalDateTime time)
-	{state.begin(time);}
+	public void begin(LocalDateTime now)
+	{state.begin(now);}
+
+	public void rest(LocalDateTime now)
+	{state.rest(now);}
 
 }

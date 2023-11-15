@@ -62,11 +62,15 @@ public class Pause extends TimerState {
 
 
 	@Override
-	public long displayedTime(LocalDateTime time)
+	public int displayedTime(LocalDateTime time)
 	{ return 0; }
 
 	@Override
 	public void begin(LocalDateTime time)
+	{}
+
+	@Override
+	public void rest(LocalDateTime now)
 	{}
 
 }

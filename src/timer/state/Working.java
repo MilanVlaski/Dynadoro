@@ -30,7 +30,7 @@ public class Working extends TimerState
 
 	public Working(Timer context, LocalDateTime now)
 	{
-		super(context, 0);
+		super(context, now);
 		startFrom = 0;
 		start = now;
 	}
@@ -66,12 +66,18 @@ public class Working extends TimerState
 	{ record.capture(new StateData(State.WORKING, startTime)); }
 
 	@Override
-	public long displayedTime(LocalDateTime now)
-	{ return Duration.between(start, now).toSeconds(); }
+	public int displayedTime(LocalDateTime now)
+	{ return (int) Duration.between(start, now).toSeconds(); }
 
 	@Override
 	public void begin(LocalDateTime time)
 	{}
 
+	@Override
+	public void rest(LocalDateTime now)
+	{
+		int workDuration = displayedTime(now);
+		context.changeState(new Resting(context, now, workDuration));
+	}
 
 }
