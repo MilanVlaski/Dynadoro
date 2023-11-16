@@ -45,9 +45,12 @@ public class TestTimerPausing
 	void timeShouldStop_WhenPausing_WhileWorking()
 	{
 		timer.begin(moment.current());
-		timer.pause(moment.afterSeconds(3));
 
-		assertEquals(3, timer.seconds(moment.afterSeconds(123)));
+		int timeAtPause = 3;
+		timer.pause(moment.afterSeconds(timeAtPause));
+
+		assertEquals(timeAtPause, timer.seconds(moment.current()));
+		assertEquals(timeAtPause, timer.seconds(moment.afterSeconds(123)));
 	}
 
 	@Test
@@ -55,45 +58,54 @@ public class TestTimerPausing
 	{
 		timer.begin(moment.current());
 		timer.rest(moment.afterSeconds(WORK_DURATION));
-		timer.pause(moment.afterSeconds(1));
 
-		assertEquals(REST_DURATION - 1, timer.seconds(moment.afterSeconds(1)));
+		int timeSpentResting = 1;
+		timer.pause(moment.afterSeconds(timeSpentResting));
+
+		assertEquals(REST_DURATION - timeSpentResting, timer.seconds(moment.current()));
+		assertEquals(REST_DURATION - timeSpentResting,
+		        timer.seconds(moment.afterSeconds(timeSpentResting)));
 	}
 
 	@Test
 	void shouldResumeWork_WhereLeftOff_AfterPausing()
 	{
-		int timeAtPause = 3;
-
 		timer.begin(moment.current());
+
+		int timeAtPause = 3;
 		timer.pause(moment.afterSeconds(timeAtPause));
 		timer.resume(moment.afterSeconds(123));
 
 		assertEquals(timeAtPause, timer.seconds(moment.current()));
+		assertEquals(timeAtPause + 1, timer.seconds(moment.afterSeconds(1)));
 	}
 
 	@Test
 	void shouldResumeRest_WhereLeftOff_AfterPausing()
 	{
-		int timeAfterBreakBeforePausing = 3;
+		int timeSpentResting = 3;
 
 		timer.begin(moment.current());
 		timer.rest(moment.afterSeconds(WORK_DURATION));
 
-		timer.pause(moment.afterSeconds(timeAfterBreakBeforePausing));
+		timer.pause(moment.afterSeconds(timeSpentResting));
 		timer.resume(moment.afterSeconds(123));
 
-		assertEquals(REST_DURATION - timeAfterBreakBeforePausing,
+		assertEquals(REST_DURATION - timeSpentResting,
 		        timer.seconds(moment.current()));
+		assertEquals(REST_DURATION - timeSpentResting - 1,
+		        timer.seconds(moment.afterSeconds(1)));
 	}
 
 	@Test
-	void shouldRest_AfterPausingWork() {
+	void shouldRest_AfterPausingWork()
+	{
 		timer.begin(moment.current());
 		timer.pause(moment.afterSeconds(WORK_DURATION));
 		timer.rest(moment.afterSeconds(123));
 
 		assertEquals(REST_DURATION, timer.seconds(moment.current()));
+		assertEquals(REST_DURATION - 1, timer.seconds(moment.afterSeconds(1)));
 	}
 
 }

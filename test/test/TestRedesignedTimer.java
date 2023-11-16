@@ -51,7 +51,7 @@ public class TestRedesignedTimer
 	{ assertEquals(0, timer.seconds(TIME)); }
 
 	@Test
-	void timeShouldMoveForward_AfterOneSecond()
+	void timeShouldMoveForwardFromZero_AfterOneSecond()
 	{
 		timer.begin(moment.current());
 
@@ -64,33 +64,14 @@ public class TestRedesignedTimer
 	public static final int REST_DURATION = WORK_DURATION / WORK_REST_RATIO;
 
 	@Test
-	void restShouldBeCorrectlyShorterThanWork()
+	void shouldCountDown_FromCorrectRestDuration()
 	{
 		timer.begin(moment.current());
 		timer.rest(moment.afterSeconds(WORK_DURATION));
 
 		assertEquals(WORK_DURATION / WORK_REST_RATIO, timer.seconds(moment.current()));
-	}
-
-	@Test
-	void shouldCountDown_WhileTakingRest1()
-	{
-		timer.begin(moment.current());
-		timer.rest(moment.afterSeconds(WORK_DURATION));
-
-		assertEquals(REST_DURATION - 1, timer.seconds(moment.afterSeconds(1)));
-	}
-
-	@Test
-	void shouldCountDown_WhileTakingRest2()
-	{
-		LocalDateTime now = TIME;
-		LocalDateTime afterWork = now.plusSeconds(WORK_DURATION);
-		LocalDateTime oneSecondAfterWork = afterWork.plusSeconds(1);
-
-		timer.begin(now);
-		timer.rest(afterWork);
-		assertEquals(REST_DURATION - 1, timer.seconds(oneSecondAfterWork));
+		assertEquals(WORK_DURATION / WORK_REST_RATIO - 1,
+		        timer.seconds(moment.afterSeconds(1)));
 	}
 
 	@Test
@@ -99,11 +80,11 @@ public class TestRedesignedTimer
 		timer.begin(moment.current());
 		timer.rest(moment.afterSeconds(WORK_DURATION));
 
-		assertEquals(0, timer.seconds(moment.afterSeconds(REST_DURATION + 100)));
+		assertEquals(0, timer.seconds(moment.afterSeconds(REST_DURATION + 123)));
 	}
 
 	@Test
-	void shouldResetTime_AfterGoingBackToWork_FromBreak()
+	void shouldStartTimerFromZero_AfterGoingBackToWork_FromBreak()
 	{
 		int greaterThanMinimumBreakSeconds = 123;
 
@@ -112,6 +93,7 @@ public class TestRedesignedTimer
 		timer.begin(moment.current());
 
 		assertEquals(0, timer.seconds(moment.current()));
+		assertEquals(1, timer.seconds(moment.afterSeconds(1)));
 	}
 
 	@Test

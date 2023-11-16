@@ -34,6 +34,12 @@ public class Resting extends TimerState
 		this.restDuration = workDuration / WORK_REST_RATIO;
 	}
 
+	public Resting(int restDuration, Timer context, LocalDateTime now)
+	{
+		super(context, now);
+		this.restDuration = restDuration;
+	}
+
 	@Override
 	public int displayedTime(int now)
 	{
@@ -85,10 +91,13 @@ public class Resting extends TimerState
 
 	@Override
 	public void pause(LocalDateTime now)
-	{ context.changeState(new Pause(context, this, now));}
+	{ context.changeState(new Pause(context, this, now)); }
 
 	@Override
 	public void resume(LocalDateTime now, LocalDateTime pauseTime)
-	{}
+	{
+		int restDuration = seconds(pauseTime);
+		context.changeState(new Resting(restDuration, context, now));
+	}				
 
 }
