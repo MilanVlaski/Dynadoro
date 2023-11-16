@@ -15,12 +15,14 @@ public class Idle extends TimerState
 	public Idle(Timer context, int now)
 	{
 		super(context, now);
-		display.show(0, DisplayState.IDLE);
-		counter.stop();
 	}
 
 	public Idle(Timer context, LocalDateTime now)
-	{ super(context, now); }
+	{
+		super(context, now);
+		display.show(0, DisplayState.IDLE);
+		counter.stop();
+	}
 
 	@Override
 	public int displayedTime(int now)

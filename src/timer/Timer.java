@@ -22,7 +22,7 @@ public class Timer
 	private TimerState state;
 	private UsageRecord record;
 
-	public Timer(Clock clock, Display display, Counter counter)
+	public Timer(Clock clock, Display display, Counter counter, LocalDateTime now)
 	{
 		this.clock = clock;
 		this.display = display;
@@ -31,6 +31,7 @@ public class Timer
 		// this can be moved to an initialize method
 		counter.setTimer(this);
 		state = new Idle(this, clock.currentTimeSeconds());
+		state = new Idle(this, now);
 	}
 
 	public int displayedTime()
@@ -93,7 +94,8 @@ public class Timer
 	{ state.pause(now); }
 
 	public void resume(LocalDateTime now)
-	{ state.resume(now, now); }
+	// last parameter is unused, but its useful internally
+	{ state.resume(now, LocalDateTime.MIN); }
 
 	public void reset(LocalDateTime now)
 	{ changeState(new Idle(this, now)); }

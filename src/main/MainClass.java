@@ -1,5 +1,6 @@
 package main;
 
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 import display.ConsoleDisplay;
@@ -27,7 +28,7 @@ public class MainClass
 	private static void startSwingApplication(Clock clock, Counter counter)
 	{
 		SwingDisplay display = new SwingDisplay();
-		Timer timer = new Timer(clock, display, counter);
+		Timer timer = new Timer(clock, display, counter, LocalDateTime.now());
 		display.setModel(timer);
 
 		startRecording(timer);
@@ -43,7 +44,7 @@ public class MainClass
 	private static void startConsoleApplication(Clock clock, Counter counter)
 	{
 		ConsoleDisplay display = new ConsoleDisplay();
-		Timer timer = new Timer(clock, display, counter);
+		Timer timer = new Timer(clock, display, counter, LocalDateTime.now());
 		
 		startRecording(timer);
 		

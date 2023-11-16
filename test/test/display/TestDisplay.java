@@ -117,7 +117,6 @@ class TestDisplay
 			.thenReturn(moment.current(), moment.after(TWENTY_FIVE),
 						moment.after(1), moment.after(1));
 
-		
 		timer.begin();
 		timer.rest();
 		timer.pause();
