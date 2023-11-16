@@ -115,11 +115,12 @@ public class TestRedesignedTimer
 	}
 
 	@Test
-	void shouldResetTime_AfterReset()
+	void shouldSetTimeToZero_AfterReset()
 	{
 		timer.begin(moment.current());
 		timer.reset(moment.afterSeconds(3));
 
 		assertEquals(0, timer.seconds(moment.current()));
+		assertEquals(0, timer.seconds(moment.afterSeconds(1)));
 	}
 }
