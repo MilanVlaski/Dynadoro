@@ -23,7 +23,6 @@ public class Working extends TimerState
 	{
 		super(context, now);
 		this.offset = startFrom;
-
 		display.show(startFrom, DisplayState.WORKING);
 		counter.countUp();
 	}
@@ -35,6 +34,8 @@ public class Working extends TimerState
 	{
 		super(context, now);
 		this.offset = offset;
+		display.show(offset, DisplayState.WORKING);
+		counter.countUp();
 	}
 
 	@Override

@@ -47,14 +47,14 @@ public class TestRedesignedDisplay
 	void shouldShowIdle_OnInit()
 	{ verify(mockDisplay).show(0, DisplayState.IDLE); }
 
-//	@Test
-//	void shouldShowWorkingState_OnBegin() {
-//		
-//		timer.begin();
-//		
-//		verify(mockDisplay).show(0, DisplayState.WORKING);
-//		verify(mockCounter).countUp();
-//	}
+	@Test
+	void shouldShowWorkingState_WhenStarting()
+	{
+		timer.begin(moment.current());
+
+		verify(mockDisplay).show(0, DisplayState.WORKING);
+		verify(mockCounter).countUp();
+	}
 //
 //	@Test
 //	void shouldShowAppropriateTime_AndState_WhenResting() {
