@@ -2,6 +2,8 @@ package record;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class StateData
@@ -28,14 +30,23 @@ public class StateData
 	private final String name;
 	private final boolean getsRecorded;
 
-	private final Date startDate;
+	private Date startDate;
 	private Date endDate;
+	private LocalDateTime start;
+	private LocalDateTime end;
 
 	public StateData(State state, int startTime)
 	{
 		this.name = state.name;
 		this.startDate = secondsToDate(startTime);
 		this.getsRecorded = state.getsRecorded;
+	}
+
+	public StateData(String name, LocalDateTime start, boolean getsRecorded)
+	{
+		this.name = name;
+		this.start = start;
+		this.getsRecorded = getsRecorded;
 	}
 
 	private Date secondsToDate(int seconds)
@@ -47,13 +58,14 @@ public class StateData
 	@Override
 	public String toString()
 	{
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd, EEEE");
-		DateFormat hourFormat = new SimpleDateFormat("HH:mm");
+		DateTimeFormatter dateFormat1 = DateTimeFormatter.ofPattern("yyyy-MM-dd, EEEE");
+		DateTimeFormatter hourFormat1 = DateTimeFormatter.ofPattern("HH:mm");
 
-		String endTime = (endDate != null) ? hourFormat.format(endDate) : "unknown";
-
-		return String.join(", ", dateFormat.format(startDate),
-		        name, hourFormat.format(startDate), endTime);
+		String endTime1 = (end != null) ? hourFormat1.format(end) : "unknown";
+		
+		return String.join(", ", dateFormat1.format(start),
+		        name, hourFormat1.format(start), endTime1);
+		
 	}
 
 	public Date startDate()

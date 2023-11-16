@@ -2,6 +2,8 @@ package test.record;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -10,7 +12,10 @@ import org.mockito.MockitoAnnotations;
 
 import display.Display;
 import record.History;
+import record.StateData;
 import record.UsageRecord;
+import test.Moment;
+import test.TestTimer;
 import timer.Timer;
 import timer.counter.Counter;
 
@@ -30,30 +35,31 @@ class TestRecord
 	UsageRecord record;
 	History fakeHistory;
 
-	static final int SEVENTH_NOVEMBER_15_40 = 1699368029;
 	
 	@BeforeEach
 	void setup()
 	{
 		MockitoAnnotations.openMocks(this);
-		moment = new Moment(SEVENTH_NOVEMBER_15_40);
-
+		
 		fakeHistory = new FakeHistory();
 		record = new UsageRecord(fakeHistory);
 		timer.startRecording(record);
+		
+		
+		moment = new Moment(LocalDateTime.of(2023, 11, 7, 15, 40));
 	}
 
 	@Test
 	void recordShouldBeEmpty()
 	{ assertEquals("", record.toString()); }
 
-//	@Test
-//	void stateShouldProvideStateInfoObject()
-//	{
-//		StateData stateData = new StateData(State.WORKING, moment.current());
-//		assertEquals("2023-11-07, Tuesday, Working, 15:40, unknown",
-//		        stateData.toString());
-//	}
+	@Test
+	void stateShouldProvideStateInfoObject()
+	{
+		StateData stateData = new StateData("Working", moment.current(), true);
+		assertEquals("2023-11-07, Tuesday, Working, 15:40, unknown",
+		        stateData.toString());
+	}
 //
 //	@Test
 //	void stateShouldProvideStateInfoObject1()
