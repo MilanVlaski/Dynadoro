@@ -4,7 +4,8 @@ import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static test.TestTimer.REST_DURATION;
+import static test.TestRedesignedTimer.REST_DURATION;
+import static test.TestRedesignedTimer.WORK_DURATION;
 import static test.TestTimer.TWENTY_FIVE;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -55,27 +56,26 @@ public class TestRedesignedDisplay
 		verify(mockDisplay).show(0, DisplayState.WORKING);
 		verify(mockCounter).countUp();
 	}
-//
-//	@Test
-//	void shouldShowAppropriateTime_AndState_WhenResting() {
-//		
-//		timer.begin();
-//		timer.rest();
-//		
-//		verify(mockDisplay).show(REST_DURATION,  DisplayState.RESTING);
-//		verify(mockCounter).count(REST_DURATION);
-//	}
-//
-//	@Test
-//	void shouldShowPause_DuringWork() {
-//		
-//		
-//		timer.begin();
-//		timer.pause();
-//		
-//		verify(mockDisplay).show(3, DisplayState.WORK_PAUSE);
-//		verify(mockCounter, atLeastOnce()).stop();
-//	}
+
+	@Test
+	void shouldShowAppropriateTime_AndState_WhenResting()
+	{
+		timer.begin(moment.current());
+		timer.rest(moment.afterSeconds(WORK_DURATION));
+
+		verify(mockDisplay).show(REST_DURATION, DisplayState.RESTING);
+		verify(mockCounter).count(REST_DURATION);
+	}
+
+	@Test
+	void shouldShowPause_DuringWork()
+	{
+		timer.begin(moment.current());
+		timer.pause(moment.afterSeconds(3));
+
+		verify(mockDisplay).show(3, DisplayState.WORK_PAUSE);
+		verify(mockCounter).stop();
+	}
 //
 //	@Test
 //	void shouldShowPause_DuringRest() {

@@ -27,6 +27,8 @@ public class Pause extends TimerState
 	{
 		super(context, now);
 		this.previousState = previousState;
+		
+		sendDataToDisplay1(previousState, now);
 	}
 
 	private void sendDataToDisplay(TimerState previousState, int now)
@@ -38,6 +40,17 @@ public class Pause extends TimerState
 			displayState = DisplayState.REST_PAUSE;
 
 		display.show(displayedTime(now), displayState);
+	}
+	
+	private void sendDataToDisplay1(TimerState previousState, LocalDateTime now)
+	{
+		DisplayState displayState = null;
+		if (previousState instanceof Working)
+			displayState = DisplayState.WORK_PAUSE;
+		else if (previousState instanceof Resting)
+			displayState = DisplayState.REST_PAUSE;
+
+		display.show(seconds(now), displayState);
 	}
 
 	@Override

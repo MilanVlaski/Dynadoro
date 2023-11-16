@@ -35,6 +35,9 @@ public class Resting extends TimerState
 	{
 		super(context, now);
 		this.restDuration = restDuration;
+		
+		display.show(restDuration, DisplayState.RESTING);
+		counter.count(restDuration);
 	}
 
 	@Override
