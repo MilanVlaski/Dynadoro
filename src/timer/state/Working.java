@@ -16,17 +16,6 @@ public class Working extends TimerState
 
 	private final int offset;
 
-	public Working(Timer context, int now)
-	{ this(context, now, 0); }
-
-	private Working(Timer context, int now, int startFrom)
-	{
-		super(context, now);
-		this.offset = startFrom;
-		display.show(startFrom, DisplayState.WORKING);
-		counter.countUp();
-	}
-
 	public Working(Timer context, LocalDateTime now)
 	{ this(context, now, 0); }
 
@@ -40,34 +29,8 @@ public class Working extends TimerState
 	}
 
 	@Override
-	public int displayedTime(int now)
-	{ return offset + now - startTime; }
-
-	@Override
-	public void begin(int now)
-	{ throw new IllegalOperationException("Timer is already running."); }
-
-	@Override
-	public void rest(int now)
-	{
-		int workDuration = displayedTime(now);
-		context.changeState(new Resting(context, now, workDuration));
-	}
-
-	@Override
-	public void pause(int now)
-	{ context.changeState(new Pause(context, this, now)); }
-
-	@Override
-	public void resume(int now, int pauseTime)
-	{
-		int startFrom = displayedTime(pauseTime);
-		context.changeState(new Working(context, now, startFrom));
-	}
-
-	@Override
 	public void record(UsageRecord record)
-	{ record.capture(new StateData(State.WORKING, startTime)); }
+	{ record.capture(new StateData(State.WORKING, 0)); }
 
 	@Override
 	public int seconds(LocalDateTime now)

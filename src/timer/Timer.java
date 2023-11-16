@@ -30,24 +30,8 @@ public class Timer
 
 		// this can be moved to an initialize method
 		counter.setTimer(this);
-		state = new Idle(this, clock.currentTimeSeconds());
 		state = new Idle(this, now);
 	}
-
-	public int displayedTime()
-	{ return state.displayedTime(clock.currentTimeSeconds()); }
-
-	public void begin()
-	{ state.begin(clock.currentTimeSeconds()); }
-
-	public void pause()
-	{ state.pause(clock.currentTimeSeconds()); }
-
-	public void rest()
-	{ state.rest(clock.currentTimeSeconds()); }
-
-	public void reset()
-	{ changeState(new Idle(this, clock.currentTimeSeconds())); }
 
 	public void changeState(TimerState newState)
 	{
@@ -57,14 +41,8 @@ public class Timer
 		this.state = newState;
 	}
 
-	public void showTime()
-	{ display.show(displayedTime()); }
-
-	public void resume()
-	{
-		int now = clock.currentTimeSeconds();
-		state.resume(now, now);
-	}
+//	public void showTime()
+//	{ display.show(displayedTime()); }
 
 	public void finishBreak()
 	{

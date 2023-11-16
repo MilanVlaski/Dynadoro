@@ -12,11 +12,6 @@ import timer.Timer;
 public class Idle extends TimerState
 {
 
-	public Idle(Timer context, int now)
-	{
-		super(context, now);
-	}
-
 	public Idle(Timer context, LocalDateTime now)
 	{
 		super(context, now);
@@ -25,28 +20,8 @@ public class Idle extends TimerState
 	}
 
 	@Override
-	public int displayedTime(int now)
-	{ return 0; }
-
-	@Override
-	public void begin(int now)
-	{ context.changeState(new Working(context, now)); }
-
-	@Override
-	public void rest(int now)
-	{ throw new IllegalOperationException("Can't take break if haven't started work."); }
-
-	@Override
-	public void pause(int now)
-	{ throw new IllegalOperationException("Can't pause while doing nothing."); }
-
-	@Override
-	public void resume(int now, int pauseDuration)
-	{ throw new IllegalOperationException("Can't resume while idle."); }
-
-	@Override
 	public void record(UsageRecord record)
-	{ record.capture(new StateData(State.IDLE, startTime)); }
+	{ record.capture(new StateData(State.IDLE, 0)); }
 
 	@Override
 	public int seconds(LocalDateTime time)

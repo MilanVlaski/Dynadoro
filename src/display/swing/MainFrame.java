@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -44,10 +45,13 @@ public class MainFrame extends JFrame
 
 		TOP_PANEL.setLayout(new BorderLayout());
 		TOP_PANEL.setPreferredSize(new Dimension(30, 20));
-		TOP_PANEL.add(new CoolButton("Reset", 75, 5, (e) -> timer.reset(), 12),
+		TOP_PANEL.add(
+		        new CoolButton("Reset", 75, 5, (e) -> timer.reset(LocalDateTime.now()),
+		                12),
 		        BorderLayout.WEST);
 
-		TOP_PANEL.add(new CoolButton("X", 75, 75, (e) -> timer.reset(), 12),
+		TOP_PANEL.add(
+		        new CoolButton("X", 75, 75, (e) -> timer.reset(LocalDateTime.now()), 12),
 		        BorderLayout.EAST);
 
 		//
@@ -87,16 +91,16 @@ public class MainFrame extends JFrame
 	}
 
 	private void showStartButton()
-	{ showButton("Start", 120, 70, (e) -> timer.begin()); }
+	{ showButton("Start", 120, 70, (e) -> timer.begin(LocalDateTime.now())); }
 
 	private void showPauseButton()
-	{ showButton("| |", 70, 70, (e) -> timer.pause()); }
+	{ showButton("| |", 70, 70, (e) -> timer.pause(LocalDateTime.now())); }
 
 	private void showBreakButton()
-	{ showButton("Take break", 182, 70, (e) -> timer.rest()); }
+	{ showButton("Take break", 182, 70, (e) -> timer.rest(LocalDateTime.now())); }
 
 	private void showResumeButton()
-	{ showButton(">", 70, 70, (e) -> timer.resume()); }
+	{ showButton(">", 70, 70, (e) -> timer.resume(LocalDateTime.now())); }
 
 	private void clearControls()
 	{

@@ -9,7 +9,7 @@ class TestShowingDay
 	@Test 
 	void shouldVisualize35MinutesOfWorking()
 	{
-		Moment moment = new Moment(TestRecord.SEVENTH_NOVEMBER_15_40);
+//		Moment moment = new Moment(TestRecord.SEVENTH_NOVEMBER_15_40);
 
 //		StateData work = new StateData(State.WORKING, moment.current(),
 //		        moment.after(35 * 60));

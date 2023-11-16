@@ -16,18 +16,6 @@ public class Resting extends TimerState
 	private final int restDuration;
 	private static final int WORK_REST_RATIO = 5 / 1;
 
-	public Resting(Timer context, int now, int workDuration)
-	{ this(workDuration / WORK_REST_RATIO, context, now); }
-
-	private Resting(int restDuration, Timer context, int now)
-	{
-		super(context, now);
-		this.restDuration = restDuration;
-
-		display.show(restDuration, DisplayState.RESTING);
-		counter.count(restDuration);
-	}
-
 	public Resting(Timer context, LocalDateTime now, int workDuration)
 	{ this(workDuration / WORK_REST_RATIO, context, now); }
 
@@ -35,44 +23,14 @@ public class Resting extends TimerState
 	{
 		super(context, now);
 		this.restDuration = restDuration;
-		
+
 		display.show(restDuration, DisplayState.RESTING);
 		counter.count(restDuration);
 	}
 
 	@Override
-	public int displayedTime(int now)
-	{
-		long remainingRestDuration = restDuration - (now - startTime);
-
-		if (remainingRestDuration > 0)
-			return (int) remainingRestDuration;
-		else
-			return 0;
-	}
-
-	@Override
-	public void begin(int now)
-	{ context.changeState(new Working(context, now)); }
-
-	@Override
-	public void rest(int now)
-	{ throw new IllegalOperationException("Already taking a break."); }
-
-	@Override
-	public void pause(int now)
-	{ context.changeState(new Pause(context, this, now)); }
-
-	@Override
-	public void resume(int now, int pauseTime)
-	{
-		int restDuration = displayedTime(pauseTime);
-		context.changeState(new Resting(restDuration, context, now));
-	}
-
-	@Override
 	public void record(UsageRecord record)
-	{ record.capture(new StateData(State.RESTING, startTime)); }
+	{ record.capture(new StateData(State.RESTING, 0)); }
 
 	@Override
 	public int seconds(LocalDateTime now)

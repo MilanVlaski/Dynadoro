@@ -57,7 +57,7 @@ public class ScheduledCounter implements Counter {
 		initScheduler();
 
 		isRunning = true;
-		scheduler.scheduleAtFixedRate(timer::showTime, durationMilliseconds,
+		scheduler.scheduleAtFixedRate(this::showTime, durationMilliseconds,
 				durationMilliseconds, TimeUnit.MILLISECONDS);
 		
 		scheduler.schedule(this::onFinish, times * durationMilliseconds,
@@ -70,5 +70,8 @@ public class ScheduledCounter implements Counter {
 	        stop();
 	    }
 	}
+
+	private void showTime()
+	{}
 
 }

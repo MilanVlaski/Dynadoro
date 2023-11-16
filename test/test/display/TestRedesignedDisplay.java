@@ -1,12 +1,10 @@
 package test.display;
 
-import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.atMost;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 import static test.TestRedesignedTimer.REST_DURATION;
 import static test.TestRedesignedTimer.WORK_DURATION;
-import static test.TestTimer.TWENTY_FIVE;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -76,49 +74,47 @@ public class TestRedesignedDisplay
 		verify(mockDisplay).show(3, DisplayState.WORK_PAUSE);
 		verify(mockCounter).stop();
 	}
-//
-//	@Test
-//	void shouldShowPause_DuringRest() {
-//		
-//		
-//		timer.begin();
-//		timer.rest();
-//		timer.pause();  
-//		
-//		verify(mockDisplay).show(REST_DURATION - 2, DisplayState.REST_PAUSE);
-//		verify(mockCounter, atLeastOnce()).stop();
-//	}
-//
-//	@Test
-//	void shouldShowResumingWork() {
-//		
-//		
-//		timer.begin();
-//		timer.pause();
-//		timer.resume();
-//		
-//		verify(mockDisplay).show(1, DisplayState.WORKING);
-//		verify(mockCounter, times(2)).countUp();
-//	}
-//
-//	@Test
-//	void shouldShowResumingRest() {
-//
-//		timer.begin();
-//		timer.rest();
-//		timer.pause();
-//		timer.resume();
-//		
-//		verify(mockDisplay).show(REST_DURATION - 1, DisplayState.REST_PAUSE);
-//		verify(mockCounter).count(REST_DURATION - 1);
-//	}
-//
-//	@Test
-//	void shouldStopCounter_WhenResetting()
-//	{
-//		timer.begin();
-//		timer.reset();
-//
-//		verify(mockCounter, atLeastOnce()).stop();
-//	}
+
+	@Test
+	void shouldShowPause_DuringRest()
+	{
+		timer.begin(moment.current());
+		timer.rest(moment.afterSeconds(WORK_DURATION));
+		timer.pause(moment.afterSeconds(2));
+
+		verify(mockDisplay).show(REST_DURATION - 2, DisplayState.REST_PAUSE);
+		verify(mockCounter).stop();
+	}
+
+	@Test
+	void shouldShowResumingWork()
+	{
+		timer.begin(moment.current());
+		timer.pause(moment.afterSeconds(1));
+		timer.resume(moment.afterSeconds(123));
+
+		verify(mockDisplay).show(1, DisplayState.WORKING);
+		verify(mockCounter, times(2)).countUp();
+	}
+
+	@Test
+	void shouldShowResumingRest()
+	{
+		timer.begin(moment.current());
+		timer.rest(moment.afterSeconds(WORK_DURATION));
+		timer.pause(moment.afterSeconds(1));
+		timer.resume(moment.afterSeconds(123));
+
+		verify(mockDisplay).show(REST_DURATION - 1, DisplayState.REST_PAUSE);
+		verify(mockCounter).count(REST_DURATION - 1);
+	}
+
+	@Test
+	void shouldStopCounter_WhenResetting()
+	{
+		timer.begin(moment.current());
+		timer.reset(moment.afterSeconds(123));
+
+		verify(mockCounter, atMost(2)).stop();
+	}
 }

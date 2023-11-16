@@ -54,15 +54,15 @@ public class MainClass
 			{
 				String input = scanner.nextLine();
 				if (input.equals("1"))
-					timer.begin();
+					timer.begin(LocalDateTime.now());
 				else if (input.equals("2"))
-					timer.rest();
+					timer.rest(LocalDateTime.now());
 				else if (input.equals("3"))
-					timer.pause();
+					timer.pause(LocalDateTime.now());
 				else if (input.equals("4"))
-					timer.resume();
+					timer.resume(LocalDateTime.now());
 				else if (input.equals("5"))
-					timer.reset();
+					timer.reset(LocalDateTime.now());
 			}
 		}
 	}
