@@ -11,15 +11,12 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import display.Display;
-import timer.Clock;
 import timer.Timer;
 import timer.counter.Counter;
 import timer.state.TimerState.IllegalOperationException;
 
 public class TestTimerExceptions
 {
-	@Mock
-	Clock dummyClock;
 	@Mock
 	Display dummyDisplay;
 	@Mock

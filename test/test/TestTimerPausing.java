@@ -1,7 +1,6 @@
 package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
 import static test.TestTimer.REST_DURATION;
 import static test.TestTimer.WORK_DURATION;
 
@@ -14,14 +13,11 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import display.Display;
-import timer.Clock;
 import timer.Timer;
 import timer.counter.Counter;
 
 public class TestTimerPausing
 {
-	@Mock
-	Clock dummyClock;
 	@Mock
 	Display dummyDisplay;
 	@Mock

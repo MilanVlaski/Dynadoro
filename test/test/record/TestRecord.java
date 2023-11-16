@@ -1,40 +1,52 @@
 package test.record;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import display.Display;
+import record.History;
+import record.UsageRecord;
+import timer.Timer;
+import timer.counter.Counter;
+
 class TestRecord
 {
 
-//	@Mock
-//	Clock mockClock;
-//	@Mock
-//	Display dummyDisplay;
-//	@Mock
-//	Counter dummyCounter;
-//
-//	@InjectMocks
-//	Timer timer;
-//
-//	//
-//	Moment moment;
-//	UsageRecord record;
-//	History fakeHistory;
-//
-//	static final int SEVENTH_NOVEMBER_15_40 = 1699368029;
-//	
-//	@BeforeEach
-//	void setup()
-//	{
-//		MockitoAnnotations.openMocks(this);
-//		moment = new Moment(SEVENTH_NOVEMBER_15_40);
-//
-//		fakeHistory = new FakeHistory();
-//		record = new UsageRecord(fakeHistory);
-//		timer.startRecording(record);
-//	}
-//
-//	@Test
-//	void recordShouldBeEmpty()
-//	{ assertEquals("", record.toString()); }
-//
+	@Mock
+	Display dummyDisplay;
+	@Mock
+	Counter dummyCounter;
+
+	@InjectMocks
+	Timer timer;
+
+	//
+	Moment moment;
+	UsageRecord record;
+	History fakeHistory;
+
+	static final int SEVENTH_NOVEMBER_15_40 = 1699368029;
+	
+	@BeforeEach
+	void setup()
+	{
+		MockitoAnnotations.openMocks(this);
+		moment = new Moment(SEVENTH_NOVEMBER_15_40);
+
+		fakeHistory = new FakeHistory();
+		record = new UsageRecord(fakeHistory);
+		timer.startRecording(record);
+	}
+
+	@Test
+	void recordShouldBeEmpty()
+	{ assertEquals("", record.toString()); }
+
 //	@Test
 //	void stateShouldProvideStateInfoObject()
 //	{

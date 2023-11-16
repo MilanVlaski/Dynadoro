@@ -6,6 +6,8 @@ import static org.mockito.Mockito.verify;
 import static test.TestTimer.REST_DURATION;
 import static test.TestTimer.WORK_DURATION;
 
+import java.time.Clock;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -16,7 +18,6 @@ import display.Display;
 import display.Display.DisplayState;
 import test.Moment;
 import test.TestTimer;
-import timer.Clock;
 import timer.Timer;
 import timer.counter.Counter;
 

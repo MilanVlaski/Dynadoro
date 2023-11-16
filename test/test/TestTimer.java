@@ -1,14 +1,8 @@
 package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.when;
 
-import java.time.Duration;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,16 +11,12 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import display.Display;
-import timer.Clock;
 import timer.Timer;
 import timer.counter.Counter;
-import timer.state.TimerState.IllegalOperationException;
 
 public class TestTimer
 {
 
-	@Mock
-	Clock dummyClock;
 	@Mock
 	Display dummyDisplay;
 	@Mock

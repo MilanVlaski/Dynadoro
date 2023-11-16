@@ -8,8 +8,6 @@ import display.Display;
 import display.swing.SwingDisplay;
 import record.UsageHistory;
 import record.UsageRecord;
-import timer.Clock;
-import timer.SystemClock;
 import timer.Timer;
 import timer.counter.Counter;
 import timer.counter.ScheduledCounter;
