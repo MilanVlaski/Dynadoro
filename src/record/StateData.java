@@ -62,10 +62,9 @@ public class StateData
 		DateTimeFormatter hourFormat1 = DateTimeFormatter.ofPattern("HH:mm");
 
 		String endTime1 = (end != null) ? hourFormat1.format(end) : "unknown";
-		
+
 		return String.join(", ", dateFormat1.format(start),
 		        name, hourFormat1.format(start), endTime1);
-		
 	}
 
 	public Date startDate()
