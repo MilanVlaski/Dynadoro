@@ -72,8 +72,7 @@ public abstract class Display
 	protected abstract void showResting();
 	protected abstract void showWorking();
 	protected abstract void showIdle();
-
-	public void tickTime()
-	{}
+	public abstract void tickTime();
+	public abstract void setModel(Timer timer);
 
 }

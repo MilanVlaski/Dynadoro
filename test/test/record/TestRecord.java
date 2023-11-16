@@ -1,26 +1,5 @@
 package test.record;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
-import static test.TestTimer.REST_DURATION;
-import static test.TestTimer.TWENTY_FIVE;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-
-import display.Display;
-import record.History;
-import record.StateData;
-import record.StateData.State;
-import record.UsageRecord;
-import test.TestTimer.Moment;
-import timer.Clock;
-import timer.Timer;
-import timer.counter.Counter;
-
 class TestRecord
 {
 

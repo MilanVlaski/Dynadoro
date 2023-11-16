@@ -28,7 +28,7 @@ public class TestTimerExceptions
 	@InjectMocks
 	Timer timer;
 
-	private static final LocalDateTime ANY = TestRedesignedTimer.TIME;
+	private static final LocalDateTime ANY = TestTimer.TIME;
 
 	@BeforeEach
 	void setup()

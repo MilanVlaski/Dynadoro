@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Scanner;
 
 import display.ConsoleDisplay;
+import display.Display;
 import display.swing.SwingDisplay;
 import record.UsageHistory;
 import record.UsageRecord;
@@ -19,33 +20,22 @@ public class MainClass
 	public static void main(String[] args)
 	{
 		startSwingApplication();
-//		startConsoleApplication(clock, dummyCounter);
+//		startConsoleApplication();
 	}
 
 	private static void startSwingApplication()
 	{
-		SwingDisplay display = new SwingDisplay();
-		Counter counter = new ScheduledCounter(display);
-		Timer timer = new Timer(display, counter, LocalDateTime.now());
-		display.setModel(timer);
-
+		Display display = new SwingDisplay();
+		Timer timer = initTimer(display);
 		startRecording(timer);
 	}
 
-	private static void startRecording(Timer timer)
+	private static void startConsoleApplication()
 	{
-		UsageHistory file = new UsageHistory();
-		UsageRecord record = new UsageRecord(file);
-		timer.startRecording(record);
-	}
-
-	private static void startConsoleApplication(Counter counter)
-	{
-		ConsoleDisplay display = new ConsoleDisplay();
-		Timer timer = new Timer(display, counter, LocalDateTime.now());
-		
+		Display display = new ConsoleDisplay();
+		Timer timer = initTimer(display);
 		startRecording(timer);
-		
+
 		try (Scanner scanner = new Scanner(System.in))
 		{
 			while (true)
@@ -64,4 +54,20 @@ public class MainClass
 			}
 		}
 	}
+
+	private static Timer initTimer(Display display)
+	{
+		Counter counter = new ScheduledCounter(display);
+		Timer timer = new Timer(display, counter, LocalDateTime.now());
+		display.setModel(timer);
+		return timer;
+	}
+
+	private static void startRecording(Timer timer)
+	{
+		UsageHistory file = new UsageHistory();
+		UsageRecord record = new UsageRecord(file);
+		timer.startRecording(record);
+	}
+
 }

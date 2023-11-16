@@ -2,8 +2,6 @@ package test.record;
 
 import org.junit.jupiter.api.Test;
 
-import test.TestTimer.Moment;
-
 class TestShowingDay
 {
 	@Test 

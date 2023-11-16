@@ -35,12 +35,15 @@ public class SwingDisplay extends Display
 	protected void showIdle()
 	{ mainFrame.showIdle(); }
 
+	@Override
 	public void setModel(Timer timer)
-	{ mainFrame.timer = timer;
-	this.timer = timer;}
+	{
+		mainFrame.timer = timer;
+		this.timer = timer;
+	}
 
 	@Override
 	public void tickTime()
-	{ mainFrame.setTime(timer.seconds(LocalDateTime.now()));}
+	{ mainFrame.setTime(timer.seconds(LocalDateTime.now())); }
 
 }
