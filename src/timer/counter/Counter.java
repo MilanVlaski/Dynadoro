@@ -1,13 +1,18 @@
 package timer.counter;
 
+import display.Display;
 import timer.Timer;
 
-public interface Counter {
+public abstract class Counter
+{
+	protected Display display;
 
-	void setTimer(Timer timer);
-	void countUp();
-	void count(int times);
-	void stop();
-	boolean isRunning();
+	public Counter(Display display)
+	{ this.display = display; }
+
+	public abstract void countUp();
+	public abstract void count(int times);
+	public abstract void stop();
+	public abstract boolean isRunning();
 
 }

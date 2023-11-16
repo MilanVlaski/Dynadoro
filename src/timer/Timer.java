@@ -1,6 +1,5 @@
 package timer;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 
 import display.Display;
@@ -10,26 +9,21 @@ import sound.SoundPlayer;
 import timer.counter.Counter;
 import timer.state.Idle;
 import timer.state.TimerState;
-import timer.state.Working;
 
 public class Timer
 {
 
-	private final Clock clock;
 	private final Display display;
 	private final Counter counter;
 
 	private TimerState state;
 	private UsageRecord record;
 
-	public Timer(Clock clock, Display display, Counter counter, LocalDateTime now)
+	public Timer(Display display, Counter counter, LocalDateTime now)
 	{
-		this.clock = clock;
 		this.display = display;
 		this.counter = counter;
 
-		// this can be moved to an initialize method
-		counter.setTimer(this);
 		state = new Idle(this, now);
 	}
 
@@ -59,7 +53,7 @@ public class Timer
 	public Counter getCounter()
 	{ return counter; }
 
-	public long seconds(LocalDateTime now)
+	public int seconds(LocalDateTime now)
 	{ return state.seconds(now); }
 
 	public void begin(LocalDateTime now)

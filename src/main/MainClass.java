@@ -18,17 +18,15 @@ public class MainClass
 
 	public static void main(String[] args)
 	{
-		Clock clock = new SystemClock();
-		Counter counter = new ScheduledCounter();
-
-		startSwingApplication(clock, counter);
+		startSwingApplication();
 //		startConsoleApplication(clock, dummyCounter);
 	}
 
-	private static void startSwingApplication(Clock clock, Counter counter)
+	private static void startSwingApplication()
 	{
 		SwingDisplay display = new SwingDisplay();
-		Timer timer = new Timer(clock, display, counter, LocalDateTime.now());
+		Counter counter = new ScheduledCounter(display);
+		Timer timer = new Timer(display, counter, LocalDateTime.now());
 		display.setModel(timer);
 
 		startRecording(timer);
@@ -41,10 +39,10 @@ public class MainClass
 		timer.startRecording(record);
 	}
 
-	private static void startConsoleApplication(Clock clock, Counter counter)
+	private static void startConsoleApplication(Counter counter)
 	{
 		ConsoleDisplay display = new ConsoleDisplay();
-		Timer timer = new Timer(clock, display, counter, LocalDateTime.now());
+		Timer timer = new Timer(display, counter, LocalDateTime.now());
 		
 		startRecording(timer);
 		

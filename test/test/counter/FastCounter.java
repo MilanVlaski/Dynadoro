@@ -1,12 +1,16 @@
 package test.counter;
 
+import display.Display;
 import timer.Timer;
 import timer.counter.ScheduledCounter;
 import timer.counter.Counter;
 
-public class FastCounter implements Counter {
+public class FastCounter extends Counter {
 
-	private final ScheduledCounter scheduledCounter = new ScheduledCounter();
+	public FastCounter(Display display)
+	{ super(display); }
+
+	private final ScheduledCounter scheduledCounter = new ScheduledCounter(display);
 
 	public static final int DURATION_MILLISECONDS = 100;
 	
@@ -28,11 +32,6 @@ public class FastCounter implements Counter {
 	@Override
 	public boolean isRunning() {
 		return scheduledCounter.isRunning();
-	}
-
-	@Override
-	public void setTimer(Timer timer) {
-		scheduledCounter.setTimer(timer);
 	}
 
 }

@@ -1,41 +1,42 @@
-//package test.counter;
-//
-//import static org.junit.jupiter.api.Assertions.assertFalse;
-//import static org.junit.jupiter.api.Assertions.assertTrue;
-//import static org.mockito.Mockito.mock;
-//import static org.mockito.Mockito.times;
-//import static org.mockito.Mockito.verify;
-//import static test.counter.FastCounter.DURATION_MILLISECONDS;
-//
-//import org.junit.jupiter.api.BeforeEach;
-//import org.junit.jupiter.api.Test;
-//
-//import timer.Timer;
-//import timer.counter.Counter;
-//
-//class TestCounter
-//{
-//
-//	Timer mockTimer = mock(Timer.class);
-//
-//	Counter counter;
-//
-//	@BeforeEach
-//	void setup()
-//	{
-//		counter = new FastCounter();
-//		counter.setTimer(mockTimer);
-//	}
-//
-//	@Test
-//	void shouldCountUp()
-//	{
-//		counter.countUp();
-//		wait(1.5);
-//
-//		assertTrue(counter.isRunning());
-//		verify(mockTimer, times(1)).showTime();
-//	}
+package test.counter;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static test.counter.FastCounter.DURATION_MILLISECONDS;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import display.Display;
+import timer.counter.ScheduledCounter;
+
+class TestCounter
+{
+
+	@Mock
+	Display mockDisplay;
+
+	@InjectMocks
+	FastCounter counter;
+
+	@BeforeEach
+	void setup()
+	{ MockitoAnnotations.openMocks(this); }
+
+	@Test
+	void shouldCountUp()
+	{
+		counter.countUp();
+		wait(1.5);
+
+		assertTrue(counter.isRunning());
+		verify(mockDisplay, times(1)).tickTime();
+	}
+
 //
 //	@Test
 //	void shouldStopCounter()
@@ -82,16 +83,16 @@
 //		counter.stop();
 //	}
 //
-//	private void wait(double seconds)
-//	{
-//		try
-//		{
-//			Thread.sleep((long) (seconds * DURATION_MILLISECONDS));
-//
-//		} catch (InterruptedException e)
-//		{
-//			e.printStackTrace();
-//		}
-//	}
-//
-//}
+	private void wait(double seconds)
+	{
+		try
+		{
+			Thread.sleep((long) (seconds * DURATION_MILLISECONDS));
+
+		} catch (InterruptedException e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+}

@@ -1,5 +1,7 @@
 package display;
 
+import java.time.LocalDateTime;
+
 import timer.Timer;
 
 public abstract class Display
@@ -70,5 +72,8 @@ public abstract class Display
 	protected abstract void showResting();
 	protected abstract void showWorking();
 	protected abstract void showIdle();
+
+	public void tickTime()
+	{}
 
 }

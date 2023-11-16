@@ -4,74 +4,72 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import display.Display;
+import display.Display.DisplayState;
+import sound.SoundPlayer;
 import timer.Timer;
 
-public class ScheduledCounter implements Counter {
+public class ScheduledCounter extends Counter
+{
 
-	private Timer timer;
 	private ScheduledExecutorService scheduler;
 	private boolean isRunning = false;
 
 	public static final int FOUR_HOURS_IN_SECONDS = 14400;
 	public static final int DURATION_MILLISECONDS = 1000;
 
-	public ScheduledCounter() {
+	public ScheduledCounter(Display display)
+	{
+		super(display);
 		initScheduler();
 	}
 
-	private void initScheduler() {
-		scheduler = Executors.newSingleThreadScheduledExecutor();
-	}
+	private void initScheduler()
+	{ scheduler = Executors.newSingleThreadScheduledExecutor(); }
 
 	@Override
-	public void setTimer(Timer timer) {
-		this.timer = timer;
-	}
+	public void countUp()
+	{ count(FOUR_HOURS_IN_SECONDS); }
 
 	@Override
-	public void countUp() {
-		count(FOUR_HOURS_IN_SECONDS);
-	}
+	public void count(int times)
+	{ count(times, DURATION_MILLISECONDS); }
 
 	@Override
-	public void count(int times) {
-		count(times, DURATION_MILLISECONDS);
-	}
-
-	@Override
-	public void stop() {
+	public void stop()
+	{
 		isRunning = false;
 		scheduler.shutdownNow();
 	}
 
 	@Override
-	public boolean isRunning() {
-		return isRunning;
-	}
+	public boolean isRunning()
+	{ return isRunning; }
 
-	public void count(int times, int durationMilliseconds) {
+	public void count(int times, int durationMilliseconds)
+	{
 
 		if (isRunning)
 			stop();
-		
+
 		initScheduler();
 
 		isRunning = true;
-		scheduler.scheduleAtFixedRate(this::showTime, durationMilliseconds,
-				durationMilliseconds, TimeUnit.MILLISECONDS);
-		
+		scheduler.scheduleAtFixedRate(display::tickTime, durationMilliseconds,
+		        durationMilliseconds, TimeUnit.MILLISECONDS);
+
 		scheduler.schedule(this::onFinish, times * durationMilliseconds,
-				TimeUnit.MILLISECONDS);
+		        TimeUnit.MILLISECONDS);
 	}
 
-	private void onFinish() {
-	    if (isRunning) {
-	    	timer.finishBreak();
-	        stop();
-	    }
+	private void onFinish()
+	{
+		if (isRunning)
+		{
+			stop();
+			SoundPlayer.play();
+			display.show(0, DisplayState.REST_FINISHED);
+		}
 	}
-
-	private void showTime()
-	{}
 
 }
