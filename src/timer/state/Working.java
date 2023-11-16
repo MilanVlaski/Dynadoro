@@ -29,17 +29,12 @@ public class Working extends TimerState
 	}
 
 	public Working(Timer context, LocalDateTime now)
-	{
-		super(context, now);
-		offset = 0;
-//		start = now;
-	}
+	{ this(context, now, 0); }
 
 	public Working(Timer context, LocalDateTime now, int offset)
 	{
 		super(context, now);
 		this.offset = offset;
-		start = now;
 	}
 
 	@Override
