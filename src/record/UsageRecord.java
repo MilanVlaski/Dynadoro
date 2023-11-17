@@ -22,15 +22,10 @@ public class UsageRecord
 
 	public void capture(StateData newState)
 	{
-		if (previousState == null)
-		{
-			previousState = newState;
-		}
-		else
-		{
+		if (previousState != null)
 			finishAndWrite(previousState, newState.startTime());
-			previousState = newState;
-		}
+
+		previousState = newState;
 	}
 
 	private void finishAndWrite(StateData previousState, LocalDateTime endTime)
