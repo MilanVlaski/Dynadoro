@@ -84,7 +84,7 @@ class TestRecord
 		timer.begin(moment.current());
 		timer.reset(moment.afterMinutes(5));
 
-		assertEquals("", record.toString());
+		assertEquals("2023-11-07, Tuesday, Idle, 15:45, unknown", record.toString());
 		assertEquals("2023-11-07, Tuesday, Working, 15:40, 15:45\n", fakeHistory.read());
 	}
 
@@ -100,7 +100,7 @@ class TestRecord
 		timer.begin(moment.current());
 		timer.reset(moment.afterMinutes(5));
 
-		assertEquals("", record.toString());
+		assertEquals("2023-11-07, Tuesday, Idle, 15:45, unknown", record.toString());
 		assertEquals(previousData + "2023-11-07, Tuesday, Working, 15:40, 15:45\n",
 		        fakeHistory.read());
 	}
@@ -111,7 +111,7 @@ class TestRecord
 		timer.begin(moment.current());
 		timer.rest(moment.afterMinutes(WORK_DURATION));
 
-		assertEquals("2023-11-07, Tuesday, Resting, 16:05, unknown\n",
+		assertEquals("2023-11-07, Tuesday, Resting, 16:05, unknown",
 		        record.toString());
 		assertEquals("2023-11-07, Tuesday, Working, 15:40, 16:05\n",
 		        fakeHistory.read());

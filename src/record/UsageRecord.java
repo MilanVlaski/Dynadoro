@@ -29,7 +29,7 @@ public class UsageRecord
 		else
 		{
 			finishAndWrite(previousState, newState.startTime());
-			previousState = null;
+			previousState = newState;
 		}
 	}
 
