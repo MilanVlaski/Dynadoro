@@ -68,19 +68,16 @@ class TestRecord
 		assertEquals("2023-11-07, Tuesday, Working, 15:40, unknown\n", record.toString());
 		assertEquals("", fakeHistory.read());
 	}
-//
-//	@Test
-//	void shouldRecordWorking_FiveMinutes() {
-//		when(mockClock.currentTimeSeconds())
-//				.thenReturn(moment.current(), moment.after(5 * 60));
-//
-//		timer.begin();
-//		timer.reset();
-//
-//		String expected = "2023-11-07, Tuesday, Working, 15:40, 15:45\n";
-//		assertEquals(expected, record.toString());
-//		assertEquals(expected, fakeHistory.read());
-//	}
+
+	@Test
+	void shouldRecordWorking_FiveMinutes() {
+		timer.begin(moment.current());
+		timer.reset(moment.afterMinutes(5));
+
+		String expected = "2023-11-07, Tuesday, Working, 15:40, 15:45\n";
+		assertEquals(expected, record.toString());
+		assertEquals(expected, fakeHistory.read());
+	}
 //
 //	@Test
 //	void shouldWriteToNonEmptyFileCorrectly()

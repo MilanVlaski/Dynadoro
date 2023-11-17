@@ -15,4 +15,7 @@ public class Moment
 	public LocalDateTime current()
 	{ return time; }
 
+	public LocalDateTime afterMinutes(int minutes)
+	{ return this.time = time.plusMinutes(minutes); }
+
 }

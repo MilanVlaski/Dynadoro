@@ -34,16 +34,13 @@ public class StateData
 		        name, hourFormat.format(start), endTime);
 	}
 
-	private Date startDate;
-	private Date endDate;
-
-	public Date startDate()
-	{ return startDate; }
+	public LocalDateTime startTime()
+	{ return start; }
 
 	public boolean shouldBeRecorded()
 	{ return getsRecorded; }
 
-	public void finish(Date endDate)
-	{ this.endDate = endDate; }
+	public void finish(LocalDateTime end)
+	{ this.end = end; }
 
 }

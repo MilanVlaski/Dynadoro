@@ -1,12 +1,10 @@
 package timer.state;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 
 import display.Display.DisplayState;
 import record.StateData;
 import record.UsageRecord;
-import record.StateData.State;
 import timer.Timer;
 
 public class Pause extends TimerState

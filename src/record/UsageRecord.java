@@ -1,5 +1,6 @@
 package record;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,14 +32,16 @@ public class UsageRecord
 		if (!states.isEmpty())
 		{
 			StateData previousState = states.get(states.size() - 1);
-			finishAndWrite(previousState, newState.startDate());
+			finishAndWrite(previousState, newState.startTime());
+		} else
+		{
+			states.add(newState);
 		}
-		states.add(newState);
 	}
 
-	private void finishAndWrite(StateData previousState, Date endDate)
+	private void finishAndWrite(StateData previousState, LocalDateTime endTime)
 	{
-		previousState.finish(endDate);
+		previousState.finish(endTime);
 
 		if (previousState.shouldBeRecorded())
 			history.write(previousState.toString());

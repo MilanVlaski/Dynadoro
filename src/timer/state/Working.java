@@ -1,13 +1,10 @@
 package timer.state;
 
 import java.time.Duration;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.Period;
 
 import display.Display.DisplayState;
 import record.StateData;
-import record.StateData.State;
 import record.UsageRecord;
 import timer.Timer;
 
