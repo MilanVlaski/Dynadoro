@@ -1,4 +1,4 @@
-package test;
+package test.helpers;
 
 import java.time.LocalDateTime;
 

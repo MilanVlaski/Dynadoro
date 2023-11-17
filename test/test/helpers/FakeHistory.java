@@ -1,4 +1,4 @@
-package test.record;
+package test.helpers;
 
 import record.History;
 

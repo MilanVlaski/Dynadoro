@@ -16,8 +16,8 @@ import org.mockito.MockitoAnnotations;
 
 import display.Display;
 import display.Display.DisplayState;
-import test.Moment;
 import test.TestTimer;
+import test.helpers.Moment;
 import timer.Timer;
 import timer.counter.Counter;
 

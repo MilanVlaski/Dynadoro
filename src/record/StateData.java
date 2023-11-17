@@ -9,38 +9,11 @@ import java.util.Date;
 public class StateData
 {
 
-	public enum State
-	{
-		IDLE("Idle", false),
-		PAUSE("Paused", false),
-		WORKING("Working", true),
-		RESTING("Resting", true);
-
-		private final String name;
-		private final boolean getsRecorded;
-
-		private State(String name, boolean getsRecorded)
-		{
-			this.name = name;
-			this.getsRecorded = getsRecorded;
-		}
-
-	}
-
 	private final String name;
 	private final boolean getsRecorded;
 
-	private Date startDate;
-	private Date endDate;
 	private LocalDateTime start;
 	private LocalDateTime end;
-
-	public StateData(State state, int startTime)
-	{
-		this.name = state.name;
-		this.startDate = secondsToDate(startTime);
-		this.getsRecorded = state.getsRecorded;
-	}
 
 	public StateData(String name, LocalDateTime start, boolean getsRecorded)
 	{
@@ -49,23 +22,20 @@ public class StateData
 		this.getsRecorded = getsRecorded;
 	}
 
-	private Date secondsToDate(int seconds)
-	{
-		long milliseconds = (long) seconds * 1000;
-		return new Date(milliseconds);
-	}
-
 	@Override
 	public String toString()
 	{
-		DateTimeFormatter dateFormat1 = DateTimeFormatter.ofPattern("yyyy-MM-dd, EEEE");
-		DateTimeFormatter hourFormat1 = DateTimeFormatter.ofPattern("HH:mm");
+		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd, EEEE");
+		DateTimeFormatter hourFormat = DateTimeFormatter.ofPattern("HH:mm");
 
-		String endTime1 = (end != null) ? hourFormat1.format(end) : "unknown";
+		String endTime = (end != null) ? hourFormat.format(end) : "unknown";
 
-		return String.join(", ", dateFormat1.format(start),
-		        name, hourFormat1.format(start), endTime1);
+		return String.join(", ", dateFormat.format(start),
+		        name, hourFormat.format(start), endTime);
 	}
+
+	private Date startDate;
+	private Date endDate;
 
 	public Date startDate()
 	{ return startDate; }

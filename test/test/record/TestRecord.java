@@ -14,8 +14,9 @@ import display.Display;
 import record.History;
 import record.StateData;
 import record.UsageRecord;
-import test.Moment;
 import test.TestTimer;
+import test.helpers.FakeHistory;
+import test.helpers.Moment;
 import timer.Timer;
 import timer.counter.Counter;
 

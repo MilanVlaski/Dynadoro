@@ -10,9 +10,7 @@ public class CoolButton extends JButton
 {
 
 	public CoolButton(String text, int width, int height, ActionListener actionListener)
-	{
-		this(text, width, height, actionListener, 30);
-	}
+	{ this(text, width, height, actionListener, 30); }
 
 	public CoolButton(String text, int width, int height, ActionListener actionListener,
 	                  int fontSize)

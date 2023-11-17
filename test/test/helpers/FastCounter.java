@@ -1,4 +1,4 @@
-package test.counter;
+package test.helpers;
 
 import display.Display;
 import sound.SoundPlayer;

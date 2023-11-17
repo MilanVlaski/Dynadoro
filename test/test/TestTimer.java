@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import display.Display;
+import test.helpers.Moment;
 import timer.Timer;
 import timer.counter.Counter;
 
