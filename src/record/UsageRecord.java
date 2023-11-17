@@ -31,11 +31,7 @@ public class UsageRecord
 			previousState = newState;
 		} else
 		{
-			previousState.finish(newState.startTime());
-			
-			if (previousState.shouldBeRecorded())
-				history.write(previousState.toString());
-			
+			finishAndWrite(previousState, newState.startTime());
 			previousState = null;
 		}
 	}
