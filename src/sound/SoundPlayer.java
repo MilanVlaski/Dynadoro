@@ -47,7 +47,7 @@ public class SoundPlayer implements LineListener
 		try
 		{
 			InputStream inputStream = getClass().getClassLoader()
-			        .getResourceAsStream(AUDIO_FILE);
+			        .getResourceAsStream(audioFilePath);
 			AudioInputStream audioStream = AudioSystem.getAudioInputStream(inputStream);
 
 			AudioFormat format = audioStream.getFormat();
@@ -60,13 +60,19 @@ public class SoundPlayer implements LineListener
 
 			while (!isPlaybackCompleted)
 			{
-				Thread.sleep(1000);
+				try
+				{
+					Thread.sleep(1000);
+				} catch (InterruptedException ex)
+				{
+					Thread.currentThread().interrupt();
+				}
 			}
 
 			audioClip.close();
 			audioStream.close();
-		} catch (UnsupportedAudioFileException | LineUnavailableException | IOException
-		        | InterruptedException ex)
+		} catch (UnsupportedAudioFileException | LineUnavailableException
+		        | IOException ex)
 		{
 			System.out.println(
 			        "Error occurred during playback process: " + ex.getMessage());
