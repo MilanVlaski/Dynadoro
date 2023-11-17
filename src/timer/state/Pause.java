@@ -34,10 +34,6 @@ public class Pause extends TimerState
 	}
 
 	@Override
-	public void record(UsageRecord record)
-	{ record.capture(new StateData(State.PAUSE, 0)); }
-
-	@Override
 	public int seconds(LocalDateTime now)
 	{ return previousState.seconds(start); }
 
@@ -54,7 +50,11 @@ public class Pause extends TimerState
 	{}
 
 	@Override
-	public void resume(LocalDateTime now, LocalDateTime DONT_USE)
+	public void resume(LocalDateTime now, LocalDateTime pauseTime_DONT_USE)
 	{ previousState.resume(now, start); }
+
+	@Override
+	public void record(UsageRecord record)
+	{ record.capture(new StateData(State.PAUSE, 0)); }
 
 }

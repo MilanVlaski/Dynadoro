@@ -36,7 +36,6 @@ public abstract class TimerState
 
 	public static class IllegalOperationException extends RuntimeException
 	{
-
 		private static final long serialVersionUID = 1L;
 
 		public IllegalOperationException(String message)

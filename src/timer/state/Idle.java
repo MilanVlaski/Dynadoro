@@ -20,10 +20,6 @@ public class Idle extends TimerState
 	}
 
 	@Override
-	public void record(UsageRecord record)
-	{ record.capture(new StateData(State.IDLE, 0)); }
-
-	@Override
 	public int seconds(LocalDateTime time)
 	{ return 0; }
 
@@ -42,5 +38,9 @@ public class Idle extends TimerState
 	@Override
 	public void resume(LocalDateTime now, LocalDateTime pauseTime)
 	{ throw new IllegalOperationException("Can't resume while idle."); }
+
+	@Override
+	public void record(UsageRecord record)
+	{ record.capture(new StateData(State.IDLE, 0)); }
 
 }

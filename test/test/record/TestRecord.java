@@ -35,17 +35,15 @@ class TestRecord
 	UsageRecord record;
 	History fakeHistory;
 
-	
 	@BeforeEach
 	void setup()
 	{
 		MockitoAnnotations.openMocks(this);
-		
+
 		fakeHistory = new FakeHistory();
 		record = new UsageRecord(fakeHistory);
 		timer.startRecording(record);
-		
-		
+
 		moment = new Moment(LocalDateTime.of(2023, 11, 7, 15, 40));
 	}
 
@@ -60,24 +58,15 @@ class TestRecord
 		assertEquals("2023-11-07, Tuesday, Working, 15:40, unknown",
 		        stateData.toString());
 	}
-//
-//	@Test
-//	void stateShouldProvideStateInfoObject1()
-//	{
-//		StateData stateData = new StateData(State.WORKING, moment.after(60 * 5));
-//		assertEquals("2023-11-07, Tuesday, Working, 15:45, unknown",
-//		        stateData.toString());
-//	}
-//
-//	@Test
-//	void shouldRecordWorking_WhileWorking() {
-//		when(mockClock.currentTimeSeconds()).thenReturn(moment.current());
-//
-//		timer.begin();
-//
-//		assertEquals("2023-11-07, Tuesday, Working, 15:40, unknown\n", record.toString());
-//		assertEquals("", fakeHistory.read());
-//	}
+
+	@Test
+	void shouldRecordWorking_WhileWorking()
+	{
+		timer.begin(moment.current());
+
+		assertEquals("2023-11-07, Tuesday, Working, 15:40, unknown\n", record.toString());
+		assertEquals("", fakeHistory.read());
+	}
 //
 //	@Test
 //	void shouldRecordWorking_FiveMinutes() {

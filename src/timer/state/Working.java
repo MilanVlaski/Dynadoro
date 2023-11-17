@@ -29,10 +29,6 @@ public class Working extends TimerState
 	}
 
 	@Override
-	public void record(UsageRecord record)
-	{ record.capture(new StateData(State.WORKING, 0)); }
-
-	@Override
 	public int seconds(LocalDateTime now)
 	{ return offset + (int) Duration.between(start, now).toSeconds(); }
 
@@ -57,5 +53,9 @@ public class Working extends TimerState
 		int startFrom = seconds(pauseTime);
 		context.changeState(new Working(context, now, startFrom));
 	}
+
+	@Override
+	public void record(UsageRecord record)
+	{ record.capture(new StateData("Working", start, true)); }
 
 }
