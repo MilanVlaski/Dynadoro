@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 public class UsageRecord
 {
 
+	private final History history;
 	private StateData previousState;
-	private History history;
 
 	public UsageRecord(History history)
 	{ this.history = history; }
