@@ -6,7 +6,7 @@ public class UsageRecord
 {
 
 	private final History history;
-	private StateData previousState;
+	private StateData currentState;
 
 	public UsageRecord(History history)
 	{ this.history = history; }
@@ -14,18 +14,18 @@ public class UsageRecord
 	@Override
 	public String toString()
 	{
-		if (previousState != null)
-			return previousState.toString();
+		if (currentState != null)
+			return currentState.toString();
 		else
 			return "";
 	}
 
 	public void capture(StateData newState)
 	{
-		if (previousState != null)
-			finishAndWrite(previousState, newState.startTime());
+		if (currentState != null)
+			finishAndWrite(currentState, newState.startTime());
 
-		previousState = newState;
+		currentState = newState;
 	}
 
 	private void finishAndWrite(StateData previousState, LocalDateTime endTime)
