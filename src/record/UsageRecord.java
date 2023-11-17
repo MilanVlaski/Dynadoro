@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class UsageRecord
 {
 
-	private final List<StateData> states = new ArrayList<>();
+	private StateData previousState;
 	private History history;
 
 	public UsageRecord(History history)
@@ -18,24 +18,25 @@ public class UsageRecord
 	@Override
 	public String toString()
 	{
-		if (states.isEmpty())
-			return "";
+		if (previousState != null)
+			return previousState.toString();
 		else
-			return states.stream()
-			        .filter((state) -> state.shouldBeRecorded())
-			        .map(StateData::toString)
-			        .collect(Collectors.joining("\n", "", "\n"));
+			return "";
 	}
 
 	public void capture(StateData newState)
 	{
-		if (!states.isEmpty())
+		if (previousState == null)
 		{
-			StateData previousState = states.get(states.size() - 1);
-			finishAndWrite(previousState, newState.startTime());
+			previousState = newState;
 		} else
 		{
-			states.add(newState);
+			previousState.finish(newState.startTime());
+			
+			if (previousState.shouldBeRecorded())
+				history.write(previousState.toString());
+			
+			previousState = null;
 		}
 	}
 

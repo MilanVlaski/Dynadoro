@@ -74,7 +74,7 @@ class TestRecord
 	{
 		timer.begin(moment.current());
 
-		assertEquals("2023-11-07, Tuesday, Working, 15:40, unknown\n", record.toString());
+		assertEquals("2023-11-07, Tuesday, Working, 15:40, unknown", record.toString());
 		assertEquals("", fakeHistory.read());
 	}
 
