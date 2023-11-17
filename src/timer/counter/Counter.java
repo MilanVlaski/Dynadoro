@@ -2,7 +2,6 @@ package timer.counter;
 
 import display.Display;
 import sound.SoundPlayer;
-import timer.Timer;
 
 public abstract class Counter
 {

@@ -1,7 +1,5 @@
 package display;
 
-import java.time.LocalDateTime;
-
 import timer.Timer;
 
 public abstract class Display

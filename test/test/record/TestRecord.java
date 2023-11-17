@@ -1,6 +1,7 @@
 package test.record;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static test.TestTimer.WORK_DURATION;
 
 import java.time.LocalDateTime;
 
@@ -14,7 +15,6 @@ import display.Display;
 import record.History;
 import record.StateData;
 import record.UsageRecord;
-import test.TestTimer;
 import test.helpers.FakeHistory;
 import test.helpers.Moment;
 import timer.Timer;
@@ -87,38 +87,35 @@ class TestRecord
 		assertEquals("", record.toString());
 		assertEquals("2023-11-07, Tuesday, Working, 15:40, 15:45\n", fakeHistory.read());
 	}
-//
-//	@Test
-//	void shouldWriteToNonEmptyFileCorrectly()
-//	{
-//		String previousData = "data-data-data\n";
-//		History fakeHistory = new FakeHistory(previousData);
-//		UsageRecord record = new UsageRecord(fakeHistory);
-//
-//		when(mockClock.currentTimeSeconds())
-//		        .thenReturn(moment.current(), moment.after(5 * 60));
-//		//
-//
-//		timer.startRecording(record);
-//		timer.begin();
-//		timer.reset();
-//
-//		String runtimeData = "2023-11-07, Tuesday, Working, 15:40, 15:45\n";
-//		assertEquals(runtimeData, record.toString());
-//		assertEquals(previousData + runtimeData, fakeHistory.read());
-//	}
-//
-//	@Test
-//	void shouldRecordWorking_TwentyFive_ThenRestingFiveMinutes() {
-//		when(mockClock.currentTimeSeconds())
-//				.thenReturn(moment.current(), moment.after(TWENTY_FIVE * 60));
-//
-//		timer.begin();
-//		timer.rest();
-//
-//		assertEquals("2023-11-07, Tuesday, Working, 15:40, 16:05\n"
-//				+ "2023-11-07, Tuesday, Resting, 16:05, unknown\n", record.toString());
-//	}
+
+	@Test
+	void shouldWriteToFile_WithDataInIt_Correctly()
+	{
+		String previousData = "data-data-data\n";
+		History fakeHistory = new FakeHistory(previousData);
+		UsageRecord record = new UsageRecord(fakeHistory);
+		//
+
+		timer.startRecording(record);
+		timer.begin(moment.current());
+		timer.reset(moment.afterMinutes(5));
+
+		assertEquals("", record.toString());
+		assertEquals(previousData + "2023-11-07, Tuesday, Working, 15:40, 15:45\n",
+		        fakeHistory.read());
+	}
+
+	@Test
+	void shouldRecordWorking_ThenResting()
+	{
+		timer.begin(moment.current());
+		timer.rest(moment.afterMinutes(WORK_DURATION));
+
+		assertEquals("2023-11-07, Tuesday, Resting, 16:05, unknown\n",
+		        record.toString());
+		assertEquals("2023-11-07, Tuesday, Working, 15:40, 16:05\n",
+		        fakeHistory.read());
+	}
 //
 //	@Test
 //	void shouldRecordWorkAndThenRest() {

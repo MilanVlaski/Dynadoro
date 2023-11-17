@@ -1,10 +1,8 @@
 package timer.state;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 
 import display.Display;
-import record.StateData;
 import record.UsageRecord;
 import timer.Timer;
 import timer.counter.Counter;
@@ -15,8 +13,7 @@ public abstract class TimerState
 	protected final Timer context;
 	protected final Display display;
 	protected final Counter counter;
-
-	protected LocalDateTime start;
+	protected final LocalDateTime start;
 
 	public TimerState(Timer context, LocalDateTime now)
 	{

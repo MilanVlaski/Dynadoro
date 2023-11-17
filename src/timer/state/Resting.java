@@ -17,7 +17,7 @@ public class Resting extends TimerState
 	public Resting(Timer context, LocalDateTime now, int workDuration)
 	{ this(workDuration / WORK_REST_RATIO, context, now); }
 
-	public Resting(int restDuration, Timer context, LocalDateTime now)
+	private Resting(int restDuration, Timer context, LocalDateTime now)
 	{
 		super(context, now);
 		this.restDuration = restDuration;

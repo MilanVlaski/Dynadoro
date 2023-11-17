@@ -1,10 +1,7 @@
 package record;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class StateData
 {
@@ -12,7 +9,7 @@ public class StateData
 	private final String name;
 	private final boolean getsRecorded;
 
-	private LocalDateTime start;
+	private final LocalDateTime start;
 	private LocalDateTime end;
 
 	public StateData(String name, LocalDateTime start, boolean getsRecorded)

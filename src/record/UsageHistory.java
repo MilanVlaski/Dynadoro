@@ -12,7 +12,7 @@ public class UsageHistory implements History
 
 	private static final String APP_NAME = "Dynadoro";
 	private static final String userHome = System.getProperty("user.home");
-	private static Path path = Paths.get(userHome, APP_NAME, "sessions.txt");
+	private static final Path path = Paths.get(userHome, APP_NAME, "sessions.txt");
 
 	@Override
 	public String read()

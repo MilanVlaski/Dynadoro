@@ -16,7 +16,7 @@ public class Working extends TimerState
 	public Working(Timer context, LocalDateTime now)
 	{ this(context, now, 0); }
 
-	public Working(Timer context, LocalDateTime now, int offset)
+	private Working(Timer context, LocalDateTime now, int offset)
 	{
 		super(context, now);
 		this.offset = offset;

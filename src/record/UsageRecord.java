@@ -1,10 +1,6 @@
 package record;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class UsageRecord
 {
@@ -29,7 +25,8 @@ public class UsageRecord
 		if (previousState == null)
 		{
 			previousState = newState;
-		} else
+		}
+		else
 		{
 			finishAndWrite(previousState, newState.startTime());
 			previousState = null;

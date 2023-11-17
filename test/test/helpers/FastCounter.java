@@ -2,9 +2,8 @@ package test.helpers;
 
 import display.Display;
 import sound.SoundPlayer;
-import timer.Timer;
-import timer.counter.ScheduledCounter;
 import timer.counter.Counter;
+import timer.counter.ScheduledCounter;
 
 public class FastCounter extends Counter {
 

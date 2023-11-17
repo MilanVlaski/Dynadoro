@@ -3,9 +3,7 @@ package timer;
 import java.time.LocalDateTime;
 
 import display.Display;
-import display.Display.DisplayState;
 import record.UsageRecord;
-import sound.SoundPlayer;
 import timer.counter.Counter;
 import timer.state.Idle;
 import timer.state.TimerState;
