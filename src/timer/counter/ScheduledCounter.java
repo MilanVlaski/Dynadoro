@@ -18,9 +18,9 @@ public class ScheduledCounter extends Counter
 	public static final int FOUR_HOURS_IN_SECONDS = 14400;
 	public static final int DURATION_MILLISECONDS = 1000;
 
-	public ScheduledCounter(Display display)
+	public ScheduledCounter(Display display, SoundPlayer soundPlayer)
 	{
-		super(display);
+		super(display, soundPlayer);
 		initScheduler();
 	}
 
@@ -66,7 +66,7 @@ public class ScheduledCounter extends Counter
 		if (isRunning)
 		{
 			stop();
-			SoundPlayer.play();
+			soundPlayer.play();
 			display.show(0, DisplayState.REST_FINISHED);
 		}
 	}

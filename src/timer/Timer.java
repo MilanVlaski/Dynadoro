@@ -35,15 +35,6 @@ public class Timer
 		this.state = newState;
 	}
 
-//	public void showTime()
-//	{ display.show(displayedTime()); }
-
-	public void finishBreak()
-	{
-		SoundPlayer.play();
-		display.show(0, DisplayState.REST_FINISHED);
-	}
-
 	public void startRecording(UsageRecord record)
 	{ this.record = record; }
 

@@ -13,23 +13,24 @@ import javax.sound.sampled.LineListener;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-public class SoundPlayer implements LineListener {
+public class SoundPlayer implements LineListener
+{
 
 	private static final String AUDIO_FILE = "Cute Bell Sound Effect.wav";
 	boolean isPlaybackCompleted;
 
 	@Override
-	public void update(LineEvent event) {
-
-		if (LineEvent.Type.START == event.getType()) {
-//			System.out.println("Playback started.");
-		} else if (LineEvent.Type.STOP == event.getType()) {
+	public void update(LineEvent event)
+	{
+		if (LineEvent.Type.STOP == event.getType())
+		{
 			isPlaybackCompleted = true;
-//			System.out.println("Playback completed.");
+			System.out.println("Playback completed.");
 		}
 	}
 
-	public static void play() {
+	public void play()
+	{
 		SoundPlayer player = new SoundPlayer();
 		player.play(AUDIO_FILE);
 	}
@@ -41,10 +42,12 @@ public class SoundPlayer implements LineListener {
 	 * @param audioFilePath Path of the audio file.
 	 * 
 	 */
-	private void play(String audioFilePath) {
-		try {
+	private void play(String audioFilePath)
+	{
+		try
+		{
 			InputStream inputStream = getClass().getClassLoader()
-					.getResourceAsStream(audioFilePath);
+			        .getResourceAsStream(AUDIO_FILE);
 			AudioInputStream audioStream = AudioSystem.getAudioInputStream(inputStream);
 
 			AudioFormat format = audioStream.getFormat();
@@ -54,20 +57,19 @@ public class SoundPlayer implements LineListener {
 			audioClip.addLineListener(this);
 			audioClip.open(audioStream);
 			audioClip.start();
-			while (!isPlaybackCompleted) {
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException ex) {
-					ex.printStackTrace();
-				}
+
+			while (!isPlaybackCompleted)
+			{
+				Thread.sleep(1000);
 			}
+
 			audioClip.close();
 			audioStream.close();
-
-		} catch (UnsupportedAudioFileException | LineUnavailableException
-				| IOException ex) {
-			System.out.println("Error occured during playback process:"
-					+ ex.getMessage());
+		} catch (UnsupportedAudioFileException | LineUnavailableException | IOException
+		        | InterruptedException ex)
+		{
+			System.out.println(
+			        "Error occurred during playback process: " + ex.getMessage());
 		}
 	}
 }

@@ -56,6 +56,6 @@ public class Pause extends TimerState
 
 	@Override
 	public void record(UsageRecord record)
-	{ record.capture(new StateData(State.PAUSE, 0)); }
+	{ record.capture(new StateData("Pause", start, false)); }
 
 }

@@ -41,6 +41,6 @@ public class Idle extends TimerState
 
 	@Override
 	public void record(UsageRecord record)
-	{ record.capture(new StateData(State.IDLE, 0)); }
+	{ record.capture(new StateData("Idle", start, false)); }
 
 }

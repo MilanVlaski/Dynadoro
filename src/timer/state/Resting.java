@@ -29,10 +29,6 @@ public class Resting extends TimerState
 	}
 
 	@Override
-	public void record(UsageRecord record)
-	{ record.capture(new StateData(State.RESTING, 0)); }
-
-	@Override
 	public int seconds(LocalDateTime now)
 	{
 		int remaining = restDuration - (int) Duration.between(start, now).toSeconds();
@@ -57,5 +53,9 @@ public class Resting extends TimerState
 		int restDuration = seconds(pauseTime);
 		context.changeState(new Resting(restDuration, context, now));
 	}
+
+	@Override
+	public void record(UsageRecord record)
+	{ record.capture(new StateData("Resting", start, true)); }
 
 }

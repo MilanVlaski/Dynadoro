@@ -8,6 +8,7 @@ import display.Display;
 import display.swing.SwingDisplay;
 import record.UsageHistory;
 import record.UsageRecord;
+import sound.SoundPlayer;
 import timer.Timer;
 import timer.counter.Counter;
 import timer.counter.ScheduledCounter;
@@ -55,7 +56,7 @@ public class MainClass
 
 	private static Timer initTimer(Display display)
 	{
-		Counter counter = new ScheduledCounter(display);
+		Counter counter = new ScheduledCounter(display, new SoundPlayer());
 		Timer timer = new Timer(display, counter, LocalDateTime.now());
 		display.setModel(timer);
 		return timer;

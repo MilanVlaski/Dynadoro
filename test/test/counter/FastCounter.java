@@ -1,16 +1,17 @@
 package test.counter;
 
 import display.Display;
+import sound.SoundPlayer;
 import timer.Timer;
 import timer.counter.ScheduledCounter;
 import timer.counter.Counter;
 
 public class FastCounter extends Counter {
 
-	public FastCounter(Display display)
-	{ super(display); }
+	public FastCounter(Display display, SoundPlayer soundPlayer)
+	{ super(display, soundPlayer); }
 
-	private final ScheduledCounter scheduledCounter = new ScheduledCounter(display);
+	private final ScheduledCounter scheduledCounter = new ScheduledCounter(display, soundPlayer);
 
 	public static final int DURATION_MILLISECONDS = 100;
 	
