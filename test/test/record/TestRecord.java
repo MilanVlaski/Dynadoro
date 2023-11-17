@@ -53,10 +53,19 @@ class TestRecord
 	{ assertEquals("", record.toString()); }
 
 	@Test
-	void stateShouldProvideStateInfoObject()
+	void stateDataShouldWriteProperly()
 	{
 		StateData stateData = new StateData("Working", moment.current(), true);
 		assertEquals("2023-11-07, Tuesday, Working, 15:40, unknown",
+		        stateData.toString());
+	}
+
+	@Test
+	void stateDataShouldWriteProperly_AfterItsFinished()
+	{
+		StateData stateData = new StateData("Working", moment.current(), true);
+		stateData.finish(moment.afterMinutes(5));
+		assertEquals("2023-11-07, Tuesday, Working, 15:40, 15:45",
 		        stateData.toString());
 	}
 
@@ -70,13 +79,13 @@ class TestRecord
 	}
 
 	@Test
-	void shouldRecordWorking_FiveMinutes() {
+	void shouldRecordWorking_FiveMinutes()
+	{
 		timer.begin(moment.current());
 		timer.reset(moment.afterMinutes(5));
 
-		String expected = "2023-11-07, Tuesday, Working, 15:40, 15:45\n";
-		assertEquals(expected, record.toString());
-		assertEquals(expected, fakeHistory.read());
+		assertEquals("", record.toString());
+		assertEquals("2023-11-07, Tuesday, Working, 15:40, 15:45\n", fakeHistory.read());
 	}
 //
 //	@Test
