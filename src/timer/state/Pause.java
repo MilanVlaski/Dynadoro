@@ -20,6 +20,7 @@ public class Pause extends TimerState
 		this.previousState = previousState;
 
 		sendDataToDisplay(previousState, now);
+		counter.stop();
 	}
 
 	private void sendDataToDisplay(TimerState previousState, LocalDateTime now)

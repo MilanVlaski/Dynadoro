@@ -73,7 +73,7 @@ public class TestDisplay
 		timer.pause(moment.afterSeconds(3));
 
 		verify(mockDisplay).show(3, DisplayState.WORK_PAUSE);
-		verify(mockCounter).stop();
+		verify(mockCounter, times(2)).stop();
 	}
 
 	@Test
@@ -84,7 +84,7 @@ public class TestDisplay
 		timer.pause(moment.afterSeconds(2));
 
 		verify(mockDisplay).show(REST_DURATION - 2, DisplayState.REST_PAUSE);
-		verify(mockCounter).stop();
+		verify(mockCounter, times(2)).stop();
 	}
 
 	@Test

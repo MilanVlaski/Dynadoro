@@ -48,7 +48,6 @@ public class ScheduledCounter extends Counter
 
 	public void count(int times, int durationMilliseconds)
 	{
-
 		if (isRunning)
 			stop();
 
