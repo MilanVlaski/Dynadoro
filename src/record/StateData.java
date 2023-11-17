@@ -19,6 +19,14 @@ public class StateData
 		this.getsRecorded = getsRecorded;
 	}
 
+	public StateData(String name, LocalDateTime start, LocalDateTime end)
+	{
+		this.name = name;
+		this.start = start;
+		this.end = end;
+		this.getsRecorded = true;
+	}
+
 	@Override
 	public String toString()
 	{
