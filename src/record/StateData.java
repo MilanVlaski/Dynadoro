@@ -1,6 +1,7 @@
 package record;
 
 import java.awt.Graphics;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -51,5 +52,14 @@ public class StateData
 
 	public void draw(Graphics g)
 	{}
+
+	public Duration duration()
+	{
+		if (end != null)
+			return Duration.between(start, end);
+		else
+			return Duration.ZERO;
+
+	}
 
 }
