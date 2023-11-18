@@ -1,58 +1,88 @@
 package record;
 
+import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
+
+import display.swing.MainFrame;
+import record.StateData.TrackedState;
 
 public class Day
 {
 	private final List<StateData> states;
+	private Color clockBackground = new Color(216, 239, 250);
 
 	public Day(List<StateData> states)
 	{ this.states = states; }
 
-	public void draw(Graphics g)
+	public void draw(Graphics2D g)
 	{
-		drawClock((Graphics2D) g);
-
-		for (StateData state : states)
-			state.draw(g);
-	}
-
-	private void drawClock(Graphics2D g)
-	{
-
 		int large = 280;
 		int thumbnail = 140;
-		
-		int centerX = thumbnail / 2;
-		int centerY = thumbnail / 2;
+
+		int centerX = large / 2;
+		int centerY = large / 2;
 		int radius = (int) (Math.min(centerX, centerY) * 0.9);
 
 		drawCircle(g, centerX, centerY, radius);
-		drawClockBorder(g, centerX, centerY, radius);
-		drawClockContrastLines(g, centerX, centerY, radius);
+		drawClockBorder(g, centerX, centerY, radius, 5);
 		drawHours(g, centerX, centerY, radius);
 		drawMinutes(g, centerX, centerY, radius);
+
+		for (StateData state : states)
+			drawState(g, state.startTime(), state.duration(), state.type(), centerX,
+			        centerY, radius);
+	}
+
+	private void drawState(Graphics2D g, LocalDateTime startTime, Duration duration,
+	                       TrackedState type, int centerX, int centerY, int radius)
+	{
+		Color borderColor = type.equals(TrackedState.WORK)
+		        ? MainFrame.WORK
+		        : MainFrame.REST;
+		float alpha = 0.5f; // Transparency value (0.0f fully transparent, 1.0f fully
+		                    // opaque)
+
+		// Set a transparent stroke using AlphaComposite
+		AlphaComposite alphaComposite = AlphaComposite
+		        .getInstance(AlphaComposite.SRC_OVER, alpha);
+		g.setComposite(alphaComposite);
+
+		g.setColor(borderColor);
+		BasicStroke borderStroke = new BasicStroke(4, BasicStroke.CAP_ROUND,
+		        BasicStroke.JOIN_BEVEL);
+		g.setStroke(borderStroke);
+
+		g.fillArc(centerX - radius, centerY - radius, 2 * radius, 2 * radius, 60, 30);
+
+		g.setStroke(new BasicStroke(1));
+		g.setColor(clockBackground);
+		g.setComposite(AlphaComposite.SrcOver);
+		int smallerRadius = (int) (radius * 0.6);
+		g.fillArc(centerX - smallerRadius, centerY - smallerRadius, 2 * smallerRadius,
+		        2 * smallerRadius, 60, 30);
 	}
 
 	private void drawMinutes(Graphics2D g, int centerX, int centerY, int radius)
 	{
 		for (int i = 0; i < 60; i++)
 		{
-			if(i % 5 == 0)
+			if (i % 5 == 0)
 				continue;
-			
+
 			double angle = Math.toRadians(6 * i - 90);
 			int lineX1 = (int) (centerX + 0.93 * radius * Math.cos(angle));
 			int lineY1 = (int) (centerY + 0.93 * radius * Math.sin(angle));
 			int lineX2 = (int) (centerX + 0.96 * radius * Math.cos(angle));
 			int lineY2 = (int) (centerY + 0.96 * radius * Math.sin(angle));
-			
+
 			g.setColor(new Color(200, 200, 200));
 			BasicStroke mainStroke = new BasicStroke(1, BasicStroke.CAP_ROUND,
 			        BasicStroke.JOIN_BEVEL);
@@ -92,29 +122,19 @@ public class Day
 
 	private void drawCircle(Graphics2D g, int centerX, int centerY, int radius)
 	{
-		g.setColor(new Color(216, 239, 250));
+		g.setColor(clockBackground);
 		g.fillOval(centerX - radius, centerY - radius, 2 * radius, 2 * radius);
 	}
-	
-	private void drawClockBorder(Graphics2D g, int centerX, int centerY, int radius)
-	{
-	    g.setColor(new Color(180, 190, 200)); // Light border color
-	    BasicStroke borderStroke = new BasicStroke(3, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL);
-	    g.setStroke(borderStroke);
-	    g.drawOval(centerX - radius, centerY - radius, 2 * radius, 2 * radius);
-	}
-	
-	private void drawClockContrastLines(Graphics2D g, int centerX, int centerY, int radius)
-	{
-	    g.setColor(new Color(150, 160, 170)); // Slightly darker than the border color
-	    BasicStroke contrastStroke = new BasicStroke(2, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL);
-	    g.setStroke(contrastStroke);
 
-	    int contrastRadius = radius + 2; // Slightly larger radius for contrast lines
-
-	    // Draw two slightly darker lines around the border
-	    g.drawOval(centerX - contrastRadius, centerY - contrastRadius, 2 * contrastRadius, 2 * contrastRadius);
-	    g.drawOval(centerX - contrastRadius, centerY - contrastRadius, 2 * contrastRadius, 2 * contrastRadius);
+	private void drawClockBorder(Graphics2D g, int centerX, int centerY, int radius,
+	                             int thickness)
+	{
+		g.setColor(new Color(180, 190, 200)); // Light border color
+		BasicStroke borderStroke = new BasicStroke(thickness, BasicStroke.CAP_ROUND,
+		        BasicStroke.JOIN_BEVEL);
+		g.setStroke(borderStroke);
+		int thickRadius = radius + thickness / 2;
+		g.drawOval(centerX - thickRadius, centerY - thickRadius, 2 * thickRadius, 2 * thickRadius);
 	}
 
 }

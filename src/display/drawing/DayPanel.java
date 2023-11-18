@@ -19,6 +19,6 @@ public class DayPanel extends JPanel
 	{
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
-		day.draw(g);
+		day.draw(g2d);
 	}
 }

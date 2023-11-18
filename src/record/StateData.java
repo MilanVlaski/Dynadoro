@@ -7,6 +7,11 @@ import java.time.format.DateTimeFormatter;
 
 public class StateData
 {
+	public enum TrackedState
+	{
+		WORK,
+		REST
+	}
 
 	private final String name;
 	private final boolean getsRecorded;
@@ -50,9 +55,6 @@ public class StateData
 	public void finish(LocalDateTime end)
 	{ this.end = end; }
 
-	public void draw(Graphics g)
-	{}
-
 	public Duration duration()
 	{
 		if (end != null)
@@ -60,6 +62,16 @@ public class StateData
 		else
 			return Duration.ZERO;
 
+	}
+
+	public TrackedState type()
+	{
+		if (name == "Working")
+			return TrackedState.WORK;
+		else if (name == "Resting")
+			return TrackedState.REST;
+		else
+			return null;
 	}
 
 }
