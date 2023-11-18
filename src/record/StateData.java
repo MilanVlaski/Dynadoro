@@ -1,5 +1,6 @@
 package record;
 
+import java.awt.Graphics;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -47,5 +48,8 @@ public class StateData
 
 	public void finish(LocalDateTime end)
 	{ this.end = end; }
+
+	public void draw(Graphics g)
+	{}
 
 }
