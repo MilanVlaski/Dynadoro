@@ -26,8 +26,11 @@ public class Day
 	private void drawClock(Graphics2D g)
 	{
 
-		int centerX = 200 / 2;
-		int centerY = 200 / 2;
+		int large = 280;
+		int thumbnail = 140;
+		
+		int centerX = thumbnail / 2;
+		int centerY = thumbnail / 2;
 		int radius = (int) (Math.min(centerX, centerY) * 0.9);
 
 		drawCircle(g, centerX, centerY, radius);
@@ -51,7 +54,7 @@ public class Day
 			int lineY2 = (int) (centerY + 0.96 * radius * Math.sin(angle));
 			
 			g.setColor(new Color(200, 200, 200));
-			BasicStroke mainStroke = new BasicStroke(2, BasicStroke.CAP_ROUND,
+			BasicStroke mainStroke = new BasicStroke(1, BasicStroke.CAP_ROUND,
 			        BasicStroke.JOIN_BEVEL);
 			g.setStroke(mainStroke);
 			g.draw(new Line2D.Double(lineX1, lineY1, lineX2, lineY2));
@@ -69,7 +72,7 @@ public class Day
 			int lineY2 = (int) (centerY + 0.96 * radius * Math.sin(angle));
 
 			// Draw thicker line for hours
-			BasicStroke mainStroke = new BasicStroke(4, BasicStroke.CAP_ROUND,
+			BasicStroke mainStroke = new BasicStroke(3, BasicStroke.CAP_ROUND,
 			        BasicStroke.JOIN_BEVEL);
 			g.setStroke(mainStroke); // Adjust the thickness as needed
 			g.setColor(new Color(150, 160, 170));
@@ -96,7 +99,7 @@ public class Day
 	private void drawClockBorder(Graphics2D g, int centerX, int centerY, int radius)
 	{
 	    g.setColor(new Color(180, 190, 200)); // Light border color
-	    BasicStroke borderStroke = new BasicStroke(4, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL);
+	    BasicStroke borderStroke = new BasicStroke(3, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL);
 	    g.setStroke(borderStroke);
 	    g.drawOval(centerX - radius, centerY - radius, 2 * radius, 2 * radius);
 	}
@@ -104,7 +107,7 @@ public class Day
 	private void drawClockContrastLines(Graphics2D g, int centerX, int centerY, int radius)
 	{
 	    g.setColor(new Color(150, 160, 170)); // Slightly darker than the border color
-	    BasicStroke contrastStroke = new BasicStroke(4, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL);
+	    BasicStroke contrastStroke = new BasicStroke(2, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL);
 	    g.setStroke(contrastStroke);
 
 	    int contrastRadius = radius + 2; // Slightly larger radius for contrast lines

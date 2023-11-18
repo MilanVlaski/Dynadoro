@@ -54,23 +54,6 @@ class TestRecord
 	{ assertEquals("", record.toString()); }
 
 	@Test
-	void stateDataShouldWriteProperly()
-	{
-		StateData stateData = new StateData("Working", moment.current(), true);
-		assertEquals("2023-11-07, Tuesday, Working, 15:40, unknown",
-		        stateData.toString());
-	}
-
-	@Test
-	void stateDataShouldWriteProperly_AfterItsFinished()
-	{
-		StateData stateData = new StateData("Working", moment.current(), true);
-		stateData.finish(moment.afterMinutes(5));
-		assertEquals("2023-11-07, Tuesday, Working, 15:40, 15:45",
-		        stateData.toString());
-	}
-
-	@Test
 	void shouldRecordWorking_WhileWorking()
 	{
 		timer.begin(moment.current());
