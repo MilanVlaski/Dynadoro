@@ -9,6 +9,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 import display.swing.MainFrame;
@@ -47,8 +48,7 @@ public class Day
 		Color borderColor = type.equals(TrackedState.WORK)
 		        ? MainFrame.WORK
 		        : MainFrame.REST;
-		float alpha = 0.5f; // Transparency value (0.0f fully transparent, 1.0f fully
-		                    // opaque)
+		float alpha = 0.5f;
 
 		// Set a transparent stroke using AlphaComposite
 		AlphaComposite alphaComposite = AlphaComposite
@@ -66,6 +66,10 @@ public class Day
 		g.setColor(clockBackground);
 		g.setComposite(AlphaComposite.SrcOver);
 		int smallerRadius = (int) (radius * 0.6);
+		
+		// TODO convert startTime to startAngle, and duration to arcAngle.
+		// then convert it to their coordinates by subtracting 90 from startAngle,
+		// and inverting (-_ arcAngle
 		g.fillArc(centerX - smallerRadius, centerY - smallerRadius, 2 * smallerRadius,
 		        2 * smallerRadius, 60, 30);
 	}
@@ -134,7 +138,11 @@ public class Day
 		        BasicStroke.JOIN_BEVEL);
 		g.setStroke(borderStroke);
 		int thickRadius = radius + thickness / 2;
-		g.drawOval(centerX - thickRadius, centerY - thickRadius, 2 * thickRadius, 2 * thickRadius);
+		g.drawOval(centerX - thickRadius, centerY - thickRadius, 2 * thickRadius,
+		        2 * thickRadius);
 	}
+
+	public static int timeToDegrees(LocalTime time)
+	{ return 0; }
 
 }
