@@ -50,7 +50,7 @@ public class MainFrame extends JFrame
 		                12),
 		        BorderLayout.WEST);
 
-		TOP_PANEL.add(
+		TOP_PANEL.add(	
 		        new CoolButton("X", 75, 75, (e) -> timer.reset(LocalDateTime.now()), 12),
 		        BorderLayout.EAST);
 

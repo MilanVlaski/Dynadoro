@@ -12,7 +12,7 @@
 - I can see images of clocks representing my study and break sessions in a day. I can see which date and weekday the clocks belong to. When I open a clock, I see an enlarged image, with a big date and weekday at the bottom.
 
 ## TODO
-- Load Day with StateData. A Clock must be created. Split Clock into minutes (12 x 60 = 720). Lets say Work starts at 00:00 ends at 00:15. Minutes from 0 to 15 gotta be filled in a certain color. The data becomes "0-25-WORK, 25-30-REST".
+- Load Day with StateData. A Clock must be created. Lets say Work starts at 00:00 ends at 00:25. So 0 is the startAngle, and 25 is the arcAngle. Rest from 00:25 to 00:30, means 25 is the startAngle and 5 is the arcAngle. So we convert the startTime to a startAngle, and the value we check is number of minutes, so instead of 12:45 its 12 * 60 + 45. And duration, expressed in minutes, is our arcAngle.
 ---
 - We keep the images and file consistent by loading the file data to memory (creating Days out of collections of StateData and creating images belonging to days).
 - A Day has States, and a Day must have a VisualDay. States have start and end time. (Based on this you can make an arc. Combining the arcs gives you whole picture). (we don't care about a day that doesn't have states, it doesn't get logged).

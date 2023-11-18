@@ -2,6 +2,7 @@ package sound;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -46,8 +47,7 @@ public class SoundPlayer implements LineListener
 	{
 		try
 		{
-			InputStream inputStream = getClass().getClassLoader()
-			        .getResourceAsStream(audioFilePath);
+			URL inputStream = getClass().getClassLoader().getResource(audioFilePath);
 			AudioInputStream audioStream = AudioSystem.getAudioInputStream(inputStream);
 
 			AudioFormat format = audioStream.getFormat();
