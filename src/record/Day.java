@@ -66,7 +66,7 @@ public class Day
 		g.setColor(clockBackground);
 		g.setComposite(AlphaComposite.SrcOver);
 		int smallerRadius = (int) (radius * 0.6);
-		
+
 		// TODO convert startTime to startAngle, and duration to arcAngle.
 		// then convert it to their coordinates by subtracting 90 from startAngle,
 		// and inverting (-_ arcAngle
@@ -80,18 +80,20 @@ public class Day
 		{
 			if (i % 5 == 0)
 				continue;
+			else
+			{
+				double angle = Math.toRadians(6 * i - 90);
+				int lineX1 = (int) (centerX + 0.93 * radius * Math.cos(angle));
+				int lineY1 = (int) (centerY + 0.93 * radius * Math.sin(angle));
+				int lineX2 = (int) (centerX + 0.96 * radius * Math.cos(angle));
+				int lineY2 = (int) (centerY + 0.96 * radius * Math.sin(angle));
 
-			double angle = Math.toRadians(6 * i - 90);
-			int lineX1 = (int) (centerX + 0.93 * radius * Math.cos(angle));
-			int lineY1 = (int) (centerY + 0.93 * radius * Math.sin(angle));
-			int lineX2 = (int) (centerX + 0.96 * radius * Math.cos(angle));
-			int lineY2 = (int) (centerY + 0.96 * radius * Math.sin(angle));
-
-			g.setColor(new Color(200, 200, 200));
-			BasicStroke mainStroke = new BasicStroke(1, BasicStroke.CAP_ROUND,
-			        BasicStroke.JOIN_BEVEL);
-			g.setStroke(mainStroke);
-			g.draw(new Line2D.Double(lineX1, lineY1, lineX2, lineY2));
+				g.setColor(new Color(200, 200, 200));
+				BasicStroke mainStroke = new BasicStroke(1, BasicStroke.CAP_ROUND,
+				        BasicStroke.JOIN_BEVEL);
+				g.setStroke(mainStroke);
+				g.draw(new Line2D.Double(lineX1, lineY1, lineX2, lineY2));
+			}
 		}
 	}
 
@@ -137,6 +139,7 @@ public class Day
 		BasicStroke borderStroke = new BasicStroke(thickness, BasicStroke.CAP_ROUND,
 		        BasicStroke.JOIN_BEVEL);
 		g.setStroke(borderStroke);
+
 		int thickRadius = radius + thickness / 2;
 		g.drawOval(centerX - thickRadius, centerY - thickRadius, 2 * thickRadius,
 		        2 * thickRadius);
