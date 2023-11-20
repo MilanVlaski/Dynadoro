@@ -42,7 +42,12 @@ public class Pause extends TimerState
 
 	@Override
 	public void rest(LocalDateTime now)
-	{ context.changeState(new Resting(context, now, previousState.seconds(start))); }
+	{
+		if (previousState instanceof Working)
+			context.changeState(new Resting(context, now, previousState.seconds(start)));
+		else
+			throw new IllegalOperationException("Can't rest if haven't worked.");
+	}
 
 	@Override
 	public void pause(LocalDateTime now)

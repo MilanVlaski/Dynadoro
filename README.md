@@ -12,6 +12,7 @@
 - I can see images of clocks representing my study and break sessions in a day. I can see which date and weekday the clocks belong to. When I open a clock, I see an enlarged image, with a big date and weekday at the bottom.
 
 ## TODO
+- Add an enum as parameter to the state data, because it's used elsewhere.
 - Load Day with StateData. A Clock must be created. Lets say Work starts at 00:00 ends at 00:25. So 0 is the startAngle, and 25 is the arcAngle. Rest from 00:25 to 00:30, means 25 is the startAngle and 5 is the arcAngle. So we convert the startTime to a startAngle, and the value we check is number of minutes, so instead of 12:45 its 12 * 60 + 45. And duration, expressed in minutes, is our arcAngle.
 ---
 - We keep the images and file consistent by loading the file data to memory (creating Days out of collections of StateData and creating images belonging to days).
@@ -24,11 +25,11 @@
 
 - while break ticks down you could have a charging battery filling up (maybe in thirds, battery with 3 bars)
 - remove the window bar and add rounded borders (same color as text maybe)
-- ---
-### PERHAPS
+
+#### PERHAPS
 - Potential errors if you work for less than a second, or less than 5.
----
-### BUGFIX:
+
+#### BUGFIX:
  When pausing while on break the timer correctly stops counting. But it incorrectly says Break over! when and displays 00:00.
 FIXED: It was because the counter is a little weirdo. Scheduled tasks can't be stopped, i had to add logic that prevents that. I don't understand the library fully...
 BUG: If you pause and resume before the original break interval, you get alarmed twice.
