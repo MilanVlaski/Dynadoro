@@ -67,9 +67,6 @@ public class Day
 		g.setComposite(AlphaComposite.SrcOver);
 		int smallerRadius = (int) (radius * 0.6);
 
-		// TODO convert startTime to startAngle, and duration to arcAngle.
-		// then convert it to their coordinates by subtracting 90 from startAngle,
-		// and inverting (-_ arcAngle
 		g.fillArc(centerX - smallerRadius, centerY - smallerRadius, 2 * smallerRadius,
 		        2 * smallerRadius, 60, 30);
 	}
@@ -144,7 +141,13 @@ public class Day
 		g.drawOval(centerX - thickRadius, centerY - thickRadius, 2 * thickRadius,
 		        2 * thickRadius);
 	}
-
+	/**
+	 * Converts time to degrees. Precisely, the number of degrees away from 3
+	 * o'clock, to the clock hand (zero in the common X-Y coordinate system).
+	 * 3 o'clock is 0. 4 is -30. 12 is 90.
+	 * @param time of day
+	 * @return number of degrees in the common X-Y coordinate system
+	 */
 	public static int timeToDegrees(LocalTime time)
 	{ return 0; }
 

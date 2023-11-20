@@ -104,5 +104,16 @@ public class TestTimerPausing
 		assertEquals(REST_DURATION, timer.seconds(moment.current()));
 		assertEquals(REST_DURATION - 1, timer.seconds(moment.afterSeconds(1)));
 	}
+	
+	@Test
+	void shouldGoToWork_WhilePausingRest() {
+		timer.begin(moment.current());
+		timer.rest(moment.afterSeconds(WORK_DURATION));
+		timer.pause(moment.afterSeconds(1));
+		timer.begin(moment.afterSeconds(123));
+		
+		assertEquals(0, timer.seconds(moment.current()));
+		assertEquals(1, timer.seconds(moment.afterSeconds(1)));
+	}
 
 }

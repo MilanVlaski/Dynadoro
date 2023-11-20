@@ -96,4 +96,5 @@ public class TestTimer
 		assertEquals(0, timer.seconds(moment.current()));
 		assertEquals(0, timer.seconds(moment.afterSeconds(1)));
 	}
+	
 }
