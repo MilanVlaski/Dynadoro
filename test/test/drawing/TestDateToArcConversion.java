@@ -17,5 +17,33 @@ class TestDateToArcConversion
 		LocalTime midnight = LocalTime.of(0, 0);
 		assertEquals(90, Day.timeToDegrees(midnight));
 	}
+	
+	@Test
+	void shouldConvertOneAM_ToSixtyDegrees()
+	{ 
+		LocalTime midnight = LocalTime.of(1, 0);
+		assertEquals(60, Day.timeToDegrees(midnight));
+	}
+	
+	@Test
+	void shouldConvertFiveAM_ToMinusSixtyDegrees()
+	{ 
+		LocalTime midnight = LocalTime.of(5, 0);
+		assertEquals(-60, Day.timeToDegrees(midnight));
+	}
+	
+	@Test
+	void shouldConvertFivePM_ToMinusSixtyDegrees()
+	{ 
+		LocalTime midnight = LocalTime.of(17, 0);
+		assertEquals(-60, Day.timeToDegrees(midnight));
+	}
+	
+//	@Test
+//	void shouldConvertOneThirtyAM_()
+//	{ 
+//		LocalTime midnight = LocalTime.of(1, 30);
+//		assertEquals(-60, Day.timeToDegrees(midnight));
+//	}
 
 }

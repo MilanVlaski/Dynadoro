@@ -141,14 +141,23 @@ public class Day
 		g.drawOval(centerX - thickRadius, centerY - thickRadius, 2 * thickRadius,
 		        2 * thickRadius);
 	}
+
 	/**
 	 * Converts time to degrees. Precisely, the number of degrees away from 3
-	 * o'clock, to the clock hand (zero in the common X-Y coordinate system).
-	 * 3 o'clock is 0. 4 is -30. 12 is 90.
+	 * o'clock, to the clock hand (zero in the common X-Y coordinate system). 3
+	 * o'clock is 0. 4 is -30. 12 is 90.
+	 * 
 	 * @param time of day
 	 * @return number of degrees in the common X-Y coordinate system
 	 */
 	public static int timeToDegrees(LocalTime time)
-	{ return 0; }
+	{
+		int hours = time.getHour();
+
+		if (hours >= 12)
+			hours = hours - 12;
+
+		return hours * (-30) + 90;
+	}
 
 }
