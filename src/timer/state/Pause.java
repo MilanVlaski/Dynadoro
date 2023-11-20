@@ -38,9 +38,7 @@ public class Pause extends TimerState
 
 	@Override
 	public void begin(LocalDateTime now)
-	{
-		context.changeState(new Working(context, now));
-	}
+	{ context.changeState(new Working(context, now)); }
 
 	@Override
 	public void rest(LocalDateTime now)
