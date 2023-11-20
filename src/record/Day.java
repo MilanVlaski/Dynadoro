@@ -146,6 +146,9 @@ public class Day
 	 * Converts time to degrees. Precisely, the number of degrees away from 3
 	 * o'clock, to the clock hand (zero in the common X-Y coordinate system). 3
 	 * o'clock is 0. 4 is -30. 12 is 90.
+	 * Note: because drawing arc only takes integers, and one minute corresponds to
+	 * half a degree, we have opted to go for the lower value. So 1 minute is zero
+	 * degrees, and 2 minutes is one degree.
 	 * 
 	 * @param time of day
 	 * @return number of degrees in the common X-Y coordinate system
@@ -153,11 +156,15 @@ public class Day
 	public static int timeToDegrees(LocalTime time)
 	{
 		int hours = time.getHour();
+		int minutes = time.getMinute();
 
 		if (hours >= 12)
 			hours = hours - 12;
 
-		return hours * (-30) + 90;
+		if(minutes % 2 != 0) 
+			minutes = minutes - 1;
+		
+		return hours * (-30) + 90 - (int) (minutes * 0.5);
 	}
 
 }
