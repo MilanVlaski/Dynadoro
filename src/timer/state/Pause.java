@@ -23,6 +23,7 @@ public class Pause extends TimerState
 
 	private void sendDataToDisplay(TimerState previousState, LocalDateTime now)
 	{
+		// TODO yuck
 		DisplayState displayState = null;
 		if (previousState instanceof Working)
 			displayState = DisplayState.WORK_PAUSE;
@@ -43,10 +44,14 @@ public class Pause extends TimerState
 	@Override
 	public void rest(LocalDateTime now)
 	{
+		// TODO yucky
+		previousState.rest(now);
 		if (previousState instanceof Working)
 			context.changeState(new Resting(context, now, previousState.seconds(start)));
 		else
 			throw new IllegalOperationException("Can't rest if haven't worked.");
+//		 Rest and Idle also exist as states. so where is the elseif for Idle?
+		// well, you can never 
 	}
 
 	@Override
@@ -55,7 +60,10 @@ public class Pause extends TimerState
 
 	@Override
 	public void resume(LocalDateTime now, LocalDateTime pauseTime_DONT_USE)
-	{ previousState.resume(now, start); }
+	{ 
+		
+		previousState.resume(now, start);
+	}
 
 	@Override
 	public void record(UsageRecord record)
