@@ -55,8 +55,7 @@ public class Timer
 	{ state.pause(now); }
 
 	public void resume(LocalDateTime now)
-	// last parameter is unused, but its useful internally
-	{ state.resume(now, LocalDateTime.MIN); }
+	{ state.resume(now, 0); }
 
 	public void reset(LocalDateTime now)
 	{ changeState(new Idle(this, now)); }

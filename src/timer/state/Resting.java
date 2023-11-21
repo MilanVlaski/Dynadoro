@@ -46,11 +46,8 @@ public class Resting extends TimerState
 	{ context.changeState(new Pause(context, this, now)); }
 
 	@Override
-	public void resume(LocalDateTime now, LocalDateTime pauseTime)
-	{
-		int restDuration = seconds(pauseTime);
-		context.changeState(new Resting(restDuration, context, now));
-	}
+	public void resume(LocalDateTime now, int from)
+	{ context.changeState(new Resting(from, context, now)); }
 
 	@Override
 	public void record(UsageRecord record)

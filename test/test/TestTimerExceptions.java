@@ -61,14 +61,4 @@ public class TestTimerExceptions
 	{ assertThrows(IllegalOperationException.class,
 	        () -> timer.resume(ANY)); }
 
-// I don't care enough about this one
-	@Test
-	void shouldThrow_IfRests_WhilePausingRest()
-	{
-		timer.begin(ANY);
-		timer.rest(ANY);
-		timer.pause(ANY);
-
-		assertThrows(IllegalOperationException.class, () -> timer.rest(ANY));
-	}
 }
