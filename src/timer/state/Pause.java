@@ -11,11 +11,13 @@ public class Pause extends TimerState
 {
 
 	private final TimerState previousState;
+	private int secondsWhenPaused;
 
 	public Pause(Timer context, TimerState previousState, LocalDateTime now)
 	{
 		super(context, now);
 		this.previousState = previousState;
+		this.secondsWhenPaused = previousState.seconds(now);
 
 		sendDataToDisplay(previousState, now);
 		counter.stop();
@@ -35,7 +37,7 @@ public class Pause extends TimerState
 
 	@Override
 	public int seconds(LocalDateTime now)
-	{ return previousState.seconds(start); }
+	{ return secondsWhenPaused; }
 
 	@Override
 	public void begin(LocalDateTime now)
@@ -47,11 +49,11 @@ public class Pause extends TimerState
 		// TODO yucky
 		previousState.rest(now);
 		if (previousState instanceof Working)
-			context.changeState(new Resting(context, now, previousState.seconds(start)));
+			context.changeState(new Resting(context, now, secondsWhenPaused));
 		else
 			throw new IllegalOperationException("Can't rest if haven't worked.");
 //		 Rest and Idle also exist as states. so where is the elseif for Idle?
-		// well, you can never 
+		// well, you can never
 	}
 
 	@Override
@@ -60,8 +62,8 @@ public class Pause extends TimerState
 
 	@Override
 	public void resume(LocalDateTime now, LocalDateTime pauseTime_DONT_USE)
-	{ 
-		
+	{
+		int continueFrom = previousState.seconds(start);
 		previousState.resume(now, start);
 	}
 
