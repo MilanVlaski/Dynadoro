@@ -30,7 +30,7 @@ public class MainClass
 		        new StateData(State.REST, twentyFive, thirty),
 		        new StateData(State.WORK, fourPM, fourFiftyPM),
 		        new StateData(State.REST, fourFiftyPM, fivePM)));
-
+		
 		new MyFrame(day);
 	}
 }

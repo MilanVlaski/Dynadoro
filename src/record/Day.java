@@ -8,10 +8,15 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Arc2D;
 import java.awt.geom.Line2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 import display.swing.MainFrame;
 import record.StateData.State;
@@ -24,6 +29,7 @@ public class Day
 	public Day(List<StateData> states)
 	{ this.states = states; }
 
+	// TODO separate methods for thumbnail vs full sized image
 	public void draw(Graphics2D g)
 	{
 		int large = 280;
@@ -33,6 +39,7 @@ public class Day
 		int centerY = large / 2;
 		int radius = (int) (Math.min(centerX, centerY) * 0.9);
 
+
 		drawCircle(g, centerX, centerY, radius);
 		drawClockBorder(g, centerX, centerY, radius, 5);
 		drawHours(g, centerX, centerY, radius);
@@ -41,6 +48,9 @@ public class Day
 		for (StateData state : states)
 			drawState(g, state.startTime(), state.duration(), state.type(), centerX,
 			        centerY, radius);
+
+		g.dispose();
+
 	}
 
 	private void drawState(Graphics2D g, LocalDateTime startTime, Duration duration,
@@ -73,7 +83,7 @@ public class Day
 	}
 
 	private void drawCircleThatHidesPie(Graphics2D g, int centerX, int centerY,
-	                                        int radius)
+	                                    int radius)
 	{
 		g.setStroke(new BasicStroke(1));
 		g.setColor(clockBackground);
