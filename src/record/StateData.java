@@ -21,22 +21,22 @@ public class StateData
 		{ this.name = name; }
 	}
 
-	private final String name;
 	private final boolean getsRecorded;
+	private final State state;
 
 	private final LocalDateTime start;
 	private LocalDateTime end;
 
 	public StateData(State state, LocalDateTime start, boolean getsRecorded)
 	{
-		this.name = state.name;
+		this.state = state;
 		this.start = start;
 		this.getsRecorded = getsRecorded;
 	}
 
-	public StateData(State state, String name, LocalDateTime start, LocalDateTime end)
+	public StateData(State state, LocalDateTime start, LocalDateTime end)
 	{
-		this.name = state.name;
+		this.state = state;
 		this.start = start;
 		this.end = end;
 		this.getsRecorded = true;
@@ -51,7 +51,7 @@ public class StateData
 		String endTime = (end != null) ? hourFormat.format(end) : "unknown";
 
 		return String.join(", ", dateFormat.format(start),
-		        name, hourFormat.format(start), endTime);
+		        state.name, hourFormat.format(start), endTime);
 	}
 
 	public LocalDateTime startTime()
@@ -69,17 +69,9 @@ public class StateData
 			return Duration.between(start, end);
 		else
 			return Duration.ZERO;
-
 	}
 
 	public State type()
-	{
-		if (name == "Working")
-			return State.WORK;
-		else if (name == "Resting")
-			return State.REST;
-		else
-			return null;
-	}
+	{ return state; }
 
 }

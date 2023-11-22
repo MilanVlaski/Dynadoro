@@ -20,9 +20,7 @@ public class MainClass
 		LocalDateTime twentyFive = LocalDateTime.of(2023, 11, 18, 0, 25);
 		LocalDateTime thirty = LocalDateTime.of(2023, 11, 18, 0, 30);
 
-		Day day = new Day(List.of(new StateData(State.WORK, "Working",
-		        zero,
-		        twentyFive)));
+		Day day = new Day(List.of(new StateData(State.WORK, zero, twentyFive)));
 
 		new MyFrame(day);
 	}
