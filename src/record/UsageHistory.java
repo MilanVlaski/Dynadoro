@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.List;
 
 public class UsageHistory implements History
 {
@@ -58,4 +59,8 @@ public class UsageHistory implements History
 		history.read();
 		System.out.println(Files.exists(path));
 	}
+
+	@Override
+	public List<Day> retrieveDays()
+	{ return null; }
 }

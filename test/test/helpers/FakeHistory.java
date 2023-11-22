@@ -1,5 +1,10 @@
 package test.helpers;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
+import record.Day;
 import record.History;
 
 public class FakeHistory implements History
@@ -20,5 +25,9 @@ public class FakeHistory implements History
 	@Override
 	public void write(String contents)
 	{ this.contents += contents + "\n"; }
+
+	@Override
+	public List<Day> retrieveDays()
+	{ return Collections.emptyList(); }
 
 }
