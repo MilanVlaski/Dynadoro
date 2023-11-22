@@ -19,7 +19,7 @@ import record.StateData.State;
 public class Day
 {
 	private final List<StateData> states;
-	private Color clockBackground = new Color(216, 239, 250);
+	private Color clockBackground = new Color(235, 247, 252);
 
 	public Day(List<StateData> states)
 	{ this.states = states; }
@@ -62,24 +62,23 @@ public class Day
 		g.setStroke(borderStroke);
 
 		float startDegrees = timeToDegrees(startTime.toLocalTime());
-		float durationDegrees = -(float) duration.toMinutes() / 2;
-		System.out.println(durationDegrees);
+		float durationDegrees = durationToDegrees(duration);
 
 		Arc2D arc = new Arc2D.Float(centerX - radius, centerY - radius, 2 * radius,
 		        2 * radius, startDegrees, durationDegrees, Arc2D.PIE);
 
 		g.fill(arc);
 
-		drawCenterBackgroundCircle(g, centerX, centerY, radius);
+		drawCircleThatHidesPie(g, centerX, centerY, radius);
 	}
 
-	private void drawCenterBackgroundCircle(Graphics2D g, int centerX, int centerY,
+	private void drawCircleThatHidesPie(Graphics2D g, int centerX, int centerY,
 	                                        int radius)
 	{
 		g.setStroke(new BasicStroke(1));
 		g.setColor(clockBackground);
 		g.setComposite(AlphaComposite.SrcOver);
-		int smallerRadius = (int) (radius * 0.6);
+		int smallerRadius = (int) (radius * 0.4);
 
 		g.fillOval(centerX - smallerRadius, centerY - smallerRadius, 2 * smallerRadius,
 		        2 * smallerRadius);
@@ -126,8 +125,8 @@ public class Day
 			g.draw(new Line2D.Double(lineX1, lineY1, lineX2, lineY2));
 
 			// Draw slightly lighter lines on each side
-			g.setStroke(new BasicStroke(2)); // Adjust the thickness as needed
-			g.setColor(new Color(180, 190, 200)); // Adjust the color as needed
+			g.setStroke(new BasicStroke(2));
+			g.setColor(new Color(180, 190, 200));
 
 			int midX = (lineX1 + lineX2) / 2;
 			int midY = (lineY1 + lineY2) / 2;
@@ -146,7 +145,7 @@ public class Day
 	private void drawClockBorder(Graphics2D g, int centerX, int centerY, int radius,
 	                             int thickness)
 	{
-		g.setColor(new Color(180, 190, 200)); // Light border color
+		g.setColor(new Color(180, 190, 200)); // grey
 		BasicStroke borderStroke = new BasicStroke(thickness, BasicStroke.CAP_ROUND,
 		        BasicStroke.JOIN_BEVEL);
 		g.setStroke(borderStroke);
@@ -156,17 +155,6 @@ public class Day
 		        2 * thickRadius);
 	}
 
-	/**
-	 * Converts time to degrees. Precisely, the number of degrees away from 3
-	 * o'clock, to the clock hand (zero in the common X-Y coordinate system). 3
-	 * o'clock is 0. 4 is -30. 12 is 90. Note: because drawing arc only takes
-	 * integers, and one minute corresponds to half a degree, we have opted to go
-	 * for the lower value. So 1 minute is zero degrees, and 2 minutes is one
-	 * degree.
-	 * 
-	 * @param time of day
-	 * @return number of degrees in the common X-Y coordinate system
-	 */
 	public static float timeToDegrees(LocalTime time)
 	{
 		int hours = time.getHour();
@@ -175,8 +163,9 @@ public class Day
 		if (hours >= 12)
 			hours -= 12;
 
-		// 1 (minutes) * 0.5 = 0
-		return (float) -(hours * 30 + (minutes * 0.5) - 90);
+		return (float) -(hours * 30 + (minutes / 2) - 90);
 	}
 
+	private static float durationToDegrees(Duration duration)
+	{ return -(float) duration.toMinutes() / 2; }
 }
