@@ -4,6 +4,7 @@ import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Arc2D;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -39,7 +41,7 @@ public class Day
 		int centerY = large / 2;
 		int radius = (int) (Math.min(centerX, centerY) * 0.9);
 
-
+		//
 		drawCircle(g, centerX, centerY, radius);
 		drawClockBorder(g, centerX, centerY, radius, 5);
 		drawHours(g, centerX, centerY, radius);
@@ -49,8 +51,10 @@ public class Day
 			drawState(g, state.startTime(), state.duration(), state.type(), centerX,
 			        centerY, radius);
 
-		g.dispose();
+		drawCircleThatHidesPie(g, centerX, centerY, radius);
+		//
 
+		g.dispose();
 	}
 
 	private void drawState(Graphics2D g, LocalDateTime startTime, Duration duration,
@@ -79,7 +83,32 @@ public class Day
 
 		g.fill(arc);
 
-		drawCircleThatHidesPie(g, centerX, centerY, radius);
+		drawDate(g, startTime, centerX, centerY, radius);
+	}
+
+	private void drawDate(Graphics2D g, LocalDateTime startTime, int centerX, int centerY,
+	                      int radius)
+	{
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("EEEE, d, LLLL, yyyy");
+		String date = format.format(startTime);
+
+		// Set font size relative to the radius
+		int fontSize = (int) (radius * 0.15); // Adjust the multiplier as needed
+		Font font = new Font("Loto", Font.PLAIN, fontSize);
+		g.setFont(font);
+
+		// Calculate text width and height
+		FontMetrics fontMetrics = g.getFontMetrics();
+		int textWidth = fontMetrics.stringWidth(date);
+		int textHeight = fontMetrics.getHeight();
+
+		// Center the text at the bottom
+		int textX = centerX - textWidth / 2;
+		int textY = (int) ((centerY + radius + textHeight) * 1.02);
+
+
+		g.setColor(new Color(40, 50, 50));
+		g.drawString(date, textX, textY);
 	}
 
 	private void drawCircleThatHidesPie(Graphics2D g, int centerX, int centerY,
@@ -173,9 +202,9 @@ public class Day
 		if (hours >= 12)
 			hours -= 12;
 
-		return (float) -(hours * 30 + (minutes / 2) - 90);
+		return (float) -(hours * 30 + (minutes * 0.5) - 90);
 	}
 
 	private static float durationToDegrees(Duration duration)
-	{ return -(float) duration.toMinutes() / 2; }
+	{ return -(float) (duration.toMinutes() * 0.5); }
 }
