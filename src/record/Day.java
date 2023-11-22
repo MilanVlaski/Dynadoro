@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.geom.Arc2D;
 import java.awt.geom.Line2D;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -60,15 +61,28 @@ public class Day
 		        BasicStroke.JOIN_BEVEL);
 		g.setStroke(borderStroke);
 
-		g.fillArc(centerX - radius, centerY - radius, 2 * radius, 2 * radius, 60, 30);
+		float startDegrees = timeToDegrees(startTime.toLocalTime());
+		float durationDegrees = -(float) duration.toMinutes() / 2;
+		System.out.println(durationDegrees);
 
+		Arc2D arc = new Arc2D.Float(centerX - radius, centerY - radius, 2 * radius,
+		        2 * radius, startDegrees, durationDegrees, Arc2D.PIE);
+
+		g.fill(arc);
+
+		drawCenterBackgroundCircle(g, centerX, centerY, radius);
+	}
+
+	private void drawCenterBackgroundCircle(Graphics2D g, int centerX, int centerY,
+	                                        int radius)
+	{
 		g.setStroke(new BasicStroke(1));
 		g.setColor(clockBackground);
 		g.setComposite(AlphaComposite.SrcOver);
 		int smallerRadius = (int) (radius * 0.6);
 
-		g.fillArc(centerX - smallerRadius, centerY - smallerRadius, 2 * smallerRadius,
-		        2 * smallerRadius, 60, 30);
+		g.fillOval(centerX - smallerRadius, centerY - smallerRadius, 2 * smallerRadius,
+		        2 * smallerRadius);
 	}
 
 	private void drawMinutes(Graphics2D g, int centerX, int centerY, int radius)
@@ -153,7 +167,7 @@ public class Day
 	 * @param time of day
 	 * @return number of degrees in the common X-Y coordinate system
 	 */
-	public static int timeToDegrees(LocalTime time)
+	public static float timeToDegrees(LocalTime time)
 	{
 		int hours = time.getHour();
 		int minutes = time.getMinute();
@@ -161,8 +175,8 @@ public class Day
 		if (hours >= 12)
 			hours -= 12;
 
-		// 1 minute gets rounded to 0
-		return -(hours * 30 + (int) (minutes * 0.5) - 90);
+		// 1 (minutes) * 0.5 = 0
+		return (float) -(hours * 30 + (minutes * 0.5) - 90);
 	}
 
 }

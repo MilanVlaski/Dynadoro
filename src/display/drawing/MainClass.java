@@ -2,6 +2,7 @@ package display.drawing;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -20,7 +21,15 @@ public class MainClass
 		LocalDateTime twentyFive = LocalDateTime.of(2023, 11, 18, 0, 25);
 		LocalDateTime thirty = LocalDateTime.of(2023, 11, 18, 0, 30);
 
-		Day day = new Day(List.of(new StateData(State.WORK, zero, twentyFive)));
+		LocalDateTime fourPM = LocalDateTime.of(2023, 11, 18, 16, 0);
+		LocalDateTime fourFiftyPM = LocalDateTime.of(2023, 11, 18, 16, 50);
+		LocalDateTime fivePM = LocalDateTime.of(2023, 11, 18, 17, 0);
+
+		Day day = new Day(List.of(
+		        new StateData(State.WORK, zero, twentyFive),
+		        new StateData(State.REST, twentyFive, thirty),
+		        new StateData(State.WORK, fourPM, fourFiftyPM),
+		        new StateData(State.REST, fourFiftyPM, fivePM)));
 
 		new MyFrame(day);
 	}

@@ -54,10 +54,10 @@ class TestDateToArcConversion
 	}
 
 	@Test
-	void ConvertFiveMinutes_ToEightySeven()
+	void ConvertFiveMinutes_ToEightySevenPtFive()
 	{
 		LocalTime oneThirty = LocalTime.of(0, 5);
-		assertEquals(88, Day.timeToDegrees(oneThirty));
+		assertEquals(87.5, Day.timeToDegrees(oneThirty));
 	}
 
 	@Test
@@ -68,10 +68,10 @@ class TestDateToArcConversion
 	}
 
 	@Test
-	void ConvertOneMinute_ToNinety()
+	void ConvertOneMinute_ToEightyNinePtFive()
 	{
 		LocalTime oneThirty = LocalTime.of(0, 1);
-		assertEquals(90, Day.timeToDegrees(oneThirty));
+		assertEquals(89.5, Day.timeToDegrees(oneThirty));
 	}
 
 }
