@@ -1,6 +1,6 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static test.TestTimer.REST_DURATION;
 import static test.TestTimer.WORK_DURATION;
 

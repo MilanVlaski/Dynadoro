@@ -7,10 +7,18 @@ import java.time.format.DateTimeFormatter;
 
 public class StateData
 {
-	public enum TrackedState
+	public enum State
 	{
-		WORK,
-		REST
+
+		IDLE("Idle"),
+		WORK("Working"),
+		REST("Resting"),
+		PAUSE("Pause");
+
+		String name;
+
+		State(String name)
+		{ this.name = name; }
 	}
 
 	private final String name;
@@ -19,16 +27,16 @@ public class StateData
 	private final LocalDateTime start;
 	private LocalDateTime end;
 
-	public StateData(String name, LocalDateTime start, boolean getsRecorded)
+	public StateData(State state, LocalDateTime start, boolean getsRecorded)
 	{
-		this.name = name;
+		this.name = state.name;
 		this.start = start;
 		this.getsRecorded = getsRecorded;
 	}
 
-	public StateData(String name, LocalDateTime start, LocalDateTime end)
+	public StateData(State state, String name, LocalDateTime start, LocalDateTime end)
 	{
-		this.name = name;
+		this.name = state.name;
 		this.start = start;
 		this.end = end;
 		this.getsRecorded = true;
@@ -64,12 +72,12 @@ public class StateData
 
 	}
 
-	public TrackedState type()
+	public State type()
 	{
 		if (name == "Working")
-			return TrackedState.WORK;
+			return State.WORK;
 		else if (name == "Resting")
-			return TrackedState.REST;
+			return State.REST;
 		else
 			return null;
 	}

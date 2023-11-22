@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 import display.Display.DisplayState;
 import record.StateData;
+import record.StateData.State;
 import record.UsageRecord;
 import timer.Timer;
 
@@ -50,6 +51,6 @@ public class Working extends TimerState
 
 	@Override
 	public void record(UsageRecord record)
-	{ record.capture(new StateData("Working", start, true)); }
+	{ record.capture(new StateData(State.WORK, start, true)); }
 
 }

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import record.StateData;
+import record.StateData.State;
 import test.helpers.Moment;
 
 public class TestStateData
@@ -21,7 +22,7 @@ public class TestStateData
 	void setup()
 	{
 		moment = new Moment(LocalDateTime.of(2023, 11, 7, 15, 40));
-		stateData = new StateData("Working", moment.current(), true);
+		stateData = new StateData(State.WORK, moment.current(), true);
 	}
 
 	@Test
@@ -42,7 +43,6 @@ public class TestStateData
 	@Test
 	void shouldReturnDuration()
 	{
-		StateData stateData = new StateData("Working", moment.current(), true);
 		stateData.finish(moment.afterMinutes(5));
 
 		assertEquals(Duration.between(moment.current(), moment.afterMinutes(5)),
@@ -51,7 +51,5 @@ public class TestStateData
 
 	@Test
 	void shouldReturnEmptyDuration_IfNotFinished()
-	{
-		assertEquals(Duration.ZERO, stateData.duration());
-	}
+	{ assertEquals(Duration.ZERO, stateData.duration()); }
 }

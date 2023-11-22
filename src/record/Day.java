@@ -13,7 +13,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 import display.swing.MainFrame;
-import record.StateData.TrackedState;
+import record.StateData.State;
 
 public class Day
 {
@@ -43,9 +43,9 @@ public class Day
 	}
 
 	private void drawState(Graphics2D g, LocalDateTime startTime, Duration duration,
-	                       TrackedState type, int centerX, int centerY, int radius)
+	                       State type, int centerX, int centerY, int radius)
 	{
-		Color borderColor = type.equals(TrackedState.WORK)
+		Color borderColor = type.equals(State.WORK)
 		        ? MainFrame.WORK
 		        : MainFrame.REST;
 		float alpha = 0.5f;

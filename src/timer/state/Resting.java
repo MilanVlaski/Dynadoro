@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 import display.Display.DisplayState;
 import record.StateData;
+import record.StateData.State;
 import record.UsageRecord;
 import timer.Timer;
 
@@ -17,7 +18,7 @@ public class Resting extends TimerState
 	public Resting(Timer context, LocalDateTime now, int workDuration)
 	{ this(workDuration / WORK_REST_RATIO, context, now); }
 
-	private Resting(int restDuration, Timer context, LocalDateTime now)
+	public Resting(int restDuration, Timer context, LocalDateTime now)
 	{
 		super(context, now);
 		this.restDuration = restDuration;
@@ -51,6 +52,6 @@ public class Resting extends TimerState
 
 	@Override
 	public void record(UsageRecord record)
-	{ record.capture(new StateData("Resting", start, true)); }
+	{ record.capture(new StateData(State.REST, start, true)); }
 
 }
