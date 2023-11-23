@@ -5,16 +5,10 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
-import javax.swing.text.DateFormatter;
-
-import record.Day;
 import record.History;
 import record.Period;
 import record.Period.State;
@@ -47,38 +41,38 @@ public class FakeHistory implements History
 	@Override
 	public List<Period> retrievePeriods()
 	{
-		if (contents.equals(""))
-			return Collections.emptyList();
-		else
+		List<Period> result = new ArrayList<>();
+
+		String regex = "(\\d+\\-\\d+\\-\\d+),\\s*(\\w+),\\s*(\\w+),\\s(\\d+:\\d+).*?(\\d+:\\d+)";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(contents);
+
+		while (matcher.find())
 		{
-			List<Period> result = new ArrayList<>();
+			result = new ArrayList<>();
+			
+			String dateString = matcher.group(1);
+			String stateString = matcher.group(3);
+			String startTimeString = matcher.group(4);
+			String endTimeString = matcher.group(5);
 
-			String regex = "(\\d+\\-\\d+\\-\\d+),\\s*(\\w+),\\s*(\\w+),\\s(\\d+:\\d+).*?(\\d+:\\d+)";
-			Pattern pattern = Pattern.compile(regex);
-			Matcher matcher = pattern.matcher(contents);
+			// TODO these formats repeat back in the Period class
+			DateTimeFormatter hourMinFormat = DateTimeFormatter.ofPattern("HH:mm");
 
-			while (matcher.find())
-			{
-				String dateString = matcher.group(1);
-				String activity = matcher.group(3);
-				String startString = matcher.group(4);
-				String endString = matcher.group(5);
+			LocalDate date = LocalDate.parse(dateString,
+			        DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+			LocalTime startTime = LocalTime.parse(startTimeString, hourMinFormat);
+			LocalTime endTime = LocalTime.parse(endTimeString, hourMinFormat);
 
-				LocalDate date = LocalDate.parse(dateString,
-				        DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-				LocalTime start = LocalTime.parse(startString,
-				        DateTimeFormatter.ofPattern("HH:mm"));
-				LocalTime end = LocalTime.parse(endString,
-				        DateTimeFormatter.ofPattern("HH:mm"));
+			LocalDateTime startDateTime = LocalDateTime.of(date, startTime);
+			LocalDateTime endDateTime = LocalDateTime.of(date, endTime);
 
-				LocalDateTime startDateTime = LocalDateTime.of(date, start);
-				LocalDateTime endDateTime = LocalDateTime.of(date, end);
-
-				result.add(new Period(State.ofString(activity), startDateTime, endDateTime));
-			}
-
-			return result;
+			result.add(
+			        new Period(State.ofString(stateString), startDateTime,
+			                endDateTime));
 		}
+
+		return result;
 	}
 
 }

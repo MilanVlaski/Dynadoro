@@ -56,12 +56,13 @@ public class Period
 	@Override
 	public String toString()
 	{
-		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd, EEEE");
+		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		DateTimeFormatter weekdayFormat = DateTimeFormatter.ofPattern("EEEE");
 		DateTimeFormatter hourFormat = DateTimeFormatter.ofPattern("HH:mm");
 
 		String endTime = (end != null) ? hourFormat.format(end) : "unknown";
 
-		return String.join(", ", dateFormat.format(start),
+		return String.join(", ", dateFormat.format(start), weekdayFormat.format(start),
 		        state.name, hourFormat.format(start), endTime);
 	}
 
