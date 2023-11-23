@@ -49,7 +49,6 @@ public class FakeHistory implements History
 
 		while (matcher.find())
 		{
-			result = new ArrayList<>();
 
 			String dateString = matcher.group(1);
 			String stateString = matcher.group(3);
@@ -63,9 +62,8 @@ public class FakeHistory implements History
 			LocalDateTime startDateTime = LocalDateTime.of(date, startTime);
 			LocalDateTime endDateTime = LocalDateTime.of(date, endTime);
 
-			result.add(
-			        new Period(State.of(stateString),
-			                startDateTime, endDateTime));
+			result.add(new Period(State.of(stateString),
+			        startDateTime, endDateTime));
 		}
 
 		return result;

@@ -30,9 +30,26 @@ public class TestShowingDays
 		        LocalDateTime.of(2023, 11, 23, 0, 50),
 		        LocalDateTime.of(2023, 11, 23, 1, 0));
 		History history = new FakeHistory(List.of(period));
-		
-		List<Period> days = history.retrievePeriods();
-		
-		assertEquals(period, days.get(0));
+
+		List<Period> periods = history.retrievePeriods();
+
+		assertEquals(period, periods.get(0));
+	}
+
+	@Test
+	void retrievesWorkAndRestPeriod_FromHistory()
+	{
+		Period work = new Period(State.WORKING,
+		        LocalDateTime.of(2023, 11, 23, 0, 50),
+		        LocalDateTime.of(2023, 11, 23, 1, 0));
+		Period rest = new Period(State.RESTING,
+		        LocalDateTime.of(2023, 11, 23, 1, 0),
+		        LocalDateTime.of(2023, 11, 23, 1, 10));
+
+		List<Period> expected = List.of(work, rest);
+		History history = new FakeHistory(expected);
+		List<Period> periods = history.retrievePeriods();
+
+		assertEquals(expected, periods);
 	}
 }
