@@ -16,13 +16,13 @@ import test.helpers.FakeHistory;
 public class TestShowingDays
 {
 
-//	@Test
-//	void retrievesZeroDays_IfHistoryIsEmpty()
-//	{
-//		History history = new FakeHistory("");
-//		List<Day> days = history.retrieveSessions();
-//		assertEquals(0, days.size());
-//	}
+	@Test
+	void retrievesZeroDays_IfHistoryIsEmpty()
+	{
+		History history = new FakeHistory("");
+		List<Period> periods = history.retrievePeriods();
+		assertEquals(0, periods.size());
+	}
 
 //	@Test
 //	void retrievesOneDay_FromHistory()

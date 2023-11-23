@@ -34,16 +34,10 @@ public class FakeHistory implements History
 	{ this.contents += contents + "\n"; }
 
 	@Override
-	public List<Day> retrieveDays()
-	{
-
-		if ("".equals(contents))
-			return Collections.emptyList();
-		else
-		{
-			
-			return new ArrayList<>();
-		}
-	}
+	public List<Period> retrievePeriods()
+	{ 
+		// TODO Auto-generated method stub
+		return Collections.emptyList();
+	 }
 
 }

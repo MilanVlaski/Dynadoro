@@ -6,5 +6,5 @@ public interface History
 {
 	String read();
 	void write(String text);
-	List<Day> retrieveDays();
+	List<Period> retrievePeriods();
 }
