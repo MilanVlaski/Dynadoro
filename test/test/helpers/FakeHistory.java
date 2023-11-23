@@ -42,13 +42,11 @@ public class FakeHistory implements History
 	public List<Period> retrievePeriods()
 	{
 		List<Period> result = new ArrayList<>();
-
 		parse(contents, result);
-
 		return result;
 	}
 
-	private void parse(CharSequence input, List<Period> list)
+	private static void parse(CharSequence input, List<Period> list)
 	{
 		String regex = "(\\d+\\-\\d+\\-\\d+),\\s*(\\w+),\\s*(\\w+),\\s(\\d+:\\d+).*?(\\d+:\\d+)";
 		Pattern pattern = Pattern.compile(regex);
