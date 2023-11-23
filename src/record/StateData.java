@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class StateData
 {
@@ -41,6 +42,7 @@ public class StateData
 		this.end = end;
 		this.getsRecorded = true;
 	}
+
 
 	@Override
 	public String toString()

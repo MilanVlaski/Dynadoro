@@ -52,6 +52,10 @@ public class UsageHistory implements History
 		}
 	}
 
+	@Override
+	public List<Day> retrieveDays()
+	{ return null; }
+
 	public static void main(String[] args)
 	{
 		// Makes a file and prints "true" if it exists
@@ -60,7 +64,4 @@ public class UsageHistory implements History
 		System.out.println(Files.exists(path));
 	}
 
-	@Override
-	public List<Day> retrieveDays()
-	{ return null; }
 }

@@ -6,6 +6,7 @@ import java.util.List;
 
 import record.Day;
 import record.History;
+import record.StateData;
 
 public class FakeHistory implements History
 {
@@ -18,6 +19,12 @@ public class FakeHistory implements History
 	public FakeHistory()
 	{}
 
+	public FakeHistory(List<StateData> states)
+	{
+		for (StateData stateData : states)
+			write(stateData.toString());
+	}
+
 	@Override
 	public String read()
 	{ return contents; }
@@ -28,6 +35,9 @@ public class FakeHistory implements History
 
 	@Override
 	public List<Day> retrieveDays()
-	{ return Collections.emptyList(); }
+	{
+		return Collections.emptyList();
+
+	}
 
 }
