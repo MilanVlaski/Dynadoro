@@ -48,8 +48,15 @@ public class TestShowingDays
 
 		List<Period> expected = List.of(work, rest);
 		History history = new FakeHistory(expected);
-		List<Period> periods = history.retrievePeriods();
-
-		assertEquals(expected, periods);
+		
+		assertEquals(expected, history.retrievePeriods());
 	}
-}
+
+	// TODO expand the regex to only take correct dates
+//	@Test
+//	void retrievesNothing_WhenDataIsPartiallyCorrect() {
+//		History history = new FakeHistory("90-12-12, Tuesday, Work, 15:15, 20:20");
+//		
+//		assertEquals(0, history.retrievePeriods().size());
+//	}
+} 

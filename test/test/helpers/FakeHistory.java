@@ -43,13 +43,19 @@ public class FakeHistory implements History
 	{
 		List<Period> result = new ArrayList<>();
 
+		parse(contents, result);
+
+		return result;
+	}
+
+	private void parse(CharSequence input, List<Period> list)
+	{
 		String regex = "(\\d+\\-\\d+\\-\\d+),\\s*(\\w+),\\s*(\\w+),\\s(\\d+:\\d+).*?(\\d+:\\d+)";
 		Pattern pattern = Pattern.compile(regex);
-		Matcher matcher = pattern.matcher(contents);
+		Matcher matcher = pattern.matcher(input);
 
 		while (matcher.find())
 		{
-
 			String dateString = matcher.group(1);
 			String stateString = matcher.group(3);
 			String startTimeString = matcher.group(4);
@@ -62,11 +68,8 @@ public class FakeHistory implements History
 			LocalDateTime startDateTime = LocalDateTime.of(date, startTime);
 			LocalDateTime endDateTime = LocalDateTime.of(date, endTime);
 
-			result.add(new Period(State.of(stateString),
+			list.add(new Period(State.of(stateString),
 			        startDateTime, endDateTime));
 		}
-
-		return result;
 	}
-
 }
