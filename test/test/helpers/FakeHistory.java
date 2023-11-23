@@ -64,8 +64,8 @@ public class FakeHistory implements History
 			LocalDateTime endDateTime = LocalDateTime.of(date, endTime);
 
 			result.add(
-			        new Period(State.ofString(stateString), startDateTime,
-			                endDateTime));
+			        new Period(State.of(stateString),
+			                startDateTime, endDateTime));
 		}
 
 		return result;

@@ -21,7 +21,7 @@ public class Period
 		State(String name)
 		{ this.name = name; }
 
-		public static State ofString(String name)
+		public static State of(String name)
 		{
 			String lowercaseName = name.toLowerCase();
 			for (State state : values())
