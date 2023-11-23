@@ -4,8 +4,8 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 import display.Display.DisplayState;
-import record.StateData;
-import record.StateData.State;
+import record.Period;
+import record.Period.State;
 import record.UsageRecord;
 import timer.Timer;
 
@@ -52,6 +52,6 @@ public class Resting extends TimerState
 
 	@Override
 	public void record(UsageRecord record)
-	{ record.capture(new StateData(State.RESTING, start, true)); }
+	{ record.capture(new Period(State.RESTING, start, true)); }
 
 }

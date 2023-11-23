@@ -8,48 +8,48 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import record.StateData;
-import record.StateData.State;
+import record.Period;
+import record.Period.State;
 import test.helpers.Moment;
 
 public class TestStateData
 {
 
 	Moment moment;
-	StateData stateData;
+	Period period;
 
 	@BeforeEach
 	void setup()
 	{
 		moment = new Moment(LocalDateTime.of(2023, 11, 7, 15, 40));
-		stateData = new StateData(State.WORKING, moment.current(), true);
+		period = new Period(State.WORKING, moment.current(), true);
 	}
 
 	@Test
 	void stateDataShouldWriteProperly()
 	{
 		assertEquals("2023-11-07, Tuesday, Working, 15:40, unknown",
-		        stateData.toString());
+		        period.toString());
 	}
 
 	@Test
 	void stateDataShouldWriteProperly_AfterItsFinished()
 	{
-		stateData.finish(moment.afterMinutes(5));
+		period.finish(moment.afterMinutes(5));
 		assertEquals("2023-11-07, Tuesday, Working, 15:40, 15:45",
-		        stateData.toString());
+		        period.toString());
 	}
 
 	@Test
 	void shouldReturnDuration()
 	{
-		stateData.finish(moment.afterMinutes(5));
+		period.finish(moment.afterMinutes(5));
 
 		assertEquals(Duration.between(moment.current(), moment.afterMinutes(5)),
-		        stateData.duration());
+		        period.duration());
 	}
 
 	@Test
 	void shouldReturnEmptyDuration_IfNotFinished()
-	{ assertEquals(Duration.ZERO, stateData.duration()); }
+	{ assertEquals(Duration.ZERO, period.duration()); }
 }

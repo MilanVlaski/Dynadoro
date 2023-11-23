@@ -6,7 +6,7 @@ public class UsageRecord
 {
 
 	private final History history;
-	private StateData currentState;
+	private Period currentState;
 
 	public UsageRecord(History history)
 	{ this.history = history; }
@@ -20,7 +20,7 @@ public class UsageRecord
 			return "";
 	}
 
-	public void capture(StateData newState)
+	public void capture(Period newState)
 	{
 		if (currentState != null)
 			finishAndWrite(currentState, newState.startTime());
@@ -28,7 +28,7 @@ public class UsageRecord
 		currentState = newState;
 	}
 
-	private void finishAndWrite(StateData previousState, LocalDateTime endTime)
+	private void finishAndWrite(Period previousState, LocalDateTime endTime)
 	{
 		previousState.finish(endTime);
 

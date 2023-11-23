@@ -3,8 +3,8 @@ package timer.state;
 import java.time.LocalDateTime;
 
 import display.Display.DisplayState;
-import record.StateData;
-import record.StateData.State;
+import record.Period;
+import record.Period.State;
 import record.UsageRecord;
 import timer.Timer;
 
@@ -55,6 +55,6 @@ public class Pause extends TimerState
 
 	@Override
 	public void record(UsageRecord record)
-	{ record.capture(new StateData(State.PAUSE, start, false)); }
+	{ record.capture(new Period(State.PAUSE, start, false)); }
 
 }

@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class StateData
+public class Period
 {
 	public enum State
 	{
@@ -28,14 +28,14 @@ public class StateData
 	private final LocalDateTime start;
 	private LocalDateTime end;
 
-	public StateData(State state, LocalDateTime start, boolean getsRecorded)
+	public Period(State state, LocalDateTime start, boolean getsRecorded)
 	{
 		this.state = state;
 		this.start = start;
 		this.getsRecorded = getsRecorded;
 	}
 
-	public StateData(State state, LocalDateTime start, LocalDateTime end)
+	public Period(State state, LocalDateTime start, LocalDateTime end)
 	{
 		this.state = state;
 		this.start = start;

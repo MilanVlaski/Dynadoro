@@ -21,14 +21,14 @@ import java.util.List;
 import javax.imageio.ImageIO;
 
 import display.swing.MainFrame;
-import record.StateData.State;
+import record.Period.State;
 
 public class Day
 {
-	private final List<StateData> states;
+	private final List<Period> states;
 	private Color clockBackground = new Color(235, 247, 252);
 
-	public Day(List<StateData> states)
+	public Day(List<Period> states)
 	{ this.states = states; }
 
 	// TODO separate methods for thumbnail vs full sized image
@@ -47,7 +47,7 @@ public class Day
 		drawHours(g, centerX, centerY, radius);
 		drawMinutes(g, centerX, centerY, radius);
 
-		for (StateData state : states)
+		for (Period state : states)
 			drawState(g, state.startTime(), state.duration(), state.type(), centerX,
 			        centerY, radius);
 

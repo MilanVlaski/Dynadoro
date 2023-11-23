@@ -9,8 +9,8 @@ import java.util.List;
 import javax.swing.JFrame;
 
 import record.Day;
-import record.StateData;
-import record.StateData.State;
+import record.Period;
+import record.Period.State;
 
 public class MainClass
 {
@@ -26,10 +26,10 @@ public class MainClass
 		LocalDateTime fivePM = LocalDateTime.of(2023, 11, 18, 17, 0);
 
 		Day day = new Day(List.of(
-		        new StateData(State.WORKING, zero, twentyFive),
-		        new StateData(State.RESTING, twentyFive, thirty),
-		        new StateData(State.WORKING, fourPM, fourFiftyPM),
-		        new StateData(State.RESTING, fourFiftyPM, fivePM)));
+		        new Period(State.WORKING, zero, twentyFive),
+		        new Period(State.RESTING, twentyFive, thirty),
+		        new Period(State.WORKING, fourPM, fourFiftyPM),
+		        new Period(State.RESTING, fourFiftyPM, fivePM)));
 		
 		new MyFrame(day);
 	}
