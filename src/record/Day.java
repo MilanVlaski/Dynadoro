@@ -60,7 +60,7 @@ public class Day
 	private void drawState(Graphics2D g, LocalDateTime startTime, Duration duration,
 	                       State type, int centerX, int centerY, int radius)
 	{
-		Color borderColor = type.equals(State.WORK)
+		Color borderColor = type.equals(State.WORKING)
 		        ? MainFrame.WORK
 		        : MainFrame.REST;
 		float alpha = 0.5f;

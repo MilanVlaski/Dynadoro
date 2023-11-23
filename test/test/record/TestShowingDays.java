@@ -24,10 +24,13 @@ public class TestShowingDays
 		assertEquals(0, days.size());
 	}
 
+	// There is an intermediate step where, when parsing, we load all of the StateData.
+	// which is different than assigning that statedata to days.
+	//This test does two things in one, so its bad.
 	@Test
 	void retrievesOneDay_FromHistory()
 	{
-		StateData state = new StateData(State.WORK,
+		StateData state = new StateData(State.WORKING,
 		        LocalDateTime.of(2023, 11, 23, 0, 50),
 		        LocalDateTime.of(2023, 11, 23, 1, 0));
 		History history = new FakeHistory(List.of(state));

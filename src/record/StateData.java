@@ -12,8 +12,8 @@ public class StateData
 	{
 
 		IDLE("Idle"),
-		WORK("Working"),
-		REST("Resting"),
+		WORKING("Working"),
+		RESTING("Resting"),
 		PAUSE("Pause");
 
 		String name;
@@ -22,8 +22,8 @@ public class StateData
 		{ this.name = name; }
 	}
 
-	private final boolean getsRecorded;
 	private final State state;
+	private final boolean getsRecorded;
 
 	private final LocalDateTime start;
 	private LocalDateTime end;

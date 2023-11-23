@@ -22,7 +22,7 @@ public class TestStateData
 	void setup()
 	{
 		moment = new Moment(LocalDateTime.of(2023, 11, 7, 15, 40));
-		stateData = new StateData(State.WORK, moment.current(), true);
+		stateData = new StateData(State.WORKING, moment.current(), true);
 	}
 
 	@Test

@@ -26,10 +26,10 @@ public class MainClass
 		LocalDateTime fivePM = LocalDateTime.of(2023, 11, 18, 17, 0);
 
 		Day day = new Day(List.of(
-		        new StateData(State.WORK, zero, twentyFive),
-		        new StateData(State.REST, twentyFive, thirty),
-		        new StateData(State.WORK, fourPM, fourFiftyPM),
-		        new StateData(State.REST, fourFiftyPM, fivePM)));
+		        new StateData(State.WORKING, zero, twentyFive),
+		        new StateData(State.RESTING, twentyFive, thirty),
+		        new StateData(State.WORKING, fourPM, fourFiftyPM),
+		        new StateData(State.RESTING, fourFiftyPM, fivePM)));
 		
 		new MyFrame(day);
 	}

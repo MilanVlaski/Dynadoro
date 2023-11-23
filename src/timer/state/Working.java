@@ -51,6 +51,6 @@ public class Working extends TimerState
 
 	@Override
 	public void record(UsageRecord record)
-	{ record.capture(new StateData(State.WORK, start, true)); }
+	{ record.capture(new StateData(State.WORKING, start, true)); }
 
 }

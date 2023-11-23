@@ -1,6 +1,6 @@
 package test.helpers;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -36,8 +36,14 @@ public class FakeHistory implements History
 	@Override
 	public List<Day> retrieveDays()
 	{
-		return Collections.emptyList();
 
+		if ("".equals(contents))
+			return Collections.emptyList();
+		else
+		{
+			
+			return new ArrayList<>();
+		}
 	}
 
 }
