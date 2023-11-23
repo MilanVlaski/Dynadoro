@@ -43,7 +43,6 @@ public class Period
 		this.getsRecorded = true;
 	}
 
-
 	@Override
 	public String toString()
 	{
@@ -75,5 +74,14 @@ public class Period
 
 	public State type()
 	{ return state; }
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		Period period = (Period) obj;
+		return period.state.equals(state)
+		        && period.start.equals(start)
+		        && period.end.equals(end);
+	}
 
 }

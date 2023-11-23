@@ -17,22 +17,23 @@ public class TestShowingDays
 {
 
 	@Test
-	void retrievesZeroDays_IfHistoryIsEmpty()
+	void retrievesZeroPeriods_IfHistoryIsEmpty()
 	{
 		History history = new FakeHistory("");
 		List<Period> periods = history.retrievePeriods();
 		assertEquals(0, periods.size());
 	}
 
-//	@Test
-//	void retrievesOneDay_FromHistory()
-//	{
-//		Period state = new Period(State.WORKING,
-//		        LocalDateTime.of(2023, 11, 23, 0, 50),
-//		        LocalDateTime.of(2023, 11, 23, 1, 0));
-//		History history = new FakeHistory(List.of(state));
-//		
-//		List<Day> days = history.retrieveDays();
-//		assertEquals(1, days.size());
-//	}
+	@Test
+	void retrievesOnePeriod_FromHistory()
+	{
+		Period period = new Period(State.WORKING,
+		        LocalDateTime.of(2023, 11, 23, 0, 50),
+		        LocalDateTime.of(2023, 11, 23, 1, 0));
+		History history = new FakeHistory(List.of(period));
+		
+		List<Period> days = history.retrievePeriods();
+		
+		assertEquals(period, days.get(0));
+	}
 }
