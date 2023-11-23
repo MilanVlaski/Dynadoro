@@ -106,7 +106,6 @@ public class Day
 		int textX = centerX - textWidth / 2;
 		int textY = (int) ((centerY + radius + textHeight) * 1.02);
 
-
 		g.setColor(new Color(40, 50, 50));
 		g.drawString(date, textX, textY);
 	}
@@ -125,24 +124,19 @@ public class Day
 
 	private void drawMinutes(Graphics2D g, int centerX, int centerY, int radius)
 	{
-		for (int i = 0; i < 60; i++)
+		for (int i = 0; (i < 60 && i % 5 == 0); i++)
 		{
-			if (i % 5 == 0)
-				continue;
-			else
-			{
-				double angle = Math.toRadians(6 * i - 90);
-				int lineX1 = (int) (centerX + 0.93 * radius * Math.cos(angle));
-				int lineY1 = (int) (centerY + 0.93 * radius * Math.sin(angle));
-				int lineX2 = (int) (centerX + 0.96 * radius * Math.cos(angle));
-				int lineY2 = (int) (centerY + 0.96 * radius * Math.sin(angle));
+			double angle = Math.toRadians(6 * i - 90);
+			int lineX1 = (int) (centerX + 0.93 * radius * Math.cos(angle));
+			int lineY1 = (int) (centerY + 0.93 * radius * Math.sin(angle));
+			int lineX2 = (int) (centerX + 0.96 * radius * Math.cos(angle));
+			int lineY2 = (int) (centerY + 0.96 * radius * Math.sin(angle));
 
-				g.setColor(new Color(200, 200, 200));
-				BasicStroke mainStroke = new BasicStroke(1, BasicStroke.CAP_ROUND,
-				        BasicStroke.JOIN_BEVEL);
-				g.setStroke(mainStroke);
-				g.draw(new Line2D.Double(lineX1, lineY1, lineX2, lineY2));
-			}
+			g.setColor(new Color(200, 200, 200));
+			BasicStroke mainStroke = new BasicStroke(1, BasicStroke.CAP_ROUND,
+			        BasicStroke.JOIN_BEVEL);
+			g.setStroke(mainStroke);
+			g.draw(new Line2D.Double(lineX1, lineY1, lineX2, lineY2));
 		}
 	}
 

@@ -12,7 +12,7 @@ import record.Period;
 import record.Period.State;
 import test.helpers.Moment;
 
-public class TestStateData
+public class TestPeriod
 {
 
 	Moment moment;
