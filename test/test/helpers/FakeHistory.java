@@ -50,19 +50,15 @@ public class FakeHistory implements History
 		while (matcher.find())
 		{
 			result = new ArrayList<>();
-			
+
 			String dateString = matcher.group(1);
 			String stateString = matcher.group(3);
 			String startTimeString = matcher.group(4);
 			String endTimeString = matcher.group(5);
 
-			// TODO these formats repeat back in the Period class
-			DateTimeFormatter hourMinFormat = DateTimeFormatter.ofPattern("HH:mm");
-
-			LocalDate date = LocalDate.parse(dateString,
-			        DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-			LocalTime startTime = LocalTime.parse(startTimeString, hourMinFormat);
-			LocalTime endTime = LocalTime.parse(endTimeString, hourMinFormat);
+			LocalDate date = LocalDate.parse(dateString, Period.dateFormat);
+			LocalTime startTime = LocalTime.parse(startTimeString, Period.hourFormat);
+			LocalTime endTime = LocalTime.parse(endTimeString, Period.hourFormat);
 
 			LocalDateTime startDateTime = LocalDateTime.of(date, startTime);
 			LocalDateTime endDateTime = LocalDateTime.of(date, endTime);

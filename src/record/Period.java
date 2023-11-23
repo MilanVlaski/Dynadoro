@@ -53,24 +53,14 @@ public class Period
 		this.getsRecorded = true;
 	}
 
-	@Override
-	public String toString()
-	{
-		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		DateTimeFormatter weekdayFormat = DateTimeFormatter.ofPattern("EEEE");
-		DateTimeFormatter hourFormat = DateTimeFormatter.ofPattern("HH:mm");
-
-		String endTime = (end != null) ? hourFormat.format(end) : "unknown";
-
-		return String.join(", ", dateFormat.format(start), weekdayFormat.format(start),
-		        state.name, hourFormat.format(start), endTime);
-	}
-
 	public LocalDateTime startTime()
 	{ return start; }
 
 	public boolean shouldBeRecorded()
 	{ return getsRecorded; }
+
+	public State type()
+	{ return state; }
 
 	public void finish(LocalDateTime end)
 	{ this.end = end; }
@@ -83,8 +73,21 @@ public class Period
 			return Duration.ZERO;
 	}
 
-	public State type()
-	{ return state; }
+	public static final DateTimeFormatter dateFormat = DateTimeFormatter
+	        .ofPattern("yyyy-MM-dd");
+	public static final DateTimeFormatter weekdayFormat = DateTimeFormatter
+	        .ofPattern("EEEE");
+	public static final DateTimeFormatter hourFormat = DateTimeFormatter
+	        .ofPattern("HH:mm");
+
+	@Override
+	public String toString()
+	{
+		String endTime = (end != null) ? hourFormat.format(end) : "unknown";
+
+		return String.join(", ", dateFormat.format(start), weekdayFormat.format(start),
+		        state.name, hourFormat.format(start), endTime);
+	}
 
 	@Override
 	public boolean equals(Object obj)
