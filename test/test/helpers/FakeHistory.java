@@ -51,22 +51,18 @@ public class FakeHistory implements History
 			return Collections.emptyList();
 		else
 		{
-			System.out.println("CONTENTS: " + contents);
 			List<Period> result = new ArrayList<>();
 
-			String regex = "(\\d+\\-\\d+\\-\\d+).*?([A-Za-z]+).*?(\\d+:\\d+).*?(\\d+:\\d+)";
+			String regex = "(\\d+\\-\\d+\\-\\d+),\\s*(\\w+),\\s*(\\w+),\\s(\\d+:\\d+).*?(\\d+:\\d+)";
 			Pattern pattern = Pattern.compile(regex);
 			Matcher matcher = pattern.matcher(contents);
 
 			while (matcher.find())
 			{
 				String dateString = matcher.group(1);
-				String activity = matcher.group(2);
-				String startString = matcher.group(3);
-				String endString = matcher.group(4);
-
-				System.out.println(
-				        String.join(" ", dateString, startString, activity, endString));
+				String activity = matcher.group(3);
+				String startString = matcher.group(4);
+				String endString = matcher.group(5);
 
 				LocalDate date = LocalDate.parse(dateString,
 				        DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -78,7 +74,7 @@ public class FakeHistory implements History
 				LocalDateTime startDateTime = LocalDateTime.of(date, start);
 				LocalDateTime endDateTime = LocalDateTime.of(date, end);
 
-				result.add(new Period(State.WORKING, startDateTime, endDateTime));
+				result.add(new Period(State.ofString(activity), startDateTime, endDateTime));
 			}
 
 			return result;

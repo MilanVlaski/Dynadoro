@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import record.Day;
 import record.History;
 import record.Period;
 import record.Period.State;

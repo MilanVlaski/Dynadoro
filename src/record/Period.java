@@ -20,6 +20,16 @@ public class Period
 
 		State(String name)
 		{ this.name = name; }
+
+		public static State ofString(String name)
+		{
+			String lowercaseName = name.toLowerCase();
+			for (State state : values())
+				if (lowercaseName.equals(state.name.toLowerCase()))
+					return state;
+
+			return null;
+		}
 	}
 
 	private final State state;
