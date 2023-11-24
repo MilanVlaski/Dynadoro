@@ -3,6 +3,7 @@ package test.record;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -46,17 +47,17 @@ public class TestShowingDays
 		        LocalDateTime.of(2023, 11, 23, 1, 0),
 		        LocalDateTime.of(2023, 11, 23, 1, 10));
 
-		List<Period> expected = List.of(work, rest);
-		History history = new FakeHistory(expected);
+		List<Period> periods = List.of(work, rest);
 		
-		assertEquals(expected, history.retrievePeriods());
+		History history = new FakeHistory(periods);
+		
+		assertEquals(periods, history.retrievePeriods());
 	}
 
-	// TODO expand the regex to only take correct dates
-//	@Test
-//	void retrievesNothing_WhenDataIsPartiallyCorrect() {
-//		History history = new FakeHistory("90-12-12, Tuesday, Work, 15:15, 20:20");
-//		
-//		assertEquals(0, history.retrievePeriods().size());
-//	}
+	@Test
+	void retrievesNothing_WhenDataIsPartiallyCorrect() {
+		History history = new FakeHistory("90-12-12, Tuesday, Work, 15:15, 20:20");
+		
+		assertEquals(0, history.retrievePeriods().size());
+	}
 } 

@@ -48,17 +48,19 @@ public class FakeHistory implements History
 
 	private static void parse(CharSequence input, List<Period> list)
 	{
-		String regex = "(\\d+\\-\\d+\\-\\d+),\\s*(\\w+),\\s*(\\w+),\\s(\\d+:\\d+).*?(\\d+:\\d+)";
+		String regex = "(\\d{4}\\-\\d{2}\\-\\d{2}),\\s*(\\w+),\\s*(\\w+),\\s(\\d+:\\d+).*?(\\d+:\\d+)";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(input);
 
 		while (matcher.find())
 		{
+			// potential for errors when matching (or is it always just not matching?)
 			String dateString = matcher.group(1);
 			String stateString = matcher.group(3);
 			String startTimeString = matcher.group(4);
 			String endTimeString = matcher.group(5);
 
+			// potential for errors when parsing
 			LocalDate date = LocalDate.parse(dateString, Period.dateFormat);
 			LocalTime startTime = LocalTime.parse(startTimeString, Period.hourFormat);
 			LocalTime endTime = LocalTime.parse(endTimeString, Period.hourFormat);
@@ -66,6 +68,7 @@ public class FakeHistory implements History
 			LocalDateTime startDateTime = LocalDateTime.of(date, startTime);
 			LocalDateTime endDateTime = LocalDateTime.of(date, endTime);
 
+			// what if state is some random word?
 			list.add(new Period(State.of(stateString),
 			        startDateTime, endDateTime));
 		}
