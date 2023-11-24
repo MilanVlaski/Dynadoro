@@ -55,9 +55,14 @@ public class TestShowingDays
 	}
 
 	@Test
-	void retrievesNothing_WhenDataIsPartiallyCorrect() {
+	void RetrievesNothing_WhenYearDoesntHaveFourDigits() {
 		History history = new FakeHistory("90-12-12, Tuesday, Work, 15:15, 20:20");
-		
+		assertEquals(0, history.retrievePeriods().size());
+	}
+	
+	@Test
+	void retrievesNothing_WhenWorkIsNotProperlyTyped() {
+		History history = new FakeHistory("2022-12-12, Tuesday, WorkLLLLL, 15:15, 20:20");
 		assertEquals(0, history.retrievePeriods().size());
 	}
 } 

@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -54,13 +55,11 @@ public class FakeHistory implements History
 
 		while (matcher.find())
 		{
-			// potential for errors when matching (or is it always just not matching?)
 			String dateString = matcher.group(1);
 			String stateString = matcher.group(3);
 			String startTimeString = matcher.group(4);
 			String endTimeString = matcher.group(5);
 
-			// potential for errors when parsing
 			LocalDate date = LocalDate.parse(dateString, Period.dateFormat);
 			LocalTime startTime = LocalTime.parse(startTimeString, Period.hourFormat);
 			LocalTime endTime = LocalTime.parse(endTimeString, Period.hourFormat);
@@ -68,9 +67,10 @@ public class FakeHistory implements History
 			LocalDateTime startDateTime = LocalDateTime.of(date, startTime);
 			LocalDateTime endDateTime = LocalDateTime.of(date, endTime);
 
-			// what if state is some random word?
-			list.add(new Period(State.of(stateString),
-			        startDateTime, endDateTime));
+			Optional<State> state = State.of(stateString);
+
+			if (state.isPresent())
+				list.add(new Period(state.get(), startDateTime, endDateTime));
 		}
 	}
 }

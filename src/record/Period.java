@@ -5,6 +5,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 public class Period
 {
@@ -21,14 +22,11 @@ public class Period
 		State(String name)
 		{ this.name = name; }
 
-		public static State of(String name)
+		public static Optional<State> of(String name)
 		{
-			String lowercaseName = name.toLowerCase();
-			for (State state : values())
-				if (lowercaseName.equals(state.name.toLowerCase()))
-					return state;
-
-			return null;
+			return List.of(values()).stream()
+			        .filter((s) -> name.toLowerCase().equals(s.name.toLowerCase()))
+			        .findAny();
 		}
 	}
 
