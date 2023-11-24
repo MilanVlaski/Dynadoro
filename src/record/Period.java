@@ -50,7 +50,6 @@ public class Period
 		this.state = state;
 		this.start = start;
 		this.end = end;
-//		 If we know the start and end time, that means it's been recorded..
 		this.getsRecorded = true;
 	}
 
@@ -99,5 +98,4 @@ public class Period
 		        && period.start.equals(start)
 		        && period.end.equals(end);
 	}
-
 }
