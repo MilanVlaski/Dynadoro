@@ -10,7 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import record.Period;
-import record.Period.State;
+import record.State;
 import test.helpers.Moment;
 
 public class TestPeriod

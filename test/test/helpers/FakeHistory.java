@@ -3,7 +3,6 @@ package test.helpers;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +11,7 @@ import java.util.regex.Pattern;
 
 import record.History;
 import record.Period;
-import record.Period.State;
+import record.State;
 
 public class FakeHistory implements History
 {

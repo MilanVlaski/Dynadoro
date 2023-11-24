@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 import display.Display.DisplayState;
 import record.Period;
-import record.Period.State;
+import record.State;
 import record.UsageRecord;
 import timer.Timer;
 

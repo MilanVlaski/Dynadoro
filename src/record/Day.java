@@ -5,23 +5,16 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Arc2D;
 import java.awt.geom.Line2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import javax.imageio.ImageIO;
-
 import display.swing.MainFrame;
-import record.Period.State;
 
 public class Day
 {

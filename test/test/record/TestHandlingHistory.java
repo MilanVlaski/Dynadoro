@@ -3,14 +3,13 @@ package test.record;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import record.History;
 import record.Period;
-import record.Period.State;
+import record.State;
 import test.helpers.FakeHistory;
 
 public class TestHandlingHistory

@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import display.Display.DisplayState;
 import record.Period;
-import record.Period.State;
+import record.State;
 import record.UsageRecord;
 import timer.Timer;
 
@@ -24,8 +24,8 @@ public class Idle extends TimerState
 
 	@Override
 	public void begin(LocalDateTime now)
-	{ context.changeState(new Working(context, now)); }
 
+	{ context.changeState(new Working(context, now)); }
 	@Override
 	public void rest(LocalDateTime now)
 	{ throw new IllegalOperationException("Can't take break if haven't started work."); }

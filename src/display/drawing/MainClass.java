@@ -2,7 +2,6 @@ package display.drawing;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -10,7 +9,7 @@ import javax.swing.JFrame;
 
 import record.Day;
 import record.Period;
-import record.Period.State;
+import record.State;
 
 public class MainClass
 {
