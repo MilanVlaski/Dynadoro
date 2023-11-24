@@ -80,6 +80,7 @@ public class Period
 	        .ofPattern("EEEE");
 	public static final DateTimeFormatter hourFormat = DateTimeFormatter
 	        .ofPattern("HH:mm");
+	public static final String regex = "(\\d{4}\\-\\d{2}\\-\\d{2}),\\s*(\\w+),\\s*(\\w+),\\s(\\d+:\\d+).*?(\\d+:\\d+)";
 
 	@Override
 	public String toString()

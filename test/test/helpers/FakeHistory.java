@@ -49,8 +49,7 @@ public class FakeHistory implements History
 
 	private static void parse(CharSequence input, List<Period> list)
 	{
-		String regex = "(\\d{4}\\-\\d{2}\\-\\d{2}),\\s*(\\w+),\\s*(\\w+),\\s(\\d+:\\d+).*?(\\d+:\\d+)";
-		Pattern pattern = Pattern.compile(regex);
+		Pattern pattern = Pattern.compile(Period.regex);
 		Matcher matcher = pattern.matcher(input);
 
 		while (matcher.find())
