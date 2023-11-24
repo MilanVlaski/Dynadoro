@@ -41,8 +41,9 @@ public class Period
 		this.start = start;
 		this.getsRecorded = getsRecorded;
 	}
+
 	/**
-	 * Periods initialized with this constructor are recorded, by default. 
+	 * Periods initialized with this constructor are recorded, by default.
 	 */
 	public Period(State state, LocalDateTime start, LocalDateTime end)
 	{
