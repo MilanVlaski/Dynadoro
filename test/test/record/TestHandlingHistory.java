@@ -47,7 +47,6 @@ public class TestHandlingHistory
 		        LocalDateTime.of(2023, 11, 23, 1, 10));
 
 		List<Period> periods = List.of(work, rest);
-
 		History history = new FakeHistory(periods);
 
 		assertEquals(periods, history.retrievePeriods());
