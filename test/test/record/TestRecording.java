@@ -21,7 +21,7 @@ import test.helpers.Moment;
 import timer.Timer;
 import timer.counter.Counter;
 
-class TestRecord
+class TestRecording
 {
 
 	@Mock
