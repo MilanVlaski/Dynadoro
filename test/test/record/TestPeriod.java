@@ -1,3 +1,4 @@
+
 package test.record;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

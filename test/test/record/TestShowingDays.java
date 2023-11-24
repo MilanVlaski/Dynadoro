@@ -48,21 +48,24 @@ public class TestShowingDays
 		        LocalDateTime.of(2023, 11, 23, 1, 10));
 
 		List<Period> periods = List.of(work, rest);
-		
+
 		History history = new FakeHistory(periods);
-		
+
 		assertEquals(periods, history.retrievePeriods());
 	}
 
 	@Test
-	void RetrievesNothing_WhenYearDoesntHaveFourDigits() {
+	void RetrievesNothing_WhenYearDoesntHaveFourDigits()
+	{
 		History history = new FakeHistory("90-12-12, Tuesday, Work, 15:15, 20:20");
 		assertEquals(0, history.retrievePeriods().size());
 	}
-	
+
 	@Test
-	void retrievesNothing_WhenWorkIsNotProperlyTyped() {
+	void retrievesNothing_WhenWorkIsNotProperlyTyped()
+	{
 		History history = new FakeHistory("2022-12-12, Tuesday, WorkLLLLL, 15:15, 20:20");
 		assertEquals(0, history.retrievePeriods().size());
 	}
-} 
+
+}
