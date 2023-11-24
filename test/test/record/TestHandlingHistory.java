@@ -13,7 +13,7 @@ import record.Period;
 import record.Period.State;
 import test.helpers.FakeHistory;
 
-public class TestShowingDays
+public class TestHandlingHistory
 {
 
 	@Test
