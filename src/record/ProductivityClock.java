@@ -19,7 +19,7 @@ import display.swing.MainFrame;
 public class ProductivityClock
 {
 
-	private Color clockBackground = new Color(235, 247, 252);
+	private static final Color clockBackground = new Color(235, 247, 252);
 
 	public void draw(Graphics2D g, List<Period> periods)
 	{

@@ -3,10 +3,12 @@ package test.record;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import record.ClockManager;
 import record.Day;
 import record.History;
 import record.Period;
@@ -68,8 +70,12 @@ public class TestHandlingHistory
 	}
 	
 	@Test
-	void retrievesProducitivityClock() {
+	void DoesntCreateDays_IfNoPeriodsAreProvided()
+	{
+		ClockManager clockManager = new ClockManager();
+		List<Day> days = clockManager.createDays(Collections.emptyList());
 		
+		assertEquals(0, days.size());
 	}
 
 //	@Test
@@ -78,12 +84,11 @@ public class TestHandlingHistory
 //		Period work = new Period(State.WORKING,
 //		        LocalDateTime.of(2023, 11, 23, 0, 50),
 //		        LocalDateTime.of(2023, 11, 23, 1, 0));
+//		ClockManager clockManager = new ClockManager();
 //		
-//		ClockManager clockManager = new ClockManager(List.of(work));
+//		List<Day> days = clockManager.createDays(List.of(work));
 //		
-//		List<Day> days =  clockManager.createDays(List.of(work));
-//		
-//		assertEquals(0, days.size());
+//		assertEquals(1, days.size());
 //	}
 
 }
