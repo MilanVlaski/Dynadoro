@@ -1,5 +1,6 @@
 package record;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,10 +13,16 @@ public class ClockManager
 			return Collections.emptyList();
 		else
 		{
-			Period firstPeriod = periods.get(0);
-			List<Period> periodOfDay = List.of(firstPeriod);
-			Day day = new Day(periodOfDay);
-			return List.of(day);
+			List<Day> days = new ArrayList<>();
+			
+			for (Period period : periods)
+			{
+				List<Period> periodOfDay = List.of(period);
+				Day day = new Day(periodOfDay);
+				days.add(day);
+			}
+
+			return days;
 		}
 	}
 

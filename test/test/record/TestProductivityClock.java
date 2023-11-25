@@ -30,7 +30,7 @@ public class TestProductivityClock
 	}
 
 	@Test
-	void createsDay_FromPeriodThatBelongsToIt()
+	void CreatesDay_FromPeriodThatBelongsToIt()
 	{
 		Period work = new Period(State.WORKING,
 		        LocalDateTime.of(2023, 11, 23, 0, 50),
@@ -39,5 +39,20 @@ public class TestProductivityClock
 		List<Day> days = clockManager.createDays(List.of(work));
 
 		assertEquals(1, days.size());
+	}
+
+	@Test
+	void CreatesTwoDays_FromTwoPeriodsBelongingToDifferentDays()
+	{
+		Period dayOnePeriod = new Period(State.WORKING,
+		        LocalDateTime.of(2023, 11, 23, 0, 50),
+		        LocalDateTime.of(2023, 11, 23, 1, 0));
+		Period dayTwoPeriod = new Period(State.WORKING,
+		        LocalDateTime.of(2023, 11, 24, 0, 50),
+		        LocalDateTime.of(2023, 11, 24, 1, 0));
+		
+		List<Day> days = clockManager.createDays(List.of(dayOnePeriod, dayTwoPeriod));
+		
+		assertEquals(2, days.size());
 	}
 }
