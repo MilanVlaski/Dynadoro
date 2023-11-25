@@ -17,14 +17,14 @@ public class ClockManager
 			Period period = allPeriods.get(i);
 
 			sameDatePeriods.add(period);
+
 			for (int j = i + 1; j < allPeriods.size(); j++)
 			{
 				Period nextPeriod = allPeriods.get(j);
 				if (period.isSameDateAs(nextPeriod))
 				{
 					sameDatePeriods.add(nextPeriod);
-					allPeriods.remove(j);
-					j--;
+					allPeriods.remove(j--);
 				}
 			}
 

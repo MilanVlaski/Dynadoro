@@ -39,6 +39,7 @@ public class TestProductivityClock
 		List<Day> days = clockManager.createDays(List.of(work));
 
 		assertEquals(1, days.size());
+		assertEquals(1, days.get(0).numberOfPeriods());
 	}
 
 	@Test
@@ -54,6 +55,8 @@ public class TestProductivityClock
 		List<Day> days = clockManager.createDays(List.of(dayOnePeriod, dayTwoPeriod));
 
 		assertEquals(2, days.size());
+		assertEquals(1, days.get(0).numberOfPeriods());
+		assertEquals(1, days.get(1).numberOfPeriods());
 	}
 
 	@Test
@@ -69,6 +72,7 @@ public class TestProductivityClock
 		List<Day> days = clockManager.createDays(List.of(first, second));
 		
 		assertEquals(1, days.size());
+		assertEquals(2, days.get(0).numberOfPeriods());
 	}
 	
 	@Test
@@ -87,5 +91,6 @@ public class TestProductivityClock
 		List<Day> days = clockManager.createDays(List.of(first, second, third));
 		
 		assertEquals(1, days.size());
+		assertEquals(3, days.get(0).numberOfPeriods());
 	}
 }

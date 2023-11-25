@@ -1,13 +1,11 @@
 package record;
 
 import java.awt.Graphics2D;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Day
 {
-	private List<Period> periods = new ArrayList<>();
+	private final List<Period> periods;
 	private final ProductivityClock productivityClock;
 
 	public Day(List<Period> periods)
@@ -16,10 +14,12 @@ public class Day
 		this.productivityClock = new ProductivityClock();
 	}
 
-	public Day()
-	{ this.productivityClock = new ProductivityClock(); }
-
 	public void draw(Graphics2D g)
 	{ productivityClock.draw(g, periods); }
+
+	public int numberOfPeriods()
+	{ 
+		return periods.size();
+	 }
 
 }
