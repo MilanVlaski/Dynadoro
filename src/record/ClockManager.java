@@ -9,14 +9,21 @@ public class ClockManager
 	public List<Day> createDays(List<Period> periods)
 	{
 		List<Day> days = new ArrayList<>();
-
-		for (Period period : periods)
+		List<Period> temp = new ArrayList<>();
+		for (int i = 0; i < periods.size(); i++)
 		{
-			List<Period> periodOfDay = List.of(period);
-			Day day = new Day(periodOfDay);
-			days.add(day);
+			if (i + 1 != periods.size() && periods.get(i).sameDayAs(periods.get(i + 1)))
+			{
+				temp.add(periods.get(i));
+			}
+			else
+			{
+				days.add(new Day(temp));
+			}
+
 		}
 
 		return days;
 	}
+
 }

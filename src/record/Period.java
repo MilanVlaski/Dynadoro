@@ -78,4 +78,9 @@ public class Period
 		        && period.start.equals(start)
 		        && period.end.equals(end);
 	}
+
+	public boolean sameDayAs(Period period)
+	{ 
+		return start.toLocalDate().equals(period.start.toLocalDate());
+	 }
 }
