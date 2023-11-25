@@ -79,7 +79,7 @@ public class Period
 		        && period.end.equals(end);
 	}
 
-	public boolean sameDayAs(Period period)
+	public boolean isSameDateAs(Period period)
 	{ 
 		return start.toLocalDate().equals(period.start.toLocalDate());
 	 }

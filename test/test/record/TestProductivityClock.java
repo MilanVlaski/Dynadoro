@@ -70,4 +70,22 @@ public class TestProductivityClock
 		
 		assertEquals(1, days.size());
 	}
+	
+	@Test
+	void CreatesOneDay_FromThreePeriods_OnTheSameDay()
+	{
+		Period first = new Period(State.WORKING,
+		        LocalDateTime.of(2023, 11, 23, 0, 0),
+		        LocalDateTime.of(2023, 11, 23, 0, 0));
+		Period second = new Period(State.RESTING,
+		        LocalDateTime.of(2023, 11, 23, 0, 0),
+		        LocalDateTime.of(2023, 11, 23, 0, 0));
+		Period third = new Period(State.RESTING,
+		        LocalDateTime.of(2023, 11, 23, 0, 0),
+		        LocalDateTime.of(2023, 11, 23, 0, 0));
+		
+		List<Day> days = clockManager.createDays(List.of(first, second, third));
+		
+		assertEquals(1, days.size());
+	}
 }
