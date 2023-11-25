@@ -93,4 +93,27 @@ public class TestProductivityClock
 		assertEquals(1, days.size());
 		assertEquals(3, days.get(0).numberOfPeriods());
 	}
+	
+	@Test
+	void CreatesTwoDays_FromTwoPeriodsEach()
+	{
+		Period first = new Period(State.WORKING,
+		        LocalDateTime.of(2023, 11, 23, 0, 0),
+		        LocalDateTime.of(2023, 11, 23, 0, 0));
+		Period second = new Period(State.RESTING,
+		        LocalDateTime.of(2023, 11, 23, 0, 0),
+		        LocalDateTime.of(2023, 11, 23, 0, 0));
+		Period third = new Period(State.RESTING,
+		        LocalDateTime.of(2023, 11, 23, 0, 0),
+		        LocalDateTime.of(2023, 11, 24, 0, 0));
+		Period fourth = new Period(State.RESTING,
+		        LocalDateTime.of(2023, 11, 23, 0, 0),
+		        LocalDateTime.of(2023, 11, 24, 0, 0));
+		
+		List<Day> days = clockManager.createDays(List.of(first, second, third, fourth));
+		
+		assertEquals(2, days.size());
+		assertEquals(2, days.get(0).numberOfPeriods());
+		assertEquals(2, days.get(1).numberOfPeriods());
+	}
 }
