@@ -50,9 +50,9 @@ public class TestProductivityClock
 		Period dayTwoPeriod = new Period(State.WORKING,
 		        LocalDateTime.of(2023, 11, 24, 0, 50),
 		        LocalDateTime.of(2023, 11, 24, 1, 0));
-		
+
 		List<Day> days = clockManager.createDays(List.of(dayOnePeriod, dayTwoPeriod));
-		
+
 		assertEquals(2, days.size());
 	}
 }
