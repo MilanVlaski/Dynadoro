@@ -18,6 +18,21 @@
 - hours studied per week
 - If you exit the app, the previous state needs to finish.
 
+##### Logging
+1. Retrieve Periods from History.
+2. From Periods, create Days. Period can only belong to one day.
+3. A Day must have a ProductivityClock (there are details about how this is upheld).
+4. A ProductivityClock must therefore be created if it's missing.
+5. Display Days, or a smaller subset of them, with details like: hours studied (daily, weekly, monthly).
+
+retrievePeriods()
+createDays(periods)
+retrieveProdClocks()
+assignClocksToDays(days, clocks)
+if a day has unassigned clock, then create clock
+
+
+
 - while break ticks down you could have a charging battery filling up (maybe in thirds, battery with 3 bars)
 - remove the window bar and add rounded borders (same color as text maybe)
 

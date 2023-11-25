@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import record.Day;
 import record.History;
 import record.Period;
 import record.State;
@@ -65,5 +66,19 @@ public class TestHandlingHistory
 		History history = new FakeHistory("2022-12-12, Tuesday, WorkLLLLL, 15:15, 20:20");
 		assertEquals(0, history.retrievePeriods().size());
 	}
+
+//	@Test
+//	void createsDay_FromPeriodThatBelongsToIt()
+//	{
+//		Period work = new Period(State.WORKING,
+//		        LocalDateTime.of(2023, 11, 23, 0, 50),
+//		        LocalDateTime.of(2023, 11, 23, 1, 0));
+//		
+//		ClockManager clockManager = new ClockManager(List.of(work));
+//		
+//		List<Day> days =  clockManager.createDays(List.of(work));
+//		
+//		assertEquals(0, days.size());
+//	}
 
 }

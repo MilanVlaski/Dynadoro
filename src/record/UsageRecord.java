@@ -6,7 +6,7 @@ public class UsageRecord
 {
 
 	private final History history;
-	private Period currentState;
+	private Period currentPeriod;
 
 	public UsageRecord(History history)
 	{ this.history = history; }
@@ -14,26 +14,22 @@ public class UsageRecord
 	@Override
 	public String toString()
 	{
-		if (currentState != null)
-			return currentState.toString();
+		if (currentPeriod != null)
+			return currentPeriod.toString();
 		else
 			return "";
 	}
 
-	public void capture(Period newState)
+	public void capture(Period newPeriod)
 	{
-		if (currentState != null)
-			finishAndWrite(currentState, newState.startTime());
-
-		currentState = newState;
-	}
-
-	private void finishAndWrite(Period previousState, LocalDateTime endTime)
-	{
-		previousState.finish(endTime);
-
-		if (previousState.shouldBeRecorded())
-			history.write(previousState.toString());
+		if (currentPeriod != null)
+		{
+			currentPeriod.finish(newPeriod.startTime());
+			
+			if (currentPeriod.shouldBeRecorded())
+				history.write(currentPeriod.toString());
+		}
+		currentPeriod = newPeriod;
 	}
 
 }

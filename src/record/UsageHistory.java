@@ -62,8 +62,6 @@ public class UsageHistory implements History
 
 	@Override
 	public List<Period> retrievePeriods()
-	{ 
-		return null;
-	 }
+	{ return null; }
 
 }

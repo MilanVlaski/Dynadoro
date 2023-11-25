@@ -64,8 +64,8 @@ public class MainClass
 
 	private static void startRecording(Timer timer)
 	{
-		UsageHistory file = new UsageHistory();
-		UsageRecord record = new UsageRecord(file);
+		UsageHistory history = new UsageHistory();
+		UsageRecord record = new UsageRecord(history);
 		timer.startRecording(record);
 	}
 

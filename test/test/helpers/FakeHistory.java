@@ -4,11 +4,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import record.Day;
 import record.History;
 import record.Period;
 import record.State;
@@ -71,4 +73,5 @@ public class FakeHistory implements History
 				list.add(new Period(state.get(), startDateTime, endDateTime));
 		}
 	}
+
 }
