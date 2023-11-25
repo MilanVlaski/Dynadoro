@@ -91,9 +91,10 @@ public class TestProductivityClock
 		Period dayThreePeriod = new Period(State.WORKING,
 		        LocalDateTime.of(2023, 1, 4, 0, 0),
 		        LocalDateTime.of(2023, 1, 4, 0, 0));
-		
+
 		List<Day> days = clockManager.createDays(
-		        List.of(dayThreePeriod, dayOnePeriod, dayThreePeriod,
+		        List.of(
+		                dayThreePeriod, dayOnePeriod, dayThreePeriod,
 		                dayTwoPeriod, dayTwoPeriod, dayThreePeriod,
 		                dayOnePeriod, dayThreePeriod, dayOnePeriod,
 		                dayThreePeriod, dayTwoPeriod, dayTwoPeriod));
