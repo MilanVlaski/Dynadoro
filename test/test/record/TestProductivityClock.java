@@ -33,8 +33,8 @@ public class TestProductivityClock
 	void CreatesDay_FromPeriodThatBelongsToIt()
 	{
 		Period work = new Period(State.WORKING,
-		        LocalDateTime.of(2023, 11, 23, 0, 50),
-		        LocalDateTime.of(2023, 11, 23, 1, 0));
+		        LocalDateTime.of(2023, 11, 23, 0, 0),
+		        LocalDateTime.of(2023, 11, 23, 0, 0));
 
 		List<Day> days = clockManager.createDays(List.of(work));
 
@@ -46,11 +46,11 @@ public class TestProductivityClock
 	void CreatesTwoDays_FromTwoPeriodsBelongingToDifferentDays()
 	{
 		Period dayOnePeriod = new Period(State.WORKING,
-		        LocalDateTime.of(2023, 11, 23, 0, 50),
-		        LocalDateTime.of(2023, 11, 23, 1, 0));
+		        LocalDateTime.of(2023, 11, 23, 0, 0),
+		        LocalDateTime.of(2023, 11, 23, 0, 0));
 		Period dayTwoPeriod = new Period(State.WORKING,
-		        LocalDateTime.of(2023, 11, 24, 0, 50),
-		        LocalDateTime.of(2023, 11, 24, 1, 0));
+		        LocalDateTime.of(2023, 11, 24, 0, 0),
+		        LocalDateTime.of(2023, 11, 24, 0, 0));
 
 		List<Day> days = clockManager.createDays(List.of(dayOnePeriod, dayTwoPeriod));
 
@@ -104,10 +104,10 @@ public class TestProductivityClock
 		        LocalDateTime.of(2023, 11, 23, 0, 0),
 		        LocalDateTime.of(2023, 11, 23, 0, 0));
 		Period third = new Period(State.RESTING,
-		        LocalDateTime.of(2023, 11, 23, 0, 0),
+		        LocalDateTime.of(2023, 11, 24, 0, 0),
 		        LocalDateTime.of(2023, 11, 24, 0, 0));
 		Period fourth = new Period(State.RESTING,
-		        LocalDateTime.of(2023, 11, 23, 0, 0),
+		        LocalDateTime.of(2023, 11, 24, 0, 0),
 		        LocalDateTime.of(2023, 11, 24, 0, 0));
 		
 		List<Day> days = clockManager.createDays(List.of(first, second, third, fourth));
