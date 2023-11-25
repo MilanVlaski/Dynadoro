@@ -66,6 +66,11 @@ public class TestHandlingHistory
 		History history = new FakeHistory("2022-12-12, Tuesday, WorkLLLLL, 15:15, 20:20");
 		assertEquals(0, history.retrievePeriods().size());
 	}
+	
+	@Test
+	void retrievesProducitivityClock() {
+		
+	}
 
 //	@Test
 //	void createsDay_FromPeriodThatBelongsToIt()

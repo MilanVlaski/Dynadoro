@@ -22,14 +22,13 @@
 1. Retrieve Periods from History.
 2. From Periods, create Days. Period can only belong to one day.
 3. A Day must have a ProductivityClock (there are details about how this is upheld).
-4. A ProductivityClock must therefore be created if it's missing.
+4. A Day must make its own ProductivityClock if it's missing one.
 5. Display Days, or a smaller subset of them, with details like: hours studied (daily, weekly, monthly).
 
-retrievePeriods()
-createDays(periods)
-retrieveProdClocks()
-assignClocksToDays(days, clocks)
-if a day has unassigned clock, then create clock
+- retrievePeriods()
+- retrieveProdClocks()
+- createDays(periods, clocks)
+- if a day has unassigned clock, then create clock
 
 
 

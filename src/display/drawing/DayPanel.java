@@ -24,18 +24,5 @@ public class DayPanel extends JPanel
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
 		day.draw(g2d);
-		
-//		BufferedImage image = new BufferedImage(300, 300,
-//		        BufferedImage.TYPE_INT_ARGB);
-//
-//		Graphics2D gg = image.createGraphics();
-//		day.draw(gg);
-//		try
-//		{
-//			ImageIO.write(image, "png", new File("output.png"));
-//		} catch (IOException e)
-//		{
-//			e.printStackTrace();
-//		}
 	}
 }
