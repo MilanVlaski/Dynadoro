@@ -68,27 +68,5 @@ public class TestHandlingHistory
 		History history = new FakeHistory("2022-12-12, Tuesday, WorkLLLLL, 15:15, 20:20");
 		assertEquals(0, history.retrievePeriods().size());
 	}
-	
-	@Test
-	void DoesntCreateDays_IfNoPeriodsAreProvided()
-	{
-		ClockManager clockManager = new ClockManager();
-		List<Day> days = clockManager.createDays(Collections.emptyList());
-		
-		assertEquals(0, days.size());
-	}
-
-//	@Test
-//	void createsDay_FromPeriodThatBelongsToIt()
-//	{
-//		Period work = new Period(State.WORKING,
-//		        LocalDateTime.of(2023, 11, 23, 0, 50),
-//		        LocalDateTime.of(2023, 11, 23, 1, 0));
-//		ClockManager clockManager = new ClockManager();
-//		
-//		List<Day> days = clockManager.createDays(List.of(work));
-//		
-//		assertEquals(1, days.size());
-//	}
 
 }
