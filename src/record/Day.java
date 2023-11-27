@@ -18,8 +18,6 @@ public class Day
 	{ productivityClock.draw(g, periods); }
 
 	public int numberOfPeriods()
-	{ 
-		return periods.size();
-	 }
+	{ return periods.size(); }
 
 }

@@ -16,16 +16,10 @@ import record.State;
 
 public class TestProductivityClock
 {
-	ClockManager clockManager;
-
-	@BeforeEach
-	void setup()
-	{ clockManager = new ClockManager(); }
-
 	@Test
 	void DoesntCreateDays_IfNoPeriodsAreProvided()
 	{
-		List<Day> days = clockManager.createDays(Collections.emptyList());
+		List<Day> days = ClockManager.createDays(Collections.emptyList());
 		assertEquals(0, days.size());
 	}
 
@@ -39,7 +33,7 @@ public class TestProductivityClock
 	@Test
 	void CreatesDay_FromPeriodThatBelongsToIt()
 	{
-		List<Day> days = clockManager.createDays(List.of(dayOnePeriod));
+		List<Day> days = ClockManager.createDays(List.of(dayOnePeriod));
 
 		assertEquals(1, days.size());
 		assertEquals(1, days.get(0).numberOfPeriods());
@@ -48,7 +42,7 @@ public class TestProductivityClock
 	@Test
 	void CreatesTwoDays_FromTwoPeriodsBelongingToDifferentDays()
 	{
-		List<Day> days = clockManager.createDays(List.of(dayOnePeriod, dayTwoPeriod));
+		List<Day> days = ClockManager.createDays(List.of(dayOnePeriod, dayTwoPeriod));
 
 		assertEquals(2, days.size());
 		assertEquals(1, days.get(0).numberOfPeriods());
@@ -58,7 +52,7 @@ public class TestProductivityClock
 	@Test
 	void CreatesOneDay_FromTwoPeriods_OnTheSameDay()
 	{
-		List<Day> days = clockManager.createDays(List.of(dayOnePeriod, dayOnePeriod));
+		List<Day> days = ClockManager.createDays(List.of(dayOnePeriod, dayOnePeriod));
 
 		assertEquals(1, days.size());
 		assertEquals(2, days.get(0).numberOfPeriods());
@@ -67,7 +61,7 @@ public class TestProductivityClock
 	@Test
 	void CreatesOneDay_FromThreePeriods_OnTheSameDay()
 	{
-		List<Day> days = clockManager
+		List<Day> days = ClockManager
 		        .createDays(List.of(dayOnePeriod, dayOnePeriod, dayOnePeriod));
 
 		assertEquals(1, days.size());
@@ -77,7 +71,7 @@ public class TestProductivityClock
 	@Test
 	void CreatesTwoDays_FromTwoPeriodsEach()
 	{
-		List<Day> days = clockManager.createDays(
+		List<Day> days = ClockManager.createDays(
 		        List.of(dayOnePeriod, dayOnePeriod, dayTwoPeriod, dayTwoPeriod));
 
 		assertEquals(2, days.size());
@@ -89,7 +83,7 @@ public class TestProductivityClock
 	void CreatesThreeDays_IfPeriodDaysAreNotChronological()
 	{
 		// Periods have to be sorted, or the behavior is not quite right.
-		List<Day> days = clockManager.createDays(
+		List<Day> days = ClockManager.createDays(
 		        List.of(dayOnePeriod, dayTwoPeriod, dayOnePeriod));
 
 		assertEquals(3, days.size());

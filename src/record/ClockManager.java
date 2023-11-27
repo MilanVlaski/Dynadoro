@@ -6,15 +6,15 @@ import java.util.List;
 public class ClockManager
 {
 
-	public List<Day> createDays(List<Period> periods)
+	public static List<Day> createDays(List<Period> periods)
 	{
 		List<Day> days = new ArrayList<>();
 		ArrayList<Period> allPeriods = new ArrayList<>(periods);
 
 		for (int i = 0; i < allPeriods.size(); i++)
 		{
-			List<Period> sameDatePeriods = new ArrayList<>();
 			Period period = allPeriods.get(i);
+			List<Period> sameDatePeriods = new ArrayList<>();
 
 			sameDatePeriods.add(period);
 
@@ -26,12 +26,11 @@ public class ClockManager
 					sameDatePeriods.add(nextPeriod);
 					allPeriods.remove(j--);
 				}
- 				else
-					break; 
+				else
+					break;
 				// because periods are chronological, if the next period is on a different
 				// day, that means we don't have to look through the entire list
 			}
-
 			days.add(new Day(sameDatePeriods));
 		}
 
