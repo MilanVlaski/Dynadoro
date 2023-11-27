@@ -21,7 +21,7 @@ public class ProductivityClock
 
 	private static final Color clockBackground = new Color(235, 247, 252);
 
-	public void draw(Graphics2D g, List<Period> periods)
+	public static void draw(Graphics2D g, List<Period> periods)
 	{
 		int large = 280;
 		int thumbnail = 140;
@@ -46,8 +46,9 @@ public class ProductivityClock
 		g.dispose();
 	}
 
-	private void drawState(Graphics2D g, LocalDateTime startTime, Duration duration,
-	                       State type, int centerX, int centerY, int radius)
+	private static void drawState(Graphics2D g, LocalDateTime startTime,
+	                              Duration duration,
+	                              State type, int centerX, int centerY, int radius)
 	{
 		Color borderColor = type.equals(State.WORKING)
 		        ? MainFrame.WORK
@@ -75,8 +76,9 @@ public class ProductivityClock
 		drawDate(g, startTime, centerX, centerY, radius);
 	}
 
-	private void drawDate(Graphics2D g, LocalDateTime startTime, int centerX, int centerY,
-	                      int radius)
+	private static void drawDate(Graphics2D g, LocalDateTime startTime, int centerX,
+	                             int centerY,
+	                             int radius)
 	{
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("EEEE, d, LLLL, yyyy");
 		String date = format.format(startTime);
@@ -99,8 +101,8 @@ public class ProductivityClock
 		g.drawString(date, textX, textY);
 	}
 
-	private void drawCircleThatHidesPie(Graphics2D g, int centerX, int centerY,
-	                                    int radius)
+	private static void drawCircleThatHidesPie(Graphics2D g, int centerX, int centerY,
+	                                           int radius)
 	{
 		g.setStroke(new BasicStroke(1));
 		g.setColor(clockBackground);
@@ -111,7 +113,7 @@ public class ProductivityClock
 		        2 * smallerRadius);
 	}
 
-	private void drawMinutes(Graphics2D g, int centerX, int centerY, int radius)
+	private static void drawMinutes(Graphics2D g, int centerX, int centerY, int radius)
 	{
 		for (int i = 0; (i < 60 && i % 5 == 0); i++)
 		{
@@ -129,7 +131,7 @@ public class ProductivityClock
 		}
 	}
 
-	private void drawHours(Graphics2D g, int centerX, int centerY, int radius)
+	private static void drawHours(Graphics2D g, int centerX, int centerY, int radius)
 	{
 		for (int i = 0; i < 12; i++)
 		{
@@ -158,14 +160,14 @@ public class ProductivityClock
 		}
 	}
 
-	private void drawCircle(Graphics2D g, int centerX, int centerY, int radius)
+	private static void drawCircle(Graphics2D g, int centerX, int centerY, int radius)
 	{
 		g.setColor(clockBackground);
 		g.fillOval(centerX - radius, centerY - radius, 2 * radius, 2 * radius);
 	}
 
-	private void drawClockBorder(Graphics2D g, int centerX, int centerY, int radius,
-	                             int thickness)
+	private static void drawClockBorder(Graphics2D g, int centerX, int centerY,
+	                                    int radius, int thickness)
 	{
 		g.setColor(new Color(180, 190, 200)); // grey
 		BasicStroke borderStroke = new BasicStroke(thickness, BasicStroke.CAP_ROUND,
@@ -181,14 +183,14 @@ public class ProductivityClock
 	{
 		int hours = time.getHour();
 		int minutes = time.getMinute();
-	
+
 		if (hours >= 12)
 			hours -= 12;
-	
+
 		return (float) -(hours * 30 + (minutes * 0.5) - 90);
 	}
 
-	static float durationToDegrees(Duration duration)
+	public static float durationToDegrees(Duration duration)
 	{ return -(float) (duration.toMinutes() * 0.5); }
 
 }

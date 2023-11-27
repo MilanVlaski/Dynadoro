@@ -11,8 +11,10 @@ import org.junit.jupiter.api.Test;
 
 import record.ClockManager;
 import record.Day;
+import record.History;
 import record.Period;
 import record.State;
+import test.helpers.FakeHistory;
 
 public class TestProductivityClock
 {
@@ -87,5 +89,13 @@ public class TestProductivityClock
 		        List.of(dayOnePeriod, dayTwoPeriod, dayOnePeriod));
 
 		assertEquals(3, days.size());
+	}
+
+	@Test
+	void should()
+	{
+		History history = new FakeHistory("");
+		List<Period> periods = history.retrievePeriods();
+		List<Day> days = ClockManager.createDays(periods);
 	}
 }

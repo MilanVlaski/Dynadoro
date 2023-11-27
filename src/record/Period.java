@@ -80,7 +80,5 @@ public class Period
 	}
 
 	public boolean isSameDateAs(Period period)
-	{ 
-		return start.toLocalDate().equals(period.start.toLocalDate());
-	 }
+	{ return start.toLocalDate().equals(period.start.toLocalDate()); }
 }
