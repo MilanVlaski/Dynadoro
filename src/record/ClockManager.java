@@ -26,6 +26,10 @@ public class ClockManager
 					sameDatePeriods.add(nextPeriod);
 					allPeriods.remove(j--);
 				}
+ 				else
+					break; 
+				// because periods are chronological, if the next period is on a different
+				// day, that means we don't have to look through the entire list
 			}
 
 			days.add(new Day(sameDatePeriods));

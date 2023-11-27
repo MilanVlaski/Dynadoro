@@ -86,22 +86,12 @@ public class TestProductivityClock
 	}
 
 	@Test
-	void CreatesThreeDays_FromMixedUpPeriods()
+	void CreatesThreeDays_IfPeriodDaysAreNotChronological()
 	{
-		Period dayThreePeriod = new Period(State.WORKING,
-		        LocalDateTime.of(2023, 1, 4, 0, 0),
-		        LocalDateTime.of(2023, 1, 4, 0, 0));
-
+		// Periods have to be sorted, or the behavior is not quite right.
 		List<Day> days = clockManager.createDays(
-		        List.of(
-		                dayThreePeriod, dayOnePeriod, dayThreePeriod,
-		                dayTwoPeriod, dayTwoPeriod, dayThreePeriod,
-		                dayOnePeriod, dayThreePeriod, dayOnePeriod,
-		                dayThreePeriod, dayTwoPeriod, dayTwoPeriod));
+		        List.of(dayOnePeriod, dayTwoPeriod, dayOnePeriod));
 
 		assertEquals(3, days.size());
-		assertEquals(5, days.get(0).numberOfPeriods());
-		assertEquals(3, days.get(1).numberOfPeriods());
-		assertEquals(4, days.get(2).numberOfPeriods());
 	}
 }
