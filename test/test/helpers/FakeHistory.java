@@ -13,7 +13,9 @@ import java.util.regex.Pattern;
 import record.Day;
 import record.History;
 import record.Period;
+import record.ProductivityClock;
 import record.State;
+import record.UsageHistory;
 
 public class FakeHistory implements History
 {
@@ -32,6 +34,11 @@ public class FakeHistory implements History
 			write(period.toString());
 	}
 
+	public FakeHistory(ProductivityClock productivityClock)
+	{
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public String read()
 	{ return contents; }
@@ -42,36 +49,7 @@ public class FakeHistory implements History
 
 	@Override
 	public List<Period> retrievePeriods()
-	{
-		List<Period> result = new ArrayList<>();
-		parse(contents, result);
-		return result;
-	}
+	{ return UsageHistory.parsePeriods(contents); }
 
-	private static void parse(CharSequence input, List<Period> list)
-	{
-		Pattern pattern = Pattern.compile(Period.regex);
-		Matcher matcher = pattern.matcher(input);
-
-		while (matcher.find())
-		{
-			String dateString = matcher.group(1);
-			String stateString = matcher.group(3);
-			String startTimeString = matcher.group(4);
-			String endTimeString = matcher.group(5);
-
-			LocalDate date = LocalDate.parse(dateString, Period.dateFormat);
-			LocalTime startTime = LocalTime.parse(startTimeString, Period.hourFormat);
-			LocalTime endTime = LocalTime.parse(endTimeString, Period.hourFormat);
-
-			LocalDateTime startDateTime = LocalDateTime.of(date, startTime);
-			LocalDateTime endDateTime = LocalDateTime.of(date, endTime);
-
-			Optional<State> state = State.of(stateString);
-
-			if (state.isPresent())
-				list.add(new Period(state.get(), startDateTime, endDateTime));
-		}
-	}
 
 }

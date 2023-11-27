@@ -2,6 +2,7 @@ package test.record;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
@@ -12,6 +13,7 @@ import record.ClockManager;
 import record.Day;
 import record.History;
 import record.Period;
+import record.ProductivityClock;
 import record.State;
 import test.helpers.FakeHistory;
 
@@ -68,5 +70,4 @@ public class TestHandlingHistory
 		History history = new FakeHistory("2022-12-12, Tuesday, WorkLLLLL, 15:15, 20:20");
 		assertEquals(0, history.retrievePeriods().size());
 	}
-
 }

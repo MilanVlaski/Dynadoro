@@ -6,7 +6,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UsageHistory implements History
 {
@@ -24,6 +31,7 @@ public class UsageHistory implements History
 			try
 			{
 				return Files.readString(path);
+
 			} catch (IOException e)
 			{
 				e.printStackTrace();
@@ -62,6 +70,33 @@ public class UsageHistory implements History
 
 	@Override
 	public List<Period> retrievePeriods()
-	{ return null; }
+	{ return parsePeriods(read()); }
 
+	public static List<Period> parsePeriods(String text)
+	{
+		List<Period> result = new ArrayList<>();
+		Pattern pattern = Pattern.compile(Period.regex);
+		Matcher matcher = pattern.matcher(text);
+
+		while (matcher.find())
+		{
+			String dateString = matcher.group(1);
+			String stateString = matcher.group(3);
+			String startTimeString = matcher.group(4);
+			String endTimeString = matcher.group(5);
+
+			LocalDate date = LocalDate.parse(dateString, Period.dateFormat);
+			LocalTime startTime = LocalTime.parse(startTimeString, Period.hourFormat);
+			LocalTime endTime = LocalTime.parse(endTimeString, Period.hourFormat);
+
+			LocalDateTime startDateTime = LocalDateTime.of(date, startTime);
+			LocalDateTime endDateTime = LocalDateTime.of(date, endTime);
+
+			Optional<State> state = State.of(stateString);
+
+			if (state.isPresent())
+				result.add(new Period(state.get(), startDateTime, endDateTime));
+		}
+		return result;
+	}
 }

@@ -37,4 +37,9 @@ public class ClockManager
 		return days;
 	}
 
+	public static void assignClocksToDays(List<ProductivityClock> clocks, List<Day> days)
+	{
+		// TODO Auto-generated method stub
+	}
+
 }

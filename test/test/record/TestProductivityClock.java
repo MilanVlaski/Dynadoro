@@ -13,6 +13,7 @@ import record.ClockManager;
 import record.Day;
 import record.History;
 import record.Period;
+import record.ProductivityClock;
 import record.State;
 import test.helpers.FakeHistory;
 
@@ -91,11 +92,13 @@ public class TestProductivityClock
 		assertEquals(3, days.size());
 	}
 
-	@Test
-	void should()
-	{
-		History history = new FakeHistory("");
-		List<Period> periods = history.retrievePeriods();
-		List<Day> days = ClockManager.createDays(periods);
-	}
+//	@Test
+//	void should()
+//	{
+//		History history = new FakeHistory("");
+//		List<Period> periods = history.retrievePeriods();
+//		List<Day> days = ClockManager.createDays(periods);
+//		List<ProductivityClock> clocks = history.retrieveClocks();
+//		ClockManager.assignClocksToDays(clocks, days);
+//	}
 }
