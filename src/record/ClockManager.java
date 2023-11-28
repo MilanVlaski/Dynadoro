@@ -28,8 +28,10 @@ public class ClockManager
 				}
 				else
 					break;
-				// because periods are chronological, if the next period is on a different
+				// Because periods are chronological, if the next period is on a different
 				// day, that means we don't have to look through the entire list
+				// Removing the else and break will make this algorithm work for unsorted
+				// lists.
 			}
 			days.add(new Day(sameDatePeriods));
 		}
