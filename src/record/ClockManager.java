@@ -9,22 +9,23 @@ public class ClockManager
 	public static List<Day> createDays(List<Period> periods)
 	{
 		List<Day> days = new ArrayList<>();
-		ArrayList<Period> allPeriods = new ArrayList<>(periods);
+		int numberOfPeriods = periods.size();
 
-		for (int i = 0; i < allPeriods.size(); i++)
+		for (int i = 0; i < numberOfPeriods; i++)
 		{
-			Period period = allPeriods.get(i);
-			List<Period> sameDatePeriods = new ArrayList<>();
+			Period period = periods.get(i);
 
+			List<Period> sameDatePeriods = new ArrayList<>();
 			sameDatePeriods.add(period);
 
-			for (int j = i + 1; j < allPeriods.size(); j++)
+			for (int j = i + 1; j < numberOfPeriods; j++)
 			{
-				Period nextPeriod = allPeriods.get(j);
+				Period nextPeriod = periods.get(j);
+
 				if (period.isSameDateAs(nextPeriod))
 				{
 					sameDatePeriods.add(nextPeriod);
-					allPeriods.remove(j--);
+					i++;
 				}
 				else
 					break;
@@ -32,6 +33,7 @@ public class ClockManager
 				// day, that means we don't have to look through the entire list. Removing
 				// the break will make this algorithm work for unsorted lists.
 			}
+
 			days.add(new Day(sameDatePeriods));
 		}
 
