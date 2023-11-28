@@ -6,15 +6,9 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import record.ClockManager;
-import record.Day;
-import record.History;
-import record.Period;
-import record.ProductivityClock;
-import record.State;
+import record.*;
 import test.helpers.FakeHistory;
 
 public class TestProductivityClock
@@ -92,13 +86,15 @@ public class TestProductivityClock
 		assertEquals(3, days.size());
 	}
 
-//	@Test
-//	void should()
-//	{
-//		History history = new FakeHistory("");
-//		List<Period> periods = history.retrievePeriods();
-//		List<Day> days = ClockManager.createDays(periods);
-//		List<ProductivityClock> clocks = history.retrieveClocks();
-//		ClockManager.assignClocksToDays(clocks, days);
-//	}
+	@Test
+	void EmptyClocksAndDays()
+	{
+		History history = new FakeHistory(); // put clocks and days in here
+		List<Period> periods = history.retrievePeriods();
+		List<Day> days = ClockManager.createDays(periods);
+		List<ProductivityClock> clocks = history.retrieveClocks();
+		ClockManager.assignClocksToDays(clocks, days);
+		
+		assertEquals(0, days.size());
+	}
 }

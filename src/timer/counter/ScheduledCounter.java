@@ -7,7 +7,6 @@ import java.util.concurrent.TimeUnit;
 import display.Display;
 import display.Display.DisplayState;
 import sound.SoundPlayer;
-import timer.Timer;
 
 public class ScheduledCounter extends Counter
 {

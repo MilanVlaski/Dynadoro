@@ -2,10 +2,7 @@ package record;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
+import java.nio.file.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -97,6 +94,14 @@ public class UsageHistory implements History
 			if (state.isPresent())
 				result.add(new Period(state.get(), startDateTime, endDateTime));
 		}
+
 		return result;
 	}
+
+	@Override
+	public List<ProductivityClock> retrieveClocks()
+	{ 
+		// TODO Auto-generated method stub
+		return null;
+	 }
 }

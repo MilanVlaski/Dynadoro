@@ -1,21 +1,8 @@
 package test.helpers;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import record.Day;
-import record.History;
-import record.Period;
-import record.ProductivityClock;
-import record.State;
-import record.UsageHistory;
+import record.*;
 
 public class FakeHistory implements History
 {
@@ -51,5 +38,11 @@ public class FakeHistory implements History
 	public List<Period> retrievePeriods()
 	{ return UsageHistory.parsePeriods(contents); }
 
+	@Override
+	public List<ProductivityClock> retrieveClocks()
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

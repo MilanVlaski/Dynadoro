@@ -11,14 +11,15 @@ public class Day
 	private ProductivityClock productivityClock;
 
 	public Day(List<Period> periods)
-	{
-		this.periods = periods;
-	}
+	{ this.periods = periods; }
 
 	public void draw(Graphics2D g)
 	{ ClockDrawer.draw(g, periods); }
 
 	public int numberOfPeriods()
 	{ return periods.size(); }
+
+	public boolean hasClock()
+	{ return productivityClock != null; }
 
 }

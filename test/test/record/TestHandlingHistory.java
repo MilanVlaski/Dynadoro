@@ -2,19 +2,12 @@ package test.record;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import record.ClockManager;
-import record.Day;
-import record.History;
-import record.Period;
-import record.ProductivityClock;
-import record.State;
+import record.*;
 import test.helpers.FakeHistory;
 
 public class TestHandlingHistory

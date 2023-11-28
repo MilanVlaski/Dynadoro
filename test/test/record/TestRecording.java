@@ -14,7 +14,6 @@ import org.mockito.MockitoAnnotations;
 
 import display.Display;
 import record.History;
-import record.Period;
 import record.UsageRecord;
 import test.helpers.FakeHistory;
 import test.helpers.Moment;
