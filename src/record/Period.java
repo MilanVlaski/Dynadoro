@@ -1,7 +1,6 @@
 package record;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 
 public class Period
@@ -79,4 +78,7 @@ public class Period
 
 	public boolean isSameDateAs(Period period)
 	{ return start.toLocalDate().equals(period.start.toLocalDate()); }
+
+	public LocalDate date()
+	{ return start.toLocalDate(); }
 }

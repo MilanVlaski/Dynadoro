@@ -85,7 +85,7 @@ public class TestProductivityClock
 		List<Day> days = ClockManager.createDays(
 		        List.of(dayOnePeriod, dayTwoPeriod, dayOnePeriod));
 
-		assertEquals(3, days.size());
+		assertEquals(2, days.size());
 	}
 
 	@Test
