@@ -26,12 +26,9 @@ public class ClockManager
 					sameDatePeriods.add(nextPeriod);
 					allPeriods.remove(j--);
 				}
-				else
-					break;
 				// Because periods are chronological, if the next period is on a different
-				// day, that means we don't have to look through the entire list
-				// Removing the else and break will make this algorithm work for unsorted
-				// lists.
+				// day, that means we don't have to look through the entire list. Removing
+				// the break will make this algorithm work for unsorted lists.
 			}
 			days.add(new Day(sameDatePeriods));
 		}

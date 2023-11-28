@@ -79,7 +79,9 @@ public class TestProductivityClock
 	@Test
 	void CreatesThreeDays_IfPeriodDaysAreNotChronological()
 	{
-		// Periods have to be sorted, or the behavior is not quite right.
+		// If this test passes, it means you can use unsorted data as input! Then you
+		// may comment the test out, or change the assertion to match the behavior you
+		// want.
 		List<Day> days = ClockManager.createDays(
 		        List.of(dayOnePeriod, dayTwoPeriod, dayOnePeriod));
 
@@ -94,7 +96,7 @@ public class TestProductivityClock
 		List<Day> days = ClockManager.createDays(periods);
 		List<ProductivityClock> clocks = history.retrieveClocks();
 		ClockManager.assignClocksToDays(clocks, days);
-		
+
 		assertEquals(0, days.size());
 	}
 }
