@@ -28,23 +28,21 @@ public class DayPanel extends JPanel
 		super.paint(g);
 		Graphics2D swingGraphics = (Graphics2D) g;
 
+		makeClock(day);
+	}
+
+	public static void makeClock(Day day)
+	{
 		int large = 280;
+		BufferedImage image = drawImage(day, large);
+		makeImageFile(filename(day.date()), image);
+	}
 
-		// creates image
-		BufferedImage image = new BufferedImage(large, large,
-		        BufferedImage.TYPE_INT_ARGB);
-
-		Graphics2D imageGraphics = image.createGraphics();
-
-		// draws image
-		day.draw(imageGraphics);
-		day.draw(swingGraphics);
-
-		// makes file
+	public static void makeImageFile(String fileName, BufferedImage image)
+	{
+		Path path = UsageHistory.clocks.resolve(fileName);
 		try
 		{
-			String fileName = filename(day.date()) + ".png";
-			Path path = UsageHistory.clocks.resolve(fileName);
 			Files.createDirectories(path.getParent());
 			ImageIO.write(image, "png", path.toFile());
 		} catch (IOException e)
@@ -53,10 +51,21 @@ public class DayPanel extends JPanel
 		}
 	}
 
-	private String filename(LocalDate localDate)
+	private static BufferedImage drawImage(Day day, int size)
+	{
+		BufferedImage image = new BufferedImage(size, size,
+		        BufferedImage.TYPE_INT_ARGB);
+
+		Graphics2D imageGraphics = image.createGraphics();
+
+		day.draw(imageGraphics);
+		return image;
+	}
+
+	public static String filename(LocalDate localDate)
 	{
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("d_M_yyyy");
-		return format.format(localDate);
+		return format.format(localDate) + ".png";
 	}
 
 	private static final long serialVersionUID = 1L;

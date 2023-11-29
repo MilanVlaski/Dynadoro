@@ -67,6 +67,7 @@ public class UsageHistory implements History
 		while (matcher.find())
 		{
 			String dateString = matcher.group(1);
+			System.out.println(text);
 			String stateString = matcher.group(3);
 			String startTimeString = matcher.group(4);
 			String endTimeString = matcher.group(5);
