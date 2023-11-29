@@ -15,6 +15,7 @@ public class ClockDrawer
 {
 
 	private static final Color clockBackground = new Color(235, 247, 252);
+	private static Color grey = new Color(180, 190, 200);
 
 	public static void draw(Graphics2D g, List<Period> periods)
 	{
@@ -136,22 +137,36 @@ public class ClockDrawer
 			int lineY2 = (int) (centerY + 0.96 * radius * Math.sin(angle));
 
 			// Draw thicker line for hours
-			BasicStroke mainStroke = new BasicStroke(3, BasicStroke.CAP_ROUND,
+			BasicStroke mainStroke = new BasicStroke(2, BasicStroke.CAP_ROUND,
 			        BasicStroke.JOIN_BEVEL);
 			g.setStroke(mainStroke); // Adjust the thickness as needed
 			g.setColor(new Color(150, 160, 170));
 			g.draw(new Line2D.Double(lineX1, lineY1, lineX2, lineY2));
 
-			// Draw slightly lighter lines on each side
-			g.setStroke(new BasicStroke(2));
-			g.setColor(new Color(180, 190, 200));
-
-			int midX = (lineX1 + lineX2) / 2;
-			int midY = (lineY1 + lineY2) / 2;
-
-			g.draw(new Line2D.Double(lineX1, lineY1, midX, midY));
-			g.draw(new Line2D.Double(midX, midY, lineX2, lineY2));
+			int translatedCloserX = (int) (centerX + 0.75 * radius * Math.cos(angle));
+			int translatedCloserY = (int) (centerY + 0.75 * radius * Math.sin(angle));
+			drawHourNumber(g, i + 1, translatedCloserX, translatedCloserY, radius, angle);
 		}
+	}
+
+	private static void drawHourNumber(Graphics2D g, int number, int x, int y, int radius,
+	                                   double angle)
+	{
+		g.setColor(new Color(50, 60, 70)); // Adjust color as needed
+		int fontSize = (int) (radius * 0.2);
+		Font font = new Font("Loto", Font.PLAIN, fontSize);
+		g.setFont(font);
+		g.setColor(new Color(120, 130, 130));
+
+		FontMetrics fontMetrics = g.getFontMetrics();
+		int textWidth = fontMetrics.stringWidth(Integer.toString(number));
+		int textHeight = fontMetrics.getHeight();
+
+		// Adjust the position to move the number closer to the center
+		int textX = x - textWidth / 2;
+		int textY = (int) (y + textHeight / 3.5);
+
+		g.drawString(Integer.toString(number), textX, textY);
 	}
 
 	private static void drawCircle(Graphics2D g, int centerX, int centerY, int radius)
@@ -163,7 +178,7 @@ public class ClockDrawer
 	private static void drawClockBorder(Graphics2D g, int centerX, int centerY,
 	                                    int radius, int thickness)
 	{
-		g.setColor(new Color(180, 190, 200)); // grey
+		g.setColor(grey); // grey
 		BasicStroke borderStroke = new BasicStroke(thickness, BasicStroke.CAP_ROUND,
 		        BasicStroke.JOIN_BEVEL);
 		g.setStroke(borderStroke);
