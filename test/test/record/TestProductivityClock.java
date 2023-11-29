@@ -21,7 +21,7 @@ public class TestProductivityClock
 
 	static Period dayOnePeriod = new Period(State.WORKING,
 	        LocalDateTime.of(2023, 11, 7, 0, 0),
-	        LocalDateTime.of(2023, 11, 7, 50, 0));
+	        LocalDateTime.of(2023, 11, 7, 0, 50));
 	static Period dayTwoPeriod = new Period(State.WORKING,
 	        LocalDateTime.of(2023, 6, 19, 0, 0),
 	        LocalDateTime.of(2023, 6, 19, 0, 0));
