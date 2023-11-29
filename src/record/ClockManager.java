@@ -13,13 +13,13 @@ public class ClockManager
 		        .map(Period::date)
 		        .distinct();
 		return daysWorked
-		        .map(day -> periodsOnDay(periods, day))
+		        .map(day -> periodsOnDay(periods.stream(), day))
 		        .map(Day::new)
 		        .toList();
 	}
 
-	private static List<Period> periodsOnDay(List<Period> periods, LocalDate date)
-	{ return periods.stream()
+	private static List<Period> periodsOnDay(Stream<Period> periods, LocalDate date)
+	{ return periods
 	        .filter(period -> period.date().equals(date))
 	        .toList(); }
 
