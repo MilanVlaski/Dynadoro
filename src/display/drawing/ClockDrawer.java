@@ -174,7 +174,7 @@ public class ClockDrawer
 		        2 * thickRadius);
 	}
 
-	public static float durationToDegrees(Duration duration)
+	private static float durationToDegrees(Duration duration)
 	{ return -(float) (duration.toMinutes() * 0.5); }
 
 	public static float timeToDegrees(LocalTime time)

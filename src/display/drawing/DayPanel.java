@@ -21,4 +21,6 @@ public class DayPanel extends JPanel
 		Graphics2D g2d = (Graphics2D) g;
 		day.draw(g2d);
 	}
+
+	private static final long serialVersionUID = 1L;
 }

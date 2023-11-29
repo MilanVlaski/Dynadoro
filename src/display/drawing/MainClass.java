@@ -7,9 +7,7 @@ import java.util.List;
 
 import javax.swing.JFrame;
 
-import record.Day;
-import record.Period;
-import record.State;
+import record.*;
 
 public class MainClass
 {
@@ -29,13 +27,14 @@ public class MainClass
 		        new Period(State.RESTING, twentyFive, thirty),
 		        new Period(State.WORKING, fourPM, fourFiftyPM),
 		        new Period(State.RESTING, fourFiftyPM, fivePM)));
-		
+
 		new MyFrame(day);
 	}
 }
 
 class MyFrame extends JFrame
 {
+
 	public MyFrame(Day day)
 	{
 		DayPanel dayPanel = new DayPanel(day);
@@ -48,4 +47,6 @@ class MyFrame extends JFrame
 		setTitle("Todays clock");
 		setVisible(true);
 	}
+
+	private static final long serialVersionUID = 1L;
 }

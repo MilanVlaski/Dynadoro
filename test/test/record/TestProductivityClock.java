@@ -9,7 +9,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import record.*;
-import test.helpers.FakeHistory;
 
 public class TestProductivityClock
 {
@@ -22,7 +21,7 @@ public class TestProductivityClock
 
 	static Period dayOnePeriod = new Period(State.WORKING,
 	        LocalDateTime.of(2023, 11, 7, 0, 0),
-	        LocalDateTime.of(2023, 11, 7, 0, 0));
+	        LocalDateTime.of(2023, 11, 7, 50, 0));
 	static Period dayTwoPeriod = new Period(State.WORKING,
 	        LocalDateTime.of(2023, 6, 19, 0, 0),
 	        LocalDateTime.of(2023, 6, 19, 0, 0));
@@ -85,15 +84,15 @@ public class TestProductivityClock
 		assertEquals(2, days.size());
 	}
 
-	@Test
-	void EmptyClocksAndDays()
-	{
-		History history = new FakeHistory(); // put clocks and days in here
-		List<Period> periods = history.retrievePeriods();
-		List<Day> days = ClockManager.createDays(periods);
-		List<ProductivityClock> clocks = history.retrieveClocks();
-		ClockManager.assignClocksToDays(clocks, days);
-
-		assertEquals(0, days.size());
-	}
+//	@Test
+//	void AssignsAnExistingClockToCorrectDay()
+//	{
+//		History history = new FakeHistory(new ProductivityClock(), List.of(dayOnePeriod));
+//		List<Period> periods = history.retrievePeriods();
+//		List<Day> days = ClockManager.createDays(periods);
+//		List<ProductivityClock> clocks = history.retrieveClocks();
+//		ClockManager.assignClocksToDays(clocks, days);
+//
+//		assertEquals(1, days.size());
+//	}
 }

@@ -4,9 +4,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 import display.Display.DisplayState;
-import record.Period;
-import record.State;
-import record.UsageRecord;
+import record.*;
 import timer.Timer;
 
 public class Resting extends TimerState
@@ -18,7 +16,7 @@ public class Resting extends TimerState
 	public Resting(Timer context, LocalDateTime now, int workDuration)
 	{ this(workDuration / WORK_REST_RATIO, context, now); }
 
-	public Resting(int restDuration, Timer context, LocalDateTime now)
+	private Resting(int restDuration, Timer context, LocalDateTime now)
 	{
 		super(context, now);
 		this.restDuration = restDuration;

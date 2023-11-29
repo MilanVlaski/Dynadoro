@@ -19,7 +19,4 @@ public class Day
 	public int numberOfPeriods()
 	{ return periods.size(); }
 
-	public boolean hasClock()
-	{ return productivityClock != null; }
-
 }

@@ -24,4 +24,6 @@ public class CoolButton extends JButton
 		setFocusPainted(false);
 		addActionListener(actionListener);
 	}
+
+	private static final long serialVersionUID = 1L;
 }

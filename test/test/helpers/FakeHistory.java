@@ -26,6 +26,11 @@ public class FakeHistory implements History
 		// TODO Auto-generated constructor stub
 	}
 
+	public FakeHistory(ProductivityClock clock, List<Period> periods)
+	{
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public String read()
 	{ return contents; }

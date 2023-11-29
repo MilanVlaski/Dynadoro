@@ -41,7 +41,7 @@ public class MainFrame extends JFrame
 		                12),
 		        BorderLayout.WEST);
 
-		TOP_PANEL.add(	
+		TOP_PANEL.add(
 		        new CoolButton("X", 75, 75, (e) -> timer.reset(LocalDateTime.now()), 12),
 		        BorderLayout.EAST);
 
@@ -184,4 +184,5 @@ public class MainFrame extends JFrame
 	                        ActionListener actionListener)
 	{ CONTROL_PANEL.add(new CoolButton(text, width, height, actionListener)); }
 
+	private static final long serialVersionUID = 1L;
 }

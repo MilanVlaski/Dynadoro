@@ -3,12 +3,8 @@ package record;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.time.*;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -57,14 +53,6 @@ public class UsageHistory implements History
 		}
 	}
 
-	public static void main(String[] args)
-	{
-		// Makes a file and prints "true" if it exists
-		UsageHistory history = new UsageHistory();
-		history.read();
-		System.out.println(Files.exists(path));
-	}
-
 	@Override
 	public List<Period> retrievePeriods()
 	{ return parsePeriods(read()); }
@@ -100,8 +88,16 @@ public class UsageHistory implements History
 
 	@Override
 	public List<ProductivityClock> retrieveClocks()
-	{ 
+	{
 		// TODO Auto-generated method stub
 		return null;
-	 }
+	}
+
+	public static void main(String[] args)
+	{
+		// Makes a file and prints "true" if it exists
+		UsageHistory history = new UsageHistory();
+		history.read();
+		System.out.println(Files.exists(path));
+	}
 }
