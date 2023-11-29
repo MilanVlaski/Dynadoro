@@ -3,8 +3,9 @@ package display.drawing;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -12,6 +13,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import record.Day;
+import record.UsageHistory;
 
 public class DayPanel extends JPanel
 {
@@ -41,8 +43,10 @@ public class DayPanel extends JPanel
 		// makes file
 		try
 		{
-			// TODO the files go somewhere else.
-			ImageIO.write(image, "png", new File(filename(day.date()) + ".png"));
+			String fileName = filename(day.date()) + ".png";
+			Path path = UsageHistory.clocks.resolve(fileName);
+			Files.createDirectories(path.getParent());
+			ImageIO.write(image, "png", path.toFile());
 		} catch (IOException e)
 		{
 			e.printStackTrace();

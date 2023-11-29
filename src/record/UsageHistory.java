@@ -13,17 +13,18 @@ public class UsageHistory implements History
 
 	private static final String APP_NAME = "Dynadoro";
 	private static final String userHome = System.getProperty("user.home");
-	private static final Path path = Paths.get(userHome, APP_NAME, "sessions.txt");
+	private static final Path periods = Paths.get(userHome, APP_NAME, "periods.txt");
+	public static final Path clocks = Paths.get(userHome, APP_NAME, "Clocks");
 
 	@Override
 	public String read()
 	{
-		if (Files.notExists(path))
+		if (Files.notExists(periods))
 			return "";
 		else
 			try
 			{
-				return Files.readString(path);
+				return Files.readString(periods);
 
 			} catch (IOException e)
 			{
@@ -35,13 +36,13 @@ public class UsageHistory implements History
 	@Override
 	public void write(String text)
 	{
-		try (BufferedWriter writer = Files.newBufferedWriter(path,
+		try (BufferedWriter writer = Files.newBufferedWriter(periods,
 		        StandardOpenOption.APPEND))
 		{
-			if (Files.notExists(path))
+			if (Files.notExists(periods))
 			{
-				Files.createDirectories(path.getParent());
-				Files.createFile(path);
+				Files.createDirectories(periods.getParent());
+				Files.createFile(periods);
 			}
 
 			writer.write(text);
@@ -98,6 +99,6 @@ public class UsageHistory implements History
 		// Makes a file and prints "true" if it exists
 		UsageHistory history = new UsageHistory();
 		history.read();
-		System.out.println(Files.exists(path));
+		System.out.println(Files.exists(periods));
 	}
 }
