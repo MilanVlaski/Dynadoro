@@ -20,7 +20,7 @@ public class MainClass
 
 		LocalDateTime fourPM = LocalDateTime.of(2023, 11, 18, 16, 0);
 		LocalDateTime fourFiftyPM = LocalDateTime.of(2023, 11, 18, 16, 50);
-		LocalDateTime fivePM = LocalDateTime.of(2023, 11, 18, 17, 0);
+		LocalDateTime fivePM = LocalDateTime.of(2023, 11, 18, 19, 0);
 
 		Day day = new Day(List.of(
 		        new Period(State.WORKING, zero, twentyFive),

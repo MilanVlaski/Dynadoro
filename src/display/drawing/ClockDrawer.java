@@ -38,7 +38,6 @@ public class ClockDrawer
 		drawCircleThatHidesPie(g, centerX, centerY, radius);
 		//
 
-		g.dispose();
 	}
 
 	private static void drawState(Graphics2D g, LocalDateTime startTime,
@@ -68,7 +67,7 @@ public class ClockDrawer
 
 		g.fill(arc);
 
-		drawDate(g, startTime, centerX, centerY, radius);
+//		drawDate(g, startTime, centerX, centerY, radius);
 	}
 
 	private static void drawDate(Graphics2D g, LocalDateTime startTime, int centerX,
