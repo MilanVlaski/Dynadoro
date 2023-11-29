@@ -4,9 +4,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 import display.Display.DisplayState;
-import record.Period;
-import record.State;
-import record.UsageRecord;
+import record.*;
 import timer.Timer;
 
 public class Working extends TimerState
@@ -43,7 +41,10 @@ public class Working extends TimerState
 
 	@Override
 	public void pause(LocalDateTime now)
-	{ context.changeState(new Pause(context, this, now)); }
+	{
+		display.show(seconds(now), DisplayState.WORK_PAUSE);
+		context.changeState(new Pause(context, this, now));
+	}
 
 	@Override
 	public void resume(LocalDateTime now, int from)

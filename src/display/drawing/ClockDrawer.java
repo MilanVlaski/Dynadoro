@@ -110,19 +110,22 @@ public class ClockDrawer
 
 	private static void drawMinutes(Graphics2D g, int centerX, int centerY, int radius)
 	{
-		for (int i = 0; (i < 60 && i % 5 == 0); i++)
+		for (int i = 0; i < 60; i++)
 		{
-			double angle = Math.toRadians(6 * i - 90);
-			int lineX1 = (int) (centerX + 0.93 * radius * Math.cos(angle));
-			int lineY1 = (int) (centerY + 0.93 * radius * Math.sin(angle));
-			int lineX2 = (int) (centerX + 0.96 * radius * Math.cos(angle));
-			int lineY2 = (int) (centerY + 0.96 * radius * Math.sin(angle));
+			if (i % 5 != 0)
+			{
+				double angle = Math.toRadians(6 * i - 90);
+				int lineX1 = (int) (centerX + 0.93 * radius * Math.cos(angle));
+				int lineY1 = (int) (centerY + 0.93 * radius * Math.sin(angle));
+				int lineX2 = (int) (centerX + 0.96 * radius * Math.cos(angle));
+				int lineY2 = (int) (centerY + 0.96 * radius * Math.sin(angle));
 
-			g.setColor(new Color(200, 200, 200));
-			BasicStroke mainStroke = new BasicStroke(1, BasicStroke.CAP_ROUND,
-			        BasicStroke.JOIN_BEVEL);
-			g.setStroke(mainStroke);
-			g.draw(new Line2D.Double(lineX1, lineY1, lineX2, lineY2));
+				g.setColor(new Color(200, 200, 200));
+				BasicStroke mainStroke = new BasicStroke(1, BasicStroke.CAP_ROUND,
+				        BasicStroke.JOIN_BEVEL);
+				g.setStroke(mainStroke);
+				g.draw(new Line2D.Double(lineX1, lineY1, lineX2, lineY2));
+			}
 		}
 	}
 
@@ -136,7 +139,6 @@ public class ClockDrawer
 			int lineX2 = (int) (centerX + 0.96 * radius * Math.cos(angle));
 			int lineY2 = (int) (centerY + 0.96 * radius * Math.sin(angle));
 
-			// Draw thicker line for hours
 			BasicStroke mainStroke = new BasicStroke(2, BasicStroke.CAP_ROUND,
 			        BasicStroke.JOIN_BEVEL);
 			g.setStroke(mainStroke); // Adjust the thickness as needed
@@ -154,7 +156,7 @@ public class ClockDrawer
 	{
 		g.setColor(new Color(50, 60, 70)); // Adjust color as needed
 		int fontSize = (int) (radius * 0.2);
-		Font font = new Font("Loto", Font.PLAIN, fontSize);
+		Font font = new Font("Andale Mono", Font.PLAIN, fontSize);
 		g.setFont(font);
 		g.setColor(new Color(120, 130, 130));
 

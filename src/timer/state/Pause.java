@@ -2,10 +2,7 @@ package timer.state;
 
 import java.time.LocalDateTime;
 
-import display.Display.DisplayState;
-import record.Period;
-import record.State;
-import record.UsageRecord;
+import record.*;
 import timer.Timer;
 
 public class Pause extends TimerState
@@ -20,17 +17,7 @@ public class Pause extends TimerState
 		this.previousState = previousState;
 		this.secondsWhenPaused = previousState.seconds(now);
 
-		sendDataToDisplay(previousState);
 		counter.stop();
-	}
-
-	private void sendDataToDisplay(TimerState previousState)
-	{
-		DisplayState displayState = (previousState instanceof Working)
-		        ? DisplayState.WORK_PAUSE
-		        : DisplayState.REST_PAUSE;
-
-		display.show(secondsWhenPaused, displayState);
 	}
 
 	@Override
