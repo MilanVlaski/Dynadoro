@@ -10,12 +10,15 @@ public class Pause extends TimerState
 
 	private final TimerState previousState;
 	private final int secondsWhenPaused;
+	private final Resumable resumable;
 
-	public Pause(Timer context, TimerState previousState, LocalDateTime now)
+	public Pause(Timer context, TimerState previousState, LocalDateTime now,
+	             Resumable resumable)
 	{
 		super(context, now);
 		this.previousState = previousState;
 		this.secondsWhenPaused = previousState.seconds(now);
+		this.resumable = resumable;
 
 		counter.stop();
 	}
@@ -38,7 +41,7 @@ public class Pause extends TimerState
 
 	@Override
 	public void resume(LocalDateTime now, int from)
-	{ previousState.resume(now, secondsWhenPaused); }
+	{ resumable.resume(now, secondsWhenPaused); }
 
 	@Override
 	public void record(UsageRecord record)

@@ -37,7 +37,7 @@
 - remove the window bar and add rounded borders (same color as text maybe)
 
 #### PERHAPS
-- Potential errors if you work for less than a second, or less than 5.
+- Potential errors if you work for less than a second, or less than 5.y
 
 #### BUGFIX:
  When pausing while on break the timer correctly stops counting. But it incorrectly says Break over! when and displays 00:00.
