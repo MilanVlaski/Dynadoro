@@ -72,8 +72,7 @@ public class ClockDrawer
 	}
 
 	private static void drawDate(Graphics2D g, LocalDateTime startTime, int centerX,
-	                             int centerY,
-	                             int radius)
+	                             int centerY, int radius)
 	{
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("EEEE, d, LLLL, yyyy");
 		String date = format.format(startTime);

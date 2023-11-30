@@ -42,7 +42,6 @@ public class Resting extends TimerState
 
 	@Override
 	public void pause(LocalDateTime now)
-
 	{
 		display.show(seconds(now), DisplayState.REST_PAUSE);
 		context.changeState(new Pause(context, this, now));

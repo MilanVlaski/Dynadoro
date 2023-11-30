@@ -13,7 +13,7 @@
 ## TODO
 - We keep the ProducitivtyClock and Periods from History consistent by mapping all the Periods from the History to Days.
 - A Day has Periods, and a Day must have a ProductivityClock.
-- If extra VisualDays exist, we delete them. And if a Day, doesn't have an image (Tuesday_23_November.png - DayVisual), it gets created.
+- If extra Clocks exist, we delete them. And if a Day, doesn't have an image (Tuesday_23_November.png - DayVisual), it gets created.
 - hours studied per day
 - hours studied per week
 - If you exit the app, the previous state needs to finish.
