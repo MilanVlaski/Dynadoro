@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import record.*;
 
-public class TestProductivityClock
+public class TestClockManager
 {
 	@Test
 	void DoesntCreateDays_IfNoPeriodsAreProvided()
