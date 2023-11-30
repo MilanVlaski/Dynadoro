@@ -92,13 +92,28 @@ public class UsageHistory implements History
 	@Override
 	public List<ProductivityClock> retrieveClocks()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		List<ProductivityClock> clocks = new ArrayList<>();
+
+		try (DirectoryStream<Path> stream = Files
+		        .newDirectoryStream(Paths.get(Clocks.toUri())))
+		{
+			for (Path path : stream)
+				clocks.add(new ProductivityClock(path));
+
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+
+		return clocks;
 	}
 
 	public static void main(String[] args)
 	{
 		System.out.println("periods.txt file exists: " + Files.exists(periods));
 		System.out.println("Clocks folder exists: " + Files.exists(Clocks));
+
+		UsageHistory history = new UsageHistory();
+		System.out.println("Number of Clock files: " + history.retrieveClocks().size());
 	}
 }
