@@ -30,4 +30,10 @@ public class Day
 	public LocalDate date()
 	{ return date; }
 
+	public boolean hasClock()
+	{ return productivityClock != null; }
+
+	public void assignClock(ProductivityClock clock)
+	{ this.productivityClock = clock; }
+
 }

@@ -8,6 +8,7 @@ public class FakeHistory implements History
 {
 
 	private String contents = "";
+	private List<ProductivityClock> clocks;
 
 	public FakeHistory(String contents)
 	{ this.contents = contents; }
@@ -21,14 +22,10 @@ public class FakeHistory implements History
 			write(period.toString());
 	}
 
-	public FakeHistory(ProductivityClock productivityClock)
+	public FakeHistory(List<ProductivityClock> clocks, List<Period> periods)
 	{
-		// TODO Auto-generated constructor stub
-	}
-
-	public FakeHistory(ProductivityClock clock, List<Period> periods)
-	{
-		// TODO Auto-generated constructor stub
+		this(periods);
+		this.clocks = clocks;
 	}
 
 	@Override
@@ -45,9 +42,6 @@ public class FakeHistory implements History
 
 	@Override
 	public List<ProductivityClock> retrieveClocks()
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
+	{ return clocks; }
 
 }
