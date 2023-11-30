@@ -154,10 +154,10 @@ public class ClockDrawer
 	                                   double angle)
 	{
 		g.setColor(new Color(50, 60, 70)); // Adjust color as needed
-		int fontSize = (int) (radius * 0.2);
+		int fontSize = (int) (radius * 0.15);
 		Font font = new Font("Andale Mono", Font.PLAIN, fontSize);
 		g.setFont(font);
-		g.setColor(new Color(120, 130, 130));
+		g.setColor(new Color(100, 110, 120));
 
 		FontMetrics fontMetrics = g.getFontMetrics();
 		int textWidth = fontMetrics.stringWidth(Integer.toString(number));
