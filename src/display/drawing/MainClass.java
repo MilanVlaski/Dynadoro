@@ -34,7 +34,7 @@ public class MainClass
 		for (Day d : days)
 			DayPanel.makeClock(d);
 
-		System.out.println("Drawing clocks was attempted.");
+		System.out.println("Drawing Clocks was attempted.");
 //		new MyFrame(day);
 	}
 }

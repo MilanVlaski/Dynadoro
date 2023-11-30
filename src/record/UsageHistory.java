@@ -11,10 +11,12 @@ import java.util.regex.Pattern;
 public class UsageHistory implements History
 {
 
-	private static final String APP_NAME = "Dynadoro";
 	private static final String userHome = System.getProperty("user.home");
-	private static final Path periods = Paths.get(userHome, APP_NAME, "periods.txt");
-	public static final Path clocks = Paths.get(userHome, APP_NAME, "Clocks");
+	private static final String appName = "Dynadoro";
+	private static final Path directory = Paths.get(userHome, appName);
+
+	private static final Path periods = directory.resolve("periods.txt");
+	public static final Path Clocks = directory.resolve("Clocks");
 
 	@Override
 	public String read()
@@ -96,9 +98,7 @@ public class UsageHistory implements History
 
 	public static void main(String[] args)
 	{
-		// Makes a file and prints "true" if it exists
-		UsageHistory history = new UsageHistory();
-		history.read();
-		System.out.println(Files.exists(periods));
+		System.out.println("periods.txt file exists: " + Files.exists(periods));
+		System.out.println("Clocks folder exists: " + Files.exists(Clocks));
 	}
 }

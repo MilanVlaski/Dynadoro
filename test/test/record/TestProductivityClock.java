@@ -90,8 +90,8 @@ public class TestProductivityClock
 //		History history = new FakeHistory(new ProductivityClock(), List.of(dayOnePeriod));
 //		List<Period> periods = history.retrievePeriods();
 //		List<Day> days = ClockManager.createDays(periods);
-//		List<ProductivityClock> clocks = history.retrieveClocks();
-//		ClockManager.assignClocksToDays(clocks, days);
+//		List<ProductivityClock> Clocks = history.retrieveClocks();
+//		ClockManager.assignClocksToDays(Clocks, days);
 //
 //		assertEquals(1, days.size());
 //	}

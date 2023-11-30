@@ -40,7 +40,7 @@ public class DayPanel extends JPanel
 
 	public static void makeImageFile(String fileName, BufferedImage image)
 	{
-		Path path = UsageHistory.clocks.resolve(fileName);
+		Path path = UsageHistory.Clocks.resolve(fileName);
 		try
 		{
 			Files.createDirectories(path.getParent());
