@@ -11,12 +11,10 @@
 - I can see images of clocks representing my past study and break sessions in a day. I can see which date and weekday the clocks belong to. When I open a clock, I see an enlarged image, with a big date and weekday at the bottom.
 
 ## TODO
-- We keep the ProducitivtyClock and Periods from History consistent by mapping all the Periods from the History to Days.
-- A Day has Periods, and a Day must have a ProductivityClock.
-- If extra Clocks exist, we delete them. And if a Day, doesn't have an image (Tuesday_23_November.png - DayVisual), it gets created.
 - hours studied per day
 - hours studied per week
 - If you exit the app, the previous state needs to finish.
+- We keep the ProducitivtyClock and Periods from History consistent by mapping all the Periods from the History to Days. A Day has Periods, and a Day must have a ProductivityClock.If extra Clocks exist, we delete them. And if a Day, doesn't have an image (Tuesday_23_November.png - DayVisual), it gets created.
 
 ##### Logging
 1. Retrieve Periods from History.
