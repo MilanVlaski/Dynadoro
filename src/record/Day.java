@@ -36,4 +36,7 @@ public class Day
 	public void assignClock(ProductivityClock clock)
 	{ this.productivityClock = clock; }
 
+	public ProductivityClock clock()
+	{ return productivityClock; }
+
 }

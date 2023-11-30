@@ -1,7 +1,7 @@
 package test.record;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
@@ -11,7 +11,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import record.*;
-import test.helpers.FakeHistory;
 
 public class TestProductivityClock
 {
@@ -88,22 +87,33 @@ public class TestProductivityClock
 	}
 
 	@Test
-	void AssignsAnExistingClockToCorrectDay()
+	void AssignsClockToCorrectDay()
 	{
 		Period period = new Period(State.WORKING,
 		        LocalDateTime.of(2023, 11, 7, 0, 0),
 		        LocalDateTime.of(2023, 11, 7, 0, 50));
 
-		History history = new FakeHistory(List.of(new ProductivityClock(Path.of(""))),
-		        List.of(dayOnePeriod));
-		List<Period> periods = history.retrievePeriods();
-		List<Day> days = ClockManager.createDays(periods);
-		List<ProductivityClock> clocks = history.retrieveClocks();
-		ClockManager.assignClocksToDays(clocks, days);
+		ProductivityClock clock = new ProductivityClock(Path.of("07_11_2023"));
+		List<Day> days = ClockManager.createDays(List.of(period));
 
-		assertEquals(1, days.size());
-		assertEquals(1, clocks.size());
-		assertTrue(days.get(0).hasClock());
+		ClockManager.assignClocksToDays(List.of(clock), days);
+
+		assertEquals(clock, days.get(0).clock());
+	}
+
+	@Test
+	void DoesNotAssignClock_ToDay_IfDifferentDates()
+	{
+		Period period = new Period(State.WORKING,
+		        LocalDateTime.of(2023, 11, 7, 0, 0),
+		        LocalDateTime.of(2023, 11, 7, 0, 50));
+
+		ProductivityClock clock = new ProductivityClock(Path.of("08_12_2024"));
+		List<Day> days = ClockManager.createDays(List.of(period));
+
+		ClockManager.assignClocksToDays(List.of(clock), days);
+
+		assertFalse(days.get(0).hasClock());
 	}
 
 //	@Test
@@ -114,8 +124,8 @@ public class TestProductivityClock
 //
 //		ClockManager.assignClocksToDays(noClocks, days);
 //
-//		assertEquals(1, days.size());
-//		assertTrue(days.get(0).hasClock());
+//		ProductivityClock expected = new ProductivityClock(Path.of("07-11-2023"));
+//		assertEquals(expected, days.get(0).clock());
 //	}
 
 }
