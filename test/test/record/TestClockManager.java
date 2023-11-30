@@ -21,17 +21,17 @@ public class TestClockManager
 		assertEquals(0, days.size());
 	}
 
-	static Period dayOnePeriod = new Period(State.WORKING,
+	static Period seventhNovember = new Period(State.WORKING,
 	        LocalDateTime.of(2023, 11, 7, 0, 0),
 	        LocalDateTime.of(2023, 11, 7, 0, 50));
-	static Period dayTwoPeriod = new Period(State.WORKING,
+	static Period nineteenthJune = new Period(State.WORKING,
 	        LocalDateTime.of(2023, 6, 19, 0, 0),
 	        LocalDateTime.of(2023, 6, 19, 0, 0));
 
 	@Test
 	void CreatesDay_FromPeriodThatBelongsToIt()
 	{
-		List<Day> days = ClockManager.createDays(List.of(dayOnePeriod));
+		List<Day> days = ClockManager.createDays(List.of(seventhNovember));
 
 		assertEquals(1, days.size());
 		assertEquals(1, days.get(0).numberOfPeriods());
@@ -40,7 +40,8 @@ public class TestClockManager
 	@Test
 	void CreatesTwoDays_FromTwoPeriodsBelongingToDifferentDays()
 	{
-		List<Day> days = ClockManager.createDays(List.of(dayOnePeriod, dayTwoPeriod));
+		List<Day> days = ClockManager
+		        .createDays(List.of(seventhNovember, nineteenthJune));
 
 		assertEquals(2, days.size());
 		assertEquals(1, days.get(0).numberOfPeriods());
@@ -50,7 +51,8 @@ public class TestClockManager
 	@Test
 	void CreatesOneDay_FromTwoPeriods_OnTheSameDay()
 	{
-		List<Day> days = ClockManager.createDays(List.of(dayOnePeriod, dayOnePeriod));
+		List<Day> days = ClockManager
+		        .createDays(List.of(seventhNovember, seventhNovember));
 
 		assertEquals(1, days.size());
 		assertEquals(2, days.get(0).numberOfPeriods());
@@ -60,7 +62,7 @@ public class TestClockManager
 	void CreatesOneDay_FromThreePeriods_OnTheSameDay()
 	{
 		List<Day> days = ClockManager
-		        .createDays(List.of(dayOnePeriod, dayOnePeriod, dayOnePeriod));
+		        .createDays(List.of(seventhNovember, seventhNovember, seventhNovember));
 
 		assertEquals(1, days.size());
 		assertEquals(3, days.get(0).numberOfPeriods());
@@ -70,7 +72,8 @@ public class TestClockManager
 	void CreatesTwoDays_FromTwoPeriodsEach()
 	{
 		List<Day> days = ClockManager.createDays(
-		        List.of(dayOnePeriod, dayOnePeriod, dayTwoPeriod, dayTwoPeriod));
+		        List.of(seventhNovember, seventhNovember, nineteenthJune,
+		                nineteenthJune));
 
 		assertEquals(2, days.size());
 		assertEquals(2, days.get(0).numberOfPeriods());
@@ -81,7 +84,7 @@ public class TestClockManager
 	void CreatesTwoDays_EvenIfPeriodDaysAreNotChronological()
 	{
 		List<Day> days = ClockManager.createDays(
-		        List.of(dayOnePeriod, dayTwoPeriod, dayOnePeriod));
+		        List.of(seventhNovember, nineteenthJune, seventhNovember));
 
 		assertEquals(2, days.size());
 	}
@@ -89,12 +92,8 @@ public class TestClockManager
 	@Test
 	void AssignsClockToCorrectDay()
 	{
-		Period period = new Period(State.WORKING,
-		        LocalDateTime.of(2023, 11, 7, 0, 0),
-		        LocalDateTime.of(2023, 11, 7, 0, 50));
-
 		ProductivityClock clock = new ProductivityClock(Path.of("07_11_2023"));
-		List<Day> days = ClockManager.createDays(List.of(period));
+		List<Day> days = ClockManager.createDays(List.of(seventhNovember));
 
 		ClockManager.assignClocksToDays(List.of(clock), days);
 
@@ -104,12 +103,8 @@ public class TestClockManager
 	@Test
 	void DoesNotAssignClock_ToDay_IfDifferentDates()
 	{
-		Period period = new Period(State.WORKING,
-		        LocalDateTime.of(2023, 11, 7, 0, 0),
-		        LocalDateTime.of(2023, 11, 7, 0, 50));
-
 		ProductivityClock clock = new ProductivityClock(Path.of("08_12_2024"));
-		List<Day> days = ClockManager.createDays(List.of(period));
+		List<Day> days = ClockManager.createDays(List.of(seventhNovember));
 
 		ClockManager.assignClocksToDays(List.of(clock), days);
 
@@ -120,7 +115,7 @@ public class TestClockManager
 //	void CreatesNewClock_AndAssignsItToDay_IfNoClocksExist()
 //	{
 //		List<ProductivityClock> noClocks = Collections.emptyList();
-//		List<Day> days = ClockManager.createDays(List.of(dayOnePeriod));
+//		List<Day> days = ClockManager.createDays(List.of(seventhNovember));
 //
 //		ClockManager.assignClocksToDays(noClocks, days);
 //
