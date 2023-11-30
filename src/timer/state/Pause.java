@@ -8,17 +8,15 @@ import timer.Timer;
 public class Pause extends TimerState
 {
 
-	private final TimerState previousState;
 	private final int secondsWhenPaused;
 	private final Resumable resumable;
 
-	public Pause(Timer context, TimerState previousState, LocalDateTime now,
-	             Resumable resumable)
+	public Pause(Timer context, LocalDateTime now, Resumable resumable,
+	             int secondsWhenPaused)
 	{
 		super(context, now);
-		this.previousState = previousState;
-		this.secondsWhenPaused = previousState.seconds(now);
 		this.resumable = resumable;
+		this.secondsWhenPaused = secondsWhenPaused;
 
 		counter.stop();
 	}
@@ -40,7 +38,7 @@ public class Pause extends TimerState
 	{}
 
 	@Override
-	public void resume(LocalDateTime now, int from)
+	public void resume(LocalDateTime now)
 	{ resumable.resume(now, secondsWhenPaused); }
 
 	@Override

@@ -28,7 +28,7 @@ public abstract class TimerState
 	public abstract void begin(LocalDateTime now);
 	public abstract void rest(LocalDateTime now);
 	public abstract void pause(LocalDateTime now);
-	public abstract void resume(LocalDateTime now, int from);
+	public abstract void resume(LocalDateTime now);
 	public abstract void record(UsageRecord record);
 
 	public static class IllegalOperationException extends RuntimeException

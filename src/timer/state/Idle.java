@@ -35,7 +35,7 @@ public class Idle extends TimerState
 	{ throw new IllegalOperationException("Can'dayTwoPeriod pause while doing nothing."); }
 
 	@Override
-	public void resume(LocalDateTime now, int from)
+	public void resume(LocalDateTime now)
 	{ throw new IllegalOperationException("Can'dayTwoPeriod resume while idle."); }
 
 	@Override
