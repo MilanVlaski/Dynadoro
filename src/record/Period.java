@@ -7,9 +7,9 @@ public class Period
 {
 
 	private final State state;
-	private final boolean getsRecorded;
-
+	private boolean getsRecorded;
 	private final LocalDateTime start;
+
 	private LocalDateTime end;
 
 	public Period(State state, LocalDateTime start, boolean getsRecorded)
@@ -24,10 +24,8 @@ public class Period
 	 */
 	public Period(State state, LocalDateTime start, LocalDateTime end)
 	{
-		this.state = state;
-		this.start = start;
+		this(state, start, true);
 		this.end = end;
-		this.getsRecorded = true;
 	}
 
 	public LocalDateTime startTime()
@@ -40,7 +38,11 @@ public class Period
 	{ return state; }
 
 	public void finish(LocalDateTime end)
-	{ this.end = end; }
+	{
+		this.end = end;
+		if (duration().toMinutes() < 1)
+			getsRecorded = false;
+	}
 
 	public Duration duration()
 	{

@@ -1,5 +1,6 @@
 package record;
 
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Stream;
@@ -26,7 +27,7 @@ public class ClockManager
 	public static void assignClocksToDays(List<ProductivityClock> clocks, List<Day> days)
 	{
 		for (Day day : days)
-			day.assignClock(clocks.get(0));
+			day.assignClock(new ProductivityClock(Path.of("")));
 	}
 
 }

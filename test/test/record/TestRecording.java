@@ -8,9 +8,7 @@ import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.*;
 
 import display.Display;
 import record.History;
@@ -142,6 +140,23 @@ class TestRecording
 
 		assertEquals("2023-11-07, Tuesday, Working, 15:40, 15:42\n"
 		        + "2023-11-07, Tuesday, Working, 15:45, 15:49\n", fakeHistory.read());
+	}
+
+	// happens if user spams pause
+	@Test
+	void DoesNotRecordPeriods_ThatStartAndEndWithinTheSameMinute()
+	{
+		timer.begin(moment.current());
+		timer.pause(moment.afterMinutes(2));
+
+		timer.resume(moment.afterSeconds(1));
+		timer.pause(moment.afterSeconds(1));
+		timer.resume(moment.afterSeconds(1));
+		timer.pause(moment.afterSeconds(1));
+		timer.resume(moment.afterSeconds(1));
+
+		assertEquals("2023-11-07, Tuesday, Working, 15:42, unknown", record.toString());
+		assertEquals("2023-11-07, Tuesday, Working, 15:40, 15:42\n", fakeHistory.read());
 	}
 
 }

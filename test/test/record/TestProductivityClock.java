@@ -90,6 +90,10 @@ public class TestProductivityClock
 	@Test
 	void AssignsAnExistingClockToCorrectDay()
 	{
+		Period period = new Period(State.WORKING,
+		        LocalDateTime.of(2023, 11, 7, 0, 0),
+		        LocalDateTime.of(2023, 11, 7, 0, 50));
+
 		History history = new FakeHistory(List.of(new ProductivityClock(Path.of(""))),
 		        List.of(dayOnePeriod));
 		List<Period> periods = history.retrievePeriods();
@@ -101,4 +105,17 @@ public class TestProductivityClock
 		assertEquals(1, clocks.size());
 		assertTrue(days.get(0).hasClock());
 	}
+
+//	@Test
+//	void CreatesNewClock_AndAssignsItToDay_IfNoClocksExist()
+//	{
+//		List<ProductivityClock> noClocks = Collections.emptyList();
+//		List<Day> days = ClockManager.createDays(List.of(dayOnePeriod));
+//
+//		ClockManager.assignClocksToDays(noClocks, days);
+//
+//		assertEquals(1, days.size());
+//		assertTrue(days.get(0).hasClock());
+//	}
+
 }
