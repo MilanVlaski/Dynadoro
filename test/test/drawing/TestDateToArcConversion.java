@@ -6,7 +6,7 @@ import java.time.LocalTime;
 
 import org.junit.jupiter.api.Test;
 
-import display.drawing.ClockDrawer;
+import record.clock.ClockDrawer;
 
 class TestDateToArcConversion
 {

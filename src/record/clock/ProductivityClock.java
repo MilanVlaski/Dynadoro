@@ -1,4 +1,4 @@
-package record;
+package record.clock;
 
 import java.nio.file.Path;
 import java.time.LocalDate;

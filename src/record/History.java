@@ -2,6 +2,8 @@ package record;
 
 import java.util.List;
 
+import record.clock.ProductivityClock;
+
 public interface History
 {
 	String read();

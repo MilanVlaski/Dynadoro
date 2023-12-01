@@ -1,8 +1,11 @@
-package record;
+package record.clock;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Stream;
+
+import record.Day;
+import record.Period;
 
 public class ClockManager
 {
