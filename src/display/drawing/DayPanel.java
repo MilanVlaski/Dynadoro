@@ -40,7 +40,7 @@ public class DayPanel extends JPanel
 		makeImageFile(filename(day.date()), image);
 	}
 
-	public static void makeImageFile(String fileName, BufferedImage image)
+	private static void makeImageFile(String fileName, BufferedImage image)
 	{
 		Path path = UsageHistory.Clocks.resolve(fileName);
 		try
@@ -65,11 +65,8 @@ public class DayPanel extends JPanel
 		return image;
 	}
 
-	public static String filename(LocalDate localDate)
+	private static String filename(LocalDate localDate)
 	{ return clockFileFormat.format(localDate) + ".png"; }
-
-	public static Path pathOfClock(LocalDate localDate)
-	{ return UsageHistory.Clocks.resolve(clockFileFormat.format(localDate) + ".png"); }
 
 	private static final long serialVersionUID = 1L;
 }

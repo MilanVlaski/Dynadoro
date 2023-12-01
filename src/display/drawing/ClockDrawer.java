@@ -15,12 +15,11 @@ public class ClockDrawer
 {
 
 	private static final Color clockBackground = new Color(235, 247, 252);
-	private static Color grey = new Color(180, 190, 200);
+	private static final Color grey = new Color(180, 190, 200);
 
 	public static void draw(Graphics2D g, List<Period> periods)
 	{
 		int large = 280;
-		int thumbnail = 140;
 
 		int centerX = large / 2;
 		int centerY = large / 2;

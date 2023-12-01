@@ -37,9 +37,7 @@ public class ClockManager
 				}
 			}
 			if (!day.hasClock())
-			{
 				day.assignClock(new ProductivityClock(day.date()));
-			}
 		}
 	}
 
