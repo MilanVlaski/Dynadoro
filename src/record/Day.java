@@ -1,6 +1,7 @@
 package record;
 
 import java.awt.Graphics2D;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -40,4 +41,21 @@ public class Day
 	public ProductivityClock clock()
 	{ return productivityClock; }
 
+	public Duration timeWorked()
+	{
+		return periods.stream()
+		        .filter(p -> p.type().equals(State.WORKING))
+		        .map(Period::duration)
+		        .reduce(Duration::plus)
+		        .orElse(Duration.ZERO);
+	}
+
+	public Duration timeRested()
+	{
+		return periods.stream()
+		        .filter(p -> p.type().equals(State.RESTING))
+		        .map(Period::duration)
+		        .reduce(Duration::plus)
+		        .orElse(Duration.ZERO);
+	}
 }
