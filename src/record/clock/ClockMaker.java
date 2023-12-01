@@ -16,7 +16,7 @@ import record.*;
 public class ClockMaker
 {
 
-	private static final DateTimeFormatter clockFileFormat = DateTimeFormatter
+	public static final DateTimeFormatter clockFileFormat = DateTimeFormatter
 	        .ofPattern("d_M_yyyy");
 
 	// TODO we are recreating all clocks, which is not efficient.

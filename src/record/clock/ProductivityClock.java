@@ -2,7 +2,6 @@ package record.clock;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class ProductivityClock
 {
@@ -21,11 +20,11 @@ public class ProductivityClock
 	private LocalDate pathToDate(Path path)
 	{
 		String filename = stripExtension(path.getFileName().toString());
-		return LocalDate.parse(filename, DateTimeFormatter.ofPattern("dd_M_yyyy"));
+		return LocalDate.parse(filename, ClockMaker.clockFileFormat);
 	}
 
 	private String stripExtension(String string)
-	{ return string.replace(".*", ""); }
+	{ return string.replaceAll("\\..*", ""); }
 
 	@Override
 	public boolean equals(Object obj)
