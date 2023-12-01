@@ -2,7 +2,7 @@ package test.record;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.nio.file.Path;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
@@ -93,7 +93,7 @@ public class TestClockManager
 	@Test
 	void AssignsClockToCorrectDay()
 	{
-		ProductivityClock clock = new ProductivityClock(Path.of("07_11_2023"));
+		ProductivityClock clock = new ProductivityClock(LocalDate.of(2023, 11, 7));
 		List<Day> days = ClockManager.createDays(List.of(seventhNovember));
 
 		ClockManager.assignClocksToDays(List.of(clock), days);
@@ -104,12 +104,12 @@ public class TestClockManager
 	@Test
 	void CreatesNewClock_AndAssignsIt_IfIncorrectClockIsGiven()
 	{
-		ProductivityClock clock = new ProductivityClock(Path.of("08_12_2024"));
+		ProductivityClock clock = new ProductivityClock(LocalDate.of(2023, 12, 8));
 		List<Day> days = ClockManager.createDays(List.of(seventhNovember));
 
 		ClockManager.assignClocksToDays(List.of(clock), days);
 
-		ProductivityClock expected = new ProductivityClock(Path.of("07_11_2023"));
+		ProductivityClock expected = new ProductivityClock(LocalDate.of(2023, 11, 07));
 		assertEquals(expected, days.get(0).clock());
 	}
 
@@ -121,7 +121,7 @@ public class TestClockManager
 
 		ClockManager.assignClocksToDays(noClocks, days);
 
-		ProductivityClock expected = new ProductivityClock(Path.of("07_11_2023"));
+		ProductivityClock expected = new ProductivityClock(LocalDate.of(2023, 11, 07));
 		assertEquals(expected, days.get(0).clock());
 	}
 
