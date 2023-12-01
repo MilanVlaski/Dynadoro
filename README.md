@@ -17,20 +17,7 @@
 - show hours studied per day
 - show hours studied per week
 - If you exit the app, the previous state needs to finish.
-- We keep the ProducitivtyClock and Periods from History consistent by mapping all the Periods from the History to Days. A Day has Periods, and a Day must have a ProductivityClock.If extra Clocks exist, we delete them. And if a Day, doesn't have an image (Tuesday_23_November.png - DayVisual), it gets created.
-
-##### Logging
-1. Retrieve Periods from History.
-2. From Periods, create Days. Period can only belong to one day.
-3. A Day must have a ProductivityClock (there are details about how this is upheld).
-4. A Day must make its own ProductivityClock if it's missing one.
-5. Display Days, or a smaller subset of them, with details like: hours studied (daily, weekly, monthly).
-
-- retrievePeriods()
-- retrieveProdClocks()
-- createDays(periods, clocks)
-- if a day has unassigned clock, then create clock
-
+- We keep the ProducitivtyClock and Periods from History consistent by mapping all the Periods from the History to Days. A Day has Periods, and a Day must have a ProductivityClock. If extra Clocks exist, we delete them. And if a Day, doesn't have a Clock (Tuesday_23_November.png - DayVisual), it gets created.
 
 
 - while break ticks down you could have a charging battery filling up (maybe in thirds, battery with 3 bars)

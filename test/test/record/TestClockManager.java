@@ -100,7 +100,7 @@ public class TestClockManager
 	}
 
 	@Test
-	void CreatesNewClockAndAssignsIt_IfIncorrectClockIsGiven()
+	void CreatesNewClock_AndAssignsIt_IfIncorrectClockIsGiven()
 	{
 		ProductivityClock clock = new ProductivityClock(Path.of("08_12_2024"));
 		List<Day> days = ClockManager.createDays(List.of(seventhNovember));
@@ -112,7 +112,7 @@ public class TestClockManager
 	}
 
 	@Test
-	void CreatesNewClock_AndAssignsItToDay_IfNoClocksExist()
+	void CreatesNewClock_AndAssignsIt_IfNoClocksExist()
 	{
 		List<ProductivityClock> noClocks = Collections.emptyList();
 		List<Day> days = ClockManager.createDays(List.of(seventhNovember));
