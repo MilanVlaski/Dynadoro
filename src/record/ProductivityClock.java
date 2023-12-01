@@ -13,7 +13,6 @@ public class ProductivityClock
 	{ this.date = pathToDate(path); }
 
 	public ProductivityClock(LocalDate date)
-
 	{ this.date = date; }
 
 	public LocalDate date()

@@ -1,10 +1,6 @@
 package display.drawing;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.util.List;
-
-import javax.swing.JFrame;
 
 import record.*;
 
@@ -31,29 +27,10 @@ public class MainClass
 		List<Period> periods = history.retrievePeriods();
 		List<Day> days = ClockManager.createDays(periods);
 
-		for (Day d : days)
-			DayPanel.makeClock(d);
+		for (Day day : days)
+			ClockMaker.makeClock(day);
 
 		System.out.println("Drawing Clocks was attempted.");
 //		new MyFrame(day);
 	}
-}
-
-class MyFrame extends JFrame
-{
-
-	public MyFrame(Day day)
-	{
-		DayPanel dayPanel = new DayPanel(day);
-		add(dayPanel);
-
-		setSize(new Dimension(1000, 1000));
-		setBackground(new Color(255, 255, 255));
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setTitle("Todays clock");
-		setVisible(true);
-	}
-
-	private static final long serialVersionUID = 1L;
 }

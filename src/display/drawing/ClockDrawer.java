@@ -17,12 +17,11 @@ public class ClockDrawer
 	private static final Color clockBackground = new Color(235, 247, 252);
 	private static final Color grey = new Color(180, 190, 200);
 
-	public static void draw(Graphics2D g, List<Period> periods)
+	public static void draw(Graphics2D g, List<Period> periods, int size)
 	{
-		int large = 280;
 
-		int centerX = large / 2;
-		int centerY = large / 2;
+		int centerX = size / 2;
+		int centerY = size / 2;
 		int radius = (int) (Math.min(centerX, centerY) * 0.9);
 
 		//
@@ -145,12 +144,11 @@ public class ClockDrawer
 
 			int translatedCloserX = (int) (centerX + 0.75 * radius * Math.cos(angle));
 			int translatedCloserY = (int) (centerY + 0.75 * radius * Math.sin(angle));
-			drawHourNumber(g, i + 1, translatedCloserX, translatedCloserY, radius, angle);
+			drawHourNumber(g, i + 1, translatedCloserX, translatedCloserY, radius);
 		}
 	}
 
-	private static void drawHourNumber(Graphics2D g, int number, int x, int y, int radius,
-	                                   double angle)
+	private static void drawHourNumber(Graphics2D g, int number, int x, int y, int radius)
 	{
 		g.setColor(new Color(50, 60, 70)); // Adjust color as needed
 		int fontSize = (int) (radius * 0.15);

@@ -21,8 +21,8 @@ public class Day
 			throw new IllegalArgumentException("A day must have at least one period!");
 	}
 
-	public void draw(Graphics2D g)
-	{ ClockDrawer.draw(g, periods); }
+	public void draw(Graphics2D g, int size)
+	{ ClockDrawer.draw(g, periods, size); }
 
 	public int numberOfPeriods()
 	{ return periods.size(); }
