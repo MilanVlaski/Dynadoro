@@ -7,11 +7,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import record.Day;
-import record.UsageHistory;
+import record.*;
 
 public class ClockMaker
 {
@@ -57,4 +57,15 @@ public class ClockMaker
 	private static String filename(LocalDate localDate)
 	{ return clockFileFormat.format(localDate) + ".png"; }
 
+	public static void main(String[] args)
+	{
+		UsageHistory history = new UsageHistory();
+		List<Period> periods = history.retrievePeriods();
+		List<Day> days = ClockManager.createDays(periods);
+
+		for (Day day : days)
+			ClockMaker.makeClock(day);
+
+		System.out.println("Drawing Clocks was attempted.");
+	}
 }
