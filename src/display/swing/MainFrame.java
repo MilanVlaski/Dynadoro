@@ -140,6 +140,8 @@ public class MainFrame extends JFrame
 			clearControls();
 			showStartButton(/* stronger */);
 			paintBackground(new Color(217, 176, 243));
+			toFront();
+			requestFocus();
 		});
 	}
 
@@ -182,7 +184,10 @@ public class MainFrame extends JFrame
 
 	private void showButton(String text, int width, int height,
 	                        ActionListener actionListener)
-	{ CONTROL_PANEL.add(new CoolButton(text, width, height, actionListener)); }
+	{
+		CoolButton button = new CoolButton(text, width, height, actionListener);
+		CONTROL_PANEL.add(button);
+	}
 
 	private static final long serialVersionUID = 1L;
 }
