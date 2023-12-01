@@ -42,18 +42,15 @@ public class Day
 	{ return productivityClock; }
 
 	public Duration timeWorked()
-	{
-		return periods.stream()
-		        .filter(p -> p.type().equals(State.WORKING))
-		        .map(Period::duration)
-		        .reduce(Duration::plus)
-		        .orElse(Duration.ZERO);
-	}
+	{ return timeSpent(State.WORKING); }
 
 	public Duration timeRested()
+	{ return timeSpent(State.RESTING); }
+
+	private Duration timeSpent(State state)
 	{
 		return periods.stream()
-		        .filter(p -> p.type().equals(State.RESTING))
+		        .filter(p -> p.type().equals(state))
 		        .map(Period::duration)
 		        .reduce(Duration::plus)
 		        .orElse(Duration.ZERO);
