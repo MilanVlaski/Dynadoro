@@ -4,11 +4,15 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Stream;
 
-import record.Day;
-import record.Period;
+import record.*;
 
 public class ClockManager
 {
+
+	private History history;
+
+	public ClockManager(History history)
+	{ this.history = history; }
 
 	public static List<Day> createDays(List<Period> periods)
 	{
@@ -39,9 +43,18 @@ public class ClockManager
 					break;
 				}
 			}
+
 			if (!day.hasClock())
-				day.assignClock(new ProductivityClock(day.date()));
+				day.assignClock(new ProductivityClock(day));
 		}
+	}
+
+	public List<Day> allDays()
+	{
+		List<Day> days = createDays(history.retrievePeriods());
+		assignClocksToDays(history.retrieveClocks(), days);
+
+		return days;
 	}
 
 }

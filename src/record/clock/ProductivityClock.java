@@ -3,16 +3,27 @@ package record.clock;
 import java.nio.file.Path;
 import java.time.LocalDate;
 
+import record.Day;
+
 public class ProductivityClock
 {
 
 	private final LocalDate date;
 
+	/**
+	 * Takes an already existing path, and makes an object out of it.
+	 */
 	public ProductivityClock(Path path)
 	{ this.date = pathToDate(path); }
 
-	public ProductivityClock(LocalDate date)
-	{ this.date = date; }
+	/**
+	 * Creates the file based on this date.
+	 */
+	public ProductivityClock(Day day)
+	{
+		this.date = day.date();
+		ClockMaker.makeClock(day);
+	}
 
 	public LocalDate date()
 	{ return date; }
