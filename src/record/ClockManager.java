@@ -31,8 +31,14 @@ public class ClockManager
 			{
 				LocalDate clockDate = clock.date();
 				if (clockDate.equals(day.date()))
+				{
 					day.assignClock(clock);
-
+					break;
+				}
+			}
+			if (!day.hasClock())
+			{
+				day.assignClock(new ProductivityClock(day.date()));
 			}
 		}
 	}

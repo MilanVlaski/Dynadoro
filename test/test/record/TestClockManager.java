@@ -1,7 +1,6 @@
 package test.record;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
@@ -101,26 +100,27 @@ public class TestClockManager
 	}
 
 	@Test
-	void DoesNotAssignClock_ToDay_IfDifferentDates()
+	void CreatesNewClockAndAssignsIt_IfIncorrectClockIsGiven()
 	{
 		ProductivityClock clock = new ProductivityClock(Path.of("08_12_2024"));
 		List<Day> days = ClockManager.createDays(List.of(seventhNovember));
 
 		ClockManager.assignClocksToDays(List.of(clock), days);
 
-		assertFalse(days.get(0).hasClock());
+		ProductivityClock expected = new ProductivityClock(Path.of("07_11_2023"));
+		assertEquals(expected, days.get(0).clock());
 	}
 
-//	@Test
-//	void CreatesNewClock_AndAssignsItToDay_IfNoClocksExist()
-//	{
-//		List<ProductivityClock> noClocks = Collections.emptyList();
-//		List<Day> days = ClockManager.createDays(List.of(seventhNovember));
-//
-//		ClockManager.assignClocksToDays(noClocks, days);
-//
-//		ProductivityClock expected = new ProductivityClock(Path.of("07-11-2023"));
-//		assertEquals(expected, days.get(0).clock());
-//	}
+	@Test
+	void CreatesNewClock_AndAssignsItToDay_IfNoClocksExist()
+	{
+		List<ProductivityClock> noClocks = Collections.emptyList();
+		List<Day> days = ClockManager.createDays(List.of(seventhNovember));
+
+		ClockManager.assignClocksToDays(noClocks, days);
+
+		ProductivityClock expected = new ProductivityClock(Path.of("07_11_2023"));
+		assertEquals(expected, days.get(0).clock());
+	}
 
 }

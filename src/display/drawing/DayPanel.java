@@ -19,6 +19,9 @@ public class DayPanel extends JPanel
 {
 	private final Day day;
 
+	public static final DateTimeFormatter clockFileFormat = DateTimeFormatter
+	        .ofPattern("d_M_yyyy");
+
 	public DayPanel(Day day)
 	{ this.day = day; }
 
@@ -27,8 +30,7 @@ public class DayPanel extends JPanel
 	{
 		super.paint(g);
 		Graphics2D swingGraphics = (Graphics2D) g;
-
-		makeClock(day);
+		day.draw(swingGraphics);
 	}
 
 	public static void makeClock(Day day)
@@ -45,6 +47,7 @@ public class DayPanel extends JPanel
 		{
 			Files.createDirectories(path.getParent());
 			ImageIO.write(image, "png", path.toFile());
+
 		} catch (IOException e)
 		{
 			e.printStackTrace();
@@ -63,10 +66,10 @@ public class DayPanel extends JPanel
 	}
 
 	public static String filename(LocalDate localDate)
-	{
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("d_M_yyyy");
-		return format.format(localDate) + ".png";
-	}
+	{ return clockFileFormat.format(localDate) + ".png"; }
+
+	public static Path pathOfClock(LocalDate localDate)
+	{ return UsageHistory.Clocks.resolve(clockFileFormat.format(localDate) + ".png"); }
 
 	private static final long serialVersionUID = 1L;
 }
