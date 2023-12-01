@@ -19,8 +19,6 @@ public class ClockMaker
 	public static final DateTimeFormatter clockFileFormat = DateTimeFormatter
 	        .ofPattern("d_M_yyyy");
 
-	// TODO we are recreating all clocks, which is not efficient.
-
 	public static void makeClock(Day day)
 	{
 		int size = 280;
