@@ -31,7 +31,6 @@ public class ProductivityClock
 	{
 		this.date = day.date();
 		this.path = dateToPath(day.date());
-		ClockMaker.makeClockFile(day);
 	}
 
 	private Path dateToPath(LocalDate date)

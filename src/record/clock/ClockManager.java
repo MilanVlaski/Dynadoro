@@ -45,7 +45,10 @@ public class ClockManager
 			}
 
 			if (!day.hasClock())
+			{
 				day.assignClock(new ProductivityClock(day));
+				ClockMaker.makeClockFile(day);
+			}
 		}
 	}
 
