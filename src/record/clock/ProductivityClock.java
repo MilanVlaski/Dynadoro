@@ -35,7 +35,7 @@ public class ProductivityClock
 
 	private Path dateToPath(LocalDate date)
 	{
-		String filename = ClockMaker.clockFileFormat.format(date) + ".png";
+		String filename = ClockFileMaker.clockFileFormat.format(date) + ".png";
 		return UsageHistory.Clocks.resolve(filename);
 	}
 
@@ -45,7 +45,7 @@ public class ProductivityClock
 	private LocalDate pathToDate(Path path)
 	{
 		String filename = stripExtension(path.getFileName().toString());
-		return LocalDate.parse(filename, ClockMaker.clockFileFormat);
+		return LocalDate.parse(filename, ClockFileMaker.clockFileFormat);
 	}
 
 	private String stripExtension(String string)

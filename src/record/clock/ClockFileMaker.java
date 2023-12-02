@@ -13,7 +13,7 @@ import javax.imageio.ImageIO;
 
 import record.*;
 
-public class ClockMaker
+public class ClockFileMaker
 {
 
 	public static final DateTimeFormatter clockFileFormat = DateTimeFormatter
@@ -62,7 +62,7 @@ public class ClockMaker
 		List<Day> days = ClockManager.createDays(periods);
 
 		for (Day day : days)
-			ClockMaker.makeClockFile(day);
+			ClockFileMaker.makeClockFile(day);
 
 		System.out.println("Drawing Clocks was attempted.");
 	}
