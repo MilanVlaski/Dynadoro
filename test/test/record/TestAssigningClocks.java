@@ -47,6 +47,7 @@ public class TestAssigningClocks
 		assertEquals(clock, days.get(0).clock());
 	}
 
+	// TODO verify clock creation
 	@Test
 	void CreatesNewClock_AndAssignsIt_IfIncorrectClockIsGiven()
 	{
@@ -59,6 +60,7 @@ public class TestAssigningClocks
 		assertEquals(expected, days.get(0).clock());
 	}
 
+	// TODO verify clock creation
 	@Test
 	void CreatesNewClock_AndAssignsIt_IfNoClocksExist()
 	{
