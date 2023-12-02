@@ -96,7 +96,6 @@ public class MainFrame extends JFrame
 	private void clearControls()
 	{
 		CONTROL_PANEL.removeAll();
-		CONTROL_PANEL.invalidate();
 		CONTROL_PANEL.revalidate();
 		CONTROL_PANEL.repaint();
 	}

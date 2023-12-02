@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 import record.*;
 import record.display.DayPanel;
@@ -17,8 +18,12 @@ public class MainClass
 
 		List<Day> days = clockManager.allDays();
 
-		MainFrame mainFrame = new MainFrame();
-		mainFrame.showDays(days);
+		SwingUtilities.invokeLater(() ->
+		{
+			MainFrame mainFrame = new MainFrame();
+			mainFrame.showDays(days);
+		});
+
 	}
 
 }
@@ -30,7 +35,7 @@ class MainFrame extends JFrame
 
 	public MainFrame()
 	{
-		setSize(new Dimension(500, 500));
+		setSize(new Dimension(880, 500));
 
 		add(productivityPanel);
 
@@ -40,10 +45,16 @@ class MainFrame extends JFrame
 
 	public void showDays(List<Day> days)
 	{
+		reset();
 		for (Day day : days)
-		{
 			productivityPanel.add(new DayPanel(day));
-		}
+	}
+
+	private void reset()
+	{
+		productivityPanel.removeAll();
+		productivityPanel.revalidate();
+		productivityPanel.repaint();
 	}
 
 }

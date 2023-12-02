@@ -19,7 +19,7 @@ public class ClockMaker
 	public static final DateTimeFormatter clockFileFormat = DateTimeFormatter
 	        .ofPattern("d_M_yyyy");
 
-	public static void makeClock(Day day)
+	public static void makeClockFile(Day day)
 	{
 		int size = 280;
 		BufferedImage image = drawImage(day, size);
@@ -52,7 +52,7 @@ public class ClockMaker
 		}
 	}
 
-	private static String filename(LocalDate localDate)
+	public static String filename(LocalDate localDate)
 	{ return clockFileFormat.format(localDate) + ".png"; }
 
 	public static void main(String[] args)
@@ -62,7 +62,7 @@ public class ClockMaker
 		List<Day> days = ClockManager.createDays(periods);
 
 		for (Day day : days)
-			ClockMaker.makeClock(day);
+			ClockMaker.makeClockFile(day);
 
 		System.out.println("Drawing Clocks was attempted.");
 	}

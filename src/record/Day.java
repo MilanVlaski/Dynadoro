@@ -5,6 +5,8 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.swing.ImageIcon;
+
 import record.clock.ClockDrawer;
 import record.clock.ProductivityClock;
 
@@ -46,6 +48,9 @@ public class Day
 
 	public Duration timeRested()
 	{ return timeSpent(State.RESTING); }
+
+	public ImageIcon clockImage()
+	{ return productivityClock.image(); }
 
 	private Duration timeSpent(State state)
 	{
