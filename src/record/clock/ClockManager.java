@@ -1,6 +1,7 @@
 package record.clock;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -32,14 +33,17 @@ public class ClockManager
 
 	public static void assignClocksToDays(List<ProductivityClock> clocks, List<Day> days)
 	{
+		ArrayList<ProductivityClock> allClocks = new ArrayList<>(clocks);
+
 		for (Day day : days)
 		{
-			for (ProductivityClock clock : clocks)
+			for (ProductivityClock clock : allClocks)
 			{
 				LocalDate clockDate = clock.date();
 				if (clockDate.equals(day.date()))
 				{
 					day.assignClock(clock);
+					allClocks.remove(clock);
 					break;
 				}
 			}
@@ -57,7 +61,11 @@ public class ClockManager
 		List<Day> days = createDays(history.retrievePeriods());
 		List<ProductivityClock> clocks = history.retrieveClocks();
 		assignClocksToDays(clocks, days);
-		return days;
+
+		return days.stream()
+		        .sorted((d1,
+		                 d2) -> (int) (d2.date().toEpochDay() - d1.date().toEpochDay()))
+		        .toList();
 	}
 
 }
