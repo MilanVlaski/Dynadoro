@@ -1,12 +1,12 @@
 package record.clock;
 
 import java.awt.Dimension;
-import java.awt.HeadlessException;
 import java.util.List;
 
 import javax.swing.JFrame;
 
 import record.*;
+import record.display.DayPanel;
 
 public class MainClass
 {
@@ -17,7 +17,8 @@ public class MainClass
 
 		List<Day> days = clockManager.allDays();
 
-		new MainFrame(days);
+		MainFrame mainFrame = new MainFrame();
+		mainFrame.showDays(days);
 	}
 
 }
@@ -25,16 +26,24 @@ public class MainClass
 class MainFrame extends JFrame
 {
 
-	List<Day> days;
+	private ProductivityPanel productivityPanel = new ProductivityPanel();
 
-	public MainFrame(List<Day> days) throws HeadlessException
+	public MainFrame()
 	{
-		this.days = days;
-
 		setSize(new Dimension(500, 500));
+
+		add(productivityPanel);
 
 		setLocationRelativeTo(null);
 		setVisible(true);
+	}
+
+	public void showDays(List<Day> days)
+	{
+		for (Day day : days)
+		{
+			productivityPanel.add(new DayPanel(day));
+		}
 	}
 
 }
