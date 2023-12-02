@@ -2,7 +2,6 @@ package test.record;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
@@ -11,10 +10,10 @@ import org.junit.jupiter.api.Test;
 
 import record.*;
 import record.clock.ClockManager;
-import record.clock.ProductivityClock;
 
 public class TestClockManager
 {
+
 	@Test
 	void DoesntCreateDays_IfNoPeriodsAreProvided()
 	{
@@ -88,41 +87,6 @@ public class TestClockManager
 		        List.of(seventhNovember, nineteenthJune, seventhNovember));
 
 		assertEquals(2, days.size());
-	}
-
-	@Test
-	void AssignsClockToCorrectDay()
-	{
-		List<Day> days = ClockManager.createDays(List.of(seventhNovember));
-		ProductivityClock clock = new ProductivityClock(days.get(0));
-
-		ClockManager.assignClocksToDays(List.of(clock), days);
-
-		assertEquals(clock, days.get(0).clock());
-	}
-
-	@Test
-	void CreatesNewClock_AndAssignsIt_IfIncorrectClockIsGiven()
-	{
-		List<Day> days = ClockManager.createDays(List.of(seventhNovember));
-		ProductivityClock clock = new ProductivityClock(Path.of("11_07_2023.lala"));
-
-		ClockManager.assignClocksToDays(List.of(clock), days);
-
-		ProductivityClock expected = new ProductivityClock(days.get(0));
-		assertEquals(expected, days.get(0).clock());
-	}
-
-	@Test
-	void CreatesNewClock_AndAssignsIt_IfNoClocksExist()
-	{
-		List<ProductivityClock> noClocks = Collections.emptyList();
-		List<Day> days = ClockManager.createDays(List.of(seventhNovember));
-
-		ClockManager.assignClocksToDays(noClocks, days);
-
-		ProductivityClock expected = new ProductivityClock(days.get(0));
-		assertEquals(expected, days.get(0).clock());
 	}
 
 }

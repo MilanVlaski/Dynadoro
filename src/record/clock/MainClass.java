@@ -14,7 +14,8 @@ public class MainClass
 	public static void main(String[] args)
 	{
 		History history = new UsageHistory();
-		ClockManager clockManager = new ClockManager(history);
+		ClockFileMaker fileMaker = new ClockFileMaker();
+		ClockManager clockManager = new ClockManager(history, fileMaker);
 
 		List<Day> days = clockManager.allDays();
 

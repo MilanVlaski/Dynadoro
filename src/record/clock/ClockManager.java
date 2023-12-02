@@ -10,10 +10,14 @@ import record.*;
 public class ClockManager
 {
 
-	private History history;
+	private final History history;
+	private final ClockFileMaker fileMaker;
 
-	public ClockManager(History history)
-	{ this.history = history; }
+	public ClockManager(History history, ClockFileMaker fileMaker)
+	{
+		this.history = history;
+		this.fileMaker = fileMaker;
+	}
 
 	public static List<Day> createDays(List<Period> periods)
 	{
@@ -31,7 +35,7 @@ public class ClockManager
 	        .filter(period -> period.date().equals(date))
 	        .toList(); }
 
-	public static void assignClocksToDays(List<ProductivityClock> clocks, List<Day> days)
+	public void assignClocksToDays(List<ProductivityClock> clocks, List<Day> days)
 	{
 		ArrayList<ProductivityClock> allClocks = new ArrayList<>(clocks);
 
@@ -51,7 +55,7 @@ public class ClockManager
 			if (!day.hasClock())
 			{
 				day.assignClock(new ProductivityClock(day));
-				ClockFileMaker.makeClockFile(day);
+				fileMaker.makeClockFile(day);
 			}
 		}
 	}
