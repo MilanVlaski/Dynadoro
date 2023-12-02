@@ -35,7 +35,7 @@ class MainFrame extends JFrame
 
 	public MainFrame()
 	{
-		setSize(new Dimension(880, 500));
+		setSize(new Dimension(1200, 900));
 
 		add(productivityPanel);
 

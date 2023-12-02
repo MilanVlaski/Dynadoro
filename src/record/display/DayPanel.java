@@ -37,6 +37,6 @@ public class DayPanel extends JPanel
 	}
 
 	private String formatTime(Duration duration)
-	{ return ConsoleDisplay.displayedTime((int) duration.toSeconds()); }
+	{ return ConsoleDisplay.displayedMinutes((int) duration.toMinutes()); }
 
 }

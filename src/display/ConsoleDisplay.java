@@ -17,6 +17,14 @@ public class ConsoleDisplay extends Display
 		        String.format("%02d:%02d", minutes, remainingSeconds);
 	}
 
+	public static String displayedMinutes(int mins)
+	{
+		int hours = mins / 60;
+		int minutes = mins % 60;
+
+		return String.format("%02d:%02d", hours, minutes);
+	}
+
 	public static String idleMessage()
 	{ return displayedTime(0) + "\nPress 1 to start studying"; }
 
@@ -75,10 +83,10 @@ public class ConsoleDisplay extends Display
 
 	@Override
 	public void tickTime()
-	{ show(timer.seconds(LocalDateTime.now()));}
+	{ show(timer.seconds(LocalDateTime.now())); }
 
 	@Override
 	public void setModel(Timer timer)
-	{this.timer = timer;}
+	{ this.timer = timer; }
 
 }
