@@ -21,9 +21,8 @@ public class ClockFileMaker
 
 	public static void makeClockFile(Day day)
 	{
-		int size = 280;
-		BufferedImage image = drawImage(day, size);
 		String filename = filename(day.date());
+		BufferedImage image = drawImage(day, 280);
 		makeImageFile(filename, image);
 	}
 
