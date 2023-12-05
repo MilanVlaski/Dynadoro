@@ -39,6 +39,14 @@ public class ClockManager
 	{
 		ArrayList<ProductivityClock> allClocks = new ArrayList<>(clocks);
 
+		assignExistingClocks(days, allClocks);
+
+		createClocksIfMissing(days);
+	}
+
+	private void assignExistingClocks(List<Day> days,
+	                                  ArrayList<ProductivityClock> allClocks)
+	{
 		for (Day day : days)
 		{
 			for (ProductivityClock clock : allClocks)
@@ -53,11 +61,9 @@ public class ClockManager
 			}
 
 		}
-
-		createClocksForDaysWithoutThem(days);
 	}
 
-	private void createClocksForDaysWithoutThem(List<Day> days)
+	private void createClocksIfMissing(List<Day> days)
 	{
 		for (Day day : days)
 			if (!day.hasClock())

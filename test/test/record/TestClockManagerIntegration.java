@@ -14,7 +14,7 @@ import record.*;
 import record.clock.ClockFileMaker;
 import record.clock.ClockManager;
 
-public class TestDisplayClocks
+public class TestClockManagerIntegration
 {
 
 	ClockFileMaker dummy = mock(ClockFileMaker.class);
