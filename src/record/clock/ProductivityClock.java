@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import javax.swing.ImageIcon;
 
 import record.Day;
-import record.UsageHistory;
 
 public class ProductivityClock
 {
@@ -30,13 +29,7 @@ public class ProductivityClock
 	public ProductivityClock(Day day)
 	{
 		this.date = day.date();
-		this.path = dateToPath(day.date());
-	}
-
-	private Path dateToPath(LocalDate date)
-	{
-		String filename = ClockFileMaker.clockFileFormat.format(date) + ".png";
-		return UsageHistory.Clocks.resolve(filename);
+		this.path = ClockFileMaker.pathOfClockFile(day.date());
 	}
 
 	public LocalDate date()
@@ -45,7 +38,7 @@ public class ProductivityClock
 	private LocalDate pathToDate(Path path)
 	{
 		String filename = stripExtension(path.getFileName().toString());
-		return LocalDate.parse(filename, ClockFileMaker.clockFileFormat);
+		return LocalDate.parse(filename, ClockFileMaker.clockFilenameFormat);
 	}
 
 	private String stripExtension(String string)
@@ -69,6 +62,7 @@ public class ProductivityClock
 	public boolean equals(Object obj)
 	{
 		ProductivityClock clock = (ProductivityClock) obj;
-		return clock.date.equals(date);
+		return clock.date.equals(date)
+		        && path.equals(clock.path);
 	}
 }

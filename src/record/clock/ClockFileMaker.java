@@ -16,7 +16,7 @@ import record.*;
 public class ClockFileMaker
 {
 
-	public static final DateTimeFormatter clockFileFormat = DateTimeFormatter
+	public static final DateTimeFormatter clockFilenameFormat = DateTimeFormatter
 	        .ofPattern("d_M_yyyy");
 
 	public void makeClockFile(Day day)
@@ -39,7 +39,7 @@ public class ClockFileMaker
 
 	private static void makeImageFile(String fileName, BufferedImage image)
 	{
-		Path path = UsageHistory.Clocks.resolve(fileName);
+		Path path = pathOfClockFile(fileName);
 		try
 		{
 			Files.createDirectories(path.getParent());
@@ -51,8 +51,14 @@ public class ClockFileMaker
 		}
 	}
 
+	public static Path pathOfClockFile(LocalDate date)
+	{ return pathOfClockFile(filename(date)); }
+
+	public static Path pathOfClockFile(String fileName)
+	{ return UsageHistory.ClocksFolder.resolve(fileName); }
+
 	public static String filename(LocalDate localDate)
-	{ return clockFileFormat.format(localDate) + ".png"; }
+	{ return clockFilenameFormat.format(localDate) + ".png"; }
 
 	public static void main(String[] args)
 	{

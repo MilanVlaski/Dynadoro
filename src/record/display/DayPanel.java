@@ -39,4 +39,5 @@ public class DayPanel extends JPanel
 	private String formatTime(Duration duration)
 	{ return ConsoleDisplay.displayedMinutes((int) duration.toMinutes()); }
 
+	private static final long serialVersionUID = 1L;
 }

@@ -58,4 +58,5 @@ class MainFrame extends JFrame
 		productivityPanel.repaint();
 	}
 
+	private static final long serialVersionUID = 1L;
 }

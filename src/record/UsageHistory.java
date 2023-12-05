@@ -17,18 +17,18 @@ public class UsageHistory implements History
 	private static final String appName = "Dynadoro";
 	private static final Path directory = Paths.get(userHome, appName);
 
-	private static final Path periods = directory.resolve("periods.txt");
-	public static final Path Clocks = directory.resolve("Clocks");
+	private static final Path periodsFile = directory.resolve("periods.txt");
+	public static final Path ClocksFolder = directory.resolve("Clocks");
 
 	@Override
 	public String read()
 	{
-		if (Files.notExists(periods))
+		if (Files.notExists(periodsFile))
 			return "";
 		else
 			try
 			{
-				return Files.readString(periods);
+				return Files.readString(periodsFile);
 
 			} catch (IOException e)
 			{
@@ -40,13 +40,13 @@ public class UsageHistory implements History
 	@Override
 	public void write(String text)
 	{
-		try (BufferedWriter writer = Files.newBufferedWriter(periods,
+		try (BufferedWriter writer = Files.newBufferedWriter(periodsFile,
 		        StandardOpenOption.APPEND))
 		{
-			if (Files.notExists(periods))
+			if (Files.notExists(periodsFile))
 			{
-				Files.createDirectories(periods.getParent());
-				Files.createFile(periods);
+				Files.createDirectories(periodsFile.getParent());
+				Files.createFile(periodsFile);
 			}
 
 			writer.write(text);
@@ -100,8 +100,9 @@ public class UsageHistory implements History
 		List<ProductivityClock> clocks = new ArrayList<>();
 
 		try (DirectoryStream<Path> stream = Files
-		        .newDirectoryStream(Paths.get(Clocks.toUri())))
+		        .newDirectoryStream(Paths.get(ClocksFolder.toUri())))
 		{
+
 			for (Path path : stream)
 				clocks.add(new ProductivityClock(path));
 
@@ -115,8 +116,8 @@ public class UsageHistory implements History
 
 	public static void main(String[] args)
 	{
-		System.out.println("periods.txt file exists: " + Files.exists(periods));
-		System.out.println("Clocks folder exists: " + Files.exists(Clocks));
+		System.out.println("periods.txt file exists: " + Files.exists(periodsFile));
+		System.out.println("Clocks folder exists: " + Files.exists(ClocksFolder));
 
 		UsageHistory history = new UsageHistory();
 		System.out.println("Number of Clock files: " + history.retrieveClocks().size());
