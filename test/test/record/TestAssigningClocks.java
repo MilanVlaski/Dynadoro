@@ -1,6 +1,7 @@
 package test.record;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.verify;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
@@ -59,10 +60,9 @@ public class TestAssigningClocks
 		ProductivityClock expected = new ProductivityClock(day);
 		assertEquals(expected, day.clock());
 
-//		verify(dummyFileMaker).makeClockFile(day);
+		verify(dummyFileMaker).makeClockFile(day);
 	}
 
-	// TODO verify clock creation
 	@Test
 	void CreatesNewClock_AndAssignsIt_IfNoClocksExist()
 	{
@@ -75,6 +75,6 @@ public class TestAssigningClocks
 		ProductivityClock expected = new ProductivityClock(day);
 		assertEquals(expected, day.clock());
 
-//		verify(dummyFileMaker).makeClockFile(day);
+		verify(dummyFileMaker).makeClockFile(day);
 	}
 }
