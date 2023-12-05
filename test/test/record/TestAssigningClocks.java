@@ -20,7 +20,7 @@ public class TestAssigningClocks
 	@Mock
 	History dummyHistory;
 	@Mock
-	ClockFileMaker dummyMaker;
+	ClockFileMaker dummyFileMaker;
 
 	@InjectMocks
 	ClockManager clockManager;
@@ -47,7 +47,6 @@ public class TestAssigningClocks
 		assertEquals(clock, days.get(0).clock());
 	}
 
-	// TODO verify clock creation
 	@Test
 	void CreatesNewClock_AndAssignsIt_IfIncorrectClockIsGiven()
 	{
@@ -56,8 +55,11 @@ public class TestAssigningClocks
 
 		clockManager.assignClocksToDays(List.of(clock), days);
 
-		ProductivityClock expected = new ProductivityClock(days.get(0));
-		assertEquals(expected, days.get(0).clock());
+		Day day = days.get(0);
+		ProductivityClock expected = new ProductivityClock(day);
+		assertEquals(expected, day.clock());
+
+//		verify(dummyFileMaker).makeClockFile(day);
 	}
 
 	// TODO verify clock creation
@@ -69,7 +71,10 @@ public class TestAssigningClocks
 
 		clockManager.assignClocksToDays(noClocks, days);
 
-		ProductivityClock expected = new ProductivityClock(days.get(0));
-		assertEquals(expected, days.get(0).clock());
+		Day day = days.get(0);
+		ProductivityClock expected = new ProductivityClock(day);
+		assertEquals(expected, day.clock());
+
+//		verify(dummyFileMaker).makeClockFile(day);
 	}
 }
