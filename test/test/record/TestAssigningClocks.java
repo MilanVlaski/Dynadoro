@@ -49,7 +49,7 @@ public class TestAssigningClocks
 	}
 
 	@Test
-	void CreatesNewClock_AndAssignsIt_IfIncorrectClockIsGiven()
+	void CreatesNewClock_AndAssignsIt_IfClockHasDifferentDate()
 	{
 		List<Day> days = ClockManager.createDays(List.of(seventhNovember));
 		ProductivityClock clock = new ProductivityClock(Path.of("11_07_2023.lala"));
