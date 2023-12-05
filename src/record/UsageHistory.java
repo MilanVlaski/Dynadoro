@@ -70,15 +70,18 @@ public class UsageHistory implements History
 
 		while (matcher.find())
 		{
+			// matched strings
 			String dateString = matcher.group(1);
 			String stateString = matcher.group(3);
 			String startTimeString = matcher.group(4);
 			String endTimeString = matcher.group(5);
 
+			// parsed objects
 			LocalDate date = LocalDate.parse(dateString, Period.dateFormat);
 			LocalTime startTime = LocalTime.parse(startTimeString, Period.hourFormat);
 			LocalTime endTime = LocalTime.parse(endTimeString, Period.hourFormat);
 
+			// combining date and time into datetime
 			LocalDateTime startDateTime = LocalDateTime.of(date, startTime);
 			LocalDateTime endDateTime = LocalDateTime.of(date, endTime);
 
