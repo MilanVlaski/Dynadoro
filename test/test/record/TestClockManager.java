@@ -15,7 +15,7 @@ public class TestClockManager
 {
 
 	@Test
-	void DoesntCreateDays_IfNoPeriodsAreProvided()
+	void DoesNotCreateDays_IfNoPeriodsAreProvided()
 	{
 		List<Day> days = ClockManager.createDays(Collections.emptyList());
 		assertEquals(0, days.size());
@@ -23,7 +23,7 @@ public class TestClockManager
 
 	static Period seventhNovember = new Period(State.WORKING,
 	        LocalDateTime.of(2023, 11, 7, 0, 0),
-	        LocalDateTime.of(2023, 11, 7, 0, 50));
+	        LocalDateTime.of(2023, 11, 7, 0, 0));
 	static Period nineteenthJune = new Period(State.WORKING,
 	        LocalDateTime.of(2023, 6, 19, 0, 0),
 
@@ -50,7 +50,7 @@ public class TestClockManager
 	}
 
 	@Test
-	void CreatesOneDay_FromTwoPeriods_OnTheSameDay()
+	void CreatesOneDay_FromTwoPeriods_BelongingToTheSameDay()
 	{
 		List<Day> days = ClockManager
 		        .createDays(List.of(seventhNovember, seventhNovember));

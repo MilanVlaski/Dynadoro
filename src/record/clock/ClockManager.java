@@ -52,12 +52,19 @@ public class ClockManager
 				}
 			}
 
+		}
+
+		createClocksForDaysWithoutThem(days);
+	}
+
+	private void createClocksForDaysWithoutThem(List<Day> days)
+	{
+		for (Day day : days)
 			if (!day.hasClock())
 			{
 				day.assignClock(new ProductivityClock(day));
 				fileMaker.makeClockFile(day);
 			}
-		}
 	}
 
 	public List<Day> allDays()
