@@ -19,7 +19,6 @@ class TestPathToDateConversion
 		        Path.of("C://blabla//bla//07_11_2023.blabla"));
 
 		assertEquals(LocalDate.of(2023, 11, 7), clock.date());
-
 	}
 
 	@Test
@@ -29,7 +28,6 @@ class TestPathToDateConversion
 		        Path.of("07_11_2023.blabla"));
 
 		assertEquals(LocalDate.of(2023, 11, 7), clock.date());
-
 	}
 
 }
