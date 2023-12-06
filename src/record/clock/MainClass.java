@@ -35,7 +35,8 @@ class MainFrame extends JFrame
 
 	public MainFrame()
 	{
-		setSize(new Dimension(800, 900));
+
+		setSize(new Dimension(850, 900));
 
 		JScrollPane scrollPane = new JScrollPane(productivityPanel);
 
