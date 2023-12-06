@@ -82,7 +82,9 @@ public class TestAssigningClocks
 	@Test
 	void CreatesNewClock_AndAssignsIt_IfClockWasMadeToday()
 	{
-		Period todaysPeriod = seventhNovember;
+		Period todaysPeriod = new Period(State.WORKING,
+		        LocalDateTime.of(2023, 12, 6, 0, 0),
+		        LocalDateTime.of(2023, 12, 6, 0, 0));
 
 		List<Day> days = ClockManager.createDays(List.of(todaysPeriod));
 		Day day = days.get(0);

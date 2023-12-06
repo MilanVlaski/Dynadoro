@@ -51,8 +51,12 @@ public class ClockManager
 		{
 			for (ProductivityClock clock : allClocks)
 			{
-				LocalDate clockDate = clock.date();
-				if (clockDate.equals(day.date()))
+				if (day.date().equals(LocalDate.of(2023, 12, 6)))
+				{
+					continue;
+				}
+
+				if (clock.date().equals(day.date()))
 				{
 					day.assignClock(clock);
 					allClocks.remove(clock);
@@ -67,13 +71,6 @@ public class ClockManager
 	{
 		for (Day day : days)
 		{
-
-			if (day.date().equals(LocalDate.of(2023, 11, 7)))
-			{
-				day.assignClock(new ProductivityClock(day));
-				fileMaker.makeClockFile(day);
-			}
-
 			if (!day.hasClock())
 			{
 				day.assignClock(new ProductivityClock(day));
