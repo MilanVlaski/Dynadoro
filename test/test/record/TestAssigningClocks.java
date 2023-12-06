@@ -77,4 +77,24 @@ public class TestAssigningClocks
 
 		verify(dummyFileMaker).makeClockFile(day);
 	}
+
+	// if a clock exists, and the day isn't over, the image may need redrawing
+	@Test
+	void CreatesNewClock_AndAssignsIt_IfClockWasMadeToday()
+	{
+		Period todaysPeriod = seventhNovember;
+
+		List<Day> days = ClockManager.createDays(List.of(todaysPeriod));
+		Day day = days.get(0);
+
+		ProductivityClock todaysClock = new ProductivityClock(day);
+		List<ProductivityClock> clocks = List.of(todaysClock);
+		//
+
+		clockManager.assignClocksToDays(clocks, days);
+
+		assertEquals(todaysClock, day.clock());
+
+		verify(dummyFileMaker).makeClockFile(day);
+	}
 }

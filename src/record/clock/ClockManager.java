@@ -41,7 +41,7 @@ public class ClockManager
 
 		assignExistingClocks(days, allClocks);
 
-		createClocksIfMissing(days);
+		createAndAssignClocksIfMissing(days);
 	}
 
 	private void assignExistingClocks(List<Day> days,
@@ -63,7 +63,7 @@ public class ClockManager
 		}
 	}
 
-	private void createClocksIfMissing(List<Day> days)
+	private void createAndAssignClocksIfMissing(List<Day> days)
 	{
 		for (Day day : days)
 			if (!day.hasClock())
