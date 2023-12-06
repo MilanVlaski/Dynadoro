@@ -66,11 +66,20 @@ public class ClockManager
 	private void createAndAssignClocksIfMissing(List<Day> days)
 	{
 		for (Day day : days)
+		{
+
+			if (day.date().equals(LocalDate.of(2023, 11, 7)))
+			{
+				day.assignClock(new ProductivityClock(day));
+				fileMaker.makeClockFile(day);
+			}
+
 			if (!day.hasClock())
 			{
 				day.assignClock(new ProductivityClock(day));
 				fileMaker.makeClockFile(day);
 			}
+		}
 	}
 
 	public List<Day> allDays()
