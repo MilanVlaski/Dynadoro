@@ -3,8 +3,7 @@ package record.clock;
 import java.awt.Dimension;
 import java.util.List;
 
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 
 import record.*;
 import record.display.DayPanel;
@@ -36,9 +35,11 @@ class MainFrame extends JFrame
 
 	public MainFrame()
 	{
-		setSize(new Dimension(1200, 900));
+		setSize(new Dimension(800, 900));
 
-		add(productivityPanel);
+		JScrollPane scrollPane = new JScrollPane(productivityPanel);
+
+		add(scrollPane);
 
 		setLocationRelativeTo(null);
 		setVisible(true);

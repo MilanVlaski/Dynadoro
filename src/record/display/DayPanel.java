@@ -32,7 +32,7 @@ public class DayPanel extends JPanel
 		add(timeRested);
 		add(date);
 
-		setBackground(new Color(155, 213, 235));
+		setBackground(new Color(189, 228, 242));
 	}
 
 	private String formatTime(Duration duration)

@@ -80,11 +80,10 @@ public class TestAssigningClocks
 
 	// if a clock exists, and the day isn't over, the image may need redrawing
 	@Test
-	void CreatesNewClock_AndAssignsIt_IfClockWasMadeToday()
+	void CreatesNewClock_AndAssignsIt_IfClockWasMadeToday_FLAKY()
 	{
-		Period todaysPeriod = new Period(State.WORKING,
-		        LocalDateTime.of(2023, 12, 6, 0, 0),
-		        LocalDateTime.of(2023, 12, 6, 0, 0));
+		LocalDateTime now = LocalDateTime.now();
+		Period todaysPeriod = new Period(State.WORKING, now, now);
 
 		List<Day> days = ClockManager.createDays(List.of(todaysPeriod));
 		Day day = days.get(0);
@@ -96,7 +95,6 @@ public class TestAssigningClocks
 		clockManager.assignClocksToDays(clocks, days);
 
 		assertEquals(todaysClock, day.clock());
-
 		verify(dummyFileMaker).makeClockFile(day);
 	}
 }

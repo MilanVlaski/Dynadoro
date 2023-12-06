@@ -51,12 +51,9 @@ public class ClockManager
 		{
 			for (ProductivityClock clock : allClocks)
 			{
-				if (day.date().equals(LocalDate.of(2023, 12, 6)))
-				{
-					continue;
-				}
 
-				if (clock.date().equals(day.date()))
+				if (clock.date().equals(day.date())
+				        && !LocalDate.now().equals(day.date())) // its not today
 				{
 					day.assignClock(clock);
 					allClocks.remove(clock);
