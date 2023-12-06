@@ -8,6 +8,6 @@ public class ProductivityPanel extends JPanel
 {
 
 	public ProductivityPanel()
-	{ setBackground(Color.blue); }
+	{ setBackground(new Color(21, 91, 138)); }
 
 }
