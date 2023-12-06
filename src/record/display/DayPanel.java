@@ -14,7 +14,7 @@ public class DayPanel extends JPanel
 
 	public DayPanel(Day day)
 	{
-		setPreferredSize(new Dimension(220, 220));
+		setPreferredSize(new Dimension(230, 220));
 
 		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("EEEE, d, LLLL, yyyy");
 
