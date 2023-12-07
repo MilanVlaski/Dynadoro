@@ -24,8 +24,8 @@ public class MainFrame extends JFrame
 	public static final Font CLOCK_FONT = new Font("Loto", Font.PLAIN, 50);
 
 	public static final Color IDLE = new Color(133, 204, 230);
-	public static final Color WORK = new Color(126, 223, 202);;
-	public static final Color REST = new Color(207, 176, 243);
+	public static final Color WORK = new Color(126, 223, 202);
+	public static final Color REST = new Color(176, 176, 243);
 
 	public Timer timer;
 
@@ -192,7 +192,10 @@ public class MainFrame extends JFrame
 		{
 			clearControls();
 			showStartButton(/* stronger */);
-			paintBackground(new Color(217, 176, 243));
+			paintBackground(new Color(
+			        REST.getRed() + 15,
+			        REST.getGreen(),
+			        REST.getBlue()));
 			toFront();
 			requestFocus();
 		});
@@ -205,7 +208,10 @@ public class MainFrame extends JFrame
 			clearControls();
 			showResumeButton();
 			showStartButton(/* lighter */);
-			paintBackground(new Color(207, 182, 237));
+			paintBackground(new Color(
+			        REST.getRed(),
+			        REST.getGreen(),
+			        REST.getBlue()));
 		});
 	}
 
