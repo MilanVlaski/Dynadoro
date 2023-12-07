@@ -208,10 +208,7 @@ public class MainFrame extends JFrame
 			clearControls();
 			showResumeButton();
 			showStartButton(/* lighter */);
-			paintBackground(new Color(
-			        REST.getRed(),
-			        REST.getGreen(),
-			        REST.getBlue()));
+			paintBackground(REST);
 		});
 	}
 
@@ -222,7 +219,7 @@ public class MainFrame extends JFrame
 			clearControls();
 			showResumeButton();
 			showBreakButton();
-			paintBackground(new Color(134, 215, 197));
+			paintBackground(WORK);
 		});
 	}
 
@@ -236,9 +233,9 @@ public class MainFrame extends JFrame
 		        color.getGreen() / 10,
 		        color.getBlue() / 10));
 		TOP_PANEL.setBackground(new Color(
-		        color.getRed() - 30,
-		        color.getGreen() - 30,
-		        color.getBlue() - 30));
+		        Math.max(color.getRed() - 30, 0),
+		        Math.max(color.getGreen() - 30, 0),
+		        Math.max(color.getBlue() - 30, 0)));
 	}
 
 	private void showButton(String text, int width, int height,
