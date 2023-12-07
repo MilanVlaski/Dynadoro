@@ -1,6 +1,7 @@
 package record.display;
 
 import java.awt.Dimension;
+import java.awt.FontMetrics;
 import java.util.List;
 
 import javax.swing.*;
@@ -18,6 +19,8 @@ public class ProductivityFrame extends JFrame
 		setSize(new Dimension(850, 900));
 
 		JScrollPane scrollPane = new JScrollPane(productivityPanel);
+		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		fixScrolling(scrollPane);
 
 		add(scrollPane);
 
@@ -40,6 +43,22 @@ public class ProductivityFrame extends JFrame
 	}
 
 	private static final long serialVersionUID = 1L;
+
+	public static void fixScrolling(JScrollPane scrollpane)
+	{
+		JLabel systemLabel = new JLabel();
+		FontMetrics metrics = systemLabel.getFontMetrics(systemLabel.getFont());
+		int lineHeight = metrics.getHeight();
+		int charWidth = metrics.getMaxAdvance();
+
+		JScrollBar systemVBar = new JScrollBar(JScrollBar.VERTICAL);
+		JScrollBar systemHBar = new JScrollBar(JScrollBar.HORIZONTAL);
+		int verticalIncrement = systemVBar.getUnitIncrement();
+		int horizontalIncrement = systemHBar.getUnitIncrement();
+
+		scrollpane.getVerticalScrollBar().setUnitIncrement(lineHeight * verticalIncrement);
+		scrollpane.getHorizontalScrollBar().setUnitIncrement(charWidth * horizontalIncrement);
+	}
 
 	public static void main(String[] args)
 	{

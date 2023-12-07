@@ -1,7 +1,7 @@
 package display.swing;
 
 import java.awt.*;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -29,8 +29,11 @@ public class MainFrame extends JFrame
 
 	public Timer timer;
 
+	private int xOffset, yOffset;
+
 	public MainFrame()
 	{
+		setUndecorated(true);
 
 		mainPanelSetup();
 		locationSetup();
@@ -44,16 +47,46 @@ public class MainFrame extends JFrame
 		add(MAIN_PANEL, BorderLayout.CENTER);
 		add(TOP_PANEL, BorderLayout.NORTH);
 
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowAdapter()
+		{
+			@Override
+			public void windowClosing(java.awt.event.WindowEvent windowEvent)
+			{ closeApplication(); }
+		});
+
+		makeDraggable();
+
 		setVisible(true);
 	}
 
+	private void makeDraggable()
+	{
+		addMouseListener(new MouseAdapter()
+		{
+			public void mousePressed(MouseEvent e)
+			{
+				xOffset = e.getX();
+				yOffset = e.getY();
+			}
+		});
+
+		addMouseMotionListener(new MouseMotionAdapter()
+		{
+			public void mouseDragged(MouseEvent e)
+			{ setLocation(e.getXOnScreen() - xOffset, e.getYOnScreen() - yOffset); }
+		});
+	}
+
+	private void closeApplication()
+	{ System.exit(0); }
+
 	private void layoutTopPanel()
 	{
-		JButton reset = new CoolButton("Reset", 70, 18,
+		JButton reset = new CoolButton("Reset", 70, 24,
 		        (e) -> timer.reset(LocalDateTime.now()), 12);
 		JButton x = new CoolButton("X", 50, 16,
-		        (e) -> timer.reset(LocalDateTime.now()), 12);
+		        (e) -> closeApplication(), 12);
 		JButton history = new CoolButton("History", 75, 16,
 		        (e) -> SwingUtilities.invokeLater(() ->
 		        {

@@ -17,7 +17,6 @@ public class DayPanel extends JPanel
 	{
 		setLayout(new GridBagLayout());
 		setBackground(new Color(189, 228, 242));
-		setBorder(new EmptyBorder(6, 6, 6, 6));
 
 		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("EEEE, d, LLLL, yyyy");
 
