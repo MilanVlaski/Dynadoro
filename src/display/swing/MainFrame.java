@@ -69,7 +69,11 @@ public class MainFrame extends JFrame
 			{
 				xOffset = e.getX();
 				yOffset = e.getY();
+				setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
 			}
+
+			public void mouseReleased(MouseEvent e)
+			{ setCursor(Cursor.getDefaultCursor()); }
 		});
 
 		addMouseMotionListener(new MouseMotionAdapter()
