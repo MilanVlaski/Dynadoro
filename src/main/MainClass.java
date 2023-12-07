@@ -1,7 +1,10 @@
 package main;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Scanner;
+
+import javax.swing.SwingUtilities;
 
 import display.ConsoleDisplay;
 import display.Display;
@@ -9,6 +12,7 @@ import display.swing.SwingDisplay;
 import record.*;
 import record.clock.ClockFileMaker;
 import record.clock.ClockManager;
+import record.display.ProductivityFrame;
 import sound.SoundPlayer;
 import timer.Timer;
 import timer.counter.Counter;
@@ -26,8 +30,20 @@ public class MainClass
 	private static void startSwingApplication()
 	{
 		Display display = new SwingDisplay();
-		Timer timer = initTimer(display);
-		startRecording(timer);
+		Counter counter = new ScheduledCounter(display, new SoundPlayer());
+		Timer timer = new Timer(display, counter, LocalDateTime.now());
+		display.setModel(timer);
+		//
+
+		History history = new UsageHistory();
+		UsageRecord record = new UsageRecord(history);
+
+		timer.startRecording(record);
+
+		ClockFileMaker fileMaker = new ClockFileMaker();
+		ClockManager clockManager = new ClockManager(history, fileMaker);
+
+		timer.setClockManager(clockManager);
 	}
 
 	private static void startConsoleApplication()
@@ -70,6 +86,14 @@ public class MainClass
 
 		ClockFileMaker fileMaker = new ClockFileMaker();
 		ClockManager clockManager = new ClockManager(history, fileMaker);
+
+		List<Day> days = clockManager.allDays();
+
+		SwingUtilities.invokeLater(() ->
+		{
+			ProductivityFrame productivityFrame = new ProductivityFrame();
+			productivityFrame.showDays(days);
+		});
 
 		timer.startRecording(record);
 	}

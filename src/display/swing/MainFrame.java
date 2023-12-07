@@ -3,10 +3,13 @@ package display.swing;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.swing.*;
 
 import display.ConsoleDisplay;
+import record.Day;
+import record.display.ProductivityFrame;
 import timer.Timer;
 
 public class MainFrame extends JFrame
@@ -47,9 +50,17 @@ public class MainFrame extends JFrame
 
 	private void layoutTopPanel()
 	{
-		JButton reset = new CoolButton("Reset", 70, 18, (e) -> timer.reset(LocalDateTime.now()), 12);
-		JButton x = new CoolButton("X", 50, 16, (e) -> timer.reset(LocalDateTime.now()), 12);
-		JButton history = new CoolButton("History", 75, 16, (e) -> timer.reset(LocalDateTime.now()), 12);
+		JButton reset = new CoolButton("Reset", 70, 18,
+		        (e) -> timer.reset(LocalDateTime.now()), 12);
+		JButton x = new CoolButton("X", 50, 16,
+		        (e) -> timer.reset(LocalDateTime.now()), 12);
+		JButton history = new CoolButton("History", 75, 16,
+		        (e) -> SwingUtilities.invokeLater(() ->
+		        {
+			        List<Day> days = timer.retrieveDays();
+			        ProductivityFrame productivityFrame = new ProductivityFrame();
+			        productivityFrame.showDays(days);
+		        }), 12);
 
 		TOP_PANEL.setLayout(new BoxLayout(TOP_PANEL, BoxLayout.X_AXIS));
 

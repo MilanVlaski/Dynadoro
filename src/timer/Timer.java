@@ -1,9 +1,12 @@
 package timer;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import display.Display;
+import record.Day;
 import record.UsageRecord;
+import record.clock.ClockManager;
 import timer.counter.Counter;
 import timer.state.Idle;
 import timer.state.TimerState;
@@ -16,6 +19,7 @@ public class Timer
 
 	private TimerState state;
 	private UsageRecord record;
+	private ClockManager clockManager;
 
 	public Timer(Display display, Counter counter, LocalDateTime now)
 	{
@@ -59,5 +63,11 @@ public class Timer
 
 	public void reset(LocalDateTime now)
 	{ changeState(new Idle(this, now)); }
+
+	public List<Day> retrieveDays()
+	{ return clockManager.allDays(); }
+
+	public void setClockManager(ClockManager clockManager)
+	{ this.clockManager = clockManager; }
 
 }
