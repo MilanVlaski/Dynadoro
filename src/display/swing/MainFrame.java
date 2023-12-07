@@ -208,7 +208,7 @@ public class MainFrame extends JFrame
 			clearControls();
 			showResumeButton();
 			showStartButton(/* lighter */);
-			paintBackground(REST);
+			paintBackground(new Color(168, 168, 224));
 		});
 	}
 

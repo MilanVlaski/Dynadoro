@@ -11,9 +11,6 @@
 - I can see images of clocks representing my past study and break sessions in a day. I can see which date and weekday the clocks belong to. When I open a clock, I see an enlarged image, with a big date and weekday at the bottom. Also time spent working and resting.
 
 ## TODO
-- when assigning clocks, make sure that clocks that are TODAY, get recreated, no matter what
-- verify clock creation in testassigning clocks
-- ask chatgpt if its ok to have UsageHistory class do all that
 - write real tests for retrieving Periods from History (actual implementation)
 - write real tests for retrieving Clocks from History
 - show hours studied per week
