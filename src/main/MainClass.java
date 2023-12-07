@@ -6,8 +6,9 @@ import java.util.Scanner;
 import display.ConsoleDisplay;
 import display.Display;
 import display.swing.SwingDisplay;
-import record.UsageHistory;
-import record.UsageRecord;
+import record.*;
+import record.clock.ClockFileMaker;
+import record.clock.ClockManager;
 import sound.SoundPlayer;
 import timer.Timer;
 import timer.counter.Counter;
@@ -64,8 +65,12 @@ public class MainClass
 
 	private static void startRecording(Timer timer)
 	{
-		UsageHistory history = new UsageHistory();
+		History history = new UsageHistory();
 		UsageRecord record = new UsageRecord(history);
+
+		ClockFileMaker fileMaker = new ClockFileMaker();
+		ClockManager clockManager = new ClockManager(history, fileMaker);
+
 		timer.startRecording(record);
 	}
 

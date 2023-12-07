@@ -1,4 +1,4 @@
-package record.clock;
+package record.display;
 
 import java.awt.Dimension;
 import java.util.List;
@@ -6,36 +6,15 @@ import java.util.List;
 import javax.swing.*;
 
 import record.*;
-import record.display.DayPanel;
+import record.clock.ClockFileMaker;
+import record.clock.ClockManager;
 
-public class MainClass
+public class ProductivityFrame extends JFrame
 {
-	public static void main(String[] args)
-	{
-		History history = new UsageHistory();
-		ClockFileMaker fileMaker = new ClockFileMaker();
-		ClockManager clockManager = new ClockManager(history, fileMaker);
-
-		List<Day> days = clockManager.allDays();
-
-		SwingUtilities.invokeLater(() ->
-		{
-			MainFrame mainFrame = new MainFrame();
-			mainFrame.showDays(days);
-		});
-
-	}
-
-}
-
-class MainFrame extends JFrame
-{
-
 	private ProductivityPanel productivityPanel = new ProductivityPanel();
 
-	public MainFrame()
+	public ProductivityFrame()
 	{
-
 		setSize(new Dimension(850, 900));
 
 		JScrollPane scrollPane = new JScrollPane(productivityPanel);
@@ -61,4 +40,20 @@ class MainFrame extends JFrame
 	}
 
 	private static final long serialVersionUID = 1L;
+
+	public static void main(String[] args)
+	{
+		History history = new UsageHistory();
+		ClockFileMaker fileMaker = new ClockFileMaker();
+		ClockManager clockManager = new ClockManager(history, fileMaker);
+
+		List<Day> days = clockManager.allDays();
+
+		SwingUtilities.invokeLater(() ->
+		{
+			ProductivityFrame productivityFrame = new ProductivityFrame();
+			productivityFrame.showDays(days);
+		});
+
+	}
 }

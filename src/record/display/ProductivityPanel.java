@@ -1,4 +1,4 @@
-package record.clock;
+package record.display;
 
 import java.awt.Color;
 import java.awt.Dimension;

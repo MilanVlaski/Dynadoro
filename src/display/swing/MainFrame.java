@@ -34,16 +34,7 @@ public class MainFrame extends JFrame
 
 		setSize(310, 290);
 
-		TOP_PANEL.setLayout(new BorderLayout());
-		TOP_PANEL.setPreferredSize(new Dimension(30, 20));
-		TOP_PANEL.add(
-		        new CoolButton("Reset", 75, 5, (e) -> timer.reset(LocalDateTime.now()),
-		                12),
-		        BorderLayout.WEST);
-
-		TOP_PANEL.add(
-		        new CoolButton("X", 75, 75, (e) -> timer.reset(LocalDateTime.now()), 12),
-		        BorderLayout.EAST);
+		layoutTopPanel();
 
 		//
 		setLayout(new BorderLayout());
@@ -52,6 +43,23 @@ public class MainFrame extends JFrame
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
+	}
+
+	private void layoutTopPanel()
+	{
+		JButton reset = new CoolButton("Reset", 70, 18, (e) -> timer.reset(LocalDateTime.now()), 12);
+		JButton x = new CoolButton("X", 50, 16, (e) -> timer.reset(LocalDateTime.now()), 12);
+		JButton history = new CoolButton("History", 75, 16, (e) -> timer.reset(LocalDateTime.now()), 12);
+
+		TOP_PANEL.setLayout(new BoxLayout(TOP_PANEL, BoxLayout.X_AXIS));
+
+		TOP_PANEL.add(reset);
+
+		TOP_PANEL.add(Box.createHorizontalGlue()); // Add space between buttons
+		TOP_PANEL.add(history);
+		TOP_PANEL.add(Box.createHorizontalStrut(10)); // Adjust the space between buttons
+
+		TOP_PANEL.add(x);
 	}
 
 	private void mainPanelSetup()
