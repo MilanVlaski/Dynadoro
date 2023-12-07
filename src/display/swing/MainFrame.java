@@ -23,8 +23,8 @@ public class MainFrame extends JFrame
 
 	public static final Font CLOCK_FONT = new Font("Loto", Font.PLAIN, 50);
 
+	public static final Color IDLE = new Color(133, 204, 230);
 	public static final Color WORK = new Color(126, 223, 202);;
-	public static final Color IDLE = new Color(170, 195, 220);
 	public static final Color REST = new Color(207, 176, 243);
 
 	public Timer timer;
@@ -38,7 +38,8 @@ public class MainFrame extends JFrame
 		mainPanelSetup();
 		locationSetup();
 
-		setSize(270, 240);
+		// 240, 200 looks smaller and cute
+		setSize(280, 200);
 
 		layoutTopPanel();
 
@@ -98,11 +99,9 @@ public class MainFrame extends JFrame
 		TOP_PANEL.setLayout(new BoxLayout(TOP_PANEL, BoxLayout.X_AXIS));
 
 		TOP_PANEL.add(reset);
-
-		TOP_PANEL.add(Box.createHorizontalGlue()); // Add space between buttons
+		TOP_PANEL.add(Box.createHorizontalGlue());
 		TOP_PANEL.add(history);
-		TOP_PANEL.add(Box.createHorizontalGlue()); // Adjust the space between buttons
-
+		TOP_PANEL.add(Box.createHorizontalGlue());
 		TOP_PANEL.add(x);
 	}
 
@@ -134,16 +133,19 @@ public class MainFrame extends JFrame
 	}
 
 	private void showStartButton()
-	{ showButton("Start", 120, 70, (e) -> timer.begin(LocalDateTime.now())); }
+	{ showButton("Start", 170, 55, (e) -> timer.begin(LocalDateTime.now()), 25); }
 
-	private void showPauseButton()
-	{ showButton("| |", 70, 70, (e) -> timer.pause(LocalDateTime.now())); }
+	private void showStartButtonNarrower()
+	{ showButton("Start", 110, 55, (e) -> timer.begin(LocalDateTime.now()), 25); }
 
 	private void showBreakButton()
-	{ showButton("Take break", 182, 70, (e) -> timer.rest(LocalDateTime.now())); }
+	{ showButton("Rest", 110, 55, (e) -> timer.rest(LocalDateTime.now()), 25); }
+
+	private void showPauseButton()
+	{ showButton("| |", 60, 55, (e) -> timer.pause(LocalDateTime.now()), 25); }
 
 	private void showResumeButton()
-	{ showButton(">", 70, 70, (e) -> timer.resume(LocalDateTime.now())); }
+	{ showButton(">", 60, 55, (e) -> timer.resume(LocalDateTime.now())); }
 
 	private void clearControls()
 	{
@@ -179,7 +181,7 @@ public class MainFrame extends JFrame
 		{
 			clearControls();
 			showPauseButton();
-			showStartButton(/* lighter */);
+			showStartButtonNarrower();
 			paintBackground(REST);
 		});
 	}
@@ -236,7 +238,14 @@ public class MainFrame extends JFrame
 	private void showButton(String text, int width, int height,
 	                        ActionListener actionListener)
 	{
-		CoolButton button = new CoolButton(text, width, height, actionListener);
+		CoolButton button = new CoolButton(text, width, height, actionListener, 30);
+		CONTROL_PANEL.add(button);
+	}
+
+	private void showButton(String text, int width, int height,
+	                        ActionListener actionListener, int fontSize)
+	{
+		CoolButton button = new CoolButton(text, width, height, actionListener, fontSize);
 		CONTROL_PANEL.add(button);
 	}
 
