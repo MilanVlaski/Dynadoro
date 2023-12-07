@@ -23,7 +23,7 @@ public class MainFrame extends JFrame
 
 	public static final Font CLOCK_FONT = new Font("Loto", Font.PLAIN, 50);
 
-	public static final Color IDLE = new Color(133, 204, 230);
+	public static final Color IDLE = new Color(140, 207, 193);
 	public static final Color WORK = new Color(126, 223, 202);
 	public static final Color REST = new Color(176, 176, 243);
 
@@ -219,7 +219,7 @@ public class MainFrame extends JFrame
 			clearControls();
 			showResumeButton();
 			showBreakButton();
-			paintBackground(WORK);
+			paintBackground(new Color(128, 217, 198));
 		});
 	}
 
