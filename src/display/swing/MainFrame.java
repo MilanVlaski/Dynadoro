@@ -38,7 +38,7 @@ public class MainFrame extends JFrame
 		mainPanelSetup();
 		locationSetup();
 
-		setSize(310, 290);
+		setSize(270, 240);
 
 		layoutTopPanel();
 
@@ -87,7 +87,7 @@ public class MainFrame extends JFrame
 		        (e) -> timer.reset(LocalDateTime.now()), 12);
 		JButton x = new CoolButton("X", 50, 16,
 		        (e) -> closeApplication(), 12);
-		JButton history = new CoolButton("History", 75, 16,
+		JButton history = new CoolButton("Check history", 120, 16,
 		        (e) -> SwingUtilities.invokeLater(() ->
 		        {
 			        List<Day> days = timer.retrieveDays();
@@ -101,7 +101,7 @@ public class MainFrame extends JFrame
 
 		TOP_PANEL.add(Box.createHorizontalGlue()); // Add space between buttons
 		TOP_PANEL.add(history);
-		TOP_PANEL.add(Box.createHorizontalStrut(10)); // Adjust the space between buttons
+		TOP_PANEL.add(Box.createHorizontalGlue()); // Adjust the space between buttons
 
 		TOP_PANEL.add(x);
 	}
