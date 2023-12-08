@@ -93,12 +93,7 @@ public class MainFrame extends JFrame
 		JButton x = new CoolButton("X", 50, 16,
 		        (e) -> closeApplication(), 12);
 		JButton history = new CoolButton("Check history", 120, 16,
-		        (e) -> SwingUtilities.invokeLater(() ->
-		        {
-			        List<Day> days = timer.retrieveDays();
-			        ProductivityFrame productivityFrame = new ProductivityFrame();
-			        productivityFrame.showDays(days);
-		        }), 12);
+		        (e) -> showProductivityFrame(), 12);
 
 		TOP_PANEL.setLayout(new BoxLayout(TOP_PANEL, BoxLayout.X_AXIS));
 
@@ -107,6 +102,16 @@ public class MainFrame extends JFrame
 		TOP_PANEL.add(history);
 		TOP_PANEL.add(Box.createHorizontalGlue());
 		TOP_PANEL.add(x);
+	}
+
+	private void showProductivityFrame()
+	{
+		SwingUtilities.invokeLater(() ->
+		{
+			List<Day> days = timer.retrieveDays();
+			ProductivityFrame productivityFrame = new ProductivityFrame();
+			productivityFrame.showDays(days);
+		});
 	}
 
 	private void mainPanelSetup()

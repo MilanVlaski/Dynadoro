@@ -1,6 +1,8 @@
 package record.display;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.time.Duration;
 import java.time.format.DateTimeFormatter;
 
@@ -29,7 +31,69 @@ public class DayPanel extends JPanel
 		JLabel clock = new JLabel(new ImageIcon(scaledClockImage));
 
 		layoutComponents(timeWorked, timeRested, date, clock);
+
+		addMouseListener(new MouseAdapter()
+		{
+
+			@Override
+			public void mouseEntered(MouseEvent e)
+			{ setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR)); }
+
+			@Override
+			public void mousePressed(MouseEvent e)
+			{
+				Point panelLocationOnScreen = getLocationOnScreen();
+
+				int xOffset = (int) (getWidth() * 1.1);
+				int yOffset = -getHeight();
+
+				Point clockLocation = new Point(
+				        (int) (panelLocationOnScreen.getX() + xOffset),
+				        (int) (panelLocationOnScreen.getY() + yOffset));
+
+				adjustFramePosition(clockLocation, 400);
+				showClock(clockIcon, clockLocation, 400);
+			}
+
+		});
 	}
+
+	private void adjustFramePosition(Point location, int size)
+	{
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int screenWidth = screenSize.width;
+		int screenHeight = screenSize.height;
+
+		int frameWidth = size;
+		int frameHeight = size;
+
+		// Check if the frame exceeds the right edge of the screen
+		if (location.getX() + frameWidth > screenWidth)
+		{
+			// If it does, try placing it to the left
+			location.setLocation(screenWidth - frameWidth, location.getY());
+			if (location.getX() < 0)
+			{
+				// If it still doesn't fit, place it at the rightmost edge
+				location.setLocation(0, location.getY());
+			}
+		}
+
+		// Check if the frame exceeds the bottom edge of the screen
+		if (location.getY() + frameHeight > screenHeight)
+		{
+			// If it does, try placing it above
+			location.setLocation(location.getX(), screenHeight - frameHeight);
+			if (location.getY() < 0)
+			{
+				// If it still doesn't fit, place it at the bottommost edge
+				location.setLocation(location.getX(), 0);
+			}
+		}
+	}
+
+	private void showClock(ImageIcon clockIcon, Point position, int size)
+	{ new ClockFrame(clockIcon, position, size); }
 
 	private void layoutComponents(JLabel timeWorked, JLabel timeRested, JLabel date, JLabel clock)
 	{
