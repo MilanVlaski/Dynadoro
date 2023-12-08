@@ -44,21 +44,21 @@ public class DayPanel extends JPanel
 			{
 				Point panelLocationOnScreen = getLocationOnScreen();
 
-				int xOffset = (int) (getWidth() * 1.1);
+				int xOffset = getWidth();
 				int yOffset = -getHeight();
 
 				Point clockLocation = new Point(
 				        (int) (panelLocationOnScreen.getX() + xOffset),
 				        (int) (panelLocationOnScreen.getY() + yOffset));
-
-				adjustFramePosition(clockLocation, 400);
+				// TODO make positioning work incrementally
+				adjustFramePosition(clockLocation, xOffset, 400);
 				showClock(clockIcon, clockLocation, 400);
 			}
 
 		});
 	}
 
-	private void adjustFramePosition(Point location, int size)
+	private void adjustFramePosition(Point location, int offset, int size)
 	{
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int screenWidth = screenSize.width;
@@ -70,25 +70,15 @@ public class DayPanel extends JPanel
 		// Check if the frame exceeds the right edge of the screen
 		if (location.getX() + frameWidth > screenWidth)
 		{
-			// If it does, try placing it to the left
-			location.setLocation(screenWidth - frameWidth, location.getY());
-			if (location.getX() < 0)
-			{
-				// If it still doesn't fit, place it at the rightmost edge
-				location.setLocation(0, location.getY());
-			}
+			double rightFromPanel = location.getX() - offset - frameWidth - 20;
+			location.setLocation(rightFromPanel, location.getY());
 		}
 
-		// Check if the frame exceeds the bottom edge of the screen
+		// Check if the frame exceeds the edge of the screen
 		if (location.getY() + frameHeight > screenHeight)
 		{
-			// If it does, try placing it above
-			location.setLocation(location.getX(), screenHeight - frameHeight);
-			if (location.getY() < 0)
-			{
-				// If it still doesn't fit, place it at the bottommost edge
-				location.setLocation(location.getX(), 0);
-			}
+			System.out.println("OVER TOP!");
+//			location.setLocation(location.getX(), location.getY() + 500);
 		}
 	}
 
