@@ -17,6 +17,7 @@ public class ProductivityFrame extends JFrame
 	public ProductivityFrame()
 	{
 		setSize(new Dimension(850, 900));
+		setTitle("History of work");
 
 		JScrollPane scrollPane = new JScrollPane(productivityPanel);
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
