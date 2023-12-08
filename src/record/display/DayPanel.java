@@ -51,6 +51,7 @@ public class DayPanel extends JPanel
 				        (int) (panelLocationOnScreen.getX() + xOffset),
 				        (int) (panelLocationOnScreen.getY() + yOffset));
 				// TODO make positioning work incrementally
+				System.out.println("X: " + clockLocation.x + " Y: " + clockLocation.y);
 				adjustFramePosition(clockLocation, xOffset, 400);
 				showClock(clockIcon, clockLocation, 400);
 			}
@@ -74,11 +75,16 @@ public class DayPanel extends JPanel
 			location.setLocation(rightFromPanel, location.getY());
 		}
 
-		// Check if the frame exceeds the edge of the screen
-		if (location.getY() + frameHeight > screenHeight)
+		// Check if the frame exceeds the top edge of the screen
+		if (location.getY() < 0)
+			location.setLocation(location.getX(), 0);
+
+		// Check if the frame exceeds the bottom edge of the screen
+		int taskbarThickness = 150;
+		if (location.getY() + frameHeight + taskbarThickness > screenHeight)
 		{
-			System.out.println("OVER TOP!");
-//			location.setLocation(location.getX(), location.getY() + 500);
+			location.setLocation(location.getX(), screenHeight - frameHeight - taskbarThickness);
+			System.out.println("UNDERFLOW");
 		}
 	}
 
