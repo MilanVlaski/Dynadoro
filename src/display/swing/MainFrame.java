@@ -137,19 +137,19 @@ public class MainFrame extends JFrame
 	}
 
 	private void showStartButton()
-	{ showButton("Start", 170, 55, (e) -> timer.begin(LocalDateTime.now()), 25); }
+	{ showButton("Start", 170, 65, (e) -> timer.begin(LocalDateTime.now()), 25); }
 
 	private void showStartButtonNarrower()
-	{ showButton("Start", 110, 55, (e) -> timer.begin(LocalDateTime.now()), 25); }
+	{ showButton("Start", 110, 65, (e) -> timer.begin(LocalDateTime.now()), 25); }
 
 	private void showBreakButton()
-	{ showButton("Rest", 110, 55, (e) -> timer.rest(LocalDateTime.now()), 25); }
+	{ showButton("Rest", 110, 65, (e) -> timer.rest(LocalDateTime.now()), 25); }
 
 	private void showPauseButton()
-	{ showButton("| |", 60, 55, (e) -> timer.pause(LocalDateTime.now()), 25); }
+	{ showButton("| |", 60, 65, (e) -> timer.pause(LocalDateTime.now()), 25); }
 
 	private void showResumeButton()
-	{ showButton(">", 60, 55, (e) -> timer.resume(LocalDateTime.now())); }
+	{ showButton(">", 60, 65, (e) -> timer.resume(LocalDateTime.now())); }
 
 	private void clearControls()
 	{
