@@ -52,7 +52,7 @@ public class MainFrame extends JFrame
 		addWindowListener(new WindowAdapter()
 		{
 			@Override
-			public void windowClosing(java.awt.event.WindowEvent windowEvent)
+			public void windowClosing(WindowEvent windowEvent)
 			{ closeApplication(); }
 		});
 
@@ -84,7 +84,10 @@ public class MainFrame extends JFrame
 	}
 
 	private void closeApplication()
-	{ System.exit(0); }
+	{
+//		timer.stopRecording();
+		System.exit(0);
+	}
 
 	private void layoutTopPanel()
 	{

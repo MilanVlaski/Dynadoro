@@ -159,4 +159,13 @@ class TestRecording
 		assertEquals("2023-11-07, Tuesday, Working, 15:40, 15:42\n", fakeHistory.read());
 	}
 
+	@Test
+	void CapturesCurrentSession_AfterStopsRecording()
+	{
+		timer.begin(moment.current());
+
+		timer.stopRecording(moment.afterMinutes(3));
+
+		assertEquals("2023-11-07, Tuesday, Working, 15:40, 15:43\n", fakeHistory.read());
+	}
 }

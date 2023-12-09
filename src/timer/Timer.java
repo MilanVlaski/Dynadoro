@@ -70,4 +70,10 @@ public class Timer
 	public void setClockManager(ClockManager clockManager)
 	{ this.clockManager = clockManager; }
 
+	public void stopRecording(LocalDateTime now)
+	{
+		if (record != null)
+			record.finishAndWriteCurrent(now);
+	}
+
 }

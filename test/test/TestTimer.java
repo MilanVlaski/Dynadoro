@@ -6,9 +6,7 @@ import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.*;
 
 import display.Display;
 import test.helpers.Moment;
@@ -96,5 +94,5 @@ public class TestTimer
 		assertEquals(0, timer.seconds(moment.current()));
 		assertEquals(0, timer.seconds(moment.afterSeconds(1)));
 	}
-	
+
 }
