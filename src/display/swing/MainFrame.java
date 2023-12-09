@@ -85,7 +85,7 @@ public class MainFrame extends JFrame
 
 	private void closeApplication()
 	{
-//		timer.stopRecording();
+		timer.stopRecording(LocalDateTime.now());
 		System.exit(0);
 	}
 
