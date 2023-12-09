@@ -56,7 +56,7 @@ public class DayPanel extends JPanel
 				        (int) (panelLocationOnScreen.getY() + yOffset));
 
 				adjustFramePosition(clockLocation, xOffset, 400);
-				showClock(clockIcon, clockLocation, 400);
+				new ClockFrame(dateFormat.format(day.date()), clockIcon, clockLocation, 400);
 			}
 
 		});
@@ -89,10 +89,8 @@ public class DayPanel extends JPanel
 			        screenHeight - taskbarThickness - frameHeight);
 	}
 
-	private void showClock(ImageIcon clockIcon, Point position, int size)
-	{ new ClockFrame(dateFormat.format(day.date()), clockIcon, position, size); }
-
-	private void layoutComponents(JLabel timeWorked, JLabel timeRested, JLabel date, JLabel clock)
+	private void layoutComponents(JLabel timeWorked, JLabel timeRested, JLabel date,
+	                              JLabel clock)
 	{
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx = 0;
