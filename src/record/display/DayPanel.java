@@ -14,13 +14,17 @@ import record.Day;
 
 public class DayPanel extends JPanel
 {
+	private static DateTimeFormatter dateFormat;
+	private final Day day;
 
 	public DayPanel(Day day)
 	{
+		this.day = day;
+
 		setLayout(new GridBagLayout());
 		setBackground(new Color(189, 228, 242));
 
-		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("EEEE, d, LLLL, yyyy");
+		dateFormat = DateTimeFormatter.ofPattern("EEEE, d, LLLL, yyyy");
 
 		JLabel timeWorked = new MyLabel("Work: " + formatTime(day.timeWorked()));
 		JLabel timeRested = new MyLabel("Rest: " + formatTime(day.timeRested()));
@@ -50,8 +54,7 @@ public class DayPanel extends JPanel
 				Point clockLocation = new Point(
 				        (int) (panelLocationOnScreen.getX() + xOffset),
 				        (int) (panelLocationOnScreen.getY() + yOffset));
-				// TODO make positioning work incrementally
-				System.out.println("X: " + clockLocation.x + " Y: " + clockLocation.y);
+
 				adjustFramePosition(clockLocation, xOffset, 400);
 				showClock(clockIcon, clockLocation, 400);
 			}
@@ -87,7 +90,7 @@ public class DayPanel extends JPanel
 	}
 
 	private void showClock(ImageIcon clockIcon, Point position, int size)
-	{ new ClockFrame(clockIcon, position, size); }
+	{ new ClockFrame(dateFormat.format(day.date()), clockIcon, position, size); }
 
 	private void layoutComponents(JLabel timeWorked, JLabel timeRested, JLabel date, JLabel clock)
 	{

@@ -10,9 +10,9 @@ import javax.swing.*;
 public class ClockFrame extends JFrame
 {
 
-	public ClockFrame(ImageIcon clockIcon, Point position, int size)
+	public ClockFrame(String title, ImageIcon clockIcon, Point position, int size)
 	{
-		super();
+		super(title);
 
 		Image scaledClockImage = clockIcon.getImage().getScaledInstance(size, size,
 		        Image.SCALE_SMOOTH);
