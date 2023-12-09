@@ -80,12 +80,10 @@ public class DayPanel extends JPanel
 			location.setLocation(location.getX(), 0);
 
 		// Check if the frame exceeds the bottom edge of the screen
-		int taskbarThickness = 150;
+		int taskbarThickness = 80;
 		if (location.getY() + frameHeight + taskbarThickness > screenHeight)
-		{
-			location.setLocation(location.getX(), screenHeight - frameHeight - taskbarThickness);
-			System.out.println("UNDERFLOW");
-		}
+			location.setLocation(location.getX(),
+			        screenHeight - taskbarThickness - frameHeight);
 	}
 
 	private void showClock(ImageIcon clockIcon, Point position, int size)

@@ -43,8 +43,6 @@ public class ProductivityFrame extends JFrame
 		productivityPanel.repaint();
 	}
 
-	private static final long serialVersionUID = 1L;
-
 	public static void fixScrolling(JScrollPane scrollpane)
 	{
 		JLabel systemLabel = new JLabel();
@@ -76,4 +74,6 @@ public class ProductivityFrame extends JFrame
 		});
 
 	}
+
+	private static final long serialVersionUID = 1L;
 }
