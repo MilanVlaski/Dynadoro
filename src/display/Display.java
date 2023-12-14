@@ -15,22 +15,14 @@ public abstract class Display
 		REST_FINISHED;
 	}
 
-	protected int time;
 	protected DisplayState state;
 	protected Timer timer;
 
 	public void show(int displayedTime)
-	{
-		this.time = displayedTime;
-		updateTime(displayedTime);
-	}
+	{ updateTime(displayedTime); }
 
 	public void show(int displayedTime, DisplayState state)
-	{
-		this.state = state;
-		this.time = displayedTime;
-		updateTimeAndState(displayedTime, state);
-	}
+	{ updateTimeAndState(displayedTime, state); }
 
 	protected void updateTimeAndState(int displayedTime, DisplayState state)
 	{
@@ -64,13 +56,13 @@ public abstract class Display
 	}
 
 	protected abstract void updateTime(int displayedTime);
+	public abstract void tickTime();
 	protected abstract void pauseWork();
 	protected abstract void pauseRest();
 	protected abstract void finishRest();
 	protected abstract void showResting();
 	protected abstract void showWorking();
 	protected abstract void showIdle();
-	public abstract void tickTime();
 	public abstract void setModel(Timer timer);
 
 }

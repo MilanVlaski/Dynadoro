@@ -7,6 +7,8 @@ import timer.Timer;
 public class ConsoleDisplay extends Display
 {
 
+	private DisplayState state;
+
 	public static String displayedTime(int seconds)
 	{
 		int hours = seconds / 3600;
@@ -33,10 +35,8 @@ public class ConsoleDisplay extends Display
 	        + "\nPress 3 to pause"; }
 
 	public static String restMessage(int time)
-	{
-		return displayedTime(time) + "\nPress 1 to go back to work"
-		        + "\nPress 3 to pause";
-	}
+	{ return displayedTime(time) + "\nPress 1 to go back to work"
+	        + "\nPress 3 to pause"; }
 
 	public static String workPauseMessage(int time)
 	{ return displayedTime(time) + "\nPress 4 to resume"
@@ -51,11 +51,11 @@ public class ConsoleDisplay extends Display
 
 	@Override
 	protected void pauseWork()
-	{ System.out.println(workPauseMessage(time)); }
+	{ System.out.println(workPauseMessage(timer.seconds(LocalDateTime.now()))); }
 
 	@Override
 	protected void pauseRest()
-	{ System.out.println(restPauseMessage(time)); }
+	{ System.out.println(restPauseMessage(timer.seconds(LocalDateTime.now()))); }
 
 	@Override
 	protected void finishRest()
@@ -63,11 +63,11 @@ public class ConsoleDisplay extends Display
 
 	@Override
 	protected void showResting()
-	{ System.out.println(restMessage(time)); }
+	{ System.out.println(restMessage(timer.seconds(LocalDateTime.now()))); }
 
 	@Override
 	protected void showWorking()
-	{ System.out.println(workingMessage(time)); }
+	{ System.out.println(workingMessage(timer.seconds(LocalDateTime.now()))); }
 
 	@Override
 	protected void showIdle()
@@ -79,7 +79,10 @@ public class ConsoleDisplay extends Display
 
 	@Override
 	protected void updateTimeAndState(int displayedTime, DisplayState state)
-	{ updateState(state); }
+	{
+		this.state = state;
+		updateState(state);
+	}
 
 	@Override
 	public void tickTime()

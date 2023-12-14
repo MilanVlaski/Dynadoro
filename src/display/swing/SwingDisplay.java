@@ -1,5 +1,7 @@
 package display.swing;
 
+import java.time.LocalDateTime;
+
 import display.Display;
 import timer.Timer;
 
@@ -42,6 +44,6 @@ public class SwingDisplay extends Display
 
 	@Override
 	public void tickTime()
-	{ mainFrame.setTime(time); }
+	{ mainFrame.setTime(timer.seconds(LocalDateTime.now())); }
 
 }
