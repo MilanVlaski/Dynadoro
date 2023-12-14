@@ -201,7 +201,6 @@ public class MainFrame extends JFrame
 	{
 		SwingUtilities.invokeLater(() ->
 		{
-			showBattery();
 			clearControls();
 			showStartButton(/* stronger */);
 			paintBackground(new Color(
@@ -211,11 +210,6 @@ public class MainFrame extends JFrame
 			toFront();
 			requestFocus();
 		});
-	}
-
-	private void showBattery()
-	{
-
 	}
 
 	public void showRestPause()

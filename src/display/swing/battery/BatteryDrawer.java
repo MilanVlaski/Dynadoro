@@ -52,6 +52,8 @@ class MyFrame extends JFrame
 
 		setLayout(new GridLayout());
 		add(new BatteryPanel());
+
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
 }
