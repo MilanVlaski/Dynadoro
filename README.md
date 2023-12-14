@@ -11,11 +11,9 @@
 - I can see images of clocks representing my past study and break sessions in a day. I can see which date and weekday the clocks belong to. When I open a clock, I see an enlarged image, with a big date and weekday at the bottom. Also time spent working and resting.
 
 ## TODO
+- show hours studied per week
 - write real tests for retrieving Periods from History (actual implementation)
 - write real tests for retrieving Clocks from History
-- show hours studied per week
-- If you exit the app, the previous state needs to finish.
-- We keep the ProducitivtyClock and Periods from History consistent by mapping all the Periods from the History to Days. A Day has Periods, and a Day must have a ProductivityClock. If extra Clocks exist, we delete them. And if a Day, doesn't have a Clock (Tuesday_23_November.png - DayVisual), it gets created.
 
 
 - while break ticks down you could have a charging battery filling up (maybe in thirds, battery with 3 bars)
