@@ -38,7 +38,6 @@ public class MainFrame extends JFrame
 		mainPanelSetup();
 		locationSetup();
 
-		// 240, 200 looks smaller and cute
 		setSize(280, 200);
 
 		layoutTopPanel();
