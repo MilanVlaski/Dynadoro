@@ -1,5 +1,6 @@
 package test.record;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static test.TestTimer.REST_DURATION;
 import static test.TestTimer.WORK_DURATION;
@@ -171,5 +172,5 @@ class TestRecording
 
 	@Test
 	void AllowsStoppageOfRecording_EvenIfNothingWasRecorded()
-	{ timer.stopRecording(moment.current()); }
+	{ assertDoesNotThrow(() -> timer.stopRecording(moment.current())); }
 }

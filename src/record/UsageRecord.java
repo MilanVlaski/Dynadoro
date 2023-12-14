@@ -14,7 +14,6 @@ public class UsageRecord
 	public void capture(Period newPeriod)
 	{
 		finishAndWriteCurrent(newPeriod.startTime());
-
 		currentPeriod = newPeriod;
 	}
 
