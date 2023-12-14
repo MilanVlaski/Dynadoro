@@ -21,13 +21,13 @@ public class SwingDisplay extends Display
 	{ mainFrame.showWorkPause(); }
 
 	protected void pauseRest()
-	{ mainFrame.showBreakPause(); }
+	{ mainFrame.showRestPause(); }
 
 	protected void finishRest()
-	{ mainFrame.showBreakFinished(); }
+	{ mainFrame.showRestFinished(); }
 
 	protected void showResting()
-	{ mainFrame.showBreak(); }
+	{ mainFrame.showRest(); }
 
 	protected void showWorking()
 	{ mainFrame.showWorking(); }

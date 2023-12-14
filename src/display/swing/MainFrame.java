@@ -186,7 +186,7 @@ public class MainFrame extends JFrame
 		});
 	}
 
-	public void showBreak()
+	public void showRest()
 	{
 		SwingUtilities.invokeLater(() ->
 		{
@@ -197,7 +197,7 @@ public class MainFrame extends JFrame
 		});
 	}
 
-	public void showBreakFinished()
+	public void showRestFinished()
 	{
 		SwingUtilities.invokeLater(() ->
 		{
@@ -212,7 +212,7 @@ public class MainFrame extends JFrame
 		});
 	}
 
-	public void showBreakPause()
+	public void showRestPause()
 	{
 		SwingUtilities.invokeLater(() ->
 		{

@@ -31,7 +31,7 @@ public class BatteryDrawer
 		batteryShell.addPoint(centerX + width / 2, openingHeight + height);
 		batteryShell.addPoint(centerX - width / 2, openingHeight + height);
 		batteryShell.addPoint(centerX - width / 2, openingHeight);
-		batteryShell.addPoint(centerX - width / 2 + (width / 2 - openingLength / 2), openingHeight);
+		batteryShell.addPoint(centerX - openingLength / 2, openingHeight);
 
 		g.draw(batteryShell);
 	}
