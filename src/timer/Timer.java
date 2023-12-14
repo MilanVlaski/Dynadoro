@@ -25,7 +25,6 @@ public class Timer
 	{
 		this.display = display;
 		this.counter = counter;
-
 		state = new Idle(this, now);
 	}
 

@@ -13,8 +13,7 @@ public class UsageRecord
 
 	public void capture(Period newPeriod)
 	{
-		if (currentPeriod != null)
-			finishAndWriteCurrent(newPeriod.startTime());
+		finishAndWriteCurrent(newPeriod.startTime());
 
 		currentPeriod = newPeriod;
 	}
@@ -30,9 +29,12 @@ public class UsageRecord
 
 	public void finishAndWriteCurrent(LocalDateTime now)
 	{
-		currentPeriod.finish(now);
+		if (currentPeriod != null)
+		{
+			currentPeriod.finish(now);
 
-		if (currentPeriod.shouldBeRecorded())
-			history.write(currentPeriod.toString());
+			if (currentPeriod.shouldBeRecorded())
+				history.write(currentPeriod.toString());
+		}
 	}
 }

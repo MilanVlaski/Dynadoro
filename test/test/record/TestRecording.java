@@ -168,4 +168,8 @@ class TestRecording
 
 		assertEquals("2023-11-07, Tuesday, Working, 15:40, 15:43\n", fakeHistory.read());
 	}
+
+	@Test
+	void AllowsStoppageOfRecording_EvenIfNothingWasRecorded()
+	{ timer.stopRecording(moment.current()); }
 }
