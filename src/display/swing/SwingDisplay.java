@@ -13,10 +13,6 @@ public class SwingDisplay extends Display
 	public SwingDisplay()
 	{ mainFrame = new MainFrame(); }
 
-	@Override
-	protected void updateTime(int displayedTime)
-	{ mainFrame.setTime(displayedTime); }
-
 	protected void pauseWork()
 	{ mainFrame.showWorkPause(); }
 
@@ -45,5 +41,9 @@ public class SwingDisplay extends Display
 	@Override
 	public void tickTime()
 	{ mainFrame.setTime(timer.seconds(LocalDateTime.now())); }
+
+	@Override
+	public void show(int displayedTime)
+	{ mainFrame.setTime(displayedTime); }
 
 }

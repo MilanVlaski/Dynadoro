@@ -74,11 +74,11 @@ public class ConsoleDisplay extends Display
 	{ System.out.println(idleMessage()); }
 
 	@Override
-	protected void updateTime(int displayedTime)
+	public void show(int displayedTime)
 	{ updateState(state); }
 
 	@Override
-	protected void updateTimeAndState(int displayedTime, DisplayState state)
+	public void show(int displayedTime, DisplayState state)
 	{
 		this.state = state;
 		updateState(state);

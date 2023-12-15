@@ -18,15 +18,11 @@ public abstract class Display
 	protected DisplayState state;
 	protected Timer timer;
 
-	public void show(int displayedTime)
-	{ updateTime(displayedTime); }
+	public abstract void show(int displayedTime);
 
 	public void show(int displayedTime, DisplayState state)
-	{ updateTimeAndState(displayedTime, state); }
-
-	protected void updateTimeAndState(int displayedTime, DisplayState state)
 	{
-		updateTime(displayedTime);
+		show(displayedTime);
 		updateState(state);
 	}
 
@@ -55,7 +51,6 @@ public abstract class Display
 		}
 	}
 
-	protected abstract void updateTime(int displayedTime);
 	public abstract void tickTime();
 	protected abstract void pauseWork();
 	protected abstract void pauseRest();

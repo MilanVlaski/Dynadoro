@@ -19,8 +19,8 @@ public class MainClass
 
 	public static void main(String[] args)
 	{
-//		startSwingApplication();
-		startConsoleApplication();
+		startSwingApplication();
+//		startConsoleApplication();
 	}
 
 	private static void startSwingApplication()
