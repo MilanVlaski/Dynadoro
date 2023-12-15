@@ -51,11 +51,14 @@ public class ConsoleDisplay extends Display
 
 	@Override
 	protected void pauseWork()
-	{ System.out.println(workPauseMessage(timer.seconds(LocalDateTime.now()))); }
+	{ System.out.println(workPauseMessage(secondsNow())); }
 
 	@Override
 	protected void pauseRest()
-	{ System.out.println(restPauseMessage(timer.seconds(LocalDateTime.now()))); }
+	{ System.out.println(restPauseMessage(secondsNow())); }
+
+	private int secondsNow()
+	{ return timer.seconds(LocalDateTime.now()); }
 
 	@Override
 	protected void finishRest()
@@ -63,11 +66,11 @@ public class ConsoleDisplay extends Display
 
 	@Override
 	protected void showResting()
-	{ System.out.println(restMessage(timer.seconds(LocalDateTime.now()))); }
+	{ System.out.println(restMessage(secondsNow())); }
 
 	@Override
 	protected void showWorking()
-	{ System.out.println(workingMessage(timer.seconds(LocalDateTime.now()))); }
+	{ System.out.println(workingMessage(secondsNow())); }
 
 	@Override
 	protected void showIdle()
@@ -86,7 +89,7 @@ public class ConsoleDisplay extends Display
 
 	@Override
 	public void tickTime()
-	{ show(timer.seconds(LocalDateTime.now())); }
+	{ show(secondsNow()); }
 
 	@Override
 	public void setModel(Timer timer)
