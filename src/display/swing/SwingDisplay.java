@@ -32,7 +32,7 @@ public class SwingDisplay extends Display
 	{ mainFrame.showIdle(); }
 
 	@Override
-	public void setModel(Timer timer)
+	public void setTimer(Timer timer)
 	{
 		mainFrame.timer = timer;
 		this.timer = timer;

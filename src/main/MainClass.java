@@ -28,7 +28,7 @@ public class MainClass
 		Display display = new SwingDisplay();
 		Counter counter = new ScheduledCounter(display, new SoundPlayer());
 		Timer timer = new Timer(display, counter, LocalDateTime.now());
-		display.setModel(timer);
+		display.setTimer(timer);
 		//
 
 		History history = new UsageHistory();
@@ -71,7 +71,7 @@ public class MainClass
 	{
 		Counter counter = new ScheduledCounter(display, new SoundPlayer());
 		Timer timer = new Timer(display, counter, LocalDateTime.now());
-		display.setModel(timer);
+		display.setTimer(timer);
 		return timer;
 	}
 

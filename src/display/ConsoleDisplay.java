@@ -92,7 +92,7 @@ public class ConsoleDisplay extends Display
 	{ show(secondsNow()); }
 
 	@Override
-	public void setModel(Timer timer)
+	public void setTimer(Timer timer)
 	{ this.timer = timer; }
 
 }
