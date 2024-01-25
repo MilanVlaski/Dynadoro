@@ -3,6 +3,9 @@
 	<groupId>DynamicPomodoro</groupId>
 	<artifactId>DynamicPomodoro</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<properties>
+		<junit.jupiter.version>5.10.1</junit.jupiter.version>
+	</properties>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<testSourceDirectory>test</testSourceDirectory>
@@ -21,6 +24,12 @@
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
 			<version>5.5.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>${junit.jupiter.version}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 </project>
