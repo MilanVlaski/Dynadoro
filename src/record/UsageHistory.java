@@ -17,8 +17,13 @@ public class UsageHistory implements History
 	private static final String appName = "Dynadoro";
 	private static final Path directory = Paths.get(userHome, appName);
 
-	private static final Path periodsFile = directory.resolve("periods.txt");
+	private final Path periodsFile;
 	public static final Path ClocksFolder = directory.resolve("Clocks");
+
+	public UsageHistory(String fileName)
+	{
+		periodsFile = directory.resolve(fileName + ".txt");
+	}
 
 	@Override
 	public String read()
@@ -40,8 +45,7 @@ public class UsageHistory implements History
 	@Override
 	public void write(String text)
 	{
-		try (BufferedWriter writer = Files.newBufferedWriter(periodsFile,
-		        StandardOpenOption.APPEND))
+		try 
 		{
 			if (Files.notExists(periodsFile))
 			{
@@ -49,8 +53,13 @@ public class UsageHistory implements History
 				Files.createFile(periodsFile);
 			}
 
+			BufferedWriter writer = Files.newBufferedWriter(periodsFile,
+			        StandardOpenOption.APPEND);
+			
 			writer.write(text);
 			writer.newLine();
+			
+			writer.close();
 
 		} catch (IOException e)
 		{
@@ -112,14 +121,5 @@ public class UsageHistory implements History
 		}
 
 		return clocks;
-	}
-
-	public static void main(String[] args)
-	{
-		System.out.println("periods.txt file exists: " + Files.exists(periodsFile));
-		System.out.println("Clocks folder exists: " + Files.exists(ClocksFolder));
-
-		UsageHistory history = new UsageHistory();
-		System.out.println("Number of Clock files: " + history.retrieveClocks().size());
 	}
 }

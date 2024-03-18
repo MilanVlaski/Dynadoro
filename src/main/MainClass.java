@@ -31,7 +31,7 @@ public class MainClass
 		display.setTimer(timer);
 		//
 
-		History history = new UsageHistory();
+		History history = new UsageHistory("periods");
 		UsageRecord record = new UsageRecord(history);
 
 		timer.startRecording(record);
@@ -77,7 +77,7 @@ public class MainClass
 
 	private static void startRecording(Timer timer)
 	{
-		History history = new UsageHistory();
+		History history = new UsageHistory("periods");
 		UsageRecord record = new UsageRecord(history);
 
 		timer.startRecording(record);

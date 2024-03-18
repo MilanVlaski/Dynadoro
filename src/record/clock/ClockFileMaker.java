@@ -59,17 +59,4 @@ public class ClockFileMaker
 
 	public static String filename(LocalDate localDate)
 	{ return clockFilenameFormat.format(localDate) + ".png"; }
-
-	public static void main(String[] args)
-	{
-		UsageHistory history = new UsageHistory();
-		List<Period> periods = history.retrievePeriods();
-		List<Day> days = ClockManager.createDays(periods);
-		ClockFileMaker maker = new ClockFileMaker();
-
-		for (Day day : days)
-			maker.makeClockFile(day);
-
-		System.out.println("Drawing Clocks was attempted.");
-	}
 }

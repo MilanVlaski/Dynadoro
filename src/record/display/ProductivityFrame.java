@@ -61,7 +61,7 @@ public class ProductivityFrame extends JFrame
 
 	public static void main(String[] args)
 	{
-		History history = new UsageHistory();
+		History history = new UsageHistory("periods");
 		ClockFileMaker fileMaker = new ClockFileMaker();
 		ClockManager clockManager = new ClockManager(history, fileMaker);
 
