@@ -18,7 +18,7 @@ public class TestMakingFile
 
 	@BeforeEach
 	void deleteFileBefore()
-	{ deleteFile(); }
+	{ deleteFile(file); }
 
 	@Test
 	void UsageHistoryWritesToUserHome()
@@ -30,13 +30,13 @@ public class TestMakingFile
 
 	@AfterEach
 	void deleteFileAfter()
-	{ deleteFile(); }
+	{ deleteFile(file); }
 
-	void deleteFile()
+	void deleteFile(Path path)
 	{
 		try
 		{
-			Files.deleteIfExists(file);
+			Files.deleteIfExists(path);
 		} catch (IOException e)
 		{
 			e.printStackTrace();
