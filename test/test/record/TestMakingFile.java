@@ -1,7 +1,6 @@
 package test.record;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
 import java.nio.file.*;
@@ -26,8 +25,10 @@ public class TestMakingFile
 	{
 		var history = new UsageHistory(fileName);
 		assertFalse(Files.exists(path));
+		
 		history.write("something");
-		assertTrue(Files.exists(path));
+		
+		assertTrue(history.read().contains("something"));
 	}
 
 	@AfterEach
