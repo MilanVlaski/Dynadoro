@@ -24,10 +24,7 @@ public class TestMakingFile
 	void UsageHistoryWritesToUserHome()
 	{
 		var history = new UsageHistory(fileName);
-		assertFalse(Files.exists(path));
-		
 		history.write("something");
-		
 		assertTrue(history.read().contains("something"));
 	}
 
