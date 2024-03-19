@@ -18,9 +18,7 @@ public class TestMakingFile
 
 	@BeforeEach
 	void deleteFileBefore()
-	{
-		deleteFile();
-	}
+	{ deleteFile(); }
 
 	@Test
 	void UsageHistoryWritesToUserHome()
@@ -32,9 +30,7 @@ public class TestMakingFile
 
 	@AfterEach
 	void deleteFileAfter()
-	{
-		deleteFile();
-	}
+	{ deleteFile(); }
 
 	void deleteFile()
 	{
