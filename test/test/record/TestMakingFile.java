@@ -1,5 +1,6 @@
 package test.record;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
@@ -14,23 +15,24 @@ public class TestMakingFile
 
 	static Path directory = Path.of("C:\\Users\\milan\\Dynadoro\\");
 	static String fileName = "test";
-	static Path file = directory.resolve(fileName + ".txt");
+	static Path path = directory.resolve(fileName + ".txt");
 
 	@BeforeEach
 	void deleteFileBefore()
-	{ deleteFile(file); }
+	{ deleteFile(path); }
 
 	@Test
 	void UsageHistoryWritesToUserHome()
 	{
 		var history = new UsageHistory(fileName);
+		assertFalse(Files.exists(path));
 		history.write("something");
-		assertTrue(Files.exists(file));
+		assertTrue(Files.exists(path));
 	}
 
 	@AfterEach
 	void deleteFileAfter()
-	{ deleteFile(file); }
+	{ deleteFile(path); }
 
 	void deleteFile(Path path)
 	{
