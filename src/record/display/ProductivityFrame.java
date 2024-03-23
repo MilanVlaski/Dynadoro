@@ -70,7 +70,7 @@ public class ProductivityFrame extends JFrame
 		ClockFileMaker fileMaker = new ClockFileMaker();
 		ClockManager clockManager = new ClockManager(history, fileMaker);
 
-		List<Day> days = clockManager.allDays();
+		List<Day> days = clockManager.allDays(history.retrievePeriods());
 
 		SwingUtilities.invokeLater(() ->
 		{

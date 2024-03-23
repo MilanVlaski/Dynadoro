@@ -76,9 +76,9 @@ public class ClockManager
 		}
 	}
 
-	public List<Day> allDays()
+	public List<Day> allDays(List<Period> periods)
 	{
-		List<Day> days = createDays(history.retrievePeriods());
+		List<Day> days = createDays(periods);
 		List<ProductivityClock> clocks = history.retrieveClocks();
 		assignClocksToDays(clocks, days);
 

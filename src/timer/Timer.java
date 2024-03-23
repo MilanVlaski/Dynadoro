@@ -4,8 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import display.Display;
-import record.Day;
-import record.UsageRecord;
+import record.*;
 import record.clock.ClockManager;
 import timer.counter.Counter;
 import timer.state.Idle;
@@ -16,15 +15,17 @@ public class Timer
 
 	private final Display display;
 	private final Counter counter;
+	private final History history;
 
 	private TimerState state;
 	private UsageRecord record;
 	private ClockManager clockManager;
 
-	public Timer(Display display, Counter counter, LocalDateTime now)
+	public Timer(Display display, Counter counter, History history, LocalDateTime now)
 	{
 		this.display = display;
 		this.counter = counter;
+		this.history = history;
 		state = new Idle(this, now);
 	}
 
@@ -64,7 +65,7 @@ public class Timer
 	{ changeState(new Idle(this, now)); }
 
 	public List<Day> retrieveDays()
-	{ return clockManager.allDays(); }
+	{ return clockManager.allDays(history.retrievePeriods()); }
 
 	public void setClockManager(ClockManager clockManager)
 	{ this.clockManager = clockManager; }
