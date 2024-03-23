@@ -2,12 +2,14 @@ package test.record;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.time.LocalDateTime;
+import java.time.*;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import record.*;
+import record.History;
+import record.Period;
+import record.State;
 import test.helpers.FakeHistory;
 
 public class TestHandlingHistory
@@ -63,4 +65,29 @@ public class TestHandlingHistory
 		History history = new FakeHistory("2022-12-12, Tuesday, WorkLLLLL, 15:15, 20:20");
 		assertEquals(0, history.retrievePeriods().size());
 	}
+
+	@Test
+	void IftudiedPastMidnightPastMidnight_DurationIsStillCorrect_AndNotInversed()
+	{
+		List<Period> periodPastMidnight = List.of(
+		        new Period(State.WORKING,
+		                LocalDateTime.of(2024, Month.MARCH, 10, 23, 59),
+		                LocalDateTime.of(2024, Month.MARCH, 11, 00, 1)));
+
+		History history = new FakeHistory(periodPastMidnight);
+
+		assertEquals(Duration.ofMinutes(2),
+		        history.retrievePeriods().get(0).duration());
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
