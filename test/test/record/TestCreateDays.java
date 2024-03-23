@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import record.*;
 import record.clock.ClockManager;
 
-public class TestClockManager
+public class TestCreateDays
 {
 
 	@Test
