@@ -92,7 +92,14 @@ public class UsageHistory implements History
 
 			// combining date and time into datetime
 			LocalDateTime startDateTime = LocalDateTime.of(date, startTime);
-			LocalDateTime endDateTime = LocalDateTime.of(date, endTime);
+
+			// THIS IS JUST A PATCH, because we write midnight sessions as
+			// 2023-11-05, Working, 23:59, 00:01 which is pretty bad
+
+			LocalDateTime endDateTime = (endTime.compareTo(startTime) < 0)
+			        ? LocalDateTime.of(date.plusDays(1), endTime)
+			        : LocalDateTime.of(date, endTime);
+			//
 
 			Optional<State> state = State.of(stateString);
 

@@ -25,11 +25,7 @@ public class Period
 	public Period(State state, LocalDateTime start, LocalDateTime end)
 	{
 		this(state, start, true);
-
-		if (start.toLocalTime().compareTo(end.toLocalTime()) > 0)
-			this.end = end.plusDays(1);
-		else
-			this.end = end;
+		this.end = end;
 	}
 
 	public LocalDateTime startTime()
