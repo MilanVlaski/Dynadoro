@@ -2,7 +2,6 @@ package test.record;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -23,8 +22,9 @@ public class TestClockManagerIntegration
 	@Test
 	void GetsNoDays()
 	{
-		ClockManager manager = new ClockManager(history, dummy);
-		List<Day> days = manager.allDays(Collections.emptyList(), history.retrieveClocks());
+		ClockManager manager = new ClockManager(dummy);
+
+		List<Day> days = manager.allDays(Collections.emptyList(), Collections.emptyList());
 
 		assertEquals(0, days.size());
 	}
@@ -32,13 +32,13 @@ public class TestClockManagerIntegration
 	@Test
 	void GetsOneDay()
 	{
-		when(history.retrievePeriods())
-		        .thenReturn(List.of(new Period(State.WORKING,
-		                LocalDateTime.of(2023, 12, 1, 2, 0),
-		                LocalDateTime.of(2023, 12, 1, 3, 0))));
+		ClockManager manager = new ClockManager(dummy);
 
-		ClockManager manager = new ClockManager(history, dummy);
-		List<Day> days = manager.allDays(history.retrievePeriods(), history.retrieveClocks());
+		List<Period> twoPeriods = List.of(new Period(State.WORKING,
+		        LocalDateTime.of(2023, 12, 1, 2, 0),
+		        LocalDateTime.of(2023, 12, 1, 3, 0)));
+
+		List<Day> days = manager.allDays(twoPeriods, Collections.emptyList());
 
 		assertEquals(1, days.size());
 	}

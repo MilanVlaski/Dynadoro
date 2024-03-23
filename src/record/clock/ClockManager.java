@@ -5,17 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import record.*;
+import record.Day;
+import record.Period;
 
 public class ClockManager
 {
 
-	private final History history;
 	private final ClockFileMaker fileMaker;
 
-	public ClockManager(History history, ClockFileMaker fileMaker)
+	public ClockManager(ClockFileMaker fileMaker)
 	{
-		this.history = history;
 		this.fileMaker = fileMaker;
 	}
 
@@ -31,9 +30,11 @@ public class ClockManager
 	}
 
 	private static List<Period> periodsOnDay(Stream<Period> periods, LocalDate date)
-	{ return periods
-	        .filter(period -> period.date().equals(date))
-	        .toList(); }
+	{
+		return periods
+		        .filter(period -> period.date().equals(date))
+		        .toList();
+	}
 
 	public void assignClocksToDays(List<ProductivityClock> clocks, List<Day> days)
 	{

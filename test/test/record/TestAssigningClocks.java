@@ -19,8 +19,6 @@ public class TestAssigningClocks
 {
 
 	@Mock
-	History dummyHistory;
-	@Mock
 	ClockFileMaker dummyFileMaker;
 
 	@InjectMocks

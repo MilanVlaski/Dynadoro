@@ -35,7 +35,7 @@ public class MainClass
 		timer.startRecording(record);
 
 		ClockFileMaker fileMaker = new ClockFileMaker();
-		ClockManager clockManager = new ClockManager(history, fileMaker);
+		ClockManager clockManager = new ClockManager(fileMaker);
 
 		timer.setClockManager(clockManager);
 	}

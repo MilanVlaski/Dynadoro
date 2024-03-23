@@ -68,7 +68,7 @@ public class ProductivityFrame extends JFrame
 	{
 		History history = new UsageHistory("periods");
 		ClockFileMaker fileMaker = new ClockFileMaker();
-		ClockManager clockManager = new ClockManager(history, fileMaker);
+		ClockManager clockManager = new ClockManager(fileMaker);
 
 		List<Day> days = clockManager.allDays(history.retrievePeriods(), history.retrieveClocks());
 
