@@ -29,7 +29,7 @@ public class Resting extends TimerState
 	public int seconds(LocalDateTime now)
 	{
 		int remaining = restDuration - (int) Duration.between(start, now).toSeconds();
-		return remaining > 0 ? remaining : 0;
+		return Math.max(remaining, 0);
 	}
 
 	@Override

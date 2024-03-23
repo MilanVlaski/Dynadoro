@@ -24,7 +24,7 @@ public class ProductivityClock
 	}
 
 	/**
-	 * Creates the file based on this date.
+	 * Creates the file based on this day.
 	 */
 	public ProductivityClock(Day day)
 	{

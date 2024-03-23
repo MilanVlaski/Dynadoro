@@ -32,6 +32,11 @@ public class ProductivityFrame extends JFrame
 	public void showDays(List<Day> days)
 	{
 		reset();
+		if (days.isEmpty())
+		{
+			productivityPanel.add(new JLabel("No study sessions exist."));
+			return;
+		}
 		for (Day day : days)
 			productivityPanel.add(new DayPanel(day));
 	}

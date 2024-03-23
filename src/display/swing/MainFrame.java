@@ -21,7 +21,7 @@ public class MainFrame extends JFrame
 	private static final JPanel CLOCK_PANEL = new JPanel();
 	private static final JLabel CLOCK = new JLabel();
 
-	public static final Font CLOCK_FONT = new Font("Loto", Font.PLAIN, 50);
+	private static final Font CLOCK_FONT = new Font("Loto", Font.PLAIN, 50);
 
 	public static final Color IDLE = new Color(140, 207, 193);
 	public static final Color WORK = new Color(126, 223, 202);

@@ -45,7 +45,7 @@ public class UsageHistory implements History
 	@Override
 	public void write(String text)
 	{
-		try 
+		try
 		{
 			if (Files.notExists(periodsFile))
 			{
@@ -55,10 +55,10 @@ public class UsageHistory implements History
 
 			BufferedWriter writer = Files.newBufferedWriter(periodsFile,
 			        StandardOpenOption.APPEND);
-			
+
 			writer.write(text);
 			writer.newLine();
-			
+
 			writer.close();
 
 		} catch (IOException e)
