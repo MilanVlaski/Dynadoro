@@ -46,18 +46,18 @@ public class ClockManager
 	}
 
 	private void assignExistingClocks(List<Day> days,
-	                                  ArrayList<ProductivityClock> allClocks)
+	                                  ArrayList<ProductivityClock> clocks)
 	{
 		for (Day day : days)
 		{
-			for (ProductivityClock clock : allClocks)
+			for (ProductivityClock clock : clocks)
 			{
 
 				if (clock.date().equals(day.date())
 				        && !LocalDate.now().equals(day.date())) // its not today
 				{
 					day.assignClock(clock);
-					allClocks.remove(clock);
+					clocks.remove(clock);
 					break;
 				}
 			}
