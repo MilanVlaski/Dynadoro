@@ -19,7 +19,7 @@ public class TestAssigningClocks
 {
 
 	@Mock
-	ClockFileMaker dummyFileMaker;
+	ClockFileMaker fakeFileMaker;
 
 	@InjectMocks
 	ClockManager clockManager;
@@ -38,7 +38,7 @@ public class TestAssigningClocks
 	@Test
 	void AssignsClockToCorrectDay()
 	{
-		List<Day> days = ClockManager.createDays(List.of(seventhNovember));
+		List<Day> days = List.of(new Day(List.of(seventhNovember)));
 		ProductivityClock clock = new ProductivityClock(days.get(0));
 
 		clockManager.assignClocksToDays(List.of(clock), days);
@@ -49,7 +49,7 @@ public class TestAssigningClocks
 	@Test
 	void CreatesNewClock_AndAssignsIt_IfClockHasDifferentDate()
 	{
-		List<Day> days = ClockManager.createDays(List.of(seventhNovember));
+		List<Day> days = List.of(new Day(List.of(seventhNovember)));
 		ProductivityClock clock = new ProductivityClock(Path.of("11_07_2023.lala"));
 
 		clockManager.assignClocksToDays(List.of(clock), days);
@@ -58,14 +58,14 @@ public class TestAssigningClocks
 		ProductivityClock expected = new ProductivityClock(day);
 		assertEquals(expected, day.clock());
 
-		verify(dummyFileMaker).makeClockFile(day);
+		verify(fakeFileMaker).makeClockFile(day);
 	}
 
 	@Test
 	void CreatesNewClock_AndAssignsIt_IfNoClocksExist()
 	{
 		List<ProductivityClock> noClocks = Collections.emptyList();
-		List<Day> days = ClockManager.createDays(List.of(seventhNovember));
+		List<Day> days = List.of(new Day(List.of(seventhNovember)));
 
 		clockManager.assignClocksToDays(noClocks, days);
 
@@ -73,7 +73,7 @@ public class TestAssigningClocks
 		ProductivityClock expected = new ProductivityClock(day);
 		assertEquals(expected, day.clock());
 
-		verify(dummyFileMaker).makeClockFile(day);
+		verify(fakeFileMaker).makeClockFile(day);
 	}
 
 	// if a clock exists, and the day isn't over, the image may need redrawing
@@ -83,7 +83,7 @@ public class TestAssigningClocks
 		LocalDateTime now = LocalDateTime.now();
 		Period todaysPeriod = new Period(State.WORKING, now, now);
 
-		List<Day> days = ClockManager.createDays(List.of(todaysPeriod));
+		List<Day> days = List.of(new Day(List.of(todaysPeriod)));
 		Day day = days.get(0);
 
 		ProductivityClock todaysClock = new ProductivityClock(day);
@@ -93,6 +93,6 @@ public class TestAssigningClocks
 		clockManager.assignClocksToDays(clocks, days);
 
 		assertEquals(todaysClock, day.clock());
-		verify(dummyFileMaker).makeClockFile(day);
+		verify(fakeFileMaker).makeClockFile(day);
 	}
 }
