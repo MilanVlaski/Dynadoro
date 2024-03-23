@@ -24,7 +24,7 @@ public class TestClockManagerIntegration
 	void GetsNoDays()
 	{
 		ClockManager manager = new ClockManager(history, dummy);
-		List<Day> days = manager.allDays(Collections.emptyList());
+		List<Day> days = manager.allDays(Collections.emptyList(), history.retrieveClocks());
 
 		assertEquals(0, days.size());
 	}
@@ -38,7 +38,7 @@ public class TestClockManagerIntegration
 		                LocalDateTime.of(2023, 12, 1, 3, 0))));
 
 		ClockManager manager = new ClockManager(history, dummy);
-		List<Day> days = manager.allDays(history.retrievePeriods());
+		List<Day> days = manager.allDays(history.retrievePeriods(), history.retrieveClocks());
 
 		assertEquals(1, days.size());
 	}

@@ -65,7 +65,11 @@ public class Timer
 	{ changeState(new Idle(this, now)); }
 
 	public List<Day> retrieveDays()
-	{ return clockManager.allDays(history.retrievePeriods()); }
+	{
+		return clockManager.allDays(
+		        history.retrievePeriods(),
+		        history.retrieveClocks());
+	}
 
 	public void setClockManager(ClockManager clockManager)
 	{ this.clockManager = clockManager; }
