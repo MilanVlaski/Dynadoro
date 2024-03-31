@@ -55,7 +55,7 @@ public class TestTimer
 	@Test
 	void shouldCountDown_FromCorrectRestDuration()
 	{
-		timer.begin(moment.current());
+ 		timer.begin(moment.current());
 		timer.rest(moment.afterSeconds(WORK_DURATION));
 
 		assertEquals(WORK_DURATION / WORK_REST_RATIO, timer.seconds(moment.current()));

@@ -94,8 +94,7 @@ public class UsageHistory implements History
 			LocalDateTime startDateTime = LocalDateTime.of(date, startTime);
 
 			// THIS IS JUST A PATCH, because we write midnight sessions as
-			// 2023-11-05, Working, 23:59, 00:01 which is pretty bad
-
+			// 2023-11-05, Working, 23:59, 00:01. which is pretty bad
 			LocalDateTime endDateTime = (endTime.compareTo(startTime) < 0)
 			        ? LocalDateTime.of(date.plusDays(1), endTime)
 			        : LocalDateTime.of(date, endTime);
