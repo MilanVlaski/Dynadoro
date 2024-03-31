@@ -24,6 +24,7 @@
 - add normal window borders back to the gui
 - while break ticks down you could have a charging battery filling up (maybe in thirds, battery with 3 bars)
 - remove the window bar and add rounded borders (same color as text maybe)
+- retrieving days should be able to be paginated (get an object containing all, on which you can call getNext(), which returns just a few)
 
 #### PERHAPS
 - Potential errors if you work for less than a second, or less than 5.y
