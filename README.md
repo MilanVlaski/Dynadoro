@@ -21,9 +21,7 @@
 ## TODO
 - show hours studied per week
 - make sessions file openable through UI
-- 
-
-
+- add normal window borders back to the gui
 - while break ticks down you could have a charging battery filling up (maybe in thirds, battery with 3 bars)
 - remove the window bar and add rounded borders (same color as text maybe)
 
