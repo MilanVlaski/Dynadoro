@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static test.TestTimer.REST_DURATION;
 import static test.TestTimer.WORK_DURATION;
 
-import java.time.LocalDateTime;
+import java.time.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -169,7 +169,20 @@ class TestRecording
 
 		assertEquals("2023-11-07, Tuesday, Working, 15:40, 15:43\n", fakeHistory.read());
 	}
-	
+
+	@Test
+	void SplitsSessionAtMidnight_IfSessionGoesOverMidnight()
+	{
+		Moment almostMidnight = new Moment(LocalDateTime.of(
+		        LocalDate.of(2023, 5, 1),
+		        LocalTime.of(23, 45)));
+
+		timer.begin(almostMidnight.current());
+		timer.rest(almostMidnight.afterMinutes(20));
+
+		assertEquals("2023-05-01, Monday, Working, 23:45, 23:59\n"
+		        + "2023-05-02, Tuesday, Working, 00:00, 00:05\n", fakeHistory.read());
+	}
 
 	@Test
 	void AllowsStoppageOfRecording_EvenIfNothingWasRecorded()
