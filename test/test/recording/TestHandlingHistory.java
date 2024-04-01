@@ -67,7 +67,7 @@ public class TestHandlingHistory
 	}
 
 	@Test
-	void IftudiedPastMidnightPastMidnight_DurationIsStillCorrect_AndNotInversed()
+	void IfStudiedPastMidnightPastMidnight_DurationIsStillCorrect_AndNotInversed()
 	{
 		List<Period> periodPastMidnight = List.of(
 		        new Period(State.WORKING,
