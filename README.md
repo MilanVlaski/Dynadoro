@@ -21,7 +21,6 @@
 ## TODO
 - Make files unnecessary by creating all clocks when days are retrieved. That makes it necessary to add pagination (honestly, not even that important, maybe for huge datasets...).
 	- retrieving days should be able to be paginated (get an object containing all, on which you can call getNext(), which returns just a few)
-- Disallow periods to last more than 24 hours - handle the exception by not recording the period.
 - Refactor to using json
 - show hours studied per week
 - make sessions file openable through UI
