@@ -79,7 +79,7 @@ public class Timer
 	public void stopRecording(LocalDateTime now)
 	{
 		if (record != null)
-			record.finishAndRecordCurrent(now);
+			record.finishAndRecordCurrentNow(now);
 	}
 
 }
