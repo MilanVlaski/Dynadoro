@@ -19,15 +19,16 @@
 
 
 ## TODO
+- Make files unnecessary by creating all clocks when days are retrieved. That makes it necessary to add pagination (honestly, not even that important, maybe for huge datasets...).
+	- retrieving days should be able to be paginated (get an object containing all, on which you can call getNext(), which returns just a few)
 - When studying past midnight, the period counts as starting on the date when the period began. And the duration is not cut off, meaning it spills over to the next day. But this is probably incorrect.
-- Disallow periods to last more than 24 hours - handle the exception by not recording the period
+- Disallow periods to last more than 24 hours - handle the exception by not recording the period.
 - Refactor to using json
 - show hours studied per week
 - make sessions file openable through UI
-- retrieving days should be able to be paginated (get an object containing all, on which you can call getNext(), which returns just a few)
 
 #### PERHAPS
-- Potential errors if you work for less than a second, or less than 5.y
+- Potential errors if you work for less than a second, or less than 5.
 
 #### BUGFIX:
  When pausing while on break the timer correctly stops counting. But it incorrectly says Break over! when and displays 00:00.
