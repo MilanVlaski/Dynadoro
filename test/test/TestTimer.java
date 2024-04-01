@@ -25,19 +25,19 @@ public class TestTimer
 	Timer timer;
 
 	//
-	public static final LocalDateTime TIME = LocalDateTime.of(2023, 11, 13, 16, 37);
+	public static final LocalDateTime ANY_DATETIME = LocalDateTime.of(2023, 11, 13, 16, 37);
 	private Moment moment;
 
 	@BeforeEach
 	void setup()
 	{
 		MockitoAnnotations.openMocks(this);
-		moment = new Moment(TIME);
+		moment = new Moment(ANY_DATETIME);
 	}
 
 	@Test
 	void timeShouldBeZero_IfNotStarted()
-	{ assertEquals(0, timer.seconds(TIME)); }
+	{ assertEquals(0, timer.seconds(ANY_DATETIME)); }
 
 	@Test
 	void timeShouldMoveForwardFromZero_AfterOneSecond()

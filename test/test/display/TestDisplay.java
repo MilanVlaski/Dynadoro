@@ -36,7 +36,7 @@ public class TestDisplay
 	void injectMocks()
 	{
 		MockitoAnnotations.openMocks(this);
-		moment = new Moment(TestTimer.TIME);
+		moment = new Moment(TestTimer.ANY_DATETIME);
 	}
 
 	@Test

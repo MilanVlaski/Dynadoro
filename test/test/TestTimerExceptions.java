@@ -23,7 +23,7 @@ public class TestTimerExceptions
 	@InjectMocks
 	Timer timer;
 
-	private static final LocalDateTime ANY = TestTimer.TIME;
+	private static final LocalDateTime ANY = TestTimer.ANY_DATETIME;
 
 	@BeforeEach
 	void setup()
