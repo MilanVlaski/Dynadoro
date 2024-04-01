@@ -33,13 +33,13 @@ public class MainFrame extends JFrame
 
 	public MainFrame()
 	{
-		setUndecorated(true);
+
+
+		setSize(300, 250);
+		setTitle("Dynamic pomodoro");
 
 		mainPanelSetup();
 		locationSetup();
-
-		setSize(280, 200);
-
 		layoutTopPanel();
 
 		//
@@ -95,8 +95,6 @@ public class MainFrame extends JFrame
 	{
 		JButton reset = new CoolButton("Reset", 70, 24,
 		        (e) -> timer.reset(LocalDateTime.now()), 12);
-		JButton x = new CoolButton("X", 50, 16,
-		        (e) -> closeApplication(), 12);
 		JButton history = new CoolButton("Check history", 120, 16,
 		        (e) -> showProductivityFrame(), 12);
 
@@ -105,8 +103,6 @@ public class MainFrame extends JFrame
 		TOP_PANEL.add(reset);
 		TOP_PANEL.add(Box.createHorizontalGlue());
 		TOP_PANEL.add(history);
-		TOP_PANEL.add(Box.createHorizontalGlue());
-		TOP_PANEL.add(x);
 	}
 
 	private void showProductivityFrame()
