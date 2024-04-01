@@ -1,4 +1,4 @@
-package record.display;
+package recording.display;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -10,7 +10,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import display.ConsoleDisplay;
-import record.Day;
+import recording.Day;
 
 public class DayPanel extends JPanel
 {
@@ -80,13 +80,17 @@ public class DayPanel extends JPanel
 
 		// Check if the frame exceeds the top edge of the screen
 		if (location.getY() < 0)
+		{
 			location.setLocation(location.getX(), 0);
+		}
 
 		// Check if the frame exceeds the bottom edge of the screen
 		int taskbarThickness = 80;
 		if (location.getY() + frameHeight + taskbarThickness > screenHeight)
+		{
 			location.setLocation(location.getX(),
 			        screenHeight - taskbarThickness - frameHeight);
+		}
 	}
 
 	private void layoutComponents(JLabel timeWorked, JLabel timeRested, JLabel date,

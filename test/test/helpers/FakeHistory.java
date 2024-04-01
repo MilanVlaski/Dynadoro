@@ -2,8 +2,8 @@ package test.helpers;
 
 import java.util.List;
 
-import record.*;
-import record.clock.ProductivityClock;
+import recording.*;
+import recording.clock.ProductivityClock;
 
 public class FakeHistory implements History
 {
@@ -20,7 +20,9 @@ public class FakeHistory implements History
 	public FakeHistory(List<Period> states)
 	{
 		for (Period period : states)
+		{
 			write(period.toString());
+		}
 	}
 
 	public FakeHistory(List<ProductivityClock> clocks, List<Period> periods)

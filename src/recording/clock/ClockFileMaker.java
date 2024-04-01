@@ -1,4 +1,4 @@
-package record.clock;
+package recording.clock;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -7,11 +7,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import record.*;
+import recording.Day;
+import recording.UsageHistory;
 
 public class ClockFileMaker
 {

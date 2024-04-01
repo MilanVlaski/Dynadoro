@@ -1,4 +1,4 @@
-package record.clock;
+package recording.clock;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 import javax.swing.ImageIcon;
 
-import record.Day;
+import recording.Day;
 
 public class ProductivityClock
 {
@@ -50,7 +50,9 @@ public class ProductivityClock
 	private static ImageIcon getImage(Path path)
 	{
 		if (Files.exists(path))
+		{
 			return new ImageIcon(path.toString());
+		}
 		else
 		{
 			System.err.println("Image file not found: " + path);

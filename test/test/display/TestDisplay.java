@@ -1,8 +1,6 @@
 package test.display;
 
-import static org.mockito.Mockito.atMost;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 import static test.TestTimer.REST_DURATION;
 import static test.TestTimer.WORK_DURATION;
 
@@ -10,9 +8,7 @@ import java.time.Clock;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.*;
 
 import display.Display;
 import display.Display.DisplayState;

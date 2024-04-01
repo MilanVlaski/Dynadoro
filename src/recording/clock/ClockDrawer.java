@@ -1,4 +1,4 @@
-package record.clock;
+package recording.clock;
 
 import java.awt.*;
 import java.awt.geom.Arc2D;
@@ -8,8 +8,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import display.swing.MainFrame;
-import record.Period;
-import record.State;
+import recording.Period;
+import recording.State;
 
 public class ClockDrawer
 {
@@ -31,8 +31,10 @@ public class ClockDrawer
 		drawMinutes(g, centerX, centerY, radius);
 
 		for (Period period : periods)
+		{
 			drawState(g, period.startTime(), period.duration(), period.type(), centerX,
 			        centerY, radius);
+		}
 
 		drawCircleThatHidesPie(g, centerX, centerY, radius);
 		//
@@ -195,7 +197,9 @@ public class ClockDrawer
 		int minutes = time.getMinute();
 
 		if (hours >= 12)
+		{
 			hours -= 12;
+		}
 
 		return (float) -(hours * 30 + (minutes * 0.5) - 90);
 	}

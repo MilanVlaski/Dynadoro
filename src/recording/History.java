@@ -1,8 +1,8 @@
-package record;
+package recording;
 
 import java.util.List;
 
-import record.clock.ProductivityClock;
+import recording.clock.ProductivityClock;
 
 public interface History
 {

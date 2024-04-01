@@ -1,4 +1,4 @@
-package record;
+package recording;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -41,15 +41,21 @@ public class Period
 	{
 		this.end = end;
 		if (duration().toMinutes() < 1)
+		{
 			getsRecorded = false;
+		}
 	}
 
 	public Duration duration()
 	{
 		if (end != null)
+		{
 			return Duration.between(start, end);
+		}
 		else
+		{
 			return Duration.ZERO;
+		}
 	}
 
 	public static final DateTimeFormatter dateFormat = DateTimeFormatter

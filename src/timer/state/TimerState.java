@@ -3,7 +3,7 @@ package timer.state;
 import java.time.LocalDateTime;
 
 import display.Display;
-import record.UsageRecord;
+import recording.UsageRecord;
 import timer.Timer;
 import timer.counter.Counter;
 

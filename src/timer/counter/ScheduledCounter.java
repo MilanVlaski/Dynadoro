@@ -1,8 +1,6 @@
 package timer.counter;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 import display.Display;
 import display.Display.DisplayState;
@@ -48,7 +46,9 @@ public class ScheduledCounter extends Counter
 	public void count(int times, int durationMilliseconds)
 	{
 		if (isRunning)
+		{
 			stop();
+		}
 
 		initScheduler();
 

@@ -1,4 +1,4 @@
-package record;
+package recording;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import record.clock.ProductivityClock;
+import recording.clock.ProductivityClock;
 
 public class UsageHistory implements History
 {
@@ -29,8 +29,11 @@ public class UsageHistory implements History
 	public String read()
 	{
 		if (Files.notExists(periodsFile))
+		{
 			return "";
+		}
 		else
+		{
 			try
 			{
 				return Files.readString(periodsFile);
@@ -39,6 +42,7 @@ public class UsageHistory implements History
 			{
 				e.printStackTrace();
 			}
+		}
 		return "";
 	}
 
@@ -103,7 +107,9 @@ public class UsageHistory implements History
 			Optional<State> state = State.of(stateString);
 
 			if (state.isPresent())
+			{
 				result.add(new Period(state.get(), startDateTime, endDateTime));
+			}
 		}
 
 		return result;
@@ -119,7 +125,9 @@ public class UsageHistory implements History
 		{
 
 			for (Path path : stream)
+			{
 				clocks.add(new ProductivityClock(path));
+			}
 
 		} catch (Exception e)
 		{

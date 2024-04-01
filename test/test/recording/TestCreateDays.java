@@ -1,4 +1,4 @@
-package test.record;
+package test.recording;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -8,8 +8,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import record.*;
-import record.clock.ClockManager;
+import recording.*;
+import recording.clock.ClockManager;
 
 public class TestCreateDays
 {

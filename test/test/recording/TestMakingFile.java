@@ -1,13 +1,14 @@
-package test.record;
+package test.recording;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import org.junit.jupiter.api.*;
 
-import record.UsageHistory;
+import recording.UsageHistory;
 
 public class TestMakingFile
 {

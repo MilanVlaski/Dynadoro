@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import display.Display;
-import record.*;
-import record.clock.ClockManager;
+import recording.*;
+import recording.clock.ClockManager;
 import timer.counter.Counter;
 import timer.state.Idle;
 import timer.state.TimerState;
@@ -32,7 +32,9 @@ public class Timer
 	public void changeState(TimerState newState)
 	{
 		if (record != null)
+		{
 			newState.record(record);
+		}
 
 		this.state = newState;
 	}
@@ -77,7 +79,9 @@ public class Timer
 	public void stopRecording(LocalDateTime now)
 	{
 		if (record != null)
+		{
 			record.finishAndWriteCurrent(now);
+		}
 	}
 
 }

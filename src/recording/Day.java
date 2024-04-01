@@ -1,4 +1,4 @@
-package record;
+package recording;
 
 import java.awt.Graphics2D;
 import java.time.Duration;
@@ -7,8 +7,8 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 
-import record.clock.ClockDrawer;
-import record.clock.ProductivityClock;
+import recording.clock.ClockDrawer;
+import recording.clock.ProductivityClock;
 
 public class Day
 {
@@ -20,9 +20,13 @@ public class Day
 	{
 		this.periods = periods;
 		if (!periods.isEmpty())
+		{
 			this.date = periods.get(0).date();
+		}
 		else
+		{
 			throw new IllegalArgumentException("A day must have at least one period!");
+		}
 	}
 
 	public void draw(Graphics2D g, int size)

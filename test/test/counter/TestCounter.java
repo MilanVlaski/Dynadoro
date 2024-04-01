@@ -8,9 +8,7 @@ import static test.helpers.FastCounter.DURATION_MILLISECONDS;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.*;
 
 import display.Display;
 import test.helpers.FastCounter;

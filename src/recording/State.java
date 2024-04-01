@@ -1,4 +1,4 @@
-package record;
+package recording;
 
 import java.util.List;
 import java.util.Optional;

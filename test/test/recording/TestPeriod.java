@@ -1,5 +1,5 @@
 
-package test.record;
+package test.recording;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import record.Period;
-import record.State;
+import recording.Period;
+import recording.State;
 import test.helpers.Moment;
 
 public class TestPeriod

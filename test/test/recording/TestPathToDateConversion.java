@@ -1,4 +1,4 @@
-package test.record;
+package test.recording;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import record.clock.ProductivityClock;
+import recording.clock.ProductivityClock;
 
 class TestPathToDateConversion
 {

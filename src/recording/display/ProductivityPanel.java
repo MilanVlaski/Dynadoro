@@ -1,4 +1,4 @@
-package record.display;
+package recording.display;
 
 import java.awt.Color;
 import java.awt.GridLayout;

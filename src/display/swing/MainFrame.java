@@ -8,8 +8,8 @@ import java.util.List;
 import javax.swing.*;
 
 import display.ConsoleDisplay;
-import record.Day;
-import record.display.ProductivityFrame;
+import recording.Day;
+import recording.display.ProductivityFrame;
 import timer.Timer;
 
 public class MainFrame extends JFrame
@@ -64,6 +64,7 @@ public class MainFrame extends JFrame
 	{
 		addMouseListener(new MouseAdapter()
 		{
+			@Override
 			public void mousePressed(MouseEvent e)
 			{
 				xOffset = e.getX();
@@ -71,12 +72,14 @@ public class MainFrame extends JFrame
 				setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
 			}
 
+			@Override
 			public void mouseReleased(MouseEvent e)
 			{ setCursor(Cursor.getDefaultCursor()); }
 		});
 
 		addMouseMotionListener(new MouseMotionAdapter()
 		{
+			@Override
 			public void mouseDragged(MouseEvent e)
 			{ setLocation(e.getXOnScreen() - xOffset, e.getYOnScreen() - yOffset); }
 		});

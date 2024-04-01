@@ -13,7 +13,7 @@ public class FastCounter extends Counter {
 	private final ScheduledCounter scheduledCounter = new ScheduledCounter(display, soundPlayer);
 
 	public static final int DURATION_MILLISECONDS = 100;
-	
+
 	@Override
 	public void countUp() {
 		count(ScheduledCounter.FOUR_HOURS_IN_SECONDS);

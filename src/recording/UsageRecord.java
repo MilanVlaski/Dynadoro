@@ -1,4 +1,4 @@
-package record;
+package recording;
 
 import java.time.LocalDateTime;
 
@@ -21,9 +21,13 @@ public class UsageRecord
 	public String toString()
 	{
 		if (currentPeriod != null)
+		{
 			return currentPeriod.toString();
+		}
 		else
+		{
 			return "";
+		}
 	}
 
 	public void finishAndWriteCurrent(LocalDateTime now)
@@ -33,7 +37,10 @@ public class UsageRecord
 			currentPeriod.finish(now);
 
 			if (currentPeriod.shouldBeRecorded())
+			{
 				history.write(currentPeriod.toString());
+			}
 		}
 	}
+
 }

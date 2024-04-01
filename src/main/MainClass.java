@@ -4,9 +4,9 @@ import java.time.LocalDateTime;
 
 import display.Display;
 import display.swing.SwingDisplay;
-import record.*;
-import record.clock.ClockFileMaker;
-import record.clock.ClockManager;
+import recording.*;
+import recording.clock.ClockFileMaker;
+import recording.clock.ClockManager;
 import sound.SoundPlayer;
 import timer.Timer;
 import timer.counter.Counter;
@@ -29,7 +29,7 @@ public class MainClass
 		Timer timer = new Timer(display, counter, history, LocalDateTime.now());
 		display.setTimer(timer);
 		//
-		
+
 		UsageRecord record = new UsageRecord(history);
 
 		timer.startRecording(record);

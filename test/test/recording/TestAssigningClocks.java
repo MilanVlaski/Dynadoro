@@ -1,4 +1,4 @@
-package test.record;
+package test.recording;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
@@ -12,8 +12,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
 
-import record.*;
-import record.clock.*;
+import recording.*;
+import recording.clock.*;
 
 public class TestAssigningClocks
 {

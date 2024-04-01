@@ -1,4 +1,4 @@
-package test.record;
+package test.recording;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,8 +12,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.*;
 
 import display.Display;
-import record.History;
-import record.UsageRecord;
+import recording.History;
+import recording.UsageRecord;
 import test.helpers.FakeHistory;
 import test.helpers.Moment;
 import timer.Timer;

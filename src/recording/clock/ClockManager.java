@@ -1,12 +1,12 @@
-package record.clock;
+package recording.clock;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import record.Day;
-import record.Period;
+import recording.Day;
+import recording.Period;
 
 public class ClockManager
 {

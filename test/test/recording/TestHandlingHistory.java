@@ -1,4 +1,4 @@
-package test.record;
+package test.recording;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -7,9 +7,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import record.History;
-import record.Period;
-import record.State;
+import recording.History;
+import recording.Period;
+import recording.State;
 import test.helpers.FakeHistory;
 
 public class TestHandlingHistory
@@ -79,15 +79,15 @@ public class TestHandlingHistory
 		assertEquals(Duration.ofMinutes(2),
 		        history.retrievePeriods().get(0).duration());
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
 }

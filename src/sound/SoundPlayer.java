@@ -28,11 +28,11 @@ public class SoundPlayer implements LineListener
 	}
 
 	/**
-	 * 
+	 *
 	 * Play a given audio file.
-	 * 
+	 *
 	 * @param audioFilePath Path of the audio file.
-	 * 
+	 *
 	 */
 	private void play(String audioFilePath)
 	{

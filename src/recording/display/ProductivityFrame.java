@@ -1,14 +1,13 @@
-package record.display;
+package recording.display;
 
-import java.awt.Dimension;
-import java.awt.FontMetrics;
+import java.awt.*;
 import java.util.List;
 
 import javax.swing.*;
 
-import record.*;
-import record.clock.ClockFileMaker;
-import record.clock.ClockManager;
+import recording.*;
+import recording.clock.ClockFileMaker;
+import recording.clock.ClockManager;
 
 public class ProductivityFrame extends JFrame
 {
@@ -20,7 +19,7 @@ public class ProductivityFrame extends JFrame
 		setTitle("History of work");
 
 		JScrollPane scrollPane = new JScrollPane(productivityPanel);
-		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		fixScrolling(scrollPane);
 
 		add(scrollPane);
@@ -38,7 +37,9 @@ public class ProductivityFrame extends JFrame
 			return;
 		}
 		for (Day day : days)
+		{
 			productivityPanel.add(new DayPanel(day));
+		}
 	}
 
 	private void reset()
@@ -55,8 +56,8 @@ public class ProductivityFrame extends JFrame
 		int lineHeight = metrics.getHeight();
 		int charWidth = metrics.getMaxAdvance();
 
-		JScrollBar systemVBar = new JScrollBar(JScrollBar.VERTICAL);
-		JScrollBar systemHBar = new JScrollBar(JScrollBar.HORIZONTAL);
+		JScrollBar systemVBar = new JScrollBar(Adjustable.VERTICAL);
+		JScrollBar systemHBar = new JScrollBar(Adjustable.HORIZONTAL);
 		int verticalIncrement = systemVBar.getUnitIncrement();
 		int horizontalIncrement = systemHBar.getUnitIncrement();
 

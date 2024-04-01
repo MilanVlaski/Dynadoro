@@ -1,4 +1,4 @@
-package record.display;
+package recording.display;
 
 import java.awt.Image;
 import java.awt.Point;
@@ -18,7 +18,7 @@ public class ClockFrame extends JFrame
 		        Image.SCALE_SMOOTH);
 		JLabel clock = new JLabel(new ImageIcon(scaledClockImage));
 
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
 		setLocation((int) (position.getX()), (int) position.getY());
 		add(clock);
