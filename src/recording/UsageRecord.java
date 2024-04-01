@@ -15,25 +15,24 @@ public class UsageRecord
 	{
 		if (currentPeriod != null)
 		{
-			if (newPeriod.date().compareTo(currentPeriod.date()) > 0)
-				finishAtMidnightAndStartAgain(currentPeriod);
+			if (!(newPeriod.date().compareTo(currentPeriod.date()) > 0))
+			{
+				finishAndRecord(currentPeriod, newPeriod.startTime());
+			}
+			else
+			{
+				LocalTime midnight = LocalTime.of(0, 0, 0);
+				LocalDate today = currentPeriod.date();
 
-			finishAndRecord(currentPeriod, newPeriod.startTime());
+				finishAndRecord(currentPeriod,
+				        LocalDateTime.of(today, midnight.minusSeconds(1)));
+
+				finishAndRecord(new Period(currentPeriod.type(),
+				        LocalDateTime.of(today.plusDays(1), midnight),
+				        currentPeriod.shouldBeRecorded()), newPeriod.startTime());
+			}
 		}
 		currentPeriod = newPeriod;
-	}
-
-	private void finishAtMidnightAndStartAgain(Period period)
-	{
-		LocalTime midnight = LocalTime.of(0, 0, 0);
-		LocalDate today = period.date();
-		
-		finishAndRecord(currentPeriod,
-				LocalDateTime.of(today, midnight.minusSeconds(1)));
-
-		currentPeriod = new Period(period.type(),
-		        LocalDateTime.of(today.plusDays(1), midnight),
-		        period.shouldBeRecorded());
 	}
 
 	private void finishAndRecord(Period period, LocalDateTime at)
