@@ -12,7 +12,7 @@ import recording.Period;
 import recording.State;
 import test.helpers.FakeHistory;
 
-public class TestHandlingHistory
+public class TestRetrievingHistory
 {
 
 	@Test
@@ -67,7 +67,7 @@ public class TestHandlingHistory
 	}
 
 	@Test
-	void IfStudiedPastMidnightPastMidnight_DurationIsStillCorrect_AndNotInversed()
+	void IfStudiedPastMidnight_DurationIsNotCutOff_OrInverted()
 	{
 		List<Period> periodPastMidnight = List.of(
 		        new Period(State.WORKING,
@@ -79,15 +79,5 @@ public class TestHandlingHistory
 		assertEquals(Duration.ofMinutes(2),
 		        history.retrievePeriods().get(0).duration());
 	}
-
-
-
-
-
-
-
-
-
-
 
 }

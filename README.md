@@ -19,6 +19,7 @@
 
 
 ## TODO
+- When studying past midnight, the period counts as starting on the date when the period began. And the duration is normal
 - Refactor to using json
 - show hours studied per week
 - make sessions file openable through UI
