@@ -19,7 +19,8 @@
 
 
 ## TODO
-- When studying past midnight, the period counts as starting on the date when the period began. And the duration is normal
+- When studying past midnight, the period counts as starting on the date when the period began. And the duration is not cut off, meaning it spills over to the next day. But this is probably incorrect.
+- Disallow periods to last more than 24 hours - handle the exception by not recording the period
 - Refactor to using json
 - show hours studied per week
 - make sessions file openable through UI
