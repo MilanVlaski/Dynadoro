@@ -5,7 +5,7 @@
 - When it reaches zero, it plays an alarm.
 - Cancel at any time.
 - Pause and resume at any time, while resting or working.
-- Logs your sessions in a file. This file can be opened and read by the user, like any other.
+- Logs your sessions in a file.
 - I can see images of clocks representing my past study and break sessions in a day. I can see which date and weekday the clocks belong to. When I open a clock, I see an enlarged image, with a big date and weekday at the bottom. Also time spent working and resting.
 
 #### Classifying sessions
@@ -19,11 +19,9 @@
 
 
 ## TODO
+- Refactor to using json
 - show hours studied per week
 - make sessions file openable through UI
-- add normal window borders back to the gui
-- while break ticks down you could have a charging battery filling up (maybe in thirds, battery with 3 bars)
-- remove the window bar and add rounded borders (same color as text maybe)
 - retrieving days should be able to be paginated (get an object containing all, on which you can call getNext(), which returns just a few)
 
 #### PERHAPS

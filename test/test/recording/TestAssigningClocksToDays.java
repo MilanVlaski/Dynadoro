@@ -15,7 +15,7 @@ import org.mockito.*;
 import recording.*;
 import recording.clock.*;
 
-public class TestAssigningClocks
+public class TestAssigningClocksToDays
 {
 
 	@Mock
