@@ -21,7 +21,7 @@ public class Timer
 	private UsageRecord record;
 	private ClockManager clockManager;
 
-	public Timer(Display display, Counter counter, History history, LocalDateTime now)
+	public Timer(Display display, Counter counter, History history, LocalDateTime now, History2 jsonHistory)
 	{
 		this.display = display;
 		this.counter = counter;
