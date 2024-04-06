@@ -5,7 +5,7 @@ import static org.mockito.Mockito.mock;
 import static recording.State.RESTING;
 import static recording.State.WORKING;
 
-import java.time.LocalDateTime;
+import java.time.*;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -15,6 +15,7 @@ import org.mockito.Mock;
 
 import display.Display;
 import recording.*;
+import recording.Period;
 import timer.Timer;
 import timer.counter.Counter;
 
@@ -52,7 +53,7 @@ public class TestRecording2
 	void HistoryRecordsOneWorkSession()
 	{
 		LocalDateTime sevenMinLater = time.plusMinutes(7);
-		
+
 		timer.begin(time);
 		timer.reset(sevenMinLater);
 
@@ -65,38 +66,57 @@ public class TestRecording2
 	{
 		LocalDateTime twenyFiveLater = time.plusMinutes(25);
 		LocalDateTime twentySixLater = twenyFiveLater.plusMinutes(1);
-		
+
 		timer.begin(time);
 		timer.rest(twenyFiveLater);
 		timer.reset(twentySixLater);
 
 		assertEquals(List.of(
-				new Period(WORKING, time, twenyFiveLater),
-				new Period(RESTING, twenyFiveLater, twentySixLater)),
+		        new Period(WORKING, time, twenyFiveLater),
+		        new Period(RESTING, twenyFiveLater, twentySixLater)),
 		        fakeHistory.getSessions());
 	}
-	
+
 	@Test
-	void RecordsWokSessions_ButNotPauseSession() {
+	void RecordsWokSessions_ButNotPauseSession()
+	{
 		var threeLater = time.plusMinutes(3);
 		var sevenLater = time.plusMinutes(4);
 		var twelveLater = time.plusMinutes(5);
-		
+
 		timer.begin(time);
 		timer.pause(threeLater);
 		timer.begin(sevenLater);
 		timer.reset(twelveLater);
-		
+
 		assertEquals(List.of(new Period(WORKING, time, threeLater),
-				new Period(WORKING, sevenLater, twelveLater)
-				), fakeHistory.getSessions());
+		        new Period(WORKING, sevenLater, twelveLater)), fakeHistory.getSessions());
 	}
-	
+
 	@Test
-	void DoesNotRecordsSessionsThatLastLessThanMinute() {
+	void DoesNotRecordsSessionsThatLastLessThanMinute()
+	{
 		timer.begin(time.plusSeconds(1));
 		timer.pause(time.plusSeconds(59));
-		
+
 		assertEquals(0, fakeHistory.getSessions().size());
+	}
+
+	@Test
+	void SplitsSessionAtMidnight_IfSessionGoesOverMidnight()
+	{
+		var date = LocalDate.of(2023, 5, 1);
+		var secBeforeMidnight = LocalDateTime.of(date, LocalTime.of(23, 59, 59));
+
+		var tenToMidnight = LocalDateTime.of(date, LocalTime.of(23, 50));
+		var fiveMinPastMidnight = tenToMidnight.plusMinutes(15);
+		
+		timer.begin(tenToMidnight);
+		timer.reset(fiveMinPastMidnight);
+
+		assertEquals(List.of(
+				new Period(WORKING, tenToMidnight, secBeforeMidnight),
+				new Period(WORKING, secBeforeMidnight.plusSeconds(1), fiveMinPastMidnight))
+				, fakeHistory.getSessions());
 	}
 }

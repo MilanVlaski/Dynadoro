@@ -1,5 +1,7 @@
 package timer.state;
 
+import static recording.State.WORKING;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 
@@ -56,13 +58,12 @@ public class Working extends TimerState
 
 	@Override
 	public void record(UsageRecord record)
-	{ record.capture(new Period(State.WORKING, start, true)); }
+	{ record.capture(new Period(WORKING, start, true)); }
 
 	@Override
 	public void capture(History2 history2, LocalDateTime now)
-	{ 
-		history2.capture(new Period(State.WORKING, start, now));
-	 }
-
+	{
+		capture(history2, WORKING, start, now);
+	}
 
 }

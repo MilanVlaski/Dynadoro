@@ -61,9 +61,9 @@ public class Resting extends TimerState
 
 	@Override
 	public void capture(History2 history2, LocalDateTime now)
-	{ 
+	{
+		
 		history2.capture(new Period(State.RESTING, start, now));
-	 }
-
+	}
 
 }
