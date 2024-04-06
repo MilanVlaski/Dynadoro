@@ -35,7 +35,7 @@ public class Timer
 		{
 			newState.record(record);
 		}
-
+		
 		this.state = newState;
 	}
 

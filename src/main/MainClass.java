@@ -26,7 +26,7 @@ public class MainClass
 
 		Display display = new SwingDisplay();
 		Counter counter = new ScheduledCounter(display, new SoundPlayer());
-		History2 jsonHistory = new JsonHistory();
+		History2 jsonHistory = new FakeHistory();
 		Timer timer = new Timer(display, counter, history, LocalDateTime.now(), jsonHistory);
 		display.setTimer(timer);
 		//

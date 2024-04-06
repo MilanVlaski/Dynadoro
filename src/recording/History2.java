@@ -1,8 +1,10 @@
 package recording;
 
+import java.util.List;
+
 public interface History2
 {
 
-	Object getSessions();
+	List<Period> getSessions();
 
 }
