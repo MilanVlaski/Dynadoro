@@ -1,5 +1,6 @@
 package recording;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,8 @@ public class FakeHistory implements History2
 	@Override
 	public void capture(Period period)
 	{
-		this.sessions.add(period);
+		if(!(period.duration().compareTo(Duration.ofMinutes(1)) < 0))
+			this.sessions.add(period);
 	}
 
 }

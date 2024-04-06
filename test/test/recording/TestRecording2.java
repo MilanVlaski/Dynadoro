@@ -32,6 +32,7 @@ public class TestRecording2
 	Timer timer;
 
 	History2 fakeHistory;
+	LocalDateTime time = LocalDateTime.of(2024, 4, 2, 0, 0);
 
 	@BeforeEach
 	void setup()
@@ -50,22 +51,20 @@ public class TestRecording2
 	@Test
 	void HistoryRecordsOneWorkSession()
 	{
-		var time = LocalDateTime.of(2024, 4, 2, 0, 0);
-		LocalDateTime sevenSecLater = time.plusSeconds(7);
+		LocalDateTime sevenMinLater = time.plusMinutes(7);
 		
 		timer.begin(time);
-		timer.reset(sevenSecLater);
+		timer.reset(sevenMinLater);
 
-		assertEquals(new Period(WORKING, time, sevenSecLater),
+		assertEquals(new Period(WORKING, time, sevenMinLater),
 		        fakeHistory.getSessions().getFirst());
 	}
 
 	@Test
 	void HistoryRecordsOneWork_AndOneRestSession()
 	{
-		var time = LocalDateTime.of(2024, 4, 2, 0, 0);
-		LocalDateTime twenyFiveLater = time.plusSeconds(25);
-		LocalDateTime twentySixLater = twenyFiveLater.plusSeconds(1);
+		LocalDateTime twenyFiveLater = time.plusMinutes(25);
+		LocalDateTime twentySixLater = twenyFiveLater.plusMinutes(1);
 		
 		timer.begin(time);
 		timer.rest(twenyFiveLater);
@@ -79,10 +78,9 @@ public class TestRecording2
 	
 	@Test
 	void RecordsWokSessions_ButNotPauseSession() {
-		var time = LocalDateTime.of(2024, 4, 2, 0, 0);
-		var threeLater = time.plusSeconds(3);
-		var sevenLater = time.plusSeconds(4);
-		var twelveLater = time.plusSeconds(5);
+		var threeLater = time.plusMinutes(3);
+		var sevenLater = time.plusMinutes(4);
+		var twelveLater = time.plusMinutes(5);
 		
 		timer.begin(time);
 		timer.pause(threeLater);
@@ -92,5 +90,13 @@ public class TestRecording2
 		assertEquals(List.of(new Period(WORKING, time, threeLater),
 				new Period(WORKING, sevenLater, twelveLater)
 				), fakeHistory.getSessions());
+	}
+	
+	@Test
+	void DoesNotRecordsSessionsThatLastLessThanMinute() {
+		timer.begin(time.plusSeconds(1));
+		timer.pause(time.plusSeconds(59));
+		
+		assertEquals(0, fakeHistory.getSessions().size());
 	}
 }
