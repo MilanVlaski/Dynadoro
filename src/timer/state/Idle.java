@@ -22,7 +22,7 @@ public class Idle extends TimerState
 
 	@Override
 	public void begin(LocalDateTime now)
-	{ context.changeState(new Working(context, now)); }
+	{ context.changeState(new Working(context, now), now); }
 	@Override
 	public void rest(LocalDateTime now)
 	{ throw new IllegalOperationException("Can'dayTwoPeriod take break if haven'dayTwoPeriod started work."); }
@@ -38,5 +38,11 @@ public class Idle extends TimerState
 	@Override
 	public void record(UsageRecord record)
 	{ record.capture(new Period(State.IDLE, start, false)); }
+
+	@Override
+	public void capture(History2 history2, LocalDateTime now)
+	{ 
+	 }
+
 
 }

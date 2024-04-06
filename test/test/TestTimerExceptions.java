@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.*;
 
 import display.Display;
+import recording.History2;
 import timer.Timer;
 import timer.counter.Counter;
 import timer.state.TimerState.IllegalOperationException;
@@ -19,6 +20,8 @@ public class TestTimerExceptions
 	Display dummyDisplay;
 	@Mock
 	Counter dummyCounter;
+	@Mock
+	History2 dummyHistory;
 
 	@InjectMocks
 	Timer timer;

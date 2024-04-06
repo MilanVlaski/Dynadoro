@@ -16,6 +16,7 @@ public class Timer
 	private final Display display;
 	private final Counter counter;
 	private final History history;
+	private final History2 history2;
 
 	private TimerState state;
 	private UsageRecord record;
@@ -26,16 +27,17 @@ public class Timer
 		this.display = display;
 		this.counter = counter;
 		this.history = history;
+		this.history2 = jsonHistory;
 		state = new Idle(this, now);
 	}
 
-	public void changeState(TimerState newState)
+	public void changeState(TimerState newState, LocalDateTime now)
 	{
 		if (record != null)
 		{
 			newState.record(record);
 		}
-		
+		state.capture(history2, now);
 		this.state = newState;
 	}
 
@@ -64,7 +66,7 @@ public class Timer
 	{ state.resume(now); }
 
 	public void reset(LocalDateTime now)
-	{ changeState(new Idle(this, now)); }
+	{ changeState(new Idle(this, now), now); }
 
 	public List<Day> retrieveDays()
 	{

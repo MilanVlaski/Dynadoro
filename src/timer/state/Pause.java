@@ -28,11 +28,11 @@ public class Pause extends TimerState
 
 	@Override
 	public void begin(LocalDateTime now)
-	{ context.changeState(new Working(context, now)); }
+	{ context.changeState(new Working(context, now), now); }
 
 	@Override
 	public void rest(LocalDateTime now)
-	{ context.changeState(new Resting(context, now, secondsWhenPaused)); }
+	{ context.changeState(new Resting(context, now, secondsWhenPaused), now); }
 
 	@Override
 	public void pause(LocalDateTime now)
@@ -45,5 +45,12 @@ public class Pause extends TimerState
 	@Override
 	public void record(UsageRecord record)
 	{ record.capture(new Period(State.PAUSE, start, false)); }
+
+	@Override
+	public void capture(History2 history2, LocalDateTime now)
+	{ 
+		// TODO Auto-generated method stub
+	 }
+
 
 }

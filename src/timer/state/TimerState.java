@@ -3,6 +3,7 @@ package timer.state;
 import java.time.LocalDateTime;
 
 import display.Display;
+import recording.History2;
 import recording.UsageRecord;
 import timer.Timer;
 import timer.counter.Counter;
@@ -38,5 +39,8 @@ public abstract class TimerState
 		public IllegalOperationException(String message)
 		{ super(message); }
 	}
+
+	public abstract void capture(History2 history2, LocalDateTime now);
+
 
 }

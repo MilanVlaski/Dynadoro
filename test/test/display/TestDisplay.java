@@ -12,6 +12,7 @@ import org.mockito.*;
 
 import display.Display;
 import display.Display.DisplayState;
+import recording.History2;
 import test.TestTimer;
 import test.helpers.Moment;
 import timer.Timer;
@@ -26,6 +27,8 @@ public class TestDisplay
 	Display mockDisplay;
 	@Mock
 	Counter mockCounter;
+	@Mock
+	History2 dummyHistory;
 
 	@InjectMocks
 	Timer timer;

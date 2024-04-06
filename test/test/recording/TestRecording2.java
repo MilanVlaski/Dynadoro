@@ -44,15 +44,15 @@ public class TestRecording2
 		assertEquals(0, fakeHistory.getSessions().size());
 	}
 
-//	@Test
-//	void HistoryRecordsOneWorkSession()
-//	{
-//		var time = LocalDateTime.of(2024, 4, 2, 0, 0);
-//		LocalDateTime sevenSecLater = time.plusSeconds(7);
-//		timer.begin(time);
-//		timer.reset(sevenSecLater);
-//
-//		assertEquals(new Period(State.WORKING, time, sevenSecLater),
-//		        fakeHistory.getSessions().getFirst());
-//	}
+	@Test
+	void HistoryRecordsOneWorkSession()
+	{
+		var time = LocalDateTime.of(2024, 4, 2, 0, 0);
+		LocalDateTime sevenSecLater = time.plusSeconds(7);
+		timer.begin(time);
+		timer.reset(sevenSecLater);
+
+		assertEquals(new Period(State.WORKING, time, sevenSecLater),
+		        fakeHistory.getSessions().getFirst());
+	}
 }

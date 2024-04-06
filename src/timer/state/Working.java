@@ -36,7 +36,7 @@ public class Working extends TimerState
 	public void rest(LocalDateTime now)
 	{
 		int workDuration = seconds(now);
-		context.changeState(new Resting(context, now, workDuration));
+		context.changeState(new Resting(context, now, workDuration), now);
 	}
 
 	@Override
@@ -45,9 +45,9 @@ public class Working extends TimerState
 		display.show(seconds(now), DisplayState.WORK_PAUSE);
 
 		Resumable resume = (nowTime, from) -> context
-		        .changeState(new Working(context, nowTime, from));
+		        .changeState(new Working(context, nowTime, from), now);
 
-		context.changeState(new Pause(context, now, resume, seconds(now)));
+		context.changeState(new Pause(context, now, resume, seconds(now)), now);
 	}
 
 	@Override
@@ -57,5 +57,12 @@ public class Working extends TimerState
 	@Override
 	public void record(UsageRecord record)
 	{ record.capture(new Period(State.WORKING, start, true)); }
+
+	@Override
+	public void capture(History2 history2, LocalDateTime now)
+	{ 
+		history2.capture(new Period(State.WORKING, start, now));
+	 }
+
 
 }
