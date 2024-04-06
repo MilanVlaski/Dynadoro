@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -49,10 +50,28 @@ public class TestRecording2
 	{
 		var time = LocalDateTime.of(2024, 4, 2, 0, 0);
 		LocalDateTime sevenSecLater = time.plusSeconds(7);
+		
 		timer.begin(time);
 		timer.reset(sevenSecLater);
 
 		assertEquals(new Period(State.WORKING, time, sevenSecLater),
 		        fakeHistory.getSessions().getFirst());
+	}
+
+	@Test
+	void HistoryRecordsOneWork_AndOneRestSession()
+	{
+		var time = LocalDateTime.of(2024, 4, 2, 0, 0);
+		LocalDateTime twenyFiveLater = time.plusSeconds(25);
+		LocalDateTime twentySixLater = twenyFiveLater.plusSeconds(1);
+		
+		timer.begin(time);
+		timer.rest(twenyFiveLater);
+		timer.reset(twentySixLater);
+
+		assertEquals(List.of(
+				new Period(State.WORKING, time, twenyFiveLater),
+				new Period(State.RESTING, twenyFiveLater, twentySixLater)),
+		        fakeHistory.getSessions());
 	}
 }
