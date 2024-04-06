@@ -107,6 +107,7 @@ public class TestRecording2
 	{
 		var date = LocalDate.of(2023, 5, 1);
 		var secBeforeMidnight = LocalDateTime.of(date, LocalTime.of(23, 59, 59));
+		LocalDateTime midnight = LocalDateTime.of(date.plusDays(1), LocalTime.of(0, 0));
 
 		var tenToMidnight = LocalDateTime.of(date, LocalTime.of(23, 50));
 		var fiveMinPastMidnight = tenToMidnight.plusMinutes(15);
@@ -116,7 +117,7 @@ public class TestRecording2
 
 		assertEquals(List.of(
 				new Period(WORKING, tenToMidnight, secBeforeMidnight),
-				new Period(WORKING, secBeforeMidnight.plusSeconds(1), fiveMinPastMidnight))
+				new Period(WORKING, midnight, fiveMinPastMidnight))
 				, fakeHistory.getSessions());
 	}
 }

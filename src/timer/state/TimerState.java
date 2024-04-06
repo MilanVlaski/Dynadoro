@@ -1,10 +1,10 @@
 package timer.state;
 
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
 
 import display.Display;
 import recording.*;
+import recording.Period;
 import timer.Timer;
 import timer.counter.Counter;
 
@@ -41,24 +41,27 @@ public abstract class TimerState
 		{ super(message); }
 	}
 
-
 	static void capture(History2 history2, State working, LocalDateTime start,
-	                              LocalDateTime end)
+	                    LocalDateTime end)
 	{
 		if (sessionPassedMidnight(start, end))
 		{
 			var secBeforeMidnight = LocalDateTime.of(start.toLocalDate(),
 			        LocalTime.of(23, 59, 59));
-			var midnight = secBeforeMidnight.plusSeconds(1);
+			var midnight = LocalDateTime.of(start.toLocalDate().plusDays(1),
+			        LocalTime.of(0, 0));
 
 			history2.capture(new Period(working, start, secBeforeMidnight));
 			history2.capture(new Period(working, midnight, end));
 		}
-		else
+		else if (sessionLastsMoreThanOneMinute(start, end))
 		{
 			history2.capture(new Period(working, start, end));
 		}
 	}
+
+	private static boolean sessionLastsMoreThanOneMinute(LocalDateTime start, LocalDateTime end)
+	{ return !(Duration.between(start, end).compareTo(Duration.ofMinutes(1)) < 0); }
 
 	private static boolean sessionPassedMidnight(LocalDateTime start, LocalDateTime end)
 	{ return start.toLocalDate().compareTo(end.toLocalDate()) < 0; }
