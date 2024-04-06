@@ -42,7 +42,7 @@ public abstract class TimerState
 	}
 
 
-	protected static void capture(History2 history2, State working, LocalDateTime start,
+	static void capture(History2 history2, State working, LocalDateTime start,
 	                              LocalDateTime end)
 	{
 		if (sessionPassedMidnight(start, end))
