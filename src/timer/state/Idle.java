@@ -25,15 +25,15 @@ public class Idle extends TimerState
 	{ context.changeState(new Working(context, now), now); }
 	@Override
 	public void rest(LocalDateTime now)
-	{ throw new IllegalOperationException("Can'dayTwoPeriod take break if haven'dayTwoPeriod started work."); }
+	{ throw new IllegalOperationException("Can't take break if haven't started work."); }
 
 	@Override
 	public void pause(LocalDateTime now)
-	{ throw new IllegalOperationException("Can'dayTwoPeriod pause while doing nothing."); }
+	{ throw new IllegalOperationException("Can't pause while doing nothing."); }
 
 	@Override
 	public void resume(LocalDateTime now)
-	{ throw new IllegalOperationException("Can'dayTwoPeriod resume while idle."); }
+	{ throw new IllegalOperationException("Can't resume while idle."); }
 
 	@Override
 	public void record(UsageRecord record)
