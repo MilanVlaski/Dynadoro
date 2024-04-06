@@ -2,6 +2,8 @@ package test.recording;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
+import static recording.State.RESTING;
+import static recording.State.WORKING;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -54,7 +56,7 @@ public class TestRecording2
 		timer.begin(time);
 		timer.reset(sevenSecLater);
 
-		assertEquals(new Period(State.WORKING, time, sevenSecLater),
+		assertEquals(new Period(WORKING, time, sevenSecLater),
 		        fakeHistory.getSessions().getFirst());
 	}
 
@@ -70,8 +72,25 @@ public class TestRecording2
 		timer.reset(twentySixLater);
 
 		assertEquals(List.of(
-				new Period(State.WORKING, time, twenyFiveLater),
-				new Period(State.RESTING, twenyFiveLater, twentySixLater)),
+				new Period(WORKING, time, twenyFiveLater),
+				new Period(RESTING, twenyFiveLater, twentySixLater)),
 		        fakeHistory.getSessions());
+	}
+	
+	@Test
+	void RecordsWokSessions_ButNotPauseSession() {
+		var time = LocalDateTime.of(2024, 4, 2, 0, 0);
+		var threeLater = time.plusSeconds(3);
+		var sevenLater = time.plusSeconds(4);
+		var twelveLater = time.plusSeconds(5);
+		
+		timer.begin(time);
+		timer.pause(threeLater);
+		timer.begin(sevenLater);
+		timer.reset(twelveLater);
+		
+		assertEquals(List.of(new Period(WORKING, time, threeLater),
+				new Period(WORKING, sevenLater, twelveLater)
+				), fakeHistory.getSessions());
 	}
 }
