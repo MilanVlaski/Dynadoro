@@ -1,5 +1,7 @@
 package timer.state;
 
+import static recording.State.RESTING;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 
@@ -57,13 +59,12 @@ public class Resting extends TimerState
 
 	@Override
 	public void record(UsageRecord record)
-	{ record.capture(new Period(State.RESTING, start, true)); }
+	{ record.capture(new Period(RESTING, start, true)); }
 
 	@Override
 	public void capture(History2 history2, LocalDateTime now)
 	{
-		
-		history2.capture(new Period(State.RESTING, start, now));
+		capture(history2, RESTING, start, now);
 	}
 
 }

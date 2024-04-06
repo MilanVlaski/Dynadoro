@@ -31,6 +31,7 @@ public abstract class TimerState
 	public abstract void pause(LocalDateTime now);
 	public abstract void resume(LocalDateTime now);
 	public abstract void record(UsageRecord record);
+	public abstract void capture(History2 history2, LocalDateTime now);
 
 	public static class IllegalOperationException extends RuntimeException
 	{
@@ -40,7 +41,6 @@ public abstract class TimerState
 		{ super(message); }
 	}
 
-	public abstract void capture(History2 history2, LocalDateTime now);
 
 	protected static void capture(History2 history2, State working, LocalDateTime start,
 	                              LocalDateTime end)
