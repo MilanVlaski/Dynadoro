@@ -10,10 +10,6 @@ public class Period
 	private final LocalDateTime start;
 	private final LocalDateTime end;
 
-	/**
-	 * Periods initialized with this constructor are recorded, by default.
-	 */
-	// TODO
 	public Period(State state, LocalDateTime start, LocalDateTime end)
 	{
 		this.state = state;
@@ -21,11 +17,11 @@ public class Period
 		this.end = end;
 	}
 
-	public LocalDateTime startTime()
-	{ return start; }
-
 	public State type()
 	{ return state; }
+
+	public LocalDateTime startTime()
+	{ return start; }
 
 	public Duration duration()
 	{

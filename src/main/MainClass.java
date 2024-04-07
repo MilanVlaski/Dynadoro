@@ -2,14 +2,12 @@ package main;
 
 import java.time.LocalDateTime;
 
-import display.Display;
 import display.swing.SwingDisplay;
 import recording.*;
 import recording.clock.ClockFileMaker;
 import recording.clock.ClockManager;
 import sound.SoundPlayer;
 import timer.Timer;
-import timer.counter.Counter;
 import timer.counter.ScheduledCounter;
 
 public class MainClass
@@ -24,19 +22,19 @@ public class MainClass
 	{
 		History history = new UsageHistory("periods");
 
-		Display display = new SwingDisplay();
-		Counter counter = new ScheduledCounter(display, new SoundPlayer());
-		History2 jsonHistory = new FakeHistory();
-		Timer timer = new Timer(display, counter, history, LocalDateTime.now(), jsonHistory);
+		var display = new SwingDisplay();
+		var counter = new ScheduledCounter(display, new SoundPlayer());
+		var history2 = new RealHistory(history);
+		Timer timer = new Timer(display, counter, history, LocalDateTime.now(), history2);
 		display.setTimer(timer);
 		//
 
-		UsageRecord record = new UsageRecord(history);
+		var record = new UsageRecord(history);
 
 		timer.startRecording(record);
 
-		ClockFileMaker fileMaker = new ClockFileMaker();
-		ClockManager clockManager = new ClockManager(fileMaker);
+		var fileMaker = new ClockFileMaker();
+		var clockManager = new ClockManager(fileMaker);
 
 		timer.setClockManager(clockManager);
 	}
