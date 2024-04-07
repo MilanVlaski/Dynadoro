@@ -19,7 +19,6 @@ public class Timer
 	private final History2 history2;
 
 	private TimerState state;
-	private UsageRecord record;
 	private ClockManager clockManager;
 
 	public Timer(Display display, Counter counter, History history, LocalDateTime now,
@@ -37,9 +36,6 @@ public class Timer
 		state.capture(history2, now);
 		this.state = newState;
 	}
-
-	public void startRecording(UsageRecord record)
-	{ this.record = record; }
 
 	public Display getDisplay()
 	{ return display; }
@@ -74,11 +70,5 @@ public class Timer
 
 	public void setClockManager(ClockManager clockManager)
 	{ this.clockManager = clockManager; }
-
-	public void stopRecording(LocalDateTime now)
-	{
-		if (record != null)
-			record.finishAndRecordCurrentNow(now);
-	}
 
 }

@@ -29,10 +29,6 @@ public class MainClass
 		display.setTimer(timer);
 		//
 
-		var record = new UsageRecord(history);
-
-		timer.startRecording(record);
-
 		var fileMaker = new ClockFileMaker();
 		var clockManager = new ClockManager(fileMaker);
 

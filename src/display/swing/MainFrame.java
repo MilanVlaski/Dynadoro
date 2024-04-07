@@ -89,7 +89,6 @@ public class MainFrame extends JFrame
 	{
 		// TODO  call 
 		// timer.reset(LocalDateTime.now());
-		timer.stopRecording(LocalDateTime.now());
 		System.exit(0);
 	}
 

@@ -15,12 +15,9 @@ import recording.Day;
 public class DayPanel extends JPanel
 {
 	private static DateTimeFormatter dateFormat;
-	private final Day day;
 
 	public DayPanel(Day day)
 	{
-		this.day = day;
-
 		setLayout(new GridBagLayout());
 		setBackground(new Color(189, 228, 242));
 

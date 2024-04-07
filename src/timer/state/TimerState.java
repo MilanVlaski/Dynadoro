@@ -38,9 +38,7 @@ public abstract class TimerState
 	                    LocalDateTime end)
 	{
 		if (sessionLastsMoreThanOneDay(start, end))
-		{
 			throw new SessionTooLong();
-		}
 		else if (sessionPassedMidnight(start, end))
 		{
 			var secBeforeMidnight = LocalDateTime.of(start.toLocalDate(),
@@ -52,9 +50,7 @@ public abstract class TimerState
 			history2.capture(new Period(working, midnight, end));
 		}
 		else if (sessionLastsMoreThanOneMinute(start, end))
-		{
 			history2.capture(new Period(working, start, end));
-		}
 	}
 
 	private static boolean sessionLastsMoreThanOneDay(LocalDateTime start, LocalDateTime end)
