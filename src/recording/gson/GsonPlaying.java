@@ -13,11 +13,11 @@ public class GsonPlaying
 	{
 		var gson = new GsonBuilder();
 		gson.setPrettyPrinting();
-		gson.registerTypeAdapter(LocalDateTime.class, args);
-		
+		gson.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeTypeAdapter());
+
 		LocalDateTime now = LocalDateTime.now();
 		var json = gson.create().toJson(new Period(State.WORKING, now, now.plusMinutes(20)));
-		
+
 		System.out.println(json);
 	}
 }
