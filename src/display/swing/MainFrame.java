@@ -34,7 +34,6 @@ public class MainFrame extends JFrame
 	public MainFrame()
 	{
 
-
 		setSize(300, 250);
 		setTitle("Dynamic pomodoro");
 
@@ -87,8 +86,7 @@ public class MainFrame extends JFrame
 
 	private void closeApplication()
 	{
-		// TODO  call 
-		// timer.reset(LocalDateTime.now());
+		timer.reset(LocalDateTime.now());
 		System.exit(0);
 	}
 
