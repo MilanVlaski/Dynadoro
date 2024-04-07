@@ -37,7 +37,11 @@ public abstract class TimerState
 	static void capture(History2 history2, State working, LocalDateTime start,
 	                    LocalDateTime end)
 	{
-		if (sessionPassedMidnight(start, end))
+		if (sessionLastsMoreThanOneDay(start, end))
+		{
+			throw new SessionTooLong();
+		}
+		else if (sessionPassedMidnight(start, end))
 		{
 			var secBeforeMidnight = LocalDateTime.of(start.toLocalDate(),
 			        LocalTime.of(23, 59, 59));
@@ -53,9 +57,18 @@ public abstract class TimerState
 		}
 	}
 
+	private static boolean sessionLastsMoreThanOneDay(LocalDateTime start, LocalDateTime end)
+	{ return Duration.between(start, end).toDays() > 0; }
+
 	private static boolean sessionLastsMoreThanOneMinute(LocalDateTime start, LocalDateTime end)
 	{ return Duration.between(start, end).compareTo(Duration.ofMinutes(1)) >= 0; }
 
 	private static boolean sessionPassedMidnight(LocalDateTime start, LocalDateTime end)
 	{ return start.toLocalDate().compareTo(end.toLocalDate()) < 0; }
+
+	public static class SessionTooLong extends RuntimeException
+	{
+		SessionTooLong()
+		{ super("Session longer than a day. It won't be recorded."); }
+	}
 }

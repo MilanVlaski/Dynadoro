@@ -1,6 +1,7 @@
 package test.recording;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static recording.State.RESTING;
 import static recording.State.WORKING;
@@ -18,6 +19,7 @@ import recording.*;
 import recording.Period;
 import timer.Timer;
 import timer.counter.Counter;
+import timer.state.TimerState.SessionTooLong;
 
 public class TestRecording2
 {
@@ -120,5 +122,12 @@ public class TestRecording2
 		        new Period(WORKING, tenToMidnight, secBeforeMidnight),
 		        new Period(WORKING, midnight, fiveMinPastMidnight)),
 		        history.getSessions());
+	}
+	
+	@Test
+	void ThrowsIfSessionLongerThanTwentyFourHours() {
+		timer.begin(time);
+		timer.reset(time.plusDays(2));
+		assertThrows(SessionTooLong.class, () -> history.getSessions());
 	}
 }

@@ -19,6 +19,8 @@
 
 
 ## TODO
+- Retrieve Days. (assert that day contains period) (find inspiration from assigning periods to days)
+- 
 - Make files unnecessary by creating all clocks when days are retrieved. That makes it necessary to add pagination (honestly, not even that important, maybe for huge datasets...).
 	- retrieving days should be able to be paginated (get an object containing all, on which you can call getNext(), which returns just a few)
 - Refactor to using json
