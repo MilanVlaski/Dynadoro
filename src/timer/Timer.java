@@ -22,7 +22,8 @@ public class Timer
 	private UsageRecord record;
 	private ClockManager clockManager;
 
-	public Timer(Display display, Counter counter, History history, LocalDateTime now, History2 jsonHistory)
+	public Timer(Display display, Counter counter, History history, LocalDateTime now,
+	             History2 jsonHistory)
 	{
 		this.display = display;
 		this.counter = counter;
@@ -33,10 +34,6 @@ public class Timer
 
 	public void changeState(TimerState newState, LocalDateTime now)
 	{
-		if (record != null)
-		{
-			newState.record(record);
-		}
 		state.capture(history2, now);
 		this.state = newState;
 	}

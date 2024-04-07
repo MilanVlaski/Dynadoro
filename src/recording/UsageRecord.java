@@ -1,6 +1,6 @@
 package recording;
 
-import java.time.*;
+import java.time.LocalDateTime;
 
 public class UsageRecord
 {
@@ -13,33 +13,33 @@ public class UsageRecord
 
 	public void capture(Period newPeriod)
 	{
-		if (currentPeriod != null)
-		{
-			if (!(newPeriod.date().compareTo(currentPeriod.date()) > 0))
-			{
-				finishAndRecord(currentPeriod, newPeriod.startTime());
-			}
-			else
-			{
-				LocalTime midnight = LocalTime.of(0, 0, 0);
-				LocalDate today = currentPeriod.date();
-
-				finishAndRecord(currentPeriod,
-				        LocalDateTime.of(today, midnight.minusSeconds(1)));
-
-				finishAndRecord(new Period(currentPeriod.type(),
-				        LocalDateTime.of(today.plusDays(1), midnight),
-				        currentPeriod.shouldBeRecorded()), newPeriod.startTime());
-			}
-		}
-		currentPeriod = newPeriod;
+//		if (currentPeriod != null)
+//		{
+//			if (!(newPeriod.date().compareTo(currentPeriod.date()) > 0))
+//			{
+//				finishAndRecord(currentPeriod, newPeriod.startTime());
+//			}
+//			else
+//			{
+//				LocalTime midnight = LocalTime.of(0, 0, 0);
+//				LocalDate today = currentPeriod.date();
+//
+//				finishAndRecord(currentPeriod,
+//				        LocalDateTime.of(today, midnight.minusSeconds(1)));
+//
+//				finishAndRecord(new Period(currentPeriod.type(),
+//				        LocalDateTime.of(today.plusDays(1), midnight),
+//				        currentPeriod.shouldBeRecorded()), newPeriod.startTime());
+//			}
+//		}
+//		currentPeriod = newPeriod;
 	}
 
 	private void finishAndRecord(Period period, LocalDateTime at)
 	{
-		period.finish(at);
-		if (period.shouldBeRecorded())
-			history.write(period.toString());
+//		period.finish(at);
+//		if (period.shouldBeRecorded())
+//			history.write(period.toString());
 	}
 
 	public void finishAndRecordCurrentNow(LocalDateTime now)

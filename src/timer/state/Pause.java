@@ -2,7 +2,7 @@ package timer.state;
 
 import java.time.LocalDateTime;
 
-import recording.*;
+import recording.History2;
 import timer.Timer;
 
 public class Pause extends TimerState
@@ -40,10 +40,6 @@ public class Pause extends TimerState
 	@Override
 	public void resume(LocalDateTime now)
 	{ resumable.resume(now, secondsWhenPaused); }
-
-	@Override
-	public void record(UsageRecord record)
-	{ record.capture(new Period(State.PAUSE, start, false)); }
 
 	@Override
 	public void capture(History2 history2, LocalDateTime now)

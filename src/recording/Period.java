@@ -7,56 +7,29 @@ public class Period
 {
 
 	private final State state;
-	private boolean getsRecorded;
 	private final LocalDateTime start;
-
-	private LocalDateTime end;
-
-	public Period(State state, LocalDateTime start, boolean getsRecorded)
-	{
-		this.state = state;
-		this.start = start;
-		this.getsRecorded = getsRecorded;
-	}
+	private final LocalDateTime end;
 
 	/**
 	 * Periods initialized with this constructor are recorded, by default.
 	 */
-	// TODO 
+	// TODO
 	public Period(State state, LocalDateTime start, LocalDateTime end)
 	{
-		this(state, start, true);
+		this.state = state;
+		this.start = start;
 		this.end = end;
 	}
 
 	public LocalDateTime startTime()
 	{ return start; }
 
-	public boolean shouldBeRecorded()
-	{ return getsRecorded; }
-
 	public State type()
 	{ return state; }
 
-	public void finish(LocalDateTime end)
-	{
-		this.end = end;
-		if (duration().toMinutes() < 1)
-		{
-			getsRecorded = false;
-		}
-	}
-
 	public Duration duration()
 	{
-		if (end != null)
-		{
-			return Duration.between(start, end);
-		}
-		else
-		{
-			return Duration.ZERO;
-		}
+		return Duration.between(start, end);
 	}
 
 	public static final DateTimeFormatter dateFormat = DateTimeFormatter
@@ -87,4 +60,5 @@ public class Period
 
 	public LocalDate date()
 	{ return start.toLocalDate(); }
+
 }

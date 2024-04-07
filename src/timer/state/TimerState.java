@@ -2,8 +2,9 @@ package timer.state;
 
 import java.time.*;
 
-import recording.*;
+import recording.History2;
 import recording.Period;
+import recording.State;
 import timer.Timer;
 
 public abstract class TimerState
@@ -23,7 +24,6 @@ public abstract class TimerState
 	public abstract void rest(LocalDateTime now);
 	public abstract void pause(LocalDateTime now);
 	public abstract void resume(LocalDateTime now);
-	public abstract void record(UsageRecord record);
 	public abstract void capture(History2 history2, LocalDateTime now);
 
 	public static class IllegalOperationException extends RuntimeException

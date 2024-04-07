@@ -6,7 +6,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 import display.Display.DisplayState;
-import recording.*;
+import recording.History2;
 import timer.Timer;
 
 public class Working extends TimerState
@@ -55,10 +55,6 @@ public class Working extends TimerState
 	@Override
 	public void resume(LocalDateTime now)
 	{}
-
-	@Override
-	public void record(UsageRecord record)
-	{ record.capture(new Period(WORKING, start, true)); }
 
 	@Override
 	public void capture(History2 history2, LocalDateTime now)
