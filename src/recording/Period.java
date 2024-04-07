@@ -22,6 +22,7 @@ public class Period
 	/**
 	 * Periods initialized with this constructor are recorded, by default.
 	 */
+	// TODO 
 	public Period(State state, LocalDateTime start, LocalDateTime end)
 	{
 		this(state, start, true);

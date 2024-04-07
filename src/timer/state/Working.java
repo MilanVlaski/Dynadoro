@@ -22,8 +22,8 @@ public class Working extends TimerState
 		super(context, now);
 		this.offset = offset;
 
-		display.show(offset, DisplayState.WORKING);
-		counter.countUp();
+		context.getDisplay().show(offset, DisplayState.WORKING);
+		context.getCounter().countUp();
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class Working extends TimerState
 	@Override
 	public void pause(LocalDateTime now)
 	{
-		display.show(seconds(now), DisplayState.WORK_PAUSE);
+		context.getDisplay().show(seconds(now), DisplayState.WORK_PAUSE);
 
 		Resumable resume = (nowTime, from) -> context
 		        .changeState(new Working(context, nowTime, from), now);

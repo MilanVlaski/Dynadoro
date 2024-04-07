@@ -32,21 +32,22 @@ public class TestRecording2
 	@InjectMocks
 	Timer timer;
 
-	History2 fakeHistory;
+	History2 history;
 	LocalDateTime time = LocalDateTime.of(2024, 4, 2, 0, 0);
 
 	@BeforeEach
 	void setup()
 	{
-		fakeHistory = new FakeHistory();
+		// It's fake, because it doesn't access the file system.
+		history = new FakeHistory();
 		timer = new Timer(dummyDisplay, dummyCounter, dummyHistory,
-		        LocalDateTime.of(2024, 4, 2, 0, 0), fakeHistory);
+		        LocalDateTime.of(2024, 4, 2, 0, 0), history);
 	}
 
 	@Test
 	void HistoryShouldBeEmpty()
 	{
-		assertEquals(0, fakeHistory.getSessions().size());
+		assertEquals(0, history.getSessions().size());
 	}
 
 	@Test
@@ -58,7 +59,7 @@ public class TestRecording2
 		timer.reset(sevenMinLater);
 
 		assertEquals(new Period(WORKING, time, sevenMinLater),
-		        fakeHistory.getSessions().getFirst());
+		        history.getSessions().getFirst());
 	}
 
 	@Test
@@ -74,7 +75,7 @@ public class TestRecording2
 		assertEquals(List.of(
 		        new Period(WORKING, time, twenyFiveLater),
 		        new Period(RESTING, twenyFiveLater, twentySixLater)),
-		        fakeHistory.getSessions());
+		        history.getSessions());
 	}
 
 	@Test
@@ -90,7 +91,7 @@ public class TestRecording2
 		timer.reset(twelveLater);
 
 		assertEquals(List.of(new Period(WORKING, time, threeLater),
-		        new Period(WORKING, sevenLater, twelveLater)), fakeHistory.getSessions());
+		        new Period(WORKING, sevenLater, twelveLater)), history.getSessions());
 	}
 
 	@Test
@@ -99,7 +100,7 @@ public class TestRecording2
 		timer.begin(time.plusSeconds(1));
 		timer.pause(time.plusSeconds(59));
 
-		assertEquals(0, fakeHistory.getSessions().size());
+		assertEquals(0, history.getSessions().size());
 	}
 
 	@Test
@@ -108,16 +109,16 @@ public class TestRecording2
 		var date = LocalDate.of(2023, 5, 1);
 		var secBeforeMidnight = LocalDateTime.of(date, LocalTime.of(23, 59, 59));
 		LocalDateTime midnight = LocalDateTime.of(date.plusDays(1), LocalTime.of(0, 0));
-
+		
 		var tenToMidnight = LocalDateTime.of(date, LocalTime.of(23, 50));
 		var fiveMinPastMidnight = tenToMidnight.plusMinutes(15);
-		
+
 		timer.begin(tenToMidnight);
 		timer.reset(fiveMinPastMidnight);
 
 		assertEquals(List.of(
-				new Period(WORKING, tenToMidnight, secBeforeMidnight),
-				new Period(WORKING, midnight, fiveMinPastMidnight))
-				, fakeHistory.getSessions());
+		        new Period(WORKING, tenToMidnight, secBeforeMidnight),
+		        new Period(WORKING, midnight, fiveMinPastMidnight)),
+		        history.getSessions());
 	}
 }

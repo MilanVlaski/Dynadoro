@@ -23,8 +23,8 @@ public class Resting extends TimerState
 		super(context, now);
 		this.restDuration = restDuration;
 
-		display.show(restDuration, DisplayState.RESTING);
-		counter.count(restDuration);
+		context.getDisplay().show(restDuration, DisplayState.RESTING);
+		context.getCounter().count(restDuration);
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class Resting extends TimerState
 	@Override
 	public void pause(LocalDateTime now)
 	{
-		display.show(seconds(now), DisplayState.REST_PAUSE);
+		context.getDisplay().show(seconds(now), DisplayState.REST_PAUSE);
 
 		Resumable resume = (current, nowTime) -> context
 		        .changeState(new Resting(nowTime, context, current), now);

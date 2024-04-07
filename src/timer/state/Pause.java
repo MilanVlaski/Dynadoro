@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import recording.*;
 import timer.Timer;
 
-
 public class Pause extends TimerState
 {
 
@@ -19,7 +18,7 @@ public class Pause extends TimerState
 		this.resumable = resumable;
 		this.secondsWhenPaused = secondsWhenPaused;
 
-		counter.stop();
+		context.getCounter().stop();
 	}
 
 	@Override
@@ -48,9 +47,8 @@ public class Pause extends TimerState
 
 	@Override
 	public void capture(History2 history2, LocalDateTime now)
-	{ 
+	{
 		// TODO Auto-generated method stub
-	 }
-
+	}
 
 }
