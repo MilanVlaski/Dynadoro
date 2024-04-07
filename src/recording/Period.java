@@ -45,6 +45,8 @@ public class Period
 		        state.name, hourFormat.format(start), endTime);
 	}
 
+	
+	
 	@Override
 	public boolean equals(Object obj)
 	{

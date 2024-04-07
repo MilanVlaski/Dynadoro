@@ -10,19 +10,18 @@ public class RealHistory implements History2
 	public RealHistory(History history)
 	{
 		this.history = history;
-	 }
+	}
 
 	@Override
 	public List<Period> getSessions()
-	{ 
-		
+	{
 		return history.retrievePeriods();
-	 }
+	}
 
 	@Override
 	public void capture(Period period)
-	{ 
+	{
 		history.write(period.toString());
-	 }
+	}
 
 }
