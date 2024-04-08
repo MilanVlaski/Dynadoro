@@ -29,15 +29,12 @@ public class UsageHistory implements History
 	public String read()
 	{
 		if (Files.notExists(periodsFile))
-		{
 			return "";
-		}
 		else
 		{
 			try
 			{
 				return Files.readString(periodsFile);
-
 			} catch (IOException e)
 			{
 				e.printStackTrace();
