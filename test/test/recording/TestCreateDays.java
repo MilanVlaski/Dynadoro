@@ -2,7 +2,8 @@ package test.recording;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,12 +23,13 @@ public class TestCreateDays
 	}
 
 	static Period seventhNovember = new Period(State.WORKING,
-	        LocalDateTime.of(2023, 11, 7, 0, 0),
-	        LocalDateTime.of(2023, 11, 7, 0, 0));
+	        LocalDate.of(2023, 11, 7),
+	        LocalTime.of(0, 0),
+	        LocalTime.of(0, 0));
 	static Period nineteenthJune = new Period(State.WORKING,
-	        LocalDateTime.of(2023, 6, 19, 0, 0),
-
-	        LocalDateTime.of(2023, 6, 19, 0, 0));
+	        LocalDate.of(2023, 6, 19),
+	        LocalTime.of(0, 0),
+	        LocalTime.of(0, 0));
 
 	@Test
 	void CreatesDay_FromPeriodThatBelongsToIt()

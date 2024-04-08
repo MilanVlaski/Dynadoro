@@ -16,7 +16,8 @@ public class GsonPlaying
 		gson.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeTypeAdapter());
 
 		LocalDateTime now = LocalDateTime.now();
-		var json = gson.create().toJson(new Period(State.WORKING, now, now.plusMinutes(20)));
+		var json = gson.create().toJson(new Period(State.WORKING, now.toLocalDate(),
+				now.toLocalTime(), now.plusMinutes(20).toLocalTime()));
 
 		System.out.println(json);
 	}

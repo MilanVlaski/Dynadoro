@@ -41,7 +41,7 @@ public class ClockDrawer
 
 	}
 
-	private static void drawState(Graphics2D g, LocalDateTime startTime,
+	private static void drawState(Graphics2D g, LocalTime startTime,
 	                              Duration duration,
 	                              State type, int centerX, int centerY, int radius)
 	{
@@ -60,7 +60,7 @@ public class ClockDrawer
 		        BasicStroke.JOIN_BEVEL);
 		g.setStroke(borderStroke);
 
-		float startDegrees = timeToDegrees(startTime.toLocalTime());
+		float startDegrees = timeToDegrees(startTime);
 		float durationDegrees = durationToDegrees(duration);
 
 		Arc2D arc = new Arc2D.Float(centerX - radius, centerY - radius, 2 * radius,

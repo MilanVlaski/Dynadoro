@@ -7,20 +7,39 @@ public class Period
 {
 
 	private final State state;
-	private final LocalDateTime start;
-	private final LocalDateTime end;
+	private final LocalDate date;
+	private final LocalTime start;
+	private final LocalTime end;
 
-	public Period(State state, LocalDateTime start, LocalDateTime end)
+//	public Period(State state, LocalDateTime start, LocalDateTime end)
+//	{
+//		this.state = state;
+//		this.start = start;
+//		this.end = end;
+//	}
+
+	public Period(State state, LocalDate date, LocalTime start, LocalTime end)
 	{
 		this.state = state;
+		this.date = date;
 		this.start = start;
 		this.end = end;
 	}
+	/**
+	 * For easier testing!
+	 * @param working
+	 * @param start
+	 * @param end
+	 */
+	public Period(State state, LocalDateTime start, LocalDateTime end)
+	{ 
+		this(state, start.toLocalDate(), start.toLocalTime(), end.toLocalTime());
+	 }
 
 	public State type()
 	{ return state; }
 
-	public LocalDateTime startTime()
+	public LocalTime startTime()
 	{ return start; }
 
 	public Duration duration()
@@ -41,12 +60,10 @@ public class Period
 	{
 		String endTime = (end != null) ? hourFormat.format(end) : "unknown";
 
-		return String.join(", ", dateFormat.format(start), weekdayFormat.format(start),
+		return String.join(", ", dateFormat.format(date),
 		        state.name, hourFormat.format(start), endTime);
 	}
 
-	
-	
 	@Override
 	public boolean equals(Object obj)
 	{
@@ -57,6 +74,6 @@ public class Period
 	}
 
 	public LocalDate date()
-	{ return start.toLocalDate(); }
+	{ return date; }
 
 }

@@ -2,7 +2,8 @@ package test.recording;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,17 +31,17 @@ public class TestRealRecording
 //			e.printStackTrace();
 //		}
 //	}
-	
 
 	@Test
 	void RecordsSession()
 	{
 		history = new SessionHistory("testSessions.json");
-		LocalDateTime time = LocalDateTime.of(2024, 7, 4, 20, 40);
-		Period period = new Period(State.WORKING, time, time.plusMinutes(20));
+		LocalDate date = LocalDate.of(2024, 7, 4);
+		LocalTime time = LocalTime.of(20, 40);
+		Period period = new Period(State.WORKING, date, time, time.plusMinutes(20));
 
 		history.capture(period);
 		assertEquals(period, history.getSessions().get(0));
 	}
-	
+
 }

@@ -35,9 +35,8 @@ public class TestRecording2
 	Timer timer;
 
 	History2 history;
+
 	static final LocalDateTime dateTime = LocalDateTime.of(2024, 4, 2, 0, 0);
-	static final LocalDate date = LocalDate.of(2024, 4, 2);
-	static final LocalTime time = LocalTime.of(0, 0);
 
 	@BeforeEach
 	void setup()
@@ -127,7 +126,8 @@ public class TestRecording2
 	}
 
 	@Test
-	void ThrowsIfSessionLongerThanTwentyFourHours() {
+	void ThrowsIfSessionLongerThanTwentyFourHours()
+	{
 		timer.begin(dateTime);
 		assertThrows(SessionTooLong.class, () -> timer.reset(dateTime.plusDays(2)));
 	}

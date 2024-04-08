@@ -3,7 +3,8 @@ package test.recording;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -35,8 +36,10 @@ public class TestClockManagerIntegration
 		ClockManager manager = new ClockManager(dummy);
 
 		List<Period> twoPeriods = List.of(new Period(State.WORKING,
-		        LocalDateTime.of(2023, 12, 1, 2, 0),
-		        LocalDateTime.of(2023, 12, 1, 3, 0)));
+		        LocalDate.of(2023, 12, 1),
+		        LocalTime.of(2, 0),
+		        LocalTime.of(3, 0)
+		        ));
 
 		List<Day> days = manager.allDays(twoPeriods, Collections.emptyList());
 

@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 
 import java.nio.file.Path;
-import java.time.LocalDateTime;
+import java.time.*;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,7 +12,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
 
-import recording.*;
+import recording.Day;
+import recording.Period;
+import recording.State;
 import recording.clock.*;
 
 public class TestAssigningClocksToDays
@@ -29,11 +31,13 @@ public class TestAssigningClocksToDays
 	{ MockitoAnnotations.openMocks(this); }
 
 	static Period seventhNovember = new Period(State.WORKING,
-	        LocalDateTime.of(2023, 11, 7, 0, 0),
-	        LocalDateTime.of(2023, 11, 7, 0, 50));
+	        LocalDate.of(2023, 11, 7),
+	        LocalTime.of(0, 0),
+	        LocalTime.of(0, 50));
 	static Period nineteenthJune = new Period(State.WORKING,
-	        LocalDateTime.of(2023, 6, 19, 0, 0),
-	        LocalDateTime.of(2023, 6, 19, 0, 0));
+	        LocalDate.of(2023, 6, 19),
+	        LocalTime.of(0, 0),
+	        LocalTime.of(0, 50));
 
 	@Test
 	void AssignsClockToCorrectDay()
@@ -81,7 +85,8 @@ public class TestAssigningClocksToDays
 	void CreatesNewClock_AndAssignsIt_IfClockWasMadeToday_FLAKY()
 	{
 		LocalDateTime now = LocalDateTime.now();
-		Period todaysPeriod = new Period(State.WORKING, now, now);
+		LocalTime time = now.toLocalTime();
+		Period todaysPeriod = new Period(State.WORKING, now.toLocalDate(), time, time);
 
 		List<Day> days = List.of(new Day(List.of(todaysPeriod)));
 		Day day = days.get(0);
