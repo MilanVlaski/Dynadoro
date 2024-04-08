@@ -1,7 +1,7 @@
 package recording;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
+import java.util.Collections;
 import java.util.List;
 
 public class SessionHistory implements History2
@@ -33,9 +33,10 @@ public class SessionHistory implements History2
 
 	@Override
 	public List<Day> getDays()
-	{ 
-		// TODO Auto-generated method stub
+	{
+		if (Files.notExists(sessionsFile))
+			return Collections.emptyList();
 		return null;
-	 }
+	}
 
 }

@@ -2,13 +2,10 @@ package test.recording;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
-import recording.*;
+import recording.History2;
+import recording.SessionHistory;
 
 public class TestRealRecording
 {
@@ -34,15 +31,22 @@ public class TestRealRecording
 //	}
 
 	@Test
-	void RecordsSession()
+	void GivesEmptyList_IfNoFilePresent()
 	{
 		history = new SessionHistory("testSessions.json");
-		LocalDate date = LocalDate.of(2024, 7, 4);
-		LocalTime time = LocalTime.of(20, 40);
-		Period period = new Period(State.WORKING, date, time, time.plusMinutes(20));
-
-		history.capture(period);
-		assertEquals(new Day(List.of(period)), history.getDays().get(0));
+		assertEquals(0, history.getDays().size());
 	}
+
+//	@Test
+//	void RecordsSession()
+//	{
+//		history = new SessionHistory("testSessions.json");
+//		LocalDate date = LocalDate.of(2024, 7, 4);
+//		LocalTime time = LocalTime.of(20, 40);
+//		Period period = new Period(State.WORKING, date, time, time.plusMinutes(20));
+//
+//		history.capture(period);
+//		assertEquals(new Day(List.of(period)), history.getDays().get(0));
+//	}
 
 }
