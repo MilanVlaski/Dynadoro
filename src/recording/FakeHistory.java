@@ -21,4 +21,11 @@ public class FakeHistory implements History2
 		this.sessions.add(period);
 	}
 
+	@Override
+	public List<Day> getDays()
+	{ 
+		// TODO Auto-generated method stub
+		return null;
+	 }
+
 }

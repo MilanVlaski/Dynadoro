@@ -27,7 +27,6 @@ public class MainClass
 		var history2 = new RealHistory(history);
 		Timer timer = new Timer(display, counter, history, LocalDateTime.now(), history2);
 		display.setTimer(timer);
-		//
 
 		var fileMaker = new ClockFileMaker();
 		var clockManager = new ClockManager(fileMaker);

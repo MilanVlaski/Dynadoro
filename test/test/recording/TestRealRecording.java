@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -41,7 +42,7 @@ public class TestRealRecording
 		Period period = new Period(State.WORKING, date, time, time.plusMinutes(20));
 
 		history.capture(period);
-		assertEquals(period, history.getSessions().get(0));
+		assertEquals(new Day(List.of(period)), history.getDays().get(0));
 	}
 
 }

@@ -31,4 +31,11 @@ public class SessionHistory implements History2
 		// TODO Auto-generated method stub
 	}
 
+	@Override
+	public List<Day> getDays()
+	{ 
+		// TODO Auto-generated method stub
+		return null;
+	 }
+
 }

@@ -24,4 +24,11 @@ public class RealHistory implements History2
 		history.write(period.toString());
 	}
 
+	@Override
+	public List<Day> getDays()
+	{ 
+		// TODO Auto-generated method stub
+		return null;
+	 }
+
 }
