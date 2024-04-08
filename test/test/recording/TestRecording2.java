@@ -35,7 +35,9 @@ public class TestRecording2
 	Timer timer;
 
 	History2 history;
-	LocalDateTime time = LocalDateTime.of(2024, 4, 2, 0, 0);
+	static final LocalDateTime dateTime = LocalDateTime.of(2024, 4, 2, 0, 0);
+	static final LocalDate date = LocalDate.of(2024, 4, 2);
+	static final LocalTime time = LocalTime.of(0, 0);
 
 	@BeforeEach
 	void setup()
@@ -55,27 +57,27 @@ public class TestRecording2
 	@Test
 	void HistoryRecordsOneWorkSession()
 	{
-		LocalDateTime sevenMinLater = time.plusMinutes(7);
+		LocalDateTime sevenMinLater = dateTime.plusMinutes(7);
 
-		timer.begin(time);
+		timer.begin(dateTime);
 		timer.reset(sevenMinLater);
 
-		assertEquals(new Period(WORKING, time, sevenMinLater),
+		assertEquals(new Period(WORKING, dateTime, sevenMinLater),
 		        history.getSessions().getFirst());
 	}
 
 	@Test
 	void HistoryRecordsOneWork_AndOneRestSession()
 	{
-		LocalDateTime twenyFiveLater = time.plusMinutes(25);
+		LocalDateTime twenyFiveLater = dateTime.plusMinutes(25);
 		LocalDateTime twentySixLater = twenyFiveLater.plusMinutes(1);
 
-		timer.begin(time);
+		timer.begin(dateTime);
 		timer.rest(twenyFiveLater);
 		timer.reset(twentySixLater);
 
 		assertEquals(List.of(
-		        new Period(WORKING, time, twenyFiveLater),
+		        new Period(WORKING, dateTime, twenyFiveLater),
 		        new Period(RESTING, twenyFiveLater, twentySixLater)),
 		        history.getSessions());
 	}
@@ -83,24 +85,24 @@ public class TestRecording2
 	@Test
 	void RecordsWokSessions_ButNotPauseSession()
 	{
-		var threeLater = time.plusMinutes(3);
-		var sevenLater = time.plusMinutes(4);
-		var twelveLater = time.plusMinutes(5);
+		var threeLater = dateTime.plusMinutes(3);
+		var sevenLater = dateTime.plusMinutes(4);
+		var twelveLater = dateTime.plusMinutes(5);
 
-		timer.begin(time);
+		timer.begin(dateTime);
 		timer.pause(threeLater);
 		timer.begin(sevenLater);
 		timer.reset(twelveLater);
 
-		assertEquals(List.of(new Period(WORKING, time, threeLater),
+		assertEquals(List.of(new Period(WORKING, dateTime, threeLater),
 		        new Period(WORKING, sevenLater, twelveLater)), history.getSessions());
 	}
 
 	@Test
 	void DoesNotRecordsSessionsThatLastLessThanMinute()
 	{
-		timer.begin(time.plusSeconds(1));
-		timer.pause(time.plusSeconds(59));
+		timer.begin(dateTime.plusSeconds(1));
+		timer.pause(dateTime.plusSeconds(59));
 
 		assertEquals(0, history.getSessions().size());
 	}
@@ -111,7 +113,7 @@ public class TestRecording2
 		var date = LocalDate.of(2023, 5, 1);
 		var secBeforeMidnight = LocalDateTime.of(date, LocalTime.of(23, 59, 59));
 		LocalDateTime midnight = LocalDateTime.of(date.plusDays(1), LocalTime.of(0, 0));
-		
+
 		var tenToMidnight = LocalDateTime.of(date, LocalTime.of(23, 50));
 		var fiveMinPastMidnight = tenToMidnight.plusMinutes(15);
 
@@ -123,11 +125,10 @@ public class TestRecording2
 		        new Period(WORKING, midnight, fiveMinPastMidnight)),
 		        history.getSessions());
 	}
-	
+
 	@Test
 	void ThrowsIfSessionLongerThanTwentyFourHours() {
-		timer.begin(time);
-		timer.reset(time.plusDays(2));
-		assertThrows(SessionTooLong.class, () -> history.getSessions());
+		timer.begin(dateTime);
+		assertThrows(SessionTooLong.class, () -> timer.reset(dateTime.plusDays(2)));
 	}
 }
