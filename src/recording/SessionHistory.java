@@ -5,10 +5,12 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import recording.gson.LocalDateTypeAdapter;
 import recording.gson.LocalTimeTypeAdapter;
@@ -49,7 +51,7 @@ public class SessionHistory implements History2
 		List<Day> days = getDays();
 		if (days.isEmpty())
 		{
-			write(gson.toJson(new Day(List.of(period))), sessionsFile);
+			write(gson.toJson(List.of(new Day(List.of(period)))), sessionsFile);
 		}
 	}
 
@@ -80,7 +82,7 @@ public class SessionHistory implements History2
 		if (Files.notExists(sessionsFile))
 			return Collections.emptyList();
 		else
-			return gson.fromJson(readFile(sessionsFile), ArrayList.class);
+			return gson.fromJson(readFile(sessionsFile), new TypeToken<List<Day>>() {});
 	}
 
 	private static String readFile(Path sessionsFile)

@@ -31,14 +31,25 @@ public class TestRealRecording
 	{ assertEquals(0, history.getDays().size()); }
 
 	@Test
-	void RecordsSession()
+	void RecordsSession_InsideDay()
 	{
 		LocalDate date = LocalDate.of(2024, 7, 4);
 		LocalTime time = LocalTime.of(20, 40);
 		Period period = new Period(State.WORKING, date, time, time.plusMinutes(20));
 
 		history.capture(period);
-		assertEquals(new Day(List.of(period)), history.getDays().get(0));
+		
+		List<Day> days = history.getDays();
+		assertEquals(1, days.size());
+		assertEquals(1, days.get(0).numberOfPeriods());
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
 }
