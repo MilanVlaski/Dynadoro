@@ -7,8 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.io.TempDir;
 
 import recording.*;
@@ -27,21 +26,37 @@ public class TestRealRecording
 	}
 
 	@Test
-	void GivesEmptyList_IfNoFilePresent()
+	void GivesNoDays_IfNothingWasRecorded()
 	{ assertEquals(0, history.getDays().size()); }
 
-	@Test
-	void RecordsSession_InsideDay()
+	@Nested
+	class RecordsSession
 	{
+
 		LocalDate date = LocalDate.of(2024, 7, 4);
 		LocalTime time = LocalTime.of(20, 40);
 		Period period = new Period(State.WORKING, date, time, time.plusMinutes(20));
 
-		history.capture(period);
+		void IfNothingWasRecordedBefore()
+		{
+			history.capture(period);
 
-		List<Day> days = history.getDays();
-		assertEquals(1, days.size());
-		assertEquals(1, days.get(0).numberOfPeriods());
+			List<Day> days = history.getDays();
+			assertEquals(1, days.size());
+			assertEquals(1, days.get(0).numberOfPeriods());
+		}
+
+		@Test
+		void InsideExistingDay()
+		{
+			history.capture(period);
+			history.capture(period);
+
+			List<Day> days = history.getDays();
+			assertEquals(1, days.size());
+			assertEquals(2, days.get(0).numberOfPeriods());
+		}
 	}
+
 
 }
