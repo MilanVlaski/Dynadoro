@@ -41,6 +41,9 @@ public class Period
 
 	public LocalTime startTime()
 	{ return start; }
+	
+	public LocalTime endTime()
+	{ return end; }
 
 	public Duration duration()
 	{

@@ -64,4 +64,9 @@ public class Day
 		        .reduce(Duration::plus)
 		        .orElse(Duration.ZERO);
 	}
+
+	public void addPeriod(Period period)
+	{
+		periods.add(period);
+	 }
 }

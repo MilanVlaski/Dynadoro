@@ -9,7 +9,8 @@ import com.google.gson.*;
 public class LocalDateTimeTypeAdapter implements JsonSerializer<LocalDateTime>,
         JsonDeserializer<LocalDateTime>
 {
-	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MMM-uuuu HH:mm:ss");
+	private static final DateTimeFormatter formatter = DateTimeFormatter
+	        .ofPattern(LocalDateTypeAdapter.DATE_FORMAT + " " + LocalTimeTypeAdapter.TIME_FORMAT);
 
 	@Override
 	public LocalDateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)

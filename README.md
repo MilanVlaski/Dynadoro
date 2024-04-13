@@ -19,6 +19,8 @@
 
 
 ## TODO
+- Json reader and json writer is a thing
+- set date format can be done straight with a builder method
 - Retrieve Days. (assert that day contains period) (find inspiration from assigning periods to days)
 - 
 - Make files unnecessary by creating all clocks when days are retrieved. That makes it necessary to add pagination (honestly, not even that important, maybe for huge datasets...).
