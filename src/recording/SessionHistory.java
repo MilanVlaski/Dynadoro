@@ -23,8 +23,9 @@ public class SessionHistory implements History2
 	public static final Path directory = Paths.get(userHome, appName);
 
 	private final Gson gson = new GsonBuilder().setPrettyPrinting()
-	        .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
-	        .registerTypeAdapter(LocalTime.class, new LocalTimeTypeAdapter()).create();
+	                                           .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
+	                                           .registerTypeAdapter(LocalTime.class, new LocalTimeTypeAdapter())
+	                                           .create();
 
 	private final Path sessionsFile;
 
@@ -50,9 +51,7 @@ public class SessionHistory implements History2
 	{
 		List<Day> days = getDays();
 		if (days.isEmpty())
-		{
 			write(gson.toJson(List.of(new Day(List.of(period)))), sessionsFile);
-		}
 	}
 
 	private static void write(String json, Path sessionsFile)
@@ -87,17 +86,12 @@ public class SessionHistory implements History2
 
 	private static String readFile(Path sessionsFile)
 	{
-		if (Files.notExists(sessionsFile))
-			return "";
-		else
+		try
 		{
-			try
-			{
-				return Files.readString(sessionsFile);
-			} catch (IOException e)
-			{
-				e.printStackTrace();
-			}
+			return Files.readString(sessionsFile);
+		} catch (IOException e)
+		{
+			e.printStackTrace();
 		}
 		return "";
 	}

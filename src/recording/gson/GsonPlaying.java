@@ -18,9 +18,9 @@ public class GsonPlaying
 	public static void main(String[] args)
 	{
 		var gson = new GsonBuilder().setPrettyPrinting()
-		        .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
-		        .registerTypeAdapter(LocalTime.class, new LocalTimeTypeAdapter())
-		        .create();
+		                            .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
+		                            .registerTypeAdapter(LocalTime.class, new LocalTimeTypeAdapter())
+		                            .create();
 
 		var days = days(1);
 
@@ -28,14 +28,11 @@ public class GsonPlaying
 
 		write(json, Path.of("./test.json"));
 
-		ArrayList<Day> parsedDays = gson.fromJson(readFile(Path.of("./test.json")),
-		        ArrayList.class);
+		ArrayList<Day> parsedDays = gson.fromJson(readFile(Path.of("./test.json")), ArrayList.class);
 
 		System.out.println(parsedDays);
-		System.out.println(
-		        "Days serialized is same as deserialized - " + (days.equals(parsedDays)
-		                ? "Yes"
-		                : "No"));
+		System.out.println("Days serialized is same as deserialized - "
+		        + (days.equals(parsedDays) ? "Yes" : "No"));
 
 	}
 

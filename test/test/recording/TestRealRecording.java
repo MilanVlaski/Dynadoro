@@ -38,18 +38,10 @@ public class TestRealRecording
 		Period period = new Period(State.WORKING, date, time, time.plusMinutes(20));
 
 		history.capture(period);
-		
+
 		List<Day> days = history.getDays();
 		assertEquals(1, days.size());
 		assertEquals(1, days.get(0).numberOfPeriods());
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
 }

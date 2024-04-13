@@ -59,14 +59,14 @@ public class Day
 	private Duration timeSpent(State state)
 	{
 		return periods.stream()
-		        .filter(p -> p.type().equals(state))
-		        .map(Period::duration)
-		        .reduce(Duration::plus)
-		        .orElse(Duration.ZERO);
+		              .filter(p -> p.type().equals(state))
+		              .map(Period::duration)
+		              .reduce(Duration::plus)
+		              .orElse(Duration.ZERO);
 	}
 
 	public void addPeriod(Period period)
 	{
 		periods.add(period);
-	 }
+	}
 }
