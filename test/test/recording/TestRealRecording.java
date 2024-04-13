@@ -21,7 +21,7 @@ public class TestRealRecording
 	Path tempDir;
 
 	@BeforeEach
-	void deleteFileBefore()
+	void setup()
 	{
 		history = new SessionHistory(tempDir.resolve("testSessions.json"));
 	}
