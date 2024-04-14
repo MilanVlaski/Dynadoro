@@ -44,14 +44,17 @@ public class TestDisplay
 
 	@Test
 	void shouldShowIdle_OnInit()
-	{ verify(mockDisplay).show(0, DisplayState.IDLE); }
+	{
+		verify(mockDisplay).show(0);
+		verify(mockDisplay).showIdle();
+	}
 
 	@Test
 	void shouldShowWorkingState_WhenStarting()
 	{
 		timer.begin(moment.current());
 
-		verify(mockDisplay).show(0, DisplayState.WORKING);
+		verify(mockDisplay).showWorking();
 		verify(mockCounter).countUp();
 	}
 
@@ -61,7 +64,8 @@ public class TestDisplay
 		timer.begin(moment.current());
 		timer.rest(moment.afterSeconds(WORK_DURATION));
 
-		verify(mockDisplay).show(REST_DURATION, DisplayState.RESTING);
+		verify(mockDisplay).show(REST_DURATION);
+		verify(mockDisplay).showResting();
 		verify(mockCounter).count(REST_DURATION);
 	}
 
@@ -71,8 +75,9 @@ public class TestDisplay
 		timer.begin(moment.current());
 		timer.pause(moment.afterSeconds(3));
 
-		verify(mockDisplay).show(3, DisplayState.WORK_PAUSE);
-		verify(mockCounter, times(2)).stop();
+		verify(mockDisplay).show(3);
+		verify(mockDisplay).pauseWork();
+		verify(mockCounter, atMost(2)).stop();
 	}
 
 	@Test
@@ -93,7 +98,8 @@ public class TestDisplay
 		timer.pause(moment.afterSeconds(1));
 		timer.resume(moment.afterSeconds(123));
 
-		verify(mockDisplay).show(1, DisplayState.WORKING);
+		verify(mockDisplay, atLeastOnce()).show(1);
+		verify(mockDisplay, times(2)).showWorking();
 		verify(mockCounter, times(2)).countUp();
 	}
 

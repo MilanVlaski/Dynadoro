@@ -18,6 +18,7 @@ public class Pause extends TimerState
 		this.resumable = resumable;
 		this.secondsWhenPaused = secondsWhenPaused;
 
+		context.getDisplay().show(secondsWhenPaused);
 		context.getCounter().stop();
 	}
 

@@ -5,7 +5,6 @@ import static recording.State.WORKING;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-import display.Display.DisplayState;
 import recording.History2;
 import timer.Timer;
 
@@ -22,7 +21,8 @@ public class Working extends TimerState
 		super(context, now);
 		this.offset = offset;
 
-		context.getDisplay().show(offset, DisplayState.WORKING);
+		context.getDisplay().show(offset);
+		context.getDisplay().showWorking();
 		context.getCounter().countUp();
 	}
 
@@ -44,7 +44,7 @@ public class Working extends TimerState
 	@Override
 	public void pause(LocalDateTime now)
 	{
-		context.getDisplay().show(seconds(now), DisplayState.WORK_PAUSE);
+		context.getDisplay().pauseWork();
 
 		Resumable resume = (nowTime, from) -> context
 		        .changeState(new Working(context, nowTime, from), now);

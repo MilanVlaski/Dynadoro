@@ -53,11 +53,11 @@ public abstract class Display
 	public abstract void tickTime();
 	public abstract void setTimer(Timer timer);
 
-	protected abstract void showIdle();
-	protected abstract void showWorking();
-	protected abstract void showResting();
-	protected abstract void pauseWork();
-	protected abstract void pauseRest();
-	protected abstract void finishRest();
+	public abstract void showIdle();
+	public abstract void showWorking();
+	public abstract void showResting();
+	public abstract void pauseWork();
+	public abstract void pauseRest();
+	public abstract void finishRest();
 
 }

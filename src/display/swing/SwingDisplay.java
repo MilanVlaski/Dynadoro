@@ -14,27 +14,27 @@ public class SwingDisplay extends Display
 	{ mainFrame = new MainFrame(); }
 
 	@Override
-	protected void pauseWork()
+	public void pauseWork()
 	{ mainFrame.showWorkPause(); }
 
 	@Override
-	protected void pauseRest()
+	public void pauseRest()
 	{ mainFrame.showRestPause(); }
 
 	@Override
-	protected void finishRest()
+	public void finishRest()
 	{ mainFrame.showRestFinished(); }
 
 	@Override
-	protected void showResting()
+	public void showResting()
 	{ mainFrame.showRest(); }
 
 	@Override
-	protected void showWorking()
+	public void showWorking()
 	{ mainFrame.showWorking(); }
 
 	@Override
-	protected void showIdle()
+	public void showIdle()
 	{ mainFrame.showIdle(); }
 
 	@Override

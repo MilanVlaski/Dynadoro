@@ -50,30 +50,30 @@ public class ConsoleDisplay extends Display
 	        + "\nPress 1 to go back to work"; }
 
 	@Override
-	protected void pauseWork()
+	public void pauseWork()
 	{ System.out.println(workPauseMessage(secondsNow())); }
 
 	@Override
-	protected void pauseRest()
+	public void pauseRest()
 	{ System.out.println(restPauseMessage(secondsNow())); }
 
 	private int secondsNow()
 	{ return timer.seconds(LocalDateTime.now()); }
 
 	@Override
-	protected void finishRest()
+	public void finishRest()
 	{ System.out.println(restFinishedMessage()); }
 
 	@Override
-	protected void showResting()
+	public void showResting()
 	{ System.out.println(restMessage(secondsNow())); }
 
 	@Override
-	protected void showWorking()
+	public void showWorking()
 	{ System.out.println(workingMessage(secondsNow())); }
 
 	@Override
-	protected void showIdle()
+	public void showIdle()
 	{ System.out.println(idleMessage()); }
 
 	@Override

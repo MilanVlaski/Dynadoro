@@ -23,7 +23,8 @@ public class Resting extends TimerState
 		super(context, now);
 		this.restDuration = restDuration;
 
-		context.getDisplay().show(restDuration, DisplayState.RESTING);
+		context.getDisplay().show(restDuration);
+		context.getDisplay().showResting();
 		context.getCounter().count(restDuration);
 	}
 

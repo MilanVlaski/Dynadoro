@@ -2,7 +2,6 @@ package timer.state;
 
 import java.time.LocalDateTime;
 
-import display.Display.DisplayState;
 import recording.History2;
 import timer.Timer;
 
@@ -12,7 +11,8 @@ public class Idle extends TimerState
 	public Idle(Timer context, LocalDateTime now)
 	{
 		super(context, now);
-		context.getDisplay().show(0, DisplayState.IDLE);
+		context.getDisplay().show(0);
+		context.getDisplay().showIdle();
 		context.getCounter().stop();
 	}
 
