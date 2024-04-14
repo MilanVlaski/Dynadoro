@@ -19,13 +19,10 @@
 
 
 ## TODO
-- Json reader and json writer is a thing
-- set date format can be done straight with a builder method
+- Sound isnt working, so make it a maven project, with the maven structure.
 - Retrieve Days. (assert that day contains period) (find inspiration from assigning periods to days)
-- 
 - Make files unnecessary by creating all clocks when days are retrieved. That makes it necessary to add pagination (honestly, not even that important, maybe for huge datasets...).
-	- retrieving days should be able to be paginated (get an object containing all, on which you can call getNext(), which returns just a few)
-- Refactor to using json
+- retrieving days should be able to be paginated (get an object containing all, on which you can call getNext(), which returns just a few)
 - show hours studied per week
 - make sessions file openable through UI
 
