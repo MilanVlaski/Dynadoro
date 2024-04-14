@@ -21,7 +21,7 @@ import timer.Timer;
 import timer.counter.Counter;
 import timer.state.TimerState.SessionTooLong;
 
-public class TestRecording2
+public class TestRecordingSessions
 {
 
 	@Mock
