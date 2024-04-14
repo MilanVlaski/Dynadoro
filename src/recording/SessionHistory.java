@@ -51,7 +51,9 @@ public class SessionHistory implements History2
 		if (sessions.isEmpty())
 			return Collections.emptyList();
 		else
+		{
 			return List.of(new Day(sessions));
+		}
 	}
 
 	@Override
