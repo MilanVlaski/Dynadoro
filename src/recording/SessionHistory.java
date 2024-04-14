@@ -31,20 +31,18 @@ public class SessionHistory implements History2
 
 	private final Path sessionsFile;
 
+	/**
+	 * Send the name of the file, and it will be used to store sessions in the user home
+	 * folder, in the Dynadoro folder.
+	 */
 	public SessionHistory(String fileName)
-	{
-		sessionsFile = directory.resolve(fileName + ".json");
-	}
+	{ sessionsFile = directory.resolve(fileName + ".json"); }
 
 	/**
 	 * For testing, it's easier to inject a file that we can delete.
-	 * 
-	 * @param file
 	 */
 	public SessionHistory(Path file)
-	{
-		this.sessionsFile = file;
-	}
+	{ this.sessionsFile = file; }
 
 	@Override
 	public List<Day> getDays()
@@ -53,9 +51,7 @@ public class SessionHistory implements History2
 		if (sessions.isEmpty())
 			return Collections.emptyList();
 		else
-		{
 			return List.of(new Day(sessions));
-		}
 	}
 
 	@Override
@@ -96,9 +92,6 @@ public class SessionHistory implements History2
 	public void capture(Period period)
 	{
 		write(period.toString());
-//		List<Day> days = getDays();
-//		if (days.isEmpty())
-//			write(gson.toJson(List.of(new Day(List.of(period)))), sessionsFile);
 	}
 
 	private void write(String text)
@@ -113,10 +106,8 @@ public class SessionHistory implements History2
 
 			BufferedWriter writer = Files.newBufferedWriter(sessionsFile,
 			                                                StandardOpenOption.APPEND);
-
 			writer.write(text);
 			writer.newLine();
-
 			writer.close();
 
 		} catch (IOException e)
@@ -128,13 +119,16 @@ public class SessionHistory implements History2
 
 	private static String readFile(Path sessionsFile)
 	{
-		try
-		{
-			return Files.readString(sessionsFile);
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
+		if (Files.notExists(sessionsFile))
+			return "";
+		else
+			try
+			{
+				return Files.readString(sessionsFile);
+			} catch (IOException e)
+			{
+				e.printStackTrace();
+			}
 		return "";
 	}
 

@@ -47,16 +47,16 @@ public class TestRealRecording
 			assertEquals(1, days.get(0).numberOfPeriods());
 		}
 
-//		@Test
-//		void InsideExistingDay()
-//		{
-//			history.capture(period);
-//			history.capture(period);
-//
-//			List<Day> days = history.getDays();
-//			assertEquals(1, days.size());
-//			assertEquals(2, days.get(0).numberOfPeriods());
-//		}
+		@Test
+		void InsideExistingDay()
+		{
+			history.capture(period);
+			history.capture(period);
+
+			List<Day> days = history.getDays();
+			assertEquals(1, days.size());
+			assertEquals(2, days.get(0).numberOfPeriods());
+		}
 	}
 
 
