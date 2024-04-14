@@ -17,6 +17,7 @@ import org.mockito.Mock;
 import display.Display;
 import recording.*;
 import recording.Session;
+import test.helpers.FakeHistory;
 import timer.Timer;
 import timer.counter.Counter;
 import timer.state.TimerState.SessionTooLong;

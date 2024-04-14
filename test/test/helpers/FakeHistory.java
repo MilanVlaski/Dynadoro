@@ -1,50 +1,33 @@
 package test.helpers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import recording.*;
-import recording.clock.ProductivityClock;
 
-public class FakeHistory implements History
+/**
+ * Doesn't interact with the file system, instead, stores Sessions in a list.
+ */
+public class FakeHistory implements History2
 {
 
-	private String contents = "";
-	private List<ProductivityClock> clocks;
+	private final List<Session> sessions = new ArrayList<Session>();
 
-	public FakeHistory(String contents)
-	{ this.contents = contents; }
+	@Override
+	public List<Session> getSessions()
+	{ return sessions; }
 
-	public FakeHistory()
-	{}
-
-	public FakeHistory(List<Session> states)
+	@Override
+	public void capture(Session session)
 	{
-		for (Session session : states)
-		{
-			write(session.toString());
-		}
-	}
-
-	public FakeHistory(List<ProductivityClock> clocks, List<Session> sessions)
-	{
-		this(sessions);
-		this.clocks = clocks;
+		this.sessions.add(session);
 	}
 
 	@Override
-	public String read()
-	{ return contents; }
-
-	@Override
-	public void write(String contents)
-	{ this.contents += contents + "\n"; }
-
-	@Override
-	public List<Session> retrievePeriods()
-	{ return UsageHistory.parsePeriods(contents); }
-
-	@Override
-	public List<ProductivityClock> retrieveClocks()
-	{ return clocks; }
+	public List<Day> getDays()
+	{ 
+		// TODO Auto-generated method stub
+		return null;
+	 }
 
 }

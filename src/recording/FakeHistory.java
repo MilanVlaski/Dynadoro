@@ -3,6 +3,8 @@ package recording;
 import java.util.ArrayList;
 import java.util.List;
 
+import recording.*;
+
 /**
  * Doesn't interact with the file system, instead, stores Sessions in a list.
  */
