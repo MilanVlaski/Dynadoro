@@ -36,7 +36,7 @@ public class SessionHistory implements History2
 	 * folder, in the Dynadoro folder.
 	 */
 	public SessionHistory(String fileName)
-	{ sessionsFile = directory.resolve(fileName + ".json"); }
+	{ sessionsFile = directory.resolve(fileName + ".txt"); }
 
 	/**
 	 * For testing, it's easier to inject a file that we can delete.

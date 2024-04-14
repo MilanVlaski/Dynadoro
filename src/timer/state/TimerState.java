@@ -2,9 +2,7 @@ package timer.state;
 
 import java.time.*;
 
-import recording.History2;
-import recording.Session;
-import recording.State;
+import recording.*;
 import timer.Timer;
 
 public abstract class TimerState
@@ -42,9 +40,9 @@ public abstract class TimerState
 		else if (sessionPassedMidnight(start, end))
 		{
 			var secBeforeMidnight = LocalDateTime.of(start.toLocalDate(),
-			        LocalTime.of(23, 59, 59));
+			                                         LocalTime.of(23, 59, 59));
 			var midnight = LocalDateTime.of(start.toLocalDate().plusDays(1),
-			        LocalTime.of(0, 0));
+			                                LocalTime.of(0, 0));
 
 			history2.capture(new Session(working, start, secBeforeMidnight));
 			history2.capture(new Session(working, midnight, end));
@@ -53,10 +51,12 @@ public abstract class TimerState
 			history2.capture(new Session(working, start, end));
 	}
 
-	private static boolean sessionLastsMoreThanOneDay(LocalDateTime start, LocalDateTime end)
+	private static boolean sessionLastsMoreThanOneDay(LocalDateTime start,
+	                                                  LocalDateTime end)
 	{ return Duration.between(start, end).toDays() > 0; }
 
-	private static boolean sessionLastsMoreThanOneMinute(LocalDateTime start, LocalDateTime end)
+	private static boolean sessionLastsMoreThanOneMinute(LocalDateTime start,
+	                                                     LocalDateTime end)
 	{ return Duration.between(start, end).compareTo(Duration.ofMinutes(1)) >= 0; }
 
 	private static boolean sessionPassedMidnight(LocalDateTime start, LocalDateTime end)
