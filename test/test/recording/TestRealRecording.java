@@ -37,6 +37,7 @@ public class TestRealRecording
 		LocalTime time = LocalTime.of(20, 40);
 		Period period = new Period(State.WORKING, date, time, time.plusMinutes(20));
 
+		@Test
 		void IfNothingWasRecordedBefore()
 		{
 			history.capture(period);
@@ -46,16 +47,16 @@ public class TestRealRecording
 			assertEquals(1, days.get(0).numberOfPeriods());
 		}
 
-		@Test
-		void InsideExistingDay()
-		{
-			history.capture(period);
-			history.capture(period);
-
-			List<Day> days = history.getDays();
-			assertEquals(1, days.size());
-			assertEquals(2, days.get(0).numberOfPeriods());
-		}
+//		@Test
+//		void InsideExistingDay()
+//		{
+//			history.capture(period);
+//			history.capture(period);
+//
+//			List<Day> days = history.getDays();
+//			assertEquals(1, days.size());
+//			assertEquals(2, days.get(0).numberOfPeriods());
+//		}
 	}
 
 

@@ -25,23 +25,25 @@ public class Period
 		this.start = start;
 		this.end = end;
 	}
+
 	/**
 	 * For easier testing!
+	 * 
 	 * @param working
 	 * @param start
 	 * @param end
 	 */
 	public Period(State state, LocalDateTime start, LocalDateTime end)
-	{ 
+	{
 		this(state, start.toLocalDate(), start.toLocalTime(), end.toLocalTime());
-	 }
+	}
 
 	public State type()
 	{ return state; }
 
 	public LocalTime startTime()
 	{ return start; }
-	
+
 	public LocalTime endTime()
 	{ return end; }
 
@@ -50,29 +52,23 @@ public class Period
 		return Duration.between(start, end);
 	}
 
-	public static final DateTimeFormatter dateFormat = DateTimeFormatter
-	        .ofPattern("yyyy-MM-dd");
-	public static final DateTimeFormatter weekdayFormat = DateTimeFormatter
-	        .ofPattern("EEEE");
-	public static final DateTimeFormatter hourFormat = DateTimeFormatter
-	        .ofPattern("HH:mm");
-	public static final String regex = "(\\d{4}\\-\\d{2}\\-\\d{2}),\\s*(\\w+),\\s*(\\w+),\\s(\\d+:\\d+).*?(\\d+:\\d+)";
+	public static DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	public static DateTimeFormatter weekdayFormat = DateTimeFormatter.ofPattern("EEEE");
+	public static DateTimeFormatter hourFormat = DateTimeFormatter.ofPattern("HH:mm");
+	public static String regex = "(\\d{4}\\-\\d{2}\\-\\d{2}),\\s*(\\w+),\\s(\\d+:\\d+).*?(\\d+:\\d+)";
 
 	@Override
 	public String toString()
 	{
-		String endTime = (end != null) ? hourFormat.format(end) : "unknown";
-
-		return String.join(", ", dateFormat.format(date),
-		        state.name, hourFormat.format(start), endTime);
+		return String.join(", ", dateFormat.format(date), state.name,
+		                   hourFormat.format(start), hourFormat.format(end));
 	}
 
 	@Override
 	public boolean equals(Object obj)
 	{
 		Period period = (Period) obj;
-		return period.state.equals(state)
-		        && period.start.equals(start)
+		return period.state.equals(state) && period.start.equals(start)
 		        && period.end.equals(end);
 	}
 

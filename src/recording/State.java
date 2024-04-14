@@ -18,8 +18,9 @@ public enum State
 
 	public static Optional<State> of(String name)
 	{
-		return List.of(values()).stream()
-		        .filter((s) -> name.toLowerCase().equals(s.name.toLowerCase()))
-		        .findAny();
+		return List.of(values())
+		           .stream()
+		           .filter((s) -> name.toLowerCase().equals(s.name.toLowerCase()))
+		           .findAny();
 	}
 }

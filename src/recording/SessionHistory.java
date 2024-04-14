@@ -5,12 +5,12 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
 import recording.gson.LocalDateTypeAdapter;
 import recording.gson.LocalTimeTypeAdapter;
@@ -23,8 +23,10 @@ public class SessionHistory implements History2
 	public static final Path directory = Paths.get(userHome, appName);
 
 	private final Gson gson = new GsonBuilder().setPrettyPrinting()
-	                                           .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
-	                                           .registerTypeAdapter(LocalTime.class, new LocalTimeTypeAdapter())
+	                                           .registerTypeAdapter(LocalDate.class,
+	                                                                new LocalDateTypeAdapter())
+	                                           .registerTypeAdapter(LocalTime.class,
+	                                                                new LocalTimeTypeAdapter())
 	                                           .create();
 
 	private final Path sessionsFile;
@@ -34,27 +36,72 @@ public class SessionHistory implements History2
 		sessionsFile = directory.resolve(fileName + ".json");
 	}
 
-	public SessionHistory(Path tempDir)
+	/**
+	 * For testing, it's easier to inject a file that we can delete.
+	 * 
+	 * @param file
+	 */
+	public SessionHistory(Path file)
 	{
-		this.sessionsFile = tempDir;
+		this.sessionsFile = file;
+	}
+
+	@Override
+	public List<Day> getDays()
+	{
+		List<Period> sessions = getSessions();
+		if (sessions.isEmpty())
+			return Collections.emptyList();
+		else
+		{
+			return List.of(new Day(sessions));
+		}
 	}
 
 	@Override
 	public List<Period> getSessions()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		String contents = readFile(sessionsFile);
+		return parsePeriods(contents);
+	}
+
+	public static List<Period> parsePeriods(String text)
+	{
+		List<Period> result = new ArrayList<>();
+		Pattern pattern = Pattern.compile(Period.regex);
+		Matcher matcher = pattern.matcher(text);
+
+		while (matcher.find())
+		{
+			// matched strings
+			String dateString = matcher.group(1);
+			String stateString = matcher.group(2);
+			String startTimeString = matcher.group(3);
+			String endTimeString = matcher.group(4);
+
+			// parsed objects
+			LocalDate date = LocalDate.parse(dateString, Period.dateFormat);
+			LocalTime startTime = LocalTime.parse(startTimeString, Period.hourFormat);
+			LocalTime endTime = LocalTime.parse(endTimeString, Period.hourFormat);
+
+			State state = State.of(stateString).get();
+
+			result.add(new Period(state, date, startTime, endTime));
+		}
+
+		return result;
 	}
 
 	@Override
 	public void capture(Period period)
 	{
-		List<Day> days = getDays();
-		if (days.isEmpty())
-			write(gson.toJson(List.of(new Day(List.of(period)))), sessionsFile);
+		write(period.toString());
+//		List<Day> days = getDays();
+//		if (days.isEmpty())
+//			write(gson.toJson(List.of(new Day(List.of(period)))), sessionsFile);
 	}
 
-	private static void write(String json, Path sessionsFile)
+	private void write(String text)
 	{
 		try
 		{
@@ -64,9 +111,12 @@ public class SessionHistory implements History2
 				Files.createFile(sessionsFile);
 			}
 
-			BufferedWriter writer = Files.newBufferedWriter(sessionsFile);
+			BufferedWriter writer = Files.newBufferedWriter(sessionsFile,
+			                                                StandardOpenOption.APPEND);
 
-			writer.write(json);
+			writer.write(text);
+			writer.newLine();
+
 			writer.close();
 
 		} catch (IOException e)
@@ -75,14 +125,6 @@ public class SessionHistory implements History2
 		}
 	}
 
-	@Override
-	public List<Day> getDays()
-	{
-		if (Files.notExists(sessionsFile))
-			return Collections.emptyList();
-		else
-			return gson.fromJson(readFile(sessionsFile), new TypeToken<List<Day>>() {});
-	}
 
 	private static String readFile(Path sessionsFile)
 	{

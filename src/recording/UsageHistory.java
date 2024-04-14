@@ -55,7 +55,7 @@ public class UsageHistory implements History
 			}
 
 			BufferedWriter writer = Files.newBufferedWriter(periodsFile,
-			        StandardOpenOption.APPEND);
+			                                                StandardOpenOption.APPEND);
 
 			writer.write(text);
 			writer.newLine();
@@ -82,13 +82,14 @@ public class UsageHistory implements History
 		{
 			// matched strings
 			String dateString = matcher.group(1);
-			String stateString = matcher.group(3);
-			String startTimeString = matcher.group(4);
+			String stateString = matcher.group(2);
+			String startTimeString = matcher.group(3);
 			String endTimeString = matcher.group(5);
 
 			// parsed objects
 			LocalDate date = LocalDate.parse(dateString, Period.dateFormat);
-			LocalTime startTime = LocalTime.parse(startTimeString, Period.hourFormat);
+			LocalTime startTime = LocalTime.parse(startTimeString,
+			                                      Period.hourFormat);
 			LocalTime endTime = LocalTime.parse(endTimeString, Period.hourFormat);
 
 			// combining date and time into datetime
@@ -117,8 +118,7 @@ public class UsageHistory implements History
 	{
 		List<ProductivityClock> clocks = new ArrayList<>();
 
-		try (DirectoryStream<Path> stream = Files
-		        .newDirectoryStream(Paths.get(ClocksFolder.toUri())))
+		try (DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(ClocksFolder.toUri())))
 		{
 
 			for (Path path : stream)
