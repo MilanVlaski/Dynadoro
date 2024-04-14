@@ -57,6 +57,19 @@ public class TestRetrievingDays
 			assertEquals(1, days.size());
 			assertEquals(2, days.get(0).numberOfPeriods());
 		}
+
+		@Test
+		void InTwoDifferentDays()
+		{
+			history.capture(session);
+			history.capture(new Session(State.WORKING, date.plusDays(1), time,
+			        time.plusMinutes(10)));
+
+			List<Day> days = history.getDays();
+			assertEquals(1, days.size());
+			assertEquals(1, days.get(0).numberOfPeriods());
+			assertEquals(1, days.get(1).numberOfPeriods());
+		}
 	}
 
 
