@@ -15,8 +15,8 @@ public class ConsoleDisplay extends Display
 		int minutes = (seconds % 3600) / 60;
 		int remainingSeconds = seconds % 60;
 
-		return (hours > 0 ? String.format("%02d:", hours) : "") +
-		        String.format("%02d:%02d", minutes, remainingSeconds);
+		return (hours > 0 ? String.format("%02d:", hours) : "")
+		        + String.format("%02d:%02d", minutes, remainingSeconds);
 	}
 
 	public static String displayedMinutes(int mins)
@@ -31,23 +31,28 @@ public class ConsoleDisplay extends Display
 	{ return displayedTime(0) + "\nPress 1 to start studying"; }
 
 	public static String workingMessage(int time)
-	{ return displayedTime(time) + "\nPress 2 to take a break"
-	        + "\nPress 3 to pause"; }
+	{
+		return displayedTime(time) + "\nPress 2 to take a break" + "\nPress 3 to pause";
+	}
 
 	public static String restMessage(int time)
-	{ return displayedTime(time) + "\nPress 1 to go back to work"
-	        + "\nPress 3 to pause"; }
+	{
+		return displayedTime(time) + "\nPress 1 to go back to work"
+		        + "\nPress 3 to pause";
+	}
 
 	public static String workPauseMessage(int time)
-	{ return displayedTime(time) + "\nPress 4 to resume"
-	        + "\nPress 2 to take a break"; }
+	{
+		return displayedTime(time) + "\nPress 4 to resume" + "\nPress 2 to take a break";
+	}
 
 	public static String restPauseMessage(int time)
 	{ return displayedTime(time) + "\nPress 4 to resume"; }
 
 	public static String restFinishedMessage()
-	{ return displayedTime(0) + "\nBreak over!"
-	        + "\nPress 1 to go back to work"; }
+	{
+		return displayedTime(0) + "\nBreak over!" + "\nPress 1 to go back to work";
+	}
 
 	@Override
 	public void pauseWork()
@@ -76,16 +81,6 @@ public class ConsoleDisplay extends Display
 	public void showIdle()
 	{ System.out.println(idleMessage()); }
 
-	@Override
-	public void show(int displayedTime)
-	{ updateState(state); }
-
-	@Override
-	public void show(int displayedTime, DisplayState state)
-	{
-		this.state = state;
-		updateState(state);
-	}
 
 	@Override
 	public void tickTime()
@@ -94,5 +89,11 @@ public class ConsoleDisplay extends Display
 	@Override
 	public void setTimer(Timer timer)
 	{ this.timer = timer; }
+
+	@Override
+	public void show(int displayedTime)
+	{ 
+		// TODO Auto-generated method stub
+	 }
 
 }

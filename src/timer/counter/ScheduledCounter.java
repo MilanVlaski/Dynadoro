@@ -3,7 +3,6 @@ package timer.counter;
 import java.util.concurrent.*;
 
 import display.Display;
-import display.Display.DisplayState;
 import sound.SoundPlayer;
 
 public class ScheduledCounter extends Counter
@@ -54,10 +53,10 @@ public class ScheduledCounter extends Counter
 
 		isRunning = true;
 		scheduler.scheduleAtFixedRate(display::tickTime, durationMilliseconds,
-		        durationMilliseconds, TimeUnit.MILLISECONDS);
+		                              durationMilliseconds, TimeUnit.MILLISECONDS);
 
 		scheduler.schedule(this::onFinish, times * durationMilliseconds,
-		        TimeUnit.MILLISECONDS);
+		                   TimeUnit.MILLISECONDS);
 	}
 
 	private void onFinish()
@@ -66,7 +65,8 @@ public class ScheduledCounter extends Counter
 		{
 			stop();
 			soundPlayer.play();
-			display.show(0, DisplayState.REST_FINISHED);
+			display.show(0);
+			display.finishRest();
 		}
 	}
 
