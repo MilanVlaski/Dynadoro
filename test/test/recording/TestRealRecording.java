@@ -35,12 +35,12 @@ public class TestRealRecording
 
 		LocalDate date = LocalDate.of(2024, 7, 4);
 		LocalTime time = LocalTime.of(20, 40);
-		Period period = new Period(State.WORKING, date, time, time.plusMinutes(20));
+		Session session = new Session(State.WORKING, date, time, time.plusMinutes(20));
 
 		@Test
 		void IfNothingWasRecordedBefore()
 		{
-			history.capture(period);
+			history.capture(session);
 
 			List<Day> days = history.getDays();
 			assertEquals(1, days.size());
@@ -50,8 +50,8 @@ public class TestRealRecording
 		@Test
 		void InsideExistingDay()
 		{
-			history.capture(period);
-			history.capture(period);
+			history.capture(session);
+			history.capture(session);
 
 			List<Day> days = history.getDays();
 			assertEquals(1, days.size());

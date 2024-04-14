@@ -3,7 +3,7 @@ package timer.state;
 import java.time.*;
 
 import recording.History2;
-import recording.Period;
+import recording.Session;
 import recording.State;
 import timer.Timer;
 
@@ -46,11 +46,11 @@ public abstract class TimerState
 			var midnight = LocalDateTime.of(start.toLocalDate().plusDays(1),
 			        LocalTime.of(0, 0));
 
-			history2.capture(new Period(working, start, secBeforeMidnight));
-			history2.capture(new Period(working, midnight, end));
+			history2.capture(new Session(working, start, secBeforeMidnight));
+			history2.capture(new Session(working, midnight, end));
 		}
 		else if (sessionLastsMoreThanOneMinute(start, end))
-			history2.capture(new Period(working, start, end));
+			history2.capture(new Session(working, start, end));
 	}
 
 	private static boolean sessionLastsMoreThanOneDay(LocalDateTime start, LocalDateTime end)

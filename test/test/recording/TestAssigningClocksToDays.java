@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.*;
 
 import recording.Day;
-import recording.Period;
+import recording.Session;
 import recording.State;
 import recording.clock.*;
 
@@ -30,11 +30,11 @@ public class TestAssigningClocksToDays
 	void setup()
 	{ MockitoAnnotations.openMocks(this); }
 
-	static Period seventhNovember = new Period(State.WORKING,
+	static Session seventhNovember = new Session(State.WORKING,
 	        LocalDate.of(2023, 11, 7),
 	        LocalTime.of(0, 0),
 	        LocalTime.of(0, 50));
-	static Period nineteenthJune = new Period(State.WORKING,
+	static Session nineteenthJune = new Session(State.WORKING,
 	        LocalDate.of(2023, 6, 19),
 	        LocalTime.of(0, 0),
 	        LocalTime.of(0, 50));
@@ -86,7 +86,7 @@ public class TestAssigningClocksToDays
 	{
 		LocalDateTime now = LocalDateTime.now();
 		LocalTime time = now.toLocalTime();
-		Period todaysPeriod = new Period(State.WORKING, now.toLocalDate(), time, time);
+		Session todaysPeriod = new Session(State.WORKING, now.toLocalDate(), time, time);
 
 		List<Day> days = List.of(new Day(List.of(todaysPeriod)));
 		Day day = days.get(0);

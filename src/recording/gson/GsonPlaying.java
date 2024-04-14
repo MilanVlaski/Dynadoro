@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import com.google.gson.GsonBuilder;
 
 import recording.Day;
-import recording.Period;
+import recording.Session;
 import recording.State;
 
 public class GsonPlaying
@@ -39,12 +39,12 @@ public class GsonPlaying
 	public static ArrayList<Day> days(int howMany)
 	{
 		LocalDateTime now = LocalDateTime.now();
-		Period period = new Period(State.WORKING, now.toLocalDate(), now.toLocalTime(),
+		Session session = new Session(State.WORKING, now.toLocalDate(), now.toLocalTime(),
 		        now.plusMinutes(20).toLocalTime());
 
-		var periods = new ArrayList<Period>(20);
+		var periods = new ArrayList<Session>(20);
 		for (int i = 0; i < 20; i++)
-			periods.add(period);
+			periods.add(session);
 
 		Day day = new Day(periods);
 

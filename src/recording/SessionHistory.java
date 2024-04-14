@@ -47,7 +47,7 @@ public class SessionHistory implements History2
 	@Override
 	public List<Day> getDays()
 	{
-		List<Period> sessions = getSessions();
+		List<Session> sessions = getSessions();
 		if (sessions.isEmpty())
 			return Collections.emptyList();
 		else
@@ -55,16 +55,16 @@ public class SessionHistory implements History2
 	}
 
 	@Override
-	public List<Period> getSessions()
+	public List<Session> getSessions()
 	{
 		String contents = readFile(sessionsFile);
 		return parsePeriods(contents);
 	}
 
-	public static List<Period> parsePeriods(String text)
+	public static List<Session> parsePeriods(String text)
 	{
-		List<Period> result = new ArrayList<>();
-		Pattern pattern = Pattern.compile(Period.regex);
+		List<Session> result = new ArrayList<>();
+		Pattern pattern = Pattern.compile(Session.regex);
 		Matcher matcher = pattern.matcher(text);
 
 		while (matcher.find())
@@ -76,22 +76,22 @@ public class SessionHistory implements History2
 			String endTimeString = matcher.group(4);
 
 			// parsed objects
-			LocalDate date = LocalDate.parse(dateString, Period.dateFormat);
-			LocalTime startTime = LocalTime.parse(startTimeString, Period.hourFormat);
-			LocalTime endTime = LocalTime.parse(endTimeString, Period.hourFormat);
+			LocalDate date = LocalDate.parse(dateString, Session.dateFormat);
+			LocalTime startTime = LocalTime.parse(startTimeString, Session.hourFormat);
+			LocalTime endTime = LocalTime.parse(endTimeString, Session.hourFormat);
 
 			State state = State.of(stateString).get();
 
-			result.add(new Period(state, date, startTime, endTime));
+			result.add(new Session(state, date, startTime, endTime));
 		}
 
 		return result;
 	}
 
 	@Override
-	public void capture(Period period)
+	public void capture(Session session)
 	{
-		write(period.toString());
+		write(session.toString());
 	}
 
 	private void write(String text)

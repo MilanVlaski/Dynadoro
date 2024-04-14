@@ -35,7 +35,7 @@ public class TestClockManagerIntegration
 	{
 		ClockManager manager = new ClockManager(dummy);
 
-		List<Period> twoPeriods = List.of(new Period(State.WORKING,
+		List<Session> twoPeriods = List.of(new Session(State.WORKING,
 		        LocalDate.of(2023, 12, 1),
 		        LocalTime.of(2, 0),
 		        LocalTime.of(3, 0)

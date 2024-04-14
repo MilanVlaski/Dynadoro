@@ -17,17 +17,17 @@ public class FakeHistory implements History
 	public FakeHistory()
 	{}
 
-	public FakeHistory(List<Period> states)
+	public FakeHistory(List<Session> states)
 	{
-		for (Period period : states)
+		for (Session session : states)
 		{
-			write(period.toString());
+			write(session.toString());
 		}
 	}
 
-	public FakeHistory(List<ProductivityClock> clocks, List<Period> periods)
+	public FakeHistory(List<ProductivityClock> clocks, List<Session> sessions)
 	{
-		this(periods);
+		this(sessions);
 		this.clocks = clocks;
 	}
 
@@ -40,7 +40,7 @@ public class FakeHistory implements History
 	{ this.contents += contents + "\n"; }
 
 	@Override
-	public List<Period> retrievePeriods()
+	public List<Session> retrievePeriods()
 	{ return UsageHistory.parsePeriods(contents); }
 
 	@Override

@@ -13,15 +13,15 @@ public class RealHistory implements History2
 	}
 
 	@Override
-	public List<Period> getSessions()
+	public List<Session> getSessions()
 	{
 		return history.retrievePeriods();
 	}
 
 	@Override
-	public void capture(Period period)
+	public void capture(Session session)
 	{
-		history.write(period.toString());
+		history.write(session.toString());
 	}
 
 	@Override

@@ -3,7 +3,7 @@ package recording;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
-public class Period
+public class Session
 {
 
 	private final State state;
@@ -11,7 +11,7 @@ public class Period
 	private final LocalTime start;
 	private final LocalTime end;
 
-	public Period(State state, LocalDate date, LocalTime start, LocalTime end)
+	public Session(State state, LocalDate date, LocalTime start, LocalTime end)
 	{
 		this.state = state;
 		this.date = date;
@@ -26,7 +26,7 @@ public class Period
 	 * @param start
 	 * @param end
 	 */
-	public Period(State state, LocalDateTime start, LocalDateTime end)
+	public Session(State state, LocalDateTime start, LocalDateTime end)
 	{ this(state, start.toLocalDate(), start.toLocalTime(), end.toLocalTime()); }
 
 	public State type()
@@ -55,9 +55,9 @@ public class Period
 	@Override
 	public boolean equals(Object obj)
 	{
-		Period period = (Period) obj;
-		return period.state.equals(state) && period.start.equals(start)
-		        && period.end.equals(end);
+		Session session = (Session) obj;
+		return session.state.equals(state) && session.start.equals(start)
+		        && session.end.equals(end);
 	}
 
 	public LocalDate date()

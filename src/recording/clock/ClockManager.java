@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import recording.Day;
-import recording.Period;
+import recording.Session;
 
 public class ClockManager
 {
@@ -18,20 +18,20 @@ public class ClockManager
 		this.fileMaker = fileMaker;
 	}
 
-	public static List<Day> createDays(List<Period> periods)
+	public static List<Day> createDays(List<Session> sessions)
 	{
-		Stream<LocalDate> daysWorked = periods.stream()
-		        .map(Period::date)
+		Stream<LocalDate> daysWorked = sessions.stream()
+		        .map(Session::date)
 		        .distinct();
 		return daysWorked
-		        .map(day -> periodsOnDay(periods.stream(), day))
+		        .map(day -> periodsOnDay(sessions.stream(), day))
 		        .map(Day::new)
 		        .toList();
 	}
 
-	private static List<Period> periodsOnDay(Stream<Period> periods, LocalDate date)
+	private static List<Session> periodsOnDay(Stream<Session> sessions, LocalDate date)
 	{
-		return periods
+		return sessions
 		        .filter(period -> period.date().equals(date))
 		        .toList();
 	}
@@ -77,9 +77,9 @@ public class ClockManager
 		}
 	}
 
-	public List<Day> allDays(List<Period> periods, List<ProductivityClock> clocks)
+	public List<Day> allDays(List<Session> sessions, List<ProductivityClock> clocks)
 	{
-		List<Day> days = createDays(periods);
+		List<Day> days = createDays(sessions);
 		assignClocksToDays(clocks, days);
 
 		return days.stream()

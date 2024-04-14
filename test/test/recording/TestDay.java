@@ -9,7 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import recording.Day;
-import recording.Period;
+import recording.Session;
 import recording.State;
 
 public class TestDay
@@ -19,7 +19,7 @@ public class TestDay
 	void TimeWorkedIsFiveMinutes_IfDayHasFiveMinuteWorkPeriod()
 	{
 		Day day = new Day(
-		        List.of(new Period(State.WORKING, LocalDate.of(2023, 12, 1),
+		        List.of(new Session(State.WORKING, LocalDate.of(2023, 12, 1),
 		        		LocalTime.of(14, 0),
 		                LocalTime.of(14, 5))));
 
@@ -30,7 +30,7 @@ public class TestDay
 	void TimeRestedIsSevenMinutes_IfDayHasFiveMinuteRestPeriod()
 	{
 		Day day = new Day(
-				 List.of(new Period(State.RESTING, LocalDate.of(2023, 12, 1),
+				 List.of(new Session(State.RESTING, LocalDate.of(2023, 12, 1),
 			        		LocalTime.of(14, 0),
 			                LocalTime.of(14, 5))));
 

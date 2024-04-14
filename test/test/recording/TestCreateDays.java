@@ -22,11 +22,11 @@ public class TestCreateDays
 		assertEquals(0, days.size());
 	}
 
-	static Period seventhNovember = new Period(State.WORKING,
+	static Session seventhNovember = new Session(State.WORKING,
 	        LocalDate.of(2023, 11, 7),
 	        LocalTime.of(0, 0),
 	        LocalTime.of(0, 0));
-	static Period nineteenthJune = new Period(State.WORKING,
+	static Session nineteenthJune = new Session(State.WORKING,
 	        LocalDate.of(2023, 6, 19),
 	        LocalTime.of(0, 0),
 	        LocalTime.of(0, 0));

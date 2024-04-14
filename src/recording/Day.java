@@ -12,28 +12,28 @@ import recording.clock.ProductivityClock;
 
 public class Day
 {
-	private final List<Period> periods;
+	private final List<Session> sessions;
 	private final LocalDate date;
 	private ProductivityClock productivityClock;
 
-	public Day(List<Period> periods)
+	public Day(List<Session> sessions)
 	{
-		this.periods = periods;
-		if (!periods.isEmpty())
+		this.sessions = sessions;
+		if (!sessions.isEmpty())
 		{
-			this.date = periods.get(0).date();
+			this.date = sessions.get(0).date();
 		}
 		else
 		{
-			throw new IllegalArgumentException("A day must have at least one period!");
+			throw new IllegalArgumentException("A day must have at least one session!");
 		}
 	}
 
 	public void draw(Graphics2D g, int size)
-	{ ClockDrawer.draw(g, periods, size); }
+	{ ClockDrawer.draw(g, sessions, size); }
 
 	public int numberOfPeriods()
-	{ return periods.size(); }
+	{ return sessions.size(); }
 
 	public LocalDate date()
 	{ return date; }
@@ -58,15 +58,15 @@ public class Day
 
 	private Duration timeSpent(State state)
 	{
-		return periods.stream()
+		return sessions.stream()
 		              .filter(p -> p.type().equals(state))
-		              .map(Period::duration)
+		              .map(Session::duration)
 		              .reduce(Duration::plus)
 		              .orElse(Duration.ZERO);
 	}
 
-	public void addPeriod(Period period)
+	public void addPeriod(Session session)
 	{
-		periods.add(period);
+		sessions.add(session);
 	}
 }

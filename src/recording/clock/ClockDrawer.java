@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import display.swing.MainFrame;
-import recording.Period;
+import recording.Session;
 import recording.State;
 
 public class ClockDrawer
@@ -17,7 +17,7 @@ public class ClockDrawer
 	private static final Color clockBackground = new Color(235, 247, 252);
 	private static final Color grey = new Color(180, 190, 200);
 
-	public static void draw(Graphics2D g, List<Period> periods, int size)
+	public static void draw(Graphics2D g, List<Session> sessions, int size)
 	{
 
 		int centerX = size / 2;
@@ -30,9 +30,9 @@ public class ClockDrawer
 		drawHours(g, centerX, centerY, radius);
 		drawMinutes(g, centerX, centerY, radius);
 
-		for (Period period : periods)
+		for (Session session : sessions)
 		{
-			drawState(g, period.startTime(), period.duration(), period.type(), centerX,
+			drawState(g, session.startTime(), session.duration(), session.type(), centerX,
 			        centerY, radius);
 		}
 

@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface History2
 {
-	List<Period> getSessions();
+	List<Session> getSessions();
 	List<Day> getDays();
-	void capture(Period period);
+	void capture(Session session);
 }

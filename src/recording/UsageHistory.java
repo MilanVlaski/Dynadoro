@@ -69,13 +69,13 @@ public class UsageHistory implements History
 	}
 
 	@Override
-	public List<Period> retrievePeriods()
+	public List<Session> retrievePeriods()
 	{ return parsePeriods(read()); }
 
-	public static List<Period> parsePeriods(String text)
+	public static List<Session> parsePeriods(String text)
 	{
-		List<Period> result = new ArrayList<>();
-		Pattern pattern = Pattern.compile(Period.regex);
+		List<Session> result = new ArrayList<>();
+		Pattern pattern = Pattern.compile(Session.regex);
 		Matcher matcher = pattern.matcher(text);
 
 		while (matcher.find())
@@ -87,10 +87,10 @@ public class UsageHistory implements History
 			String endTimeString = matcher.group(5);
 
 			// parsed objects
-			LocalDate date = LocalDate.parse(dateString, Period.dateFormat);
+			LocalDate date = LocalDate.parse(dateString, Session.dateFormat);
 			LocalTime startTime = LocalTime.parse(startTimeString,
-			                                      Period.hourFormat);
-			LocalTime endTime = LocalTime.parse(endTimeString, Period.hourFormat);
+			                                      Session.hourFormat);
+			LocalTime endTime = LocalTime.parse(endTimeString, Session.hourFormat);
 
 			// combining date and time into datetime
 			LocalDateTime startDateTime = LocalDateTime.of(date, startTime);
@@ -106,7 +106,7 @@ public class UsageHistory implements History
 
 			if (state.isPresent())
 			{
-				result.add(new Period(state.get(), startDateTime, endDateTime));
+				result.add(new Session(state.get(), startDateTime, endDateTime));
 			}
 		}
 

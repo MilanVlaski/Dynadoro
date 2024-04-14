@@ -9,16 +9,16 @@ import java.util.List;
 public class FakeHistory implements History2
 {
 
-	private final List<Period> sessions = new ArrayList<Period>();
+	private final List<Session> sessions = new ArrayList<Session>();
 
 	@Override
-	public List<Period> getSessions()
+	public List<Session> getSessions()
 	{ return sessions; }
 
 	@Override
-	public void capture(Period period)
+	public void capture(Session session)
 	{
-		this.sessions.add(period);
+		this.sessions.add(session);
 	}
 
 	@Override
