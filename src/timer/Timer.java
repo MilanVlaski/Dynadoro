@@ -22,12 +22,12 @@ public class Timer
 	private ClockManager clockManager;
 
 	public Timer(Display display, Counter counter, History history, LocalDateTime now,
-	             History2 jsonHistory)
+	             History2 history2)
 	{
 		this.display = display;
 		this.counter = counter;
 		this.history = history;
-		this.history2 = jsonHistory;
+		this.history2 = history2;
 		state = new Idle(this, now);
 	}
 
@@ -63,9 +63,7 @@ public class Timer
 
 	public List<Day> retrieveDays()
 	{
-		return clockManager.allDays(
-		        history.retrievePeriods(),
-		        history.retrieveClocks());
+		return clockManager.allDays(history.retrievePeriods(), history.retrieveClocks());
 	}
 
 	public void setClockManager(ClockManager clockManager)
