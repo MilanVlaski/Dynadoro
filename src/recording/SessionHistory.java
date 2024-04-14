@@ -81,7 +81,6 @@ public class SessionHistory implements History2
 			LocalDate date = LocalDate.parse(dateString, Session.dateFormat);
 			LocalTime startTime = LocalTime.parse(startTimeString, Session.hourFormat);
 			LocalTime endTime = LocalTime.parse(endTimeString, Session.hourFormat);
-
 			State state = State.of(stateString).get();
 
 			result.add(new Session(state, date, startTime, endTime));
@@ -93,10 +92,10 @@ public class SessionHistory implements History2
 	@Override
 	public void capture(Session session)
 	{
-		write(session.toString());
+		write(session.toString(), sessionsFile);
 	}
 
-	private void write(String text)
+	private static void write(String text, Path sessionsFile)
 	{
 		try
 		{
