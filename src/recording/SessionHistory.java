@@ -8,6 +8,7 @@ import java.time.LocalTime;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 public class SessionHistory implements History2
 {
@@ -41,16 +42,17 @@ public class SessionHistory implements History2
 		}
 		else
 		{
-			var dates = sessions.stream().map(Session::date).distinct();
-			return dates.map(date -> sessionsThatMatchDate(sessions, date))
+			var streamedSessions = sessions.stream();
+			var dates = streamedSessions.map(Session::date).distinct();
+			return dates.map(date -> sessionsThatMatchDate(streamedSessions, date))
 			            .map(Day::new)
 			            .toList();
 		}
 	}
 
-	private List<Session> sessionsThatMatchDate(List<Session> sessions, LocalDate date)
+	private List<Session> sessionsThatMatchDate(Stream<Session> sessions, LocalDate date)
 	{
-		return sessions.stream().filter(session -> session.date().equals(date)).toList();
+		return sessions.filter(session -> session.date().equals(date)).toList();
 	}
 
 	@Override

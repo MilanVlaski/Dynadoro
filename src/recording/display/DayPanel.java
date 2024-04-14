@@ -28,13 +28,14 @@ public class DayPanel extends JPanel
 		JLabel date = new MyLabel(dateFormat.format(day.date()));
 
 		ImageIcon clockIcon = day.clockImage();
-		Image scaledClockImage = clockIcon.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+		Image scaledClockImage = clockIcon.getImage()
+		                                  .getScaledInstance(150, 150,
+		                                                     Image.SCALE_SMOOTH);
 		JLabel clock = new JLabel(new ImageIcon(scaledClockImage));
 
 		layoutComponents(timeWorked, timeRested, date, clock);
 
-		addMouseListener(new MouseAdapter()
-		{
+		addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseEntered(MouseEvent e)
@@ -53,7 +54,8 @@ public class DayPanel extends JPanel
 				        (int) (panelLocationOnScreen.getY() + yOffset));
 
 				adjustFramePosition(clockLocation, xOffset, 400);
-				new ClockFrame(dateFormat.format(day.date()), clockIcon, clockLocation, 400);
+				new ClockFrame(dateFormat.format(day.date()), clockIcon, clockLocation,
+				        400);
 			}
 
 		});
@@ -86,7 +88,7 @@ public class DayPanel extends JPanel
 		if (location.getY() + frameHeight + taskbarThickness > screenHeight)
 		{
 			location.setLocation(location.getX(),
-			        screenHeight - taskbarThickness - frameHeight);
+			                     screenHeight - taskbarThickness - frameHeight);
 		}
 	}
 
