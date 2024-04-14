@@ -16,7 +16,6 @@ import org.mockito.Mock;
 
 import display.Display;
 import recording.*;
-import recording.Session;
 import test.helpers.FakeHistory;
 import timer.Timer;
 import timer.counter.Counter;
@@ -63,7 +62,7 @@ public class TestRecording2
 		timer.reset(sevenMinLater);
 
 		assertEquals(new Session(WORKING, dateTime, sevenMinLater),
-		        history.getSessions().getFirst());
+		             history.getSessions().getFirst());
 	}
 
 	@Test
@@ -76,10 +75,9 @@ public class TestRecording2
 		timer.rest(twenyFiveLater);
 		timer.reset(twentySixLater);
 
-		assertEquals(List.of(
-		        new Session(WORKING, dateTime, twenyFiveLater),
-		        new Session(RESTING, twenyFiveLater, twentySixLater)),
-		        history.getSessions());
+		assertEquals(List.of(new Session(WORKING, dateTime, twenyFiveLater),
+		                     new Session(RESTING, twenyFiveLater, twentySixLater)),
+		             history.getSessions());
 	}
 
 	@Test
@@ -95,7 +93,8 @@ public class TestRecording2
 		timer.reset(twelveLater);
 
 		assertEquals(List.of(new Session(WORKING, dateTime, threeLater),
-		        new Session(WORKING, sevenLater, twelveLater)), history.getSessions());
+		                     new Session(WORKING, sevenLater, twelveLater)),
+		             history.getSessions());
 	}
 
 	@Test
@@ -120,10 +119,9 @@ public class TestRecording2
 		timer.begin(tenToMidnight);
 		timer.reset(fiveMinPastMidnight);
 
-		assertEquals(List.of(
-		        new Session(WORKING, tenToMidnight, secBeforeMidnight),
-		        new Session(WORKING, midnight, fiveMinPastMidnight)),
-		        history.getSessions());
+		assertEquals(List.of(new Session(WORKING, tenToMidnight, secBeforeMidnight),
+		                     new Session(WORKING, midnight, fiveMinPastMidnight)),
+		             history.getSessions());
 	}
 
 	@Test
