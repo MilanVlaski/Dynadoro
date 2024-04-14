@@ -12,7 +12,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import recording.*;
 
-public class TestRealRecording
+public class TestRetrievingDays
 {
 	History2 history;
 
