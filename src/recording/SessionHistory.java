@@ -36,11 +36,21 @@ public class SessionHistory implements History2
 	{
 		List<Session> sessions = getSessions();
 		if (sessions.isEmpty())
+		{
 			return Collections.emptyList();
+		}
 		else
 		{
-			return List.of(new Day(sessions));
+			var dates = sessions.stream().map(Session::date).distinct();
+			return dates.map(date -> sessionsOfDay(sessions, date))
+			            .map(Day::new)
+			            .toList();
 		}
+	}
+
+	private List<Session> sessionsOfDay(List<Session> sessions, LocalDate date)
+	{
+		return sessions.stream().filter(session -> session.date().equals(date)).toList();
 	}
 
 	@Override
