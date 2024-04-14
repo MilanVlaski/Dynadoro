@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.*;
 
 import display.Display;
-import display.Display.DisplayState;
 import recording.History2;
 import test.TestTimer;
 import test.helpers.Moment;
@@ -87,7 +86,8 @@ public class TestDisplay
 		timer.rest(moment.afterSeconds(WORK_DURATION));
 		timer.pause(moment.afterSeconds(2));
 
-		verify(mockDisplay).show(REST_DURATION - 2, DisplayState.REST_PAUSE);
+		verify(mockDisplay).show(REST_DURATION - 2);
+		verify(mockDisplay).pauseRest();
 		verify(mockCounter, times(2)).stop();
 	}
 
@@ -111,7 +111,8 @@ public class TestDisplay
 		timer.pause(moment.afterSeconds(1));
 		timer.resume(moment.afterSeconds(123));
 
-		verify(mockDisplay).show(REST_DURATION - 1, DisplayState.REST_PAUSE);
+		verify(mockDisplay, atLeastOnce()).show(REST_DURATION - 1);
+		verify(mockDisplay, times(2)).showResting();
 		verify(mockCounter).count(REST_DURATION - 1);
 	}
 

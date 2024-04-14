@@ -5,7 +5,6 @@ import static recording.State.RESTING;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-import display.Display.DisplayState;
 import recording.History2;
 import timer.Timer;
 
@@ -46,7 +45,7 @@ public class Resting extends TimerState
 	@Override
 	public void pause(LocalDateTime now)
 	{
-		context.getDisplay().show(seconds(now), DisplayState.REST_PAUSE);
+		context.getDisplay().pauseRest();
 
 		Resumable resume = (current, nowTime) -> context
 		        .changeState(new Resting(nowTime, context, current), now);
