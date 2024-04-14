@@ -9,25 +9,12 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import recording.gson.LocalDateTypeAdapter;
-import recording.gson.LocalTimeTypeAdapter;
-
 public class SessionHistory implements History2
 {
 
 	public static final String userHome = System.getProperty("user.home");
 	public static final String appName = "Dynadoro";
 	public static final Path directory = Paths.get(userHome, appName);
-
-	private final Gson gson = new GsonBuilder().setPrettyPrinting()
-	                                           .registerTypeAdapter(LocalDate.class,
-	                                                                new LocalDateTypeAdapter())
-	                                           .registerTypeAdapter(LocalTime.class,
-	                                                                new LocalTimeTypeAdapter())
-	                                           .create();
 
 	private final Path sessionsFile;
 
