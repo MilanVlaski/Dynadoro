@@ -5,9 +5,7 @@ import java.util.List;
 
 import javax.swing.*;
 
-import recording.*;
-import recording.clock.ClockFileMaker;
-import recording.clock.ClockManager;
+import recording.Day;
 
 public class ProductivityFrame extends JFrame
 {
@@ -15,7 +13,7 @@ public class ProductivityFrame extends JFrame
 
 	public ProductivityFrame()
 	{
-		setSize(new Dimension(850, 900));
+		setSize(new Dimension(900, 900));
 		setTitle("History of work");
 
 		JScrollPane scrollPane = new JScrollPane(productivityPanel);
@@ -61,17 +59,15 @@ public class ProductivityFrame extends JFrame
 		int verticalIncrement = systemVBar.getUnitIncrement();
 		int horizontalIncrement = systemHBar.getUnitIncrement();
 
-		scrollpane.getVerticalScrollBar().setUnitIncrement(lineHeight * verticalIncrement);
-		scrollpane.getHorizontalScrollBar().setUnitIncrement(charWidth * horizontalIncrement);
+		scrollpane.getVerticalScrollBar()
+		          .setUnitIncrement(lineHeight * verticalIncrement);
+		scrollpane.getHorizontalScrollBar()
+		          .setUnitIncrement(charWidth * horizontalIncrement);
 	}
 
 	public static void main(String[] args)
 	{
-		History history = new UsageHistory("periods");
-		ClockFileMaker fileMaker = new ClockFileMaker();
-		ClockManager clockManager = new ClockManager(fileMaker);
-
-		List<Day> days = clockManager.allDays(history.retrievePeriods(), history.retrieveClocks());
+		var days = DayPanel.testDays();
 
 		SwingUtilities.invokeLater(() ->
 		{

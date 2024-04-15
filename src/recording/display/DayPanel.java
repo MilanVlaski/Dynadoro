@@ -157,6 +157,12 @@ public class DayPanel extends JPanel
 		return day;
 	}
 
+	public static List<Day> testDays()
+	{
+		Day day = testDay();
+		return List.of(day, day, day, day, day);
+	}
+
 	private static class Frame extends JFrame
 	{
 
