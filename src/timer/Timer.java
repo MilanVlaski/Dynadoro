@@ -63,7 +63,8 @@ public class Timer
 
 	public List<Day> retrieveDays()
 	{
-		return clockManager.allDays(history.retrievePeriods(), history.retrieveClocks());
+		return history2.getDays();
+//		return clockManager.allDays(history.retrievePeriods(), history.retrieveClocks());
 	}
 
 	public void setClockManager(ClockManager clockManager)
