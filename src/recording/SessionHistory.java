@@ -42,9 +42,8 @@ public class SessionHistory implements History2
 		}
 		else
 		{
-			var streamedSessions = sessions.stream();
-			var dates = streamedSessions.map(Session::date).distinct();
-			return dates.map(date -> sessionsThatMatchDate(streamedSessions, date))
+			var dates = sessions.stream().map(Session::date).distinct();
+			return dates.map(date -> sessionsThatMatchDate(sessions.stream(), date))
 			            .map(Day::new)
 			            .toList();
 		}
