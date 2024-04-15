@@ -69,4 +69,10 @@ public class Day
 	{
 		sessions.add(session);
 	}
+
+	public List<Session> sessions()
+	{ 
+		return sessions;
+	 }
+
 }

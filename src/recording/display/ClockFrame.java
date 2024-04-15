@@ -14,8 +14,9 @@ public class ClockFrame extends JFrame
 	{
 		super(title);
 
-		Image scaledClockImage = clockIcon.getImage().getScaledInstance(size, size,
-		        Image.SCALE_SMOOTH);
+		Image scaledClockImage = clockIcon.getImage()
+		                                  .getScaledInstance(size, size,
+		                                                     Image.SCALE_SMOOTH);
 		JLabel clock = new JLabel(new ImageIcon(scaledClockImage));
 
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -24,8 +25,7 @@ public class ClockFrame extends JFrame
 		add(clock);
 		pack();
 
-		addWindowFocusListener(new WindowFocusListener()
-		{
+		addWindowFocusListener(new WindowFocusListener() {
 
 			@Override
 			public void windowLostFocus(WindowEvent e)

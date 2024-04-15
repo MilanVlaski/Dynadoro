@@ -3,14 +3,16 @@ package recording.display;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.time.Duration;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import display.ConsoleDisplay;
-import recording.Day;
+import recording.*;
+import recording.clock.ClockPanel;
 
 public class DayPanel extends JPanel
 {
@@ -27,13 +29,15 @@ public class DayPanel extends JPanel
 		JLabel timeRested = new MyLabel("Rest: " + formatTime(day.timeRested()));
 		JLabel date = new MyLabel(dateFormat.format(day.date()));
 
-		ImageIcon clockIcon = day.clockImage();
-		Image scaledClockImage = clockIcon.getImage()
-		                                  .getScaledInstance(150, 150,
-		                                                     Image.SCALE_SMOOTH);
-		JLabel clock = new JLabel(new ImageIcon(scaledClockImage));
+//		ImageIcon clockIcon = day.clockImage();
+//		Image scaledClockImage = clockIcon.getImage()
+//		                                  .getScaledInstance(150, 150,
+//		                                                     Image.SCALE_SMOOTH);
+//		JLabel clock = new JLabel(new ImageIcon(scaledClockImage));
 
-		layoutComponents(timeWorked, timeRested, date, clock);
+		ClockPanel clock2 = new ClockPanel(day.sessions());
+
+		layoutComponents(timeWorked, timeRested, date, clock2);
 
 		addMouseListener(new MouseAdapter() {
 
@@ -49,13 +53,12 @@ public class DayPanel extends JPanel
 				int xOffset = getWidth();
 				int yOffset = -getHeight();
 
-				Point clockLocation = new Point(
-				        (int) (panelLocationOnScreen.getX() + xOffset),
-				        (int) (panelLocationOnScreen.getY() + yOffset));
+				Point clockLocation = new Point((int) (panelLocationOnScreen.getX()
+				        + xOffset), (int) (panelLocationOnScreen.getY() + yOffset));
 
 				adjustFramePosition(clockLocation, xOffset, 400);
-				new ClockFrame(dateFormat.format(day.date()), clockIcon, clockLocation,
-				        400);
+//				new ClockFrame(dateFormat.format(day.date()), clockIcon, clockLocation,
+//				               400);
 			}
 
 		});
@@ -93,13 +96,14 @@ public class DayPanel extends JPanel
 	}
 
 	private void layoutComponents(JLabel timeWorked, JLabel timeRested, JLabel date,
-	                              JLabel clock)
+	                              Component clock)
 	{
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 4;
+		gbc.fill = GridBagConstraints.BOTH;
 		gbc.anchor = GridBagConstraints.CENTER;
 		add(clock, gbc);
 
@@ -117,6 +121,7 @@ public class DayPanel extends JPanel
 		gbc.gridy = 5;
 		gbc.gridwidth = 3;
 		add(date, gbc);
+
 	}
 
 	private String formatTime(Duration duration)
@@ -133,6 +138,34 @@ public class DayPanel extends JPanel
 			setBorder(new EmptyBorder(4, 4, 4, 4));
 			setFont(new Font("Loto", Font.PLAIN, 16));
 			setForeground(new Color(0, 5, 10));
+		}
+	}
+
+	public static void main(String[] args)
+	{
+		Day day = testDay();
+		DayPanel panel = new DayPanel(day);
+
+		Frame frame = new Frame(panel);
+	}
+
+	public static Day testDay()
+	{
+		Session session = new Session(State.WORKING, LocalDate.now(), LocalTime.now(),
+		                              LocalTime.now().plusHours(3));
+		Day day = new Day(List.of(session));
+		return day;
+	}
+
+	private static class Frame extends JFrame
+	{
+
+		Frame(DayPanel panel)
+		{
+			add(panel);
+			pack();
+			setDefaultCloseOperation(EXIT_ON_CLOSE);
+			setVisible(true);
 		}
 	}
 }
