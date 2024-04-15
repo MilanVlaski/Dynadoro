@@ -1,29 +1,27 @@
 package recording.display;
 
-import java.awt.Image;
+import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
+
+import recording.clock.ClockPanel;
 
 public class ClockFrame extends JFrame
 {
 
-	public ClockFrame(String title, ImageIcon clockIcon, Point position, int size)
+	public ClockFrame(String title, ClockPanel clockPanel, Point position, int size)
 	{
 		super(title);
-
-		Image scaledClockImage = clockIcon.getImage()
-		                                  .getScaledInstance(size, size,
-		                                                     Image.SCALE_SMOOTH);
-		JLabel clock = new JLabel(new ImageIcon(scaledClockImage));
 
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
 		setLocation((int) (position.getX()), (int) position.getY());
-		add(clock);
-		pack();
+		add(clockPanel);
+		setSize(new Dimension(size, size));
 
 		addWindowFocusListener(new WindowFocusListener() {
 

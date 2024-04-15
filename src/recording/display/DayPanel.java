@@ -29,12 +29,6 @@ public class DayPanel extends JPanel
 		JLabel timeRested = new MyLabel("Rest: " + formatTime(day.timeRested()));
 		JLabel date = new MyLabel(dateFormat.format(day.date()));
 
-//		ImageIcon clockIcon = day.clockImage();
-//		Image scaledClockImage = clockIcon.getImage()
-//		                                  .getScaledInstance(150, 150,
-//		                                                     Image.SCALE_SMOOTH);
-//		JLabel clock = new JLabel(new ImageIcon(scaledClockImage));
-
 		ClockPanel clock2 = new ClockPanel(day.sessions());
 
 		layoutComponents(timeWorked, timeRested, date, clock2);
@@ -56,9 +50,10 @@ public class DayPanel extends JPanel
 				Point clockLocation = new Point((int) (panelLocationOnScreen.getX()
 				        + xOffset), (int) (panelLocationOnScreen.getY() + yOffset));
 
-				adjustFramePosition(clockLocation, xOffset, 400);
-//				new ClockFrame(dateFormat.format(day.date()), clockIcon, clockLocation,
-//				               400);
+				int size = 500;
+				adjustFramePosition(clockLocation, xOffset, size);
+				new ClockFrame(dateFormat.format(day.date()), clock2, clockLocation,
+				               size);
 			}
 
 		});

@@ -43,11 +43,10 @@ public class SessionHistory implements History2
 		else
 		{
 			var dates = sessions.stream().map(Session::date).distinct();
-			
+
 			return dates.map(date -> sessionsThatMatchDate(sessions.stream(), date))
 			            .map(Day::new)
 			            .toList();
-			
 		}
 	}
 
