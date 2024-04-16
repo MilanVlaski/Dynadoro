@@ -63,7 +63,7 @@ public class TestRetrievingDays
 		{
 			history.capture(session);
 			history.capture(new Session(State.WORKING, date.plusDays(1), time,
-			        time.plusMinutes(10)));
+			                            time.plusMinutes(10)));
 
 			List<Day> days = history.getDays();
 			assertEquals(2, days.size());
