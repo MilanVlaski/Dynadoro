@@ -1,11 +1,8 @@
 package recording;
 
-import java.awt.Graphics2D;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
-
-import recording.clock.ClockDrawer;
 
 public class Day
 {
@@ -16,17 +13,10 @@ public class Day
 	{
 		this.sessions = sessions;
 		if (!sessions.isEmpty())
-		{
 			this.date = sessions.get(0).date();
-		}
 		else
-		{
 			throw new IllegalArgumentException("A day must have at least one session!");
-		}
 	}
-
-	public void draw(Graphics2D g, int size)
-	{ ClockDrawer.draw(g, sessions, size); }
 
 	public int numberOfPeriods()
 	{ return sessions.size(); }

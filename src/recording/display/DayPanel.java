@@ -141,7 +141,7 @@ public class DayPanel extends JPanel
 		Day day = testDay();
 		DayPanel panel = new DayPanel(day);
 
-		Frame frame = new Frame(panel);
+		new Frame(panel);
 	}
 
 	public static Day testDay()

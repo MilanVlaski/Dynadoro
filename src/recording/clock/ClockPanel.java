@@ -31,7 +31,7 @@ public class ClockPanel extends JPanel
 
 	public static void main(String[] args)
 	{
-		Frame frame = new Frame();
+		new Frame();
 	}
 
 	private static class Frame extends JFrame
