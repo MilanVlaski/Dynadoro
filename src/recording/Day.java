@@ -5,16 +5,12 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.swing.ImageIcon;
-
 import recording.clock.ClockDrawer;
-import recording.clock.ProductivityClock;
 
 public class Day
 {
 	private final List<Session> sessions;
 	private final LocalDate date;
-	private ProductivityClock productivityClock;
 
 	public Day(List<Session> sessions)
 	{
@@ -38,23 +34,11 @@ public class Day
 	public LocalDate date()
 	{ return date; }
 
-	public boolean hasClock()
-	{ return productivityClock != null; }
-
-	public void assignClock(ProductivityClock clock)
-	{ this.productivityClock = clock; }
-
-	public ProductivityClock clock()
-	{ return productivityClock; }
-
 	public Duration timeWorked()
 	{ return timeSpent(State.WORKING); }
 
 	public Duration timeRested()
 	{ return timeSpent(State.RESTING); }
-
-	public ImageIcon clockImage()
-	{ return productivityClock.image(); }
 
 	private Duration timeSpent(State state)
 	{
@@ -65,14 +49,9 @@ public class Day
 		               .orElse(Duration.ZERO);
 	}
 
-	public void addPeriod(Session session)
-	{
-		sessions.add(session);
-	}
-
 	public List<Session> sessions()
-	{ 
+	{
 		return sessions;
-	 }
+	}
 
 }

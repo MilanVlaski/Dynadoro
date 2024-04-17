@@ -7,8 +7,6 @@ import timer.Timer;
 public class ConsoleDisplay extends Display
 {
 
-	private DisplayState state;
-
 	public static String displayedTime(int seconds)
 	{
 		int hours = seconds / 3600;

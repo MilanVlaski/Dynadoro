@@ -35,9 +35,6 @@ public class Session
 	public LocalTime startTime()
 	{ return start; }
 
-	public LocalTime endTime()
-	{ return end; }
-
 	public Duration duration()
 	{ return Duration.between(start, end); }
 

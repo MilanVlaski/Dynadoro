@@ -5,17 +5,6 @@ import timer.Timer;
 public abstract class Display
 {
 
-	public enum DisplayState
-	{
-		IDLE,
-		WORKING,
-		RESTING,
-		WORK_PAUSE,
-		REST_PAUSE,
-		REST_FINISHED;
-	}
-
-	protected DisplayState state;
 	protected Timer timer;
 
 	public abstract void show(int displayedTime);

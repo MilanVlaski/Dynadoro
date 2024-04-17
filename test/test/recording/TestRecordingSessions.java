@@ -15,7 +15,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 import display.Display;
-import recording.*;
+import recording.History2;
+import recording.Session;
 import test.helpers.FakeHistory;
 import timer.Timer;
 import timer.counter.Counter;
@@ -28,8 +29,6 @@ public class TestRecordingSessions
 	Display dummyDisplay = mock(Display.class);
 	@Mock
 	Counter dummyCounter = mock(Counter.class);
-	@Mock
-	History dummyHistory = mock(History.class);
 
 	@InjectMocks
 	Timer timer;
@@ -43,8 +42,8 @@ public class TestRecordingSessions
 	{
 		// It's fake, because it doesn't access the file system.
 		history = new FakeHistory();
-		timer = new Timer(dummyDisplay, dummyCounter, dummyHistory,
-		        LocalDateTime.of(2024, 4, 2, 0, 0), history);
+		timer = new Timer(dummyDisplay, dummyCounter, LocalDateTime.of(2024, 4, 2, 0, 0),
+		        history);
 	}
 
 	@Test
