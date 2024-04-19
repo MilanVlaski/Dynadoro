@@ -19,6 +19,8 @@
 
 
 ## TODO
+- Write the main method using spring context, just to try it
+- Write console app -> in spring as well
 - Delete unused code related to recording, and getting images...
 - Sound isnt working, so make it a maven project, with the maven structure.
 - show hours studied per week
