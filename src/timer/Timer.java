@@ -3,6 +3,9 @@ package timer;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import display.Display;
 import recording.Day;
 import recording.History2;
@@ -10,6 +13,7 @@ import timer.counter.Counter;
 import timer.state.Idle;
 import timer.state.TimerState;
 
+@Component
 public class Timer
 {
 
@@ -19,6 +23,7 @@ public class Timer
 
 	private TimerState state;
 
+	@Autowired
 	public Timer(Display display, Counter counter, LocalDateTime now, History2 history2)
 	{
 		this.display = display;

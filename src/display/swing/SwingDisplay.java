@@ -2,9 +2,13 @@ package display.swing;
 
 import java.time.LocalDateTime;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import display.Display;
 import timer.Timer;
 
+@Component
 public class SwingDisplay extends Display
 {
 
@@ -37,6 +41,7 @@ public class SwingDisplay extends Display
 	public void showIdle()
 	{ mainFrame.showIdle(); }
 
+	@Autowired
 	@Override
 	public void setTimer(Timer timer)
 	{

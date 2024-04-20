@@ -2,6 +2,8 @@ package main;
 
 import java.time.LocalDateTime;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import display.swing.SwingDisplay;
 import recording.SessionHistory;
 import sound.SoundPlayer;
@@ -13,7 +15,8 @@ public class MainClass
 
 	public static void main(String[] args)
 	{
-		startSwingApplication();
+		var context = new AnnotationConfigApplicationContext(AppConfiguration.class);
+//		startSwingApplication();
 	}
 
 	private static void startSwingApplication()

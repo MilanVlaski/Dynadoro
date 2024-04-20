@@ -2,9 +2,13 @@ package timer.counter;
 
 import java.util.concurrent.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import display.Display;
 import sound.SoundPlayer;
 
+@Component
 public class ScheduledCounter extends Counter
 {
 
@@ -14,6 +18,7 @@ public class ScheduledCounter extends Counter
 	public static final int FOUR_HOURS_IN_SECONDS = 14400;
 	public static final int DURATION_MILLISECONDS = 1000;
 
+	@Autowired
 	public ScheduledCounter(Display display, SoundPlayer soundPlayer)
 	{
 		super(display, soundPlayer);

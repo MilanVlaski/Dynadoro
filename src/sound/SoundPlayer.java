@@ -5,6 +5,8 @@ import java.net.URL;
 
 import javax.sound.sampled.*;
 
+import org.springframework.stereotype.Component;
+@Component
 public class SoundPlayer implements LineListener
 {
 
