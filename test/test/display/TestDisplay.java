@@ -76,7 +76,7 @@ public class TestDisplay
 
 		verify(mockDisplay).show(3);
 		verify(mockDisplay).pauseWork();
-		verify(mockCounter, atMost(2)).stop();
+		verify(mockCounter, times(2)).stop();
 	}
 
 	@Test
@@ -117,11 +117,11 @@ public class TestDisplay
 	}
 
 	@Test
-	void shouldStopCounter_WhenResetting()
+	void shouldStopCounter_WhenReseting()
 	{
 		timer.begin(moment.current());
 		timer.reset(moment.afterSeconds(123));
 
-		verify(mockCounter, atMost(2)).stop();
+		verify(mockCounter, times(2)).stop();
 	}
 }
