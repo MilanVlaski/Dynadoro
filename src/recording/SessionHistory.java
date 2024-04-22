@@ -51,9 +51,7 @@ public class SessionHistory implements History2
 	}
 
 	private List<Session> sessionsThatMatchDate(Stream<Session> sessions, LocalDate date)
-	{
-		return sessions.filter(session -> session.date().equals(date)).toList();
-	}
+	{ return sessions.filter(session -> session.date().equals(date)).toList(); }
 
 	@Override
 	public List<Session> getSessions()
@@ -90,9 +88,7 @@ public class SessionHistory implements History2
 
 	@Override
 	public void capture(Session session)
-	{
-		write(session.toString(), sessionsFile);
-	}
+	{ write(session.toString(), sessionsFile); }
 
 	private static void write(String text, Path sessionsFile)
 	{
