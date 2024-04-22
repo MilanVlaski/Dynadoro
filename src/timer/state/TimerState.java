@@ -39,13 +39,13 @@ public abstract class TimerState
 			throw new SessionTooLong();
 		else if (sessionPassedMidnight(start, end))
 		{
-			var secBeforeMidnight = LocalDateTime.of(start.toLocalDate(),
+			var todayAtSecBeforeMidnight = LocalDateTime.of(start.toLocalDate(),
 			                                         LocalTime.of(23, 59, 59));
-			var midnight = LocalDateTime.of(start.toLocalDate().plusDays(1),
+			var tomorrowAtMidnight = LocalDateTime.of(start.toLocalDate().plusDays(1),
 			                                LocalTime.of(0, 0));
 
-			history2.capture(new Session(state, start, secBeforeMidnight));
-			history2.capture(new Session(state, midnight, end));
+			history2.capture(new Session(state, start, todayAtSecBeforeMidnight));
+			history2.capture(new Session(state, tomorrowAtMidnight, end));
 		}
 		else if (sessionLastsMoreThanOneMinute(start, end))
 			history2.capture(new Session(state, start, end));
