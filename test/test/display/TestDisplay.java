@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.*;
 
 import display.Display;
-import recording.History2;
+import recording.History;
 import test.TestTimer;
 import test.helpers.Moment;
 import timer.Timer;
@@ -27,7 +27,7 @@ public class TestDisplay
 	@Mock
 	Counter mockCounter;
 	@Mock
-	History2 dummyHistory;
+	History dummyHistory;
 
 	@InjectMocks
 	Timer timer;

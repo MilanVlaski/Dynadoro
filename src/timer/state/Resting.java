@@ -5,7 +5,7 @@ import static recording.State.RESTING;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-import recording.History2;
+import recording.History;
 import recording.SessionRecorder;
 import timer.Timer;
 
@@ -59,7 +59,7 @@ public class Resting extends TimerState
 	{}
 
 	@Override
-	public void capture(History2 history2, LocalDateTime now)
-	{ new SessionRecorder(history2, RESTING, start, now).capture(); }
+	public void capture(History history, LocalDateTime now)
+	{ new SessionRecorder(history, RESTING, start, now).capture(); }
 
 }

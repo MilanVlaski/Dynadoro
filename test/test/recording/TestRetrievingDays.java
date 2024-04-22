@@ -14,7 +14,7 @@ import recording.*;
 
 public class TestRetrievingDays
 {
-	History2 history;
+	History history;
 
 	@TempDir
 	Path tempDir;
@@ -40,7 +40,7 @@ public class TestRetrievingDays
 		@Test
 		void IfNothingWasRecordedBefore()
 		{
-			history.capture(session);
+			history.write(session);
 
 			List<Day> days = history.getDays();
 			assertEquals(1, days.size());
@@ -50,8 +50,8 @@ public class TestRetrievingDays
 		@Test
 		void InsideExistingDay()
 		{
-			history.capture(session);
-			history.capture(session);
+			history.write(session);
+			history.write(session);
 
 			List<Day> days = history.getDays();
 			assertEquals(1, days.size());
@@ -61,8 +61,8 @@ public class TestRetrievingDays
 		@Test
 		void InTwoDifferentDays()
 		{
-			history.capture(session);
-			history.capture(new Session(State.WORKING, date.plusDays(1), time,
+			history.write(session);
+			history.write(new Session(State.WORKING, date.plusDays(1), time,
 			                            time.plusMinutes(10)));
 
 			List<Day> days = history.getDays();

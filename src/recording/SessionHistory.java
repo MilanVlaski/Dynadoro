@@ -10,7 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
-public class SessionHistory implements History2
+public class SessionHistory implements History
 {
 
 	public static final String userHome = System.getProperty("user.home");
@@ -87,7 +87,7 @@ public class SessionHistory implements History2
 	}
 
 	@Override
-	public void capture(Session session)
+	public void write(Session session)
 	{ write(session.toString(), sessionsFile); }
 
 	private static void write(String text, Path sessionsFile)

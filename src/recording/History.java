@@ -2,9 +2,9 @@ package recording;
 
 import java.util.List;
 
-public interface History2
+public interface History
 {
 	List<Session> getSessions();
 	List<Day> getDays();
-	void capture(Session session);
+	void write(Session session);
 }

@@ -8,7 +8,7 @@ import recording.*;
 /**
  * Doesn't interact with the file system, instead, stores Sessions in a list.
  */
-public class FakeHistory implements History2
+public class FakeHistory implements History
 {
 
 	private final List<Session> sessions = new ArrayList<Session>();
@@ -18,7 +18,7 @@ public class FakeHistory implements History2
 	{ return sessions; }
 
 	@Override
-	public void capture(Session session)
+	public void write(Session session)
 	{
 		this.sessions.add(session);
 	}
