@@ -44,8 +44,6 @@ public class Pause extends TimerState
 
 	@Override
 	public void capture(History2 history2, LocalDateTime now)
-	{
-		// TODO Auto-generated method stub
-	}
+	{}
 
 }
