@@ -1,11 +1,10 @@
 package timer.state;
 
-import static recording.State.WORKING;
-
 import java.time.Duration;
 import java.time.LocalDateTime;
 
 import recording.History2;
+import recording.State;
 import timer.Timer;
 
 public class Working extends TimerState
@@ -58,6 +57,6 @@ public class Working extends TimerState
 
 	@Override
 	public void capture(History2 history2, LocalDateTime now)
-	{ capture(history2, WORKING, start, now); }
+	{ new SessionRecorder(history2, State.WORKING, start, now).capture(); }
 
 }

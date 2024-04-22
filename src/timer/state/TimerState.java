@@ -1,8 +1,8 @@
 package timer.state;
 
-import java.time.*;
+import java.time.LocalDateTime;
 
-import recording.*;
+import recording.History2;
 import timer.Timer;
 
 public abstract class TimerState
@@ -32,39 +32,5 @@ public abstract class TimerState
 		{ super(message); }
 	}
 
-	static void capture(History2 history2, State state, LocalDateTime start,
-	                    LocalDateTime end)
-	{
-		if (sessionLastsMoreThanOneDay(start, end))
-			throw new SessionTooLong();
-		else if (sessionPassedMidnight(start, end))
-		{
-			var todayAtSecBeforeMidnight = LocalDateTime.of(start.toLocalDate(),
-			                                         LocalTime.of(23, 59, 59));
-			var tomorrowAtMidnight = LocalDateTime.of(start.toLocalDate().plusDays(1),
-			                                LocalTime.of(0, 0));
 
-			history2.capture(new Session(state, start, todayAtSecBeforeMidnight));
-			history2.capture(new Session(state, tomorrowAtMidnight, end));
-		}
-		else if (sessionLastsMoreThanOneMinute(start, end))
-			history2.capture(new Session(state, start, end));
-	}
-
-	private static boolean sessionLastsMoreThanOneDay(LocalDateTime start,
-	                                                  LocalDateTime end)
-	{ return Duration.between(start, end).toDays() > 0; }
-
-	private static boolean sessionLastsMoreThanOneMinute(LocalDateTime start,
-	                                                     LocalDateTime end)
-	{ return Duration.between(start, end).compareTo(Duration.ofMinutes(1)) >= 0; }
-
-	private static boolean sessionPassedMidnight(LocalDateTime start, LocalDateTime end)
-	{ return start.toLocalDate().compareTo(end.toLocalDate()) < 0; }
-
-	public static class SessionTooLong extends RuntimeException
-	{
-		SessionTooLong()
-		{ super("Session longer than a day. It won't be recorded."); }
-	}
 }
