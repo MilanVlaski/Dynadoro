@@ -32,7 +32,7 @@ public abstract class TimerState
 		{ super(message); }
 	}
 
-	static void capture(History2 history2, State working, LocalDateTime start,
+	static void capture(History2 history2, State state, LocalDateTime start,
 	                    LocalDateTime end)
 	{
 		if (sessionLastsMoreThanOneDay(start, end))
@@ -44,11 +44,11 @@ public abstract class TimerState
 			var midnight = LocalDateTime.of(start.toLocalDate().plusDays(1),
 			                                LocalTime.of(0, 0));
 
-			history2.capture(new Session(working, start, secBeforeMidnight));
-			history2.capture(new Session(working, midnight, end));
+			history2.capture(new Session(state, start, secBeforeMidnight));
+			history2.capture(new Session(state, midnight, end));
 		}
 		else if (sessionLastsMoreThanOneMinute(start, end))
-			history2.capture(new Session(working, start, end));
+			history2.capture(new Session(state, start, end));
 	}
 
 	private static boolean sessionLastsMoreThanOneDay(LocalDateTime start,
