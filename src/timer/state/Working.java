@@ -46,10 +46,8 @@ public class Working extends TimerState
 	{
 		context.getDisplay().pauseWork();
 
-		Resumable resume = (nowTime,
-		                    from) -> context.changeState(new Working(context, nowTime,
-		                                                             from),
-		                                                 now);
+		Resumable resume = (nowTime, from) -> context
+		        .changeState(new Working(context, nowTime, from), now);
 
 		context.changeState(new Pause(context, now, resume, seconds(now)), now);
 	}

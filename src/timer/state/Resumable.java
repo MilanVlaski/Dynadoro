@@ -4,5 +4,5 @@ import java.time.LocalDateTime;
 
 public interface Resumable
 {
-	void resume(LocalDateTime now, int from);
+	void resume(LocalDateTime now, int fromSeconds);
 }
