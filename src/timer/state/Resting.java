@@ -3,8 +3,7 @@ package timer.state;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-import recording.History2;
-import recording.State;
+import recording.*;
 import timer.Timer;
 
 public class Resting extends TimerState

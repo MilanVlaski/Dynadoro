@@ -1,8 +1,6 @@
-package timer.state;
+package recording;
 
 import java.time.*;
-
-import recording.*;
 
 public class SessionRecorder
 {
