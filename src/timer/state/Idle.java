@@ -23,6 +23,7 @@ public class Idle extends TimerState
 	@Override
 	public void begin(LocalDateTime now)
 	{ context.changeState(new Working(context, now), now); }
+
 	@Override
 	public void rest(LocalDateTime now)
 	{ throw new IllegalOperationException("Can't take break if haven't started work."); }
@@ -37,8 +38,7 @@ public class Idle extends TimerState
 
 	@Override
 	public void capture(History2 history2, LocalDateTime now)
-	{ 
-	 }
+	{}
 
 
 }
