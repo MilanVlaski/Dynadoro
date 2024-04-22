@@ -58,8 +58,6 @@ public class Timer
 	{ changeState(new Idle(this, now), now); }
 
 	public List<Day> retrieveDays()
-	{
-		return history2.getDays();
-	}
+	{ return history2.getDays(); }
 
 }

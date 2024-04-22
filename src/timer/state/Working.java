@@ -46,8 +46,10 @@ public class Working extends TimerState
 	{
 		context.getDisplay().pauseWork();
 
-		Resumable resume = (nowTime, from) -> context
-		        .changeState(new Working(context, nowTime, from), now);
+		Resumable resume = (nowTime,
+		                    from) -> context.changeState(new Working(context, nowTime,
+		                                                             from),
+		                                                 now);
 
 		context.changeState(new Pause(context, now, resume, seconds(now)), now);
 	}
@@ -58,8 +60,6 @@ public class Working extends TimerState
 
 	@Override
 	public void capture(History2 history2, LocalDateTime now)
-	{
-		capture(history2, WORKING, start, now);
-	}
+	{ capture(history2, WORKING, start, now); }
 
 }
