@@ -15,9 +15,9 @@ public class Resting extends TimerState
 	private static final int WORK_REST_RATIO = 5 / 1;
 
 	public Resting(Timer context, LocalDateTime now, int workDuration)
-	{ this(workDuration / WORK_REST_RATIO, context, now); }
+	{ this(context, workDuration / WORK_REST_RATIO, now); }
 
-	private Resting(int restDuration, Timer context, LocalDateTime now)
+	private Resting(Timer context, int restDuration, LocalDateTime now)
 	{
 		super(context, now);
 		this.restDuration = restDuration;
@@ -48,7 +48,7 @@ public class Resting extends TimerState
 		context.getDisplay().pauseRest();
 
 		Resumable resume = (current, nowTime) -> context
-		        .changeState(new Resting(nowTime, context, current), now);
+		        .changeState(new Resting(context, nowTime, current), now);
 
 		context.changeState(new Pause(context, now, resume, seconds(now)), now);
 	}
