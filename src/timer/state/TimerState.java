@@ -2,7 +2,7 @@ package timer.state;
 
 import java.time.LocalDateTime;
 
-import recording.History;
+import recording.History2;
 import timer.Timer;
 
 public abstract class TimerState
@@ -22,7 +22,7 @@ public abstract class TimerState
 	public abstract void rest(LocalDateTime now);
 	public abstract void pause(LocalDateTime now);
 	public abstract void resume(LocalDateTime now);
-	public abstract void capture(History history, LocalDateTime now);
+	public abstract void capture(History2 history2, LocalDateTime now);
 
 	public static class IllegalOperationException extends RuntimeException
 	{

@@ -5,7 +5,7 @@ import java.util.List;
 
 import display.Display;
 import recording.Day;
-import recording.History;
+import recording.History2;
 import timer.counter.Counter;
 import timer.state.Idle;
 import timer.state.TimerState;
@@ -15,21 +15,21 @@ public class Timer
 
 	private final Display display;
 	private final Counter counter;
-	private final History history;
+	private final History2 history2;
 
 	private TimerState state;
 
-	public Timer(Display display, Counter counter, LocalDateTime now, History history)
+	public Timer(Display display, Counter counter, LocalDateTime now, History2 history2)
 	{
 		this.display = display;
 		this.counter = counter;
-		this.history = history;
+		this.history2 = history2;
 		state = new Idle(this, now);
 	}
 
 	public void changeState(TimerState newState, LocalDateTime now)
 	{
-		state.capture(history, now);
+		state.capture(history2, now);
 		this.state = newState;
 	}
 
@@ -58,6 +58,6 @@ public class Timer
 	{ changeState(new Idle(this, now), now); }
 
 	public List<Day> retrieveDays()
-	{ return history.getDays(); }
+	{ return history2.getDays(); }
 
 }

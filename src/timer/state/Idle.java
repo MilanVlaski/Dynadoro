@@ -2,7 +2,7 @@ package timer.state;
 
 import java.time.LocalDateTime;
 
-import recording.History;
+import recording.History2;
 import timer.Timer;
 
 public class Idle extends TimerState
@@ -37,7 +37,7 @@ public class Idle extends TimerState
 	{ throw new IllegalOperationException("Can't resume while idle."); }
 
 	@Override
-	public void capture(History history, LocalDateTime now)
+	public void capture(History2 history2, LocalDateTime now)
 	{}
 
 

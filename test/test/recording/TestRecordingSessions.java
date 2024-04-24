@@ -15,7 +15,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 import display.Display;
-import recording.History;
+import recording.History2;
 import recording.Session;
 import test.helpers.FakeHistory;
 import timer.Timer;
@@ -33,7 +33,7 @@ public class TestRecordingSessions
 	@InjectMocks
 	Timer timer;
 
-	History history;
+	History2 history;
 
 	static final LocalDateTime dateTime = LocalDateTime.of(2024, 4, 2, 0, 0);
 

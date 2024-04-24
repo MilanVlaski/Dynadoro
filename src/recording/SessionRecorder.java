@@ -6,13 +6,13 @@ public class SessionRecorder
 {
 	private final LocalDateTime start;
 	private final LocalDateTime end;
-	private final History history;
+	private final History2 history;
 	private final State state;
 
-	public SessionRecorder(History history, State state, LocalDateTime start,
+	public SessionRecorder(History2 history2, State state, LocalDateTime start,
 	                       LocalDateTime end)
 	{
-		this.history = history;
+		this.history = history2;
 		this.state = state;
 		this.start = start;
 		this.end = end;
@@ -29,11 +29,11 @@ public class SessionRecorder
 			var tomorrowAtMidnight = LocalDateTime.of(start.toLocalDate().plusDays(1),
 			        LocalTime.of(0, 0));
 
-			history.write(new Session(state, start, todayAtSecBeforeMidnight));
-			history.write(new Session(state, tomorrowAtMidnight, end));
+			history.capture(new Session(state, start, todayAtSecBeforeMidnight));
+			history.capture(new Session(state, tomorrowAtMidnight, end));
 		}
 		else if (sessionLastsMoreThanOneMinute())
-			history.write(new Session(state, start, end));
+			history.capture(new Session(state, start, end));
 	}
 
 	private boolean sessionLastsMoreThanOneDay()
