@@ -17,10 +17,10 @@ import org.mockito.Mock;
 import display.Display;
 import recording.History2;
 import recording.Session;
+import recording.SessionRecorder.SessionTooLong;
 import test.helpers.FakeHistory;
 import timer.Timer;
 import timer.counter.Counter;
-import timer.state.TimerState.SessionTooLong;
 
 public class TestRecordingSessions
 {
