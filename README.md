@@ -19,6 +19,8 @@
 
 
 ## TODO
+- Check the jar works and is updated
+- Add pictures to readme
 - Write the main method using spring context, just to try it
 - Write console app -> in spring as well
 - Delete unused code related to recording, and getting images...
