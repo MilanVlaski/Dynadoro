@@ -42,25 +42,33 @@ public class SessionHistory implements History2
 		}
 		else
 		{
-			var dates = sessions.stream().map(Session::date).distinct();
+			var dates = sessions.stream()
+			        .map(Session::date)
+			        .distinct();
 
 			return dates.map(date -> sessionsThatMatchDate(sessions.stream(), date))
-			            .map(Day::new)
-			            .toList();
+			        .map(Day::new)
+			        .toList();
 		}
 	}
 
 	private List<Session> sessionsThatMatchDate(Stream<Session> sessions, LocalDate date)
-	{ return sessions.filter(session -> session.date().equals(date)).toList(); }
+	{ return sessions.filter(session -> session.date()
+	        .equals(date))
+	        .toList(); }
 
 	@Override
 	public List<Session> getSessions()
 	{
 		String contents = readFile(sessionsFile);
-		return parsePeriods(contents);
+		List<Session> sessions = parseSessions(contents);
+		// sorts from newest to oldest
+		sessions.sort((s1, s2) -> s2.date()
+		        .compareTo(s1.date()));
+		return sessions;
 	}
 
-	public static List<Session> parsePeriods(String text)
+	public static List<Session> parseSessions(String text)
 	{
 		List<Session> result = new ArrayList<>();
 		Pattern pattern = Pattern.compile(Session.regex);
@@ -78,11 +86,11 @@ public class SessionHistory implements History2
 			LocalDate date = LocalDate.parse(dateString, Session.dateFormat);
 			LocalTime startTime = LocalTime.parse(startTimeString, Session.hourFormat);
 			LocalTime endTime = LocalTime.parse(endTimeString, Session.hourFormat);
-			State state = State.of(stateString).get();
+			State state = State.of(stateString)
+			        .get();
 
 			result.add(new Session(state, date, startTime, endTime));
 		}
-
 		return result;
 	}
 
@@ -101,7 +109,7 @@ public class SessionHistory implements History2
 			}
 
 			BufferedWriter writer = Files.newBufferedWriter(sessionsFile,
-			                                                StandardOpenOption.APPEND);
+			        StandardOpenOption.APPEND);
 			writer.write(text);
 			writer.newLine();
 			writer.close();

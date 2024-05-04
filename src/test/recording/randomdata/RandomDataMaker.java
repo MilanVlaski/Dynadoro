@@ -11,7 +11,7 @@ import recording.Session;
 
 public class RandomDataMaker
 {
-	List<Session> sessions = new ArrayList();
+	List<Session> sessions = new ArrayList<>();
 	Random r = new Random();
 
 	public String make()
