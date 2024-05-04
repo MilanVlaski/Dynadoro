@@ -28,6 +28,13 @@
 - show hours studied per week
 - make sessions file openable through UI
 
+##### Random data creater
+- For thirty days from today make sessions for each day
+- 1 to 6 sessions
+- each sessions lasting 10 to 50 minutes (plus rest)
+- at different times of day
+- MAYBE add pauses inbetween
+
 #### PERHAPS
 - Potential errors if you work for less than a second, or less than 5.
 
