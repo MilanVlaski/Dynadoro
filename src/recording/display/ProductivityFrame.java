@@ -13,7 +13,7 @@ public class ProductivityFrame extends JFrame
 
 	public ProductivityFrame()
 	{
-		setSize(new Dimension(900, 900));
+		setSize(new Dimension(935, 900));
 		setTitle("History of work");
 
 		JScrollPane scrollPane = new JScrollPane(productivityPanel);
