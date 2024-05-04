@@ -1,4 +1,4 @@
-package test.helpers;
+package helpers;
 
 import display.Display;
 import sound.SoundPlayer;

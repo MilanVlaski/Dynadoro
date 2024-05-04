@@ -1,4 +1,4 @@
-package test.recording;
+package recording;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -9,8 +9,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.io.TempDir;
-
-import recording.*;
 
 public class TestRetrievingDays
 {

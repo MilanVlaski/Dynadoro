@@ -1,4 +1,4 @@
-package test.drawing;
+package drawing;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

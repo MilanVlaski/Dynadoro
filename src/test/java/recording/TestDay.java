@@ -1,4 +1,4 @@
-package test.recording;
+package recording;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -7,10 +7,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-
-import recording.Day;
-import recording.Session;
-import recording.State;
 
 public class TestDay
 {

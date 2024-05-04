@@ -1,8 +1,8 @@
-package test;
+package main;
 
+import static main.TestTimer.REST_DURATION;
+import static main.TestTimer.WORK_DURATION;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static test.TestTimer.REST_DURATION;
-import static test.TestTimer.WORK_DURATION;
 
 import java.time.LocalDateTime;
 
@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.*;
 
 import display.Display;
+import helpers.Moment;
 import recording.History2;
-import test.helpers.Moment;
 import timer.Timer;
 import timer.counter.Counter;
 

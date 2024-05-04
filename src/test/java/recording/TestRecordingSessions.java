@@ -1,4 +1,4 @@
-package test.recording;
+package recording;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -15,10 +15,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 import display.Display;
-import recording.History2;
-import recording.Session;
+import helpers.FakeHistory;
 import recording.SessionRecorder.SessionTooLong;
-import test.helpers.FakeHistory;
 import timer.Timer;
 import timer.counter.Counter;
 

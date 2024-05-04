@@ -1,17 +1,17 @@
-package test.counter;
+package counter;
 
+import static helpers.FastCounter.DURATION_MILLISECONDS;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static test.helpers.FastCounter.DURATION_MILLISECONDS;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
 
 import display.Display;
-import test.helpers.FastCounter;
+import helpers.FastCounter;
 
 class TestCounter
 {

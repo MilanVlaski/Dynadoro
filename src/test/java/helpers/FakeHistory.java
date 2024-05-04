@@ -1,4 +1,4 @@
-package test.helpers;
+package helpers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import recording.*;
 public class FakeHistory implements History2
 {
 
-	private final List<Session> sessions = new ArrayList<Session>();
+	private final List<Session> sessions = new ArrayList<>();
 
 	@Override
 	public List<Session> getSessions()
@@ -25,7 +25,7 @@ public class FakeHistory implements History2
 
 	@Override
 	public List<Day> getDays()
-	{ 
+	{
 		// TODO Auto-generated method stub
 		return null;
 	 }

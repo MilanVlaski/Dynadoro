@@ -1,4 +1,4 @@
-package test;
+package main;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.*;
 
 import display.Display;
+import helpers.Moment;
 import recording.History2;
-import test.helpers.Moment;
 import timer.Timer;
 import timer.counter.Counter;
 

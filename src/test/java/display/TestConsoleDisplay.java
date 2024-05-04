@@ -1,10 +1,8 @@
-package test.display;
+package display;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
-
-import display.ConsoleDisplay;
 
 class TestConsoleDisplay {
 

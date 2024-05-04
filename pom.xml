@@ -10,8 +10,13 @@
 		<junit.jupiter.version>5.10.1</junit.jupiter.version>
 	</properties>
 	<build>
-		<sourceDirectory>src</sourceDirectory>
-		<testSourceDirectory>test</testSourceDirectory>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<testSourceDirectory>src/test/java</testSourceDirectory>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -48,11 +53,11 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
-<dependency>
-    <groupId>org.assertj</groupId>
-    <artifactId>assertj-core</artifactId>
-    <version>3.25.3</version>
-    <scope>test</scope>
-</dependency>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>3.25.3</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 </project>
