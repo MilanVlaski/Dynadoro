@@ -1,5 +1,9 @@
 package recording.clock;
 
+import static java.awt.BasicStroke.CAP_ROUND;
+import static java.awt.BasicStroke.JOIN_BEVEL;
+import static recording.display.DayPanel.dayBackground;
+
 import java.awt.*;
 import java.awt.geom.Arc2D;
 import java.awt.geom.Line2D;
@@ -22,32 +26,37 @@ public class ClockDrawer
 
 		int centerX = size / 2;
 		int centerY = size / 2;
-		int radius = (int) (Math.min(centerX, centerY) * 0.9);
+		int clockRadius = (int) (Math.min(centerX, centerY) * 0.9);
 
 		//
-		drawCircle(g, centerX, centerY, radius);
-		drawClockBorder(g, centerX, centerY, radius, 5);
-		drawHours(g, centerX, centerY, radius);
-		drawMinutes(g, centerX, centerY, radius);
+		drawBackground(g, centerX, centerY, (Math.min(centerX, centerY)));
+		drawCircle(g, centerX, centerY, clockRadius);
+		drawClockBorder(g, centerX, centerY, clockRadius, 5);
+		drawHours(g, centerX, centerY, clockRadius);
+		drawMinutes(g, centerX, centerY, clockRadius);
 
 		for (Session session : sessions)
 		{
 			drawState(g, session.startTime(), session.duration(), session.type(), centerX,
-			        centerY, radius);
+			        centerY, clockRadius);
 		}
 
-		drawCircleThatHidesPie(g, centerX, centerY, radius);
+		drawCircleThatHidesPie(g, centerX, centerY, clockRadius);
 		//
 
 	}
 
-	private static void drawState(Graphics2D g, LocalTime startTime,
-	                              Duration duration,
+	private static void drawBackground(Graphics2D g, int centerX, int centerY, int radius)
+	{
+		g.setColor(dayBackground);
+		((Graphics) g).fillRect(centerX - radius, centerY - radius, radius * 2,
+		        radius * 2);
+	}
+
+	private static void drawState(Graphics2D g, LocalTime startTime, Duration duration,
 	                              State type, int centerX, int centerY, int radius)
 	{
-		Color borderColor = type.equals(State.WORKING)
-		        ? MainFrame.WORK
-		        : MainFrame.REST;
+		Color borderColor = type.equals(State.WORKING) ? MainFrame.WORK : MainFrame.REST;
 		float alpha = 0.5f;
 
 		// Set a transparent stroke using AlphaComposite
@@ -56,15 +65,14 @@ public class ClockDrawer
 		g.setComposite(alphaComposite);
 
 		g.setColor(borderColor);
-		BasicStroke borderStroke = new BasicStroke(4, BasicStroke.CAP_ROUND,
-		        BasicStroke.JOIN_BEVEL);
+		BasicStroke borderStroke = new BasicStroke(4, CAP_ROUND, JOIN_BEVEL);
 		g.setStroke(borderStroke);
 
 		float startDegrees = timeToDegrees(startTime);
 		float durationDegrees = durationToDegrees(duration);
 
 		Arc2D arc = new Arc2D.Float(centerX - radius, centerY - radius, 2 * radius,
-		        2 * radius, startDegrees, durationDegrees, Arc2D.PIE);
+		                            2 * radius, startDegrees, durationDegrees, Arc2D.PIE);
 
 		g.fill(arc);
 
@@ -121,7 +129,7 @@ public class ClockDrawer
 
 				g.setColor(new Color(200, 200, 200));
 				BasicStroke mainStroke = new BasicStroke(1, BasicStroke.CAP_ROUND,
-				        BasicStroke.JOIN_BEVEL);
+				                                         JOIN_BEVEL);
 				g.setStroke(mainStroke);
 				g.draw(new Line2D.Double(lineX1, lineY1, lineX2, lineY2));
 			}
@@ -139,7 +147,7 @@ public class ClockDrawer
 			int lineY2 = (int) (centerY + 0.96 * radius * Math.sin(angle));
 
 			BasicStroke mainStroke = new BasicStroke(2, BasicStroke.CAP_ROUND,
-			        BasicStroke.JOIN_BEVEL);
+			                                         JOIN_BEVEL);
 			g.setStroke(mainStroke); // Adjust the thickness as needed
 			g.setColor(new Color(150, 160, 170));
 			g.draw(new Line2D.Double(lineX1, lineY1, lineX2, lineY2));
@@ -180,7 +188,7 @@ public class ClockDrawer
 	{
 		g.setColor(grey); // grey
 		BasicStroke borderStroke = new BasicStroke(thickness, BasicStroke.CAP_ROUND,
-		        BasicStroke.JOIN_BEVEL);
+		                                           JOIN_BEVEL);
 		g.setStroke(borderStroke);
 
 		int thickRadius = radius + thickness / 2;

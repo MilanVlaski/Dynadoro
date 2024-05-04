@@ -13,7 +13,8 @@ import recording.clock.ClockPanel;
 public class ClockFrame extends JFrame
 {
 
-	public ClockFrame(String title, ClockPanel clockPanel, Point position, int size)
+	public ClockFrame(String title, ClockPanel clockPanel, Point position, int width,
+	                  int height)
 	{
 		super(title);
 
@@ -21,7 +22,7 @@ public class ClockFrame extends JFrame
 
 		setLocation((int) (position.getX()), (int) position.getY());
 		add(clockPanel);
-		setSize(new Dimension(size, size));
+		setSize(new Dimension(width, height));
 
 		addWindowFocusListener(new WindowFocusListener() {
 

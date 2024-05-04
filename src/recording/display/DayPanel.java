@@ -17,11 +17,12 @@ import recording.clock.ClockPanel;
 public class DayPanel extends JPanel
 {
 	private static DateTimeFormatter dateFormat;
+	public static Color dayBackground = new Color(189, 228, 242);
 
 	public DayPanel(Day day)
 	{
 		setLayout(new GridBagLayout());
-		setBackground(new Color(189, 228, 242));
+		setBackground(dayBackground);
 
 		dateFormat = DateTimeFormatter.ofPattern("EEEE, d, LLLL, yyyy");
 
@@ -50,10 +51,8 @@ public class DayPanel extends JPanel
 				Point clockLocation = new Point((int) (panelLocationOnScreen.getX()
 				        + xOffset), (int) (panelLocationOnScreen.getY() + yOffset));
 
-				int size = 500;
-				adjustFramePosition(clockLocation, xOffset, size);
-				new ClockFrame(dateFormat.format(day.date()), clock2, clockLocation,
-				               size);
+				adjustFramePosition(clockLocation, xOffset, 500);
+				new ClockFrame(dateFormat.format(day.date()), clock2, clockLocation, 500, 520);
 			}
 
 		});
@@ -86,7 +85,7 @@ public class DayPanel extends JPanel
 		if (location.getY() + frameHeight + taskbarThickness > screenHeight)
 		{
 			location.setLocation(location.getX(),
-			                     screenHeight - taskbarThickness - frameHeight);
+			        screenHeight - taskbarThickness - frameHeight);
 		}
 	}
 
