@@ -17,7 +17,8 @@ public class ProductivityFrame extends JFrame
 		setTitle("History of work");
 
 		JScrollPane scrollPane = new JScrollPane(productivityPanel);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setHorizontalScrollBarPolicy(
+		        ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		fixScrolling(scrollPane);
 
 		add(scrollPane);
@@ -31,13 +32,15 @@ public class ProductivityFrame extends JFrame
 		reset();
 		if (days.isEmpty())
 		{
-			productivityPanel.add(new JLabel("No study sessions exist."));
-			return;
+			JLabel noneFoundLabel = new JLabel("No study sessions exist.");
+			noneFoundLabel.setFont(DayPanel.loto16);
+			productivityPanel.add(noneFoundLabel);
 		}
-		for (Day day : days)
-		{
-			productivityPanel.add(new DayPanel(day));
-		}
+		else
+			for (Day day : days)
+			{
+				productivityPanel.add(new DayPanel(day));
+			}
 	}
 
 	private void reset()
@@ -60,21 +63,9 @@ public class ProductivityFrame extends JFrame
 		int horizontalIncrement = systemHBar.getUnitIncrement();
 
 		scrollpane.getVerticalScrollBar()
-		          .setUnitIncrement(lineHeight * verticalIncrement);
+		        .setUnitIncrement(lineHeight * verticalIncrement);
 		scrollpane.getHorizontalScrollBar()
-		          .setUnitIncrement(charWidth * horizontalIncrement);
-	}
-
-	public static void main(String[] args)
-	{
-		var days = DayPanel.testDays();
-
-		SwingUtilities.invokeLater(() ->
-		{
-			ProductivityFrame productivityFrame = new ProductivityFrame();
-			productivityFrame.showDays(days);
-		});
-
+		        .setUnitIncrement(charWidth * horizontalIncrement);
 	}
 
 	private static final long serialVersionUID = 1L;

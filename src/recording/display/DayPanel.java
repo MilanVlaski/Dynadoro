@@ -18,6 +18,7 @@ public class DayPanel extends JPanel
 {
 	private static DateTimeFormatter dateFormat;
 	public static Color dayBackground = new Color(189, 228, 242);
+	public static Font loto16 = new Font("Loto", Font.PLAIN, 16);
 
 	public DayPanel(Day day)
 	{
@@ -130,7 +131,7 @@ public class DayPanel extends JPanel
 		{
 			super(string);
 			setBorder(new EmptyBorder(4, 4, 4, 4));
-			setFont(new Font("Loto", Font.PLAIN, 16));
+			setFont(loto16);
 			setForeground(new Color(0, 5, 10));
 		}
 	}
