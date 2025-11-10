@@ -6,7 +6,7 @@
 Dynadoro is a study/work timer, based on the [pomodoro technique](https://en.wikipedia.org/wiki/Pomodoro_Technique). Usually, the technique involves 25 minutes of work, and 5 minutes of rest. I found that annoying, so I decided to make an app that lets me work as long, or short, as I want, and then resting for a time that maintains the pomodoro ratio.
 
 ## How to run?
-To use the app, you must have JDK 21 installed, as well as Maven. We suggest installing Maven with `sdk maven install` using [SDKMAN](https://sdkman.io/).
+To use the app, you must have JDK 21 installed, as well as Maven. We suggest installing both using, for Linux, using [SDKMAN](https://sdkman.io/), by running `sdk maven install` and `sdk install java`.
 1. Clone the repository, and `cd` into it.
 2. Run `mvn clean install`
 3. Run `mvn clean compile assembly:single`
