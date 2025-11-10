@@ -16,6 +16,9 @@ To use the app, you must have JDK 21 installed, as well as Maven. We suggest ins
 
 ## Use cases
 
+### Tracking Example Visualization
+<img width="913" height="459" alt="image" src="https://github.com/user-attachments/assets/96a52819-7221-4c67-bb69-ce533fc9de88" />
+
 - When I open the app I want it to display 00:00.
 - When I press Begin it counts up, and shows me that I am working. (You have the option of going on break).
 - When I press Break, it start counting down for a period 5 times shorter than the time spent working.
@@ -24,10 +27,7 @@ To use the app, you must have JDK 21 installed, as well as Maven. We suggest ins
 - Pause and resume at any time, while resting or working.
 - Logs your sessions in a file.
 - I can see images of clocks representing my past study and break sessions in a day. I can see which date and weekday the clocks belong to. When I open a clock, I see an enlarged image, with a big date and weekday at the bottom. Also time spent working and resting.
-## Documentation (optional)
 
-- [C4GUI Architecture Baseline](https://github.com/MilanVlaski/c4gui/blob/main/docs/C4GUI%20Architecture%20Baseline.md)
-- [To do](https://github.com/MilanVlaski/c4gui/blob/main/TODO.md)
 
 ## Status
 
