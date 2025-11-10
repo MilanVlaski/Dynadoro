@@ -1,6 +1,6 @@
 <img height="120" alt="dynadoro" src="https://github.com/user-attachments/assets/b5bf33a0-dc77-4f13-aa5c-be00dc9c8de7" />
 
-![License](https://img.shields.io/github/license/MilanVlaski/Dynadoro)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/MilanVlaski/Dynadoro/blob/main/LICENSE)
 <!-- ![Build](https://img.shields.io/github/actions/workflow/status/USER/REPO/ci.yml?branch=main) -->
 
 Dynadoro is a study/work timer, based on the [pomodoro technique](https://en.wikipedia.org/wiki/Pomodoro_Technique). Usually, the technique involves 25 minutes of work, and 5 minutes of rest. I found that annoying, so I decided to make an app that lets me work as long, or short, as I want, and then resting for a time that maintains the pomodoro ratio.
