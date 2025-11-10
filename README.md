@@ -1,4 +1,21 @@
+<img height="120" alt="dynadoro" src="https://github.com/user-attachments/assets/b5bf33a0-dc77-4f13-aa5c-be00dc9c8de7" />
+
+![License](https://img.shields.io/github/license/MilanVlaski/Dynadoro)
+<!-- ![Build](https://img.shields.io/github/actions/workflow/status/USER/REPO/ci.yml?branch=main) -->
+
+Dynadoro is a study/work timer, based on the [pomodoro technique](https://en.wikipedia.org/wiki/Pomodoro_Technique). Usually, the technique involves 25 minutes of work, and 5 minutes of rest. I found that annoying, so I decided to make an app that lets me work as long, or short, as I want, and then resting for a time that maintains the pomodoro ratio.
+
+## How to run?
+To use the app, you must have JDK 21 installed, as well as Maven. We suggest installing Maven with `sdk maven install` using [SDKMAN](https://sdkman.io/).
+1. Clone the repository, and `cd` into it.
+2. Run `mvn clean install`
+3. Run `mvn clean compile assembly:single`
+4. To run the jar file, run `java -jar target/DynamicPomodoro-0.0.1-SNAPSHOT-jar-with-dependencies.jar`
+   
+**Note**: The app will create a file in your home folder, i.e. on Linux `~/Dynadoro/sessions.txt`. It's a simple text file, keeping track of all of your study sessions, so that they can be visualized.
+
 ## Use cases
+
 - When I open the app I want it to display 00:00.
 - When I press Begin it counts up, and shows me that I am working. (You have the option of going on break).
 - When I press Break, it start counting down for a period 5 times shorter than the time spent working.
@@ -7,16 +24,18 @@
 - Pause and resume at any time, while resting or working.
 - Logs your sessions in a file.
 - I can see images of clocks representing my past study and break sessions in a day. I can see which date and weekday the clocks belong to. When I open a clock, I see an enlarged image, with a big date and weekday at the bottom. Also time spent working and resting.
+## Documentation (optional)
 
-#### Classifying sessions
-- I can set a tag while using the app, to differentiate study/work sessions (Reading, revising, casual reading...).
-- The tag can be typed in.
-	- The tag stays visible at all times, unless opened, and then a different name can be typed in.
-	- The app remembers previous tag names, and shows them in the dropdown.
-- When checking history, I want to be able to have a list of tags, and be able to toggle them on or off. The display then updates to show only days when I studied, and only study sessions.
-- All sessions are tagged as STUDY by default.
-- When checking history, STUDY is the default selected tag, if the user has never used tags other than STUDY. If other tags exist, they are all shown. (Or should only study be shown anyway?) (If all tags are shown, how can I differentiate between them visually?) (Perhaps adjacent sessions with the same tag should have some kind of border...).
+- [C4GUI Architecture Baseline](https://github.com/MilanVlaski/c4gui/blob/main/docs/C4GUI%20Architecture%20Baseline.md)
+- [To do](https://github.com/MilanVlaski/c4gui/blob/main/TODO.md)
 
+## Status
+
+The app is usable on desktop environments.
+
+## How to contribute
+
+In progress.
 
 ## TODO
 - [ ] If there are overlapping sessions in a day then show AM and PM clock (AM clock is lighter, while PM is darker? Or they can swap colors.)
@@ -25,13 +44,3 @@
 - Sound isnt working, so make it a maven project, with the maven structure.
 - show hours studied per week
 - make sessions file openable through UI
-
-#### PERHAPS
-- Potential errors if you work for less than a second, or less than 5.
-
-#### BUGFIX:
- When pausing while on break the timer correctly stops counting. But it incorrectly says Break over! when and displays 00:00.
-FIXED: It was because the counter is a little weirdo. Scheduled tasks can't be stopped, i had to add logic that prevents that. I don't understand the library fully...
-BUG: If you pause and resume before the original break interval, you get alarmed twice.
-FIXED: shutdowNow() does a full shutdown, so that works.
-TODO: Test this bug, and fix it
